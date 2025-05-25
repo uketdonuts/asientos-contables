@@ -1,0 +1,12 @@
+Django==4.2
+django-two-factor-auth==1.14.0
+django-bootstrap4==1.1.1
+django-extensions==3.2.1
+dj-database-url
+python-dotenv
+phonenumbers==8.12.55
+django-otp
+mysqlclient
+django-two-factor-auth
+qrcode==7.4.2
+pillow==10.0.1

@@ -1,0 +1,261 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ button_text }} Detalle{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row mb-3">
+        <div class="col">
+            <h2>{{ button_text }} Detalle</h2>
+        </div>
+        <div class="col-auto">
+            <a href="{% url 'asientos:asiento_detail' asiento.id %}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <h5 class="mb-0">Información de la Transacción</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <p><strong>Hash Transacción:</strong> {{ asiento.id }}</p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Fecha:</strong> <span class="badge bg-light text-dark">{{ asiento.fecha }}</span></p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Perfil:</strong> <span class="badge bg-light text-dark">{{ asiento.perfil }}</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <form method="post" novalidate>
+                {% csrf_token %}
+                
+                {% if form.hash_transaccion %}
+                <div class="mb-3">
+                    <label for="{{ form.hash_transaccion.id_for_label }}" class="form-label">Hash Transacción</label>
+                    {{ form.hash_transaccion }}
+                </div>
+                {% endif %}
+                
+                <div class="mb-3">
+                    <label for="{{ form.tipo_cuenta.id_for_label }}" class="form-label">Tipo de Cuenta</label>
+                    {{ form.tipo_cuenta }}
+                    {% if form.tipo_cuenta.errors %}
+                        <div class="text-danger">
+                            {{ form.tipo_cuenta.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="mb-3" id="div_cuenta">
+                    <label for="{{ form.cuenta.id_for_label }}" class="form-label">Cuenta</label>
+                    {{ form.cuenta }}
+                    {% if form.cuenta.errors %}
+                        <div class="text-danger">
+                            {{ form.cuenta.errors }}
+                        </div>
+                    {% endif %}
+                    <small id="cuenta_help_text" class="form-text text-muted"></small>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="{{ form.DetalleDeCausa.id_for_label }}" class="form-label">Causa</label>
+                    {{ form.DetalleDeCausa }}
+                    {% if form.DetalleDeCausa.errors %}
+                        <div class="text-danger">
+                            {{ form.DetalleDeCausa.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="mb-3">
+                    <label for="{{ form.Referencia.id_for_label }}" class="form-label">Referencia</label>
+                    {{ form.Referencia }}
+                    {% if form.Referencia.errors %}
+                        <div class="text-danger">
+                            {{ form.Referencia.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="mb-3">
+                    <label for="{{ form.valor.id_for_label }}" class="form-label">Valor</label>
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input type="text" step="0.01" name="{{ form.valor.html_name }}" 
+                               id="{{ form.valor.auto_id }}" class="form-control"
+                               value="{{ detalle.valor|stringformat:'s'|default:'' }}" required />
+                    </div>
+                    {% if form.valor.errors %}
+                        <div class="text-danger">
+                            {{ form.valor.errors }}
+                        </div>
+                    {% endif %}
+                    <small class="text-muted">Ingrese el valor sin separador de miles y use punto como separador decimal.</small>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Polaridad <small class="text-muted">(Se establece automáticamente según el tipo de cuenta)</small></label>
+                    <div class="d-flex">
+                        {% for radio in form.polaridad %}
+                            <div class="form-check me-4">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% if form.polaridad.errors %}
+                        <div class="text-danger">
+                            {{ form.polaridad.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> {{ button_text }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extrajs %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get references to form elements
+    const tipoCuentaSelect = document.getElementById('{{ form.tipo_cuenta.id_for_label }}');
+    const polaridadInputs = document.querySelectorAll('input[name="{{ form.polaridad.html_name }}"]');
+    const cuentaSelect = document.getElementById('{{ form.cuenta.id_for_label }}');
+    const cuentaHelpText = document.getElementById('cuenta_help_text');
+    const valorInput = document.getElementById('{{ form.valor.auto_id }}');
+    
+    // Función para establecer y bloquear la polaridad según el tipo de cuenta
+    function updatePolaridad(tipoCuenta) {
+        // Bloquear todas las opciones de polaridad
+        polaridadInputs.forEach(input => {
+            input.disabled = true;
+        });
+        
+        if (tipoCuenta === 'DEBE') {
+            // Seleccionar polaridad negativa para DEBE
+            polaridadInputs.forEach(input => {
+                if (input.value === '-') {
+                    input.checked = true;
+                    // Añadir un estilo visual para mostrar que está seleccionado incluso si está deshabilitado
+                    input.parentElement.classList.add('bg-light', 'border', 'border-primary', 'rounded');
+                } else {
+                    input.checked = false;
+                    input.parentElement.classList.remove('bg-light', 'border', 'border-primary', 'rounded');
+                }
+            });
+            
+            // Actualizar el texto de ayuda para la cuenta
+            cuentaHelpText.textContent = 'Seleccione una cuenta para el DEBE';
+            cuentaSelect.setAttribute('data-tipo', 'DEBE');
+            
+            // Cambiar visualmente el campo de cuenta
+            document.getElementById('div_cuenta').classList.add('border-start', 'border-danger', 'ps-2');
+            document.getElementById('div_cuenta').classList.remove('border-start', 'border-success', 'ps-2');
+            
+        } else if (tipoCuenta === 'HABER') {
+            // Seleccionar polaridad positiva para HABER
+            polaridadInputs.forEach(input => {
+                if (input.value === '+') {
+                    input.checked = true;
+                    // Añadir un estilo visual para mostrar que está seleccionado incluso si está deshabilitado
+                    input.parentElement.classList.add('bg-light', 'border', 'border-primary', 'rounded');
+                } else {
+                    input.checked = false;
+                    input.parentElement.classList.remove('bg-light', 'border', 'border-primary', 'rounded');
+                }
+            });
+            
+            // Actualizar el texto de ayuda para la cuenta
+            cuentaHelpText.textContent = 'Seleccione una cuenta para el HABER';
+            cuentaSelect.setAttribute('data-tipo', 'HABER');
+            
+            // Cambiar visualmente el campo de cuenta
+            document.getElementById('div_cuenta').classList.add('border-start', 'border-success', 'ps-2');
+            document.getElementById('div_cuenta').classList.remove('border-start', 'border-danger', 'ps-2');
+        }
+    }
+    
+    // Inicializar polaridad basada en el valor actual de tipo_cuenta
+    if (tipoCuentaSelect) {
+        updatePolaridad(tipoCuentaSelect.value);
+        
+        // Configurar el evento para cambios en tipo_cuenta
+        tipoCuentaSelect.addEventListener('change', function() {
+            updatePolaridad(this.value);
+            
+            // No limpiar la selección de cuenta al editar
+            if (!window.location.href.includes('/editar/')) {
+                cuentaSelect.selectedIndex = 0;
+            }
+        });
+    }
+    
+    // Aplicar formato de número correcto al cargar la página
+    if (valorInput && valorInput.value) {
+        // Asegurarse de que el valor tenga siempre 2 decimales
+        const valorNumerico = parseFloat(valorInput.value);
+        if (!isNaN(valorNumerico)) {
+            valorInput.value = valorNumerico.toFixed(2);
+        }
+    }
+
+    // Validar entrada de valor para asegurar formato correcto
+    if (valorInput) {
+        valorInput.addEventListener('input', function(e) {
+            // Eliminar caracteres no numéricos excepto punto y coma
+            this.value = this.value.replace(/[^\d.,]/g, '');
+            
+            // Reemplazar coma por punto (para estandarizar)
+            this.value = this.value.replace(/,/g, '.');
+            
+            // Asegurar que solo hay un punto decimal
+            const parts = this.value.split('.');
+            if (parts.length > 2) {
+                this.value = parts[0] + '.' + parts.slice(1).join('');
+            }
+        });
+        
+        // Al perder el foco, formatear con 2 decimales
+        valorInput.addEventListener('blur', function() {
+            if (this.value) {
+                const valor = parseFloat(this.value);
+                if (!isNaN(valor)) {
+                    this.value = valor.toFixed(2);
+                }
+            }
+        });
+    }
+    
+    // Asegurarse de que el formulario tiene el valor correcto antes de enviarlo
+    document.querySelector('form').addEventListener('submit', function(e) {
+        // Habilitar temporalmente los campos deshabilitados para incluirlos en el envío del formulario
+        polaridadInputs.forEach(input => {
+            if (input.checked) {
+                input.disabled = false;
+            }
+        });
+        
+        // Asegurar que se envía con el formato correcto para el backend
+        if (valorInput && valorInput.value) {
+            valorInput.value = valorInput.value.replace(',', '.');
+        }
+    });
+});
+</script>
+{% endblock %}

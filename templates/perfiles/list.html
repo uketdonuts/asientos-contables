@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Perfiles Contables{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row mb-3">
+        <div class="col">
+            <h2>Perfiles Contables</h2>
+        </div>
+        <div class="col-auto">
+            <a href="{% url 'perfiles:perfil_create' %}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Nuevo Perfil
+            </a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            {% if perfiles %}
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Empresa</th>
+                                <th>Secuencial</th>
+                                <th>Descripción</th>
+                                <th>Vigencia</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for perfil in perfiles %}
+                                <tr>
+                                    <td>{{ perfil.empresa }}</td>
+                                    <td>{{ perfil.secuencial }}</td>
+                                    <td>{{ perfil.descripcion|truncatechars:50 }}</td>
+                                    <td>
+                                        {% if perfil.vigencia == 'S' %}
+                                            <span class="badge bg-success">Activo</span>
+                                        {% else %}
+                                            <span class="badge bg-danger">Inactivo</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'perfiles:perfil_edit' perfil.id %}" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="{% url 'perfiles:perfil_delete' perfil.id %}" class="btn btn-sm btn-outline-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    No hay perfiles contables registrados.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

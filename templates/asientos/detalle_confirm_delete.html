@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Confirmar Eliminación de Detalle{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row mb-3">
+        <div class="col">
+            <h2>Confirmar Eliminación de Detalle</h2>
+            <p class="text-muted">Asiento ID: {{ asiento.id|truncatechars:8 }}</p>
+        </div>
+        <div class="col-auto">
+            <a href="{% url 'asientos:asiento_detail' asiento.id %}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="alert alert-danger">
+                <h4 class="alert-heading">¿Está seguro de eliminar este detalle?</h4>
+                <p>Esta acción no se puede deshacer. Se eliminará el detalle con ID <strong>{{ detalle.id }}</strong>.</p>
+                <p><strong>Causa:</strong> {{ detalle.causa }}</p>
+                <p><strong>Montos:</strong> Haber: {{ detalle.monto_haber }}, Debe: {{ detalle.monto_debe }}</p>
+            </div>
+            
+            <form method="post">
+                {% csrf_token %}
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="{% url 'asientos:asiento_detail' asiento.id %}" class="btn btn-secondary me-md-2">
+                        <i class="fas fa-times"></i> Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash"></i> Eliminar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

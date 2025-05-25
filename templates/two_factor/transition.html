@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Autenticación de Dos Factores - Período de Transición{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="mb-0">Actualización importante de seguridad</h4>
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                    <div class="mb-4">
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <div class="alert alert-info mb-4">
+                        <h5><i class="fas fa-info-circle"></i> Nueva política de seguridad</h5>
+                        <p>Ahora requerimos la autenticación de dos factores (2FA) para todos los usuarios como parte de nuestras mejoras en seguridad.</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5>¿Qué significa esto para ti?</h5>
+                        <p>Como usuario existente, tienes hasta el <strong>{{ grace_period_end }}</strong> para configurar la autenticación de dos factores. Después de esa fecha, será obligatorio configurarla para poder acceder al sistema.</p>
+                        
+                        <div class="alert alert-warning">
+                            <p class="mb-0"><i class="fas fa-exclamation-triangle"></i> <strong>No esperes hasta el último momento</strong>. Configura la autenticación de dos factores ahora para evitar problemas de acceso más adelante.</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5>¿Qué es la autenticación de dos factores?</h5>
+                        <p>La autenticación de dos factores añade una capa adicional de seguridad a tu cuenta. Además de tu contraseña, necesitarás un código generado por una aplicación en tu dispositivo móvil como Google Authenticator o Microsoft Authenticator.</p>
+                    </div>
+
+                    <form method="post" class="mb-3">
+                        {% csrf_token %}
+                        <div class="d-grid gap-2">
+                            <button type="submit" name="action" value="configure_now" class="btn btn-primary btn-lg">
+                                <i class="fas fa-shield-alt"></i> Configurar ahora (toma solo 2 minutos)
+                            </button>
+                            <button type="submit" name="action" value="remind_later" class="btn btn-outline-secondary">
+                                <i class="fas fa-clock"></i> Recordármelo más tarde
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="text-center text-muted">
+                        <small>Por razones de seguridad, esta configuración será obligatoria a partir del {{ grace_period_end }}.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

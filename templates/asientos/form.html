@@ -1,0 +1,496 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ button_text }} Asiento Contable{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row mb-3">
+        <div class="col">
+            <h2>{{ button_text }} Asiento Contable</h2>
+        </div>
+        <div class="col-auto">
+            <a href="{% url 'asientos:asiento_list' %}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="post" id="asientoForm" novalidate>
+                {% csrf_token %}
+                <input type="hidden" name="asiento_id_provisional" value="{{ asiento_id_provisional }}">
+                
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label class="form-label fw-bold">ID de Transacción</label>
+                        <div class="form-control bg-light">{% if id %}{{ id }}{% else %}Nuevo{% endif %}</div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="{{ form.fecha.id_for_label }}" class="form-label">Fecha</label>
+                        <div class="input-group date" id="fechaDatetimePicker" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" 
+                                   id="{{ form.fecha.id_for_label }}" name="{{ form.fecha.html_name }}"
+                                   data-target="#fechaDatetimePicker" value="{{ form.fecha.value|date:'Y-m-d' }}" 
+                                   placeholder="Seleccione fecha" />
+                            <div class="input-group-append" data-target="#fechaDatetimePicker" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                        {% if form.fecha.errors %}
+                            <div class="text-danger">
+                                {{ form.fecha.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="{{ form.perfil.id_for_label }}" class="form-label">Perfil Contable</label>
+                    {{ form.perfil }}
+                    {% if form.perfil.errors %}
+                        <div class="text-danger">
+                            {{ form.perfil.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Vista previa del asiento contable en formato tabla -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Vista Previa de Asiento Contable</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-sm">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Cuenta_Haber</th>
+                            <th>Cuenta_Debe</th>
+                            <th>Causa</th>
+                            <th>Referencia extra</th>
+                            <th>Monto_cuenta_haber</th>
+                            <th>Monto_cuenta_debe</th>
+                            <th>Polaridad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="asientoTableBody">
+                        <!-- Fila del asiento principal (HABER) -->
+                        <tr id="mainRow" class="detalle-row">
+                            <td>
+                                <select class="form-select form-select-sm cuenta-input cuenta-haber-input" data-tipo="haber">
+                                    <option value="">Seleccione cuenta</option>
+                                    {% for cuenta in plan_cuentas %}
+                                        <option value="{{ cuenta.codigocuenta }}">{{ cuenta.codigocuenta }} - {{ cuenta.descripcion }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-select form-select-sm cuenta-input cuenta-debe-input" data-tipo="debe">
+                                    <option value="">Seleccione cuenta</option>
+                                    {% for cuenta in plan_cuentas %}
+                                        <option value="{{ cuenta.codigocuenta }}">{{ cuenta.codigocuenta }} - {{ cuenta.descripcion }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td><input type="text" class="form-control form-control-sm causa-input" placeholder="Causa"></td>
+                            <td><input type="text" class="form-control form-control-sm referencia-input" placeholder="Referencia"></td>
+                            <td><input type="text" class="form-control form-control-sm monto-input monto-haber-input" placeholder="0,00"></td>
+                            <td><input type="text" class="form-control form-control-sm monto-input monto-debe-input" placeholder="0,00"></td>
+                            <td class="polaridad-cell">
+                                <select class="form-select form-select-sm polaridad-input">
+                                    <option value="+">+</option>
+                                    <option value="-">-</option>
+                                </select>
+                            </td>
+                            <td><button type="button" class="btn btn-danger btn-sm delete-row-btn"><i class="fas fa-trash"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-3 d-flex justify-content-between">
+                <button id="addRow" type="button" class="btn btn-outline-secondary btn-sm">
+                    <i class="fas fa-plus"></i> Agregar línea
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button type="button" id="saveAsiento" class="btn btn-primary">
+            <i class="fas fa-save"></i> {{ button_text }} Asiento Completo
+        </button>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function() {
+        // Initialize DateTimePicker
+        $('#fechaDatetimePicker').datetimepicker({
+            format: 'YYYY-MM-DD',
+            icons: {
+                time: 'fa fa-clock',
+                date: 'fa fa-calendar',
+                up: 'fa fa-arrow-up',
+                down: 'fa fa-arrow-down',
+                previous: 'fa fa-chevron-left',
+                next: 'fa fa-chevron-right',
+                today: 'fa fa-calendar-check',
+                clear: 'fa fa-trash',
+                close: 'fa fa-times'
+            }
+        });
+
+        // Initialize Select2 for dropdown fields
+        $('.select2, .cuenta-haber-input, .cuenta-debe-input').select2({
+            theme: 'bootstrap4',
+            width: '100%'
+        });
+
+        // Update preview table when form fields change
+        function updatePreviewTable() {
+            // Update date
+            let fecha = $('#{{ form.fecha.id_for_label }}').val();
+            if (fecha) {
+                // Convert to dd-mmm-yy format
+                let dateObj = new Date(fecha);
+                let months = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+                let formattedDate = dateObj.getDate() + '-' + months[dateObj.getMonth()] + '-' + 
+                                    (dateObj.getFullYear().toString().substr(2, 2));
+                $('.fecha-cell').text(formattedDate);
+            }
+
+            // Update perfil contable
+            let perfilText = $('#{{ form.perfil.id_for_label }} option:selected').text();
+            if (perfilText) {
+                // Extract just the sequential number if possible
+                let perfilNumber = perfilText.split('-')[1]?.trim() || perfilText;
+                $('.perfil-cell').text(perfilNumber).addClass('bg-warning');
+            }
+        }
+
+        // Add event listeners to form fields
+        $('#{{ form.fecha.id_for_label }}, #{{ form.perfil.id_for_label }}').change(updatePreviewTable);
+        
+        // Update preview when the datetime picker changes
+        $('#fechaDatetimePicker').on('change.datetimepicker', function(e) {
+            updatePreviewTable();
+        });
+
+        // Initialize the preview table
+        updatePreviewTable();
+
+        // Add event listener for new delete buttons on each row
+        $(document).on('click', '.delete-row-btn', function() {
+            $(this).closest('tr').remove();
+            updatePreviewTable(); // If totals or other previews depend on rows
+        });
+
+        // Pre-populate table with existing detalles for edit mode
+        {% if detalles %}
+            // Clear the initial empty row
+            $('#asientoTableBody').empty();
+            
+            {% for detalle in detalles %}
+                // Obtener los valores originales sin procesar
+                var detalleValorRaw = "{{ detalle.valor }}";
+                var detalleTipoCuenta = "{{ detalle.tipo_cuenta }}";
+                var detallePolaridad = "{{ detalle.polaridad }}";
+                
+                console.log("Detalle (antes):", {
+                    id: "{{ detalle.id }}",
+                    tipo_cuenta: detalleTipoCuenta,
+                    valor_raw: detalleValorRaw,
+                    polaridad: detallePolaridad
+                });
+                
+                // Procesar el valor considerando que puede venir con coma como separador decimal
+                var valorNumerico = detalleValorRaw.replace(',', '.');
+                var detalleValor = parseFloat(valorNumerico) || 0;
+                
+                // Formatear el valor con coma como separador decimal
+                var formatearValor = function(valor) {
+                    return valor.toFixed(2).replace('.', ',');
+                };
+                
+                var haberValor = (detalleTipoCuenta === 'HABER') ? formatearValor(detalleValor) : '';
+                var debeValor = (detalleTipoCuenta === 'DEBE') ? formatearValor(detalleValor) : '';
+                
+                console.log("Valores procesados:", {
+                    haberValor: haberValor,
+                    debeValor: debeValor
+                });
+                
+                let rowHtml = `
+                    <tr class="detalle-row">
+                        <td>
+                            <select class="form-select form-select-sm cuenta-input cuenta-haber-input" data-tipo="haber">
+                                <option value="">Seleccione cuenta</option>
+                                {% for cuenta in plan_cuentas %}
+                                    <option value="{{ cuenta.codigocuenta }}" {% if detalle.tipo_cuenta == 'HABER' and detalle.cuenta.codigocuenta == cuenta.codigocuenta %}selected{% endif %}>{{ cuenta.codigocuenta }} - {{ cuenta.descripcion }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td>
+                            <select class="form-select form-select-sm cuenta-input cuenta-debe-input" data-tipo="debe">
+                                <option value="">Seleccione cuenta</option>
+                                {% for cuenta in plan_cuentas %}
+                                    <option value="{{ cuenta.codigocuenta }}" {% if detalle.tipo_cuenta == 'DEBE' and detalle.cuenta.codigocuenta == cuenta.codigocuenta %}selected{% endif %}>{{ cuenta.codigocuenta }} - {{ cuenta.descripcion }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td><input type="text" class="form-control form-control-sm causa-input" placeholder="Causa" value="{{ detalle.DetalleDeCausa }}"></td>
+                        <td><input type="text" class="form-control form-control-sm referencia-input" placeholder="Referencia" value="{{ detalle.Referencia }}"></td>
+                        <td><input type="text" class="form-control form-control-sm monto-input monto-haber-input" placeholder="0,00" 
+                            value="${haberValor}" 
+                            ${detalleTipoCuenta !== 'HABER' ? 'disabled' : ''}></td>
+                        <td><input type="text" class="form-control form-control-sm monto-input monto-debe-input" placeholder="0,00" 
+                            value="${debeValor}" 
+                            ${detalleTipoCuenta !== 'DEBE' ? 'disabled' : ''}></td>
+                        <td class="polaridad-cell">
+                            <select class="form-select form-select-sm polaridad-input" ${detalleTipoCuenta ? 'disabled' : ''}>
+                                <option value="+" ${detallePolaridad === '+' ? 'selected' : ''}>+</option>
+                                <option value="-" ${detallePolaridad === '-' ? 'selected' : ''}>-</option>
+                            </select>
+                        </td>
+                        <td><button type="button" class="btn btn-danger btn-sm delete-row-btn"><i class="fas fa-trash"></i></button></td>
+                    </tr>
+                `;
+                $('#asientoTableBody').append(rowHtml);
+            {% endfor %}
+            
+            // Initialize Select2 for all existing rows
+            $('#asientoTableBody tr').each(function() {
+                $(this).find('.cuenta-haber-input, .cuenta-debe-input').select2({
+                    theme: 'bootstrap4',
+                    width: '100%'
+                });
+                
+                // Aseguramos que los selectores de cuenta estén correctamente deshabilitados
+                let row = $(this);
+                if (row.find('.cuenta-haber-input').val()) {
+                    row.find('.cuenta-debe-input').prop('disabled', true);
+                    row.find('.monto-debe-input').prop('disabled', true);
+                    row.find('.polaridad-input').prop('disabled', true);
+                } else if (row.find('.cuenta-debe-input').val()) {
+                    row.find('.cuenta-haber-input').prop('disabled', true);
+                    row.find('.monto-haber-input').prop('disabled', true);
+                    row.find('.polaridad-input').prop('disabled', true);
+                }
+            });
+        {% endif %}
+
+        // Manejar la lógica de bloqueo entre cuenta_haber y cuenta_debe
+        $(document).on('change', '.cuenta-input', function() {
+            let row = $(this).closest('tr');
+            let tipo = $(this).data('tipo'); // 'haber' or 'debe'
+            let valor = $(this).val();
+            
+            if (valor) {
+                // Si se seleccionó una cuenta, desactivar la otra y ajustar la polaridad
+                if (tipo === 'haber') {
+                    // Desactivar cuenta debe
+                    row.find('.cuenta-debe-input').prop('disabled', true).val('').trigger('change.select2');
+                    row.find('.monto-debe-input').prop('disabled', true).val('');
+                    row.find('.monto-haber-input').prop('disabled', false);
+                    row.find('.polaridad-input').val('-').prop('disabled', true); // Corrected: HABER is '-'
+                } else { // debe
+                    // Desactivar cuenta haber
+                    row.find('.cuenta-haber-input').prop('disabled', true).val('').trigger('change.select2');
+                    row.find('.monto-haber-input').prop('disabled', true).val('');
+                    row.find('.monto-debe-input').prop('disabled', false);
+                    row.find('.polaridad-input').val('+').prop('disabled', true); // Corrected: DEBE is '+'
+                }
+            } else {
+                // Si se deseleccionó, habilitar ambas opciones de cuenta y monto, y la polaridad
+                row.find('.cuenta-haber-input, .cuenta-debe-input').prop('disabled', false);
+                row.find('.monto-haber-input, .monto-debe-input').prop('disabled', false);
+                row.find('.polaridad-input').prop('disabled', false);
+            }
+        });
+
+        // Handle adding a new row
+        $('#addRow').click(function() {
+            let newRow = `
+                <tr class="detalle-row">
+                    <td>
+                        <select class="form-select form-select-sm cuenta-input cuenta-haber-input" data-tipo="haber">
+                            <option value="">Seleccione cuenta</option>
+                            {% for cuenta in plan_cuentas %}
+                                <option value="{{ cuenta.codigocuenta }}">{{ cuenta.codigocuenta }} - {{ cuenta.descripcion }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-select form-select-sm cuenta-input cuenta-debe-input" data-tipo="debe">
+                            <option value="">Seleccione cuenta</option>
+                            {% for cuenta in plan_cuentas %}
+                                <option value="{{ cuenta.codigocuenta }}">{{ cuenta.codigocuenta }} - {{ cuenta.descripcion }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td><input type="text" class="form-control form-control-sm causa-input" placeholder="Causa"></td>
+                    <td><input type="text" class="form-control form-control-sm referencia-input" placeholder="Referencia"></td>
+                    <td><input type="text" class="form-control form-control-sm monto-input monto-haber-input" placeholder="0,00"></td>
+                    <td><input type="text" class="form-control form-control-sm monto-input monto-debe-input" placeholder="0,00"></td>
+                    <td class="polaridad-cell">
+                        <select class="form-select form-select-sm polaridad-input">
+                            <option value="+">+</option>
+                            <option value="-">-</option>
+                        </select>
+                    </td>
+                    <td><button type="button" class="btn btn-danger btn-sm delete-row-btn"><i class="fas fa-trash"></i></button></td>
+                </tr>
+            `;
+            $('#asientoTableBody').append(newRow);
+            
+            // Initialize Select2 for the new row's dropdowns
+            let newRowElement = $('#asientoTableBody tr:last');
+            newRowElement.find('.cuenta-haber-input, .cuenta-debe-input').select2({
+                theme: 'bootstrap4',
+                width: '100%'
+            });
+            
+            updatePreviewTable();
+        });
+
+        // Submit form and details
+        $('#saveAsiento').click(function() {
+            // First submit the main form to create/update the asiento
+            let formData = $('#asientoForm').serialize();
+            
+            // Log for debugging
+            console.log("Asiento form data:", formData);
+            
+            $.ajax({
+                url: window.location.pathname,
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    if (response.success) {
+                        // After the asiento is saved, collect the details
+                        let asientoId = response.asiento_id;
+                        let detalles = [];
+                        
+                        // Collect from all rows (including main row)
+                        $('.detalle-row').each(function() {
+                            let cuentaHaberInput = $(this).find('.cuenta-haber-input');
+                            let cuentaDebeInput = $(this).find('.cuenta-debe-input');
+                            
+                            let cuentaHaber = cuentaHaberInput.val();
+                            let cuentaDebe = cuentaDebeInput.val();
+
+                            let causa = $(this).find('.causa-input').val();
+                            let referencia = $(this).find('.referencia-input').val();
+                            let montoHaber = $(this).find('.monto-haber-input').val() || '0,00';
+                            let montoDebe = $(this).find('.monto-debe-input').val() || '0,00';
+                            let polaridad = $(this).find('.polaridad-input').val(); // Read from input, should be correct now
+
+                            montoHaber = montoHaber.replace(',', '.');
+                            montoDebe = montoDebe.replace(',', '.');
+                            
+                            let cuenta = '';
+                            let valor = '0.00';
+
+                            // Determine cuenta and valor based on which input is NOT disabled and has a value
+                            if (cuentaHaber && !cuentaHaberInput.prop('disabled')) {
+                                cuenta = cuentaHaber;
+                                valor = montoHaber;
+                            } else if (cuentaDebe && !cuentaDebeInput.prop('disabled')) {
+                                cuenta = cuentaDebe;
+                                valor = montoDebe;
+                            } else {
+                                // No active account selected in this row, or ambiguous state
+                                return; // Skip this row (continue to next iteration)
+                            }
+                            
+                            let numericValor = parseFloat(valor);
+                            if (isNaN(numericValor)) {
+                                numericValor = 0;
+                            }
+
+                            // Only push if there's an account. Value can be zero.
+                            if (cuenta) { 
+                                detalles.push({
+                                    cuenta: cuenta,
+                                    DetalleDeCausa: causa,
+                                    Referencia: referencia,
+                                    valor: numericValor.toFixed(2), // Send as string with 2 decimal places
+                                    polaridad: polaridad 
+                                });
+                            }
+                        });
+                        
+                        console.log("Detalles to save:", detalles);
+                        
+                        $.ajax({
+                            url: '{% url "asientos:add_detalles_bulk" %}',
+                            type: 'POST',
+                            data: {
+                                asiento_id: asientoId,
+                                detalles: JSON.stringify(detalles),
+                                csrfmiddlewaretoken: '{{ csrf_token }}'
+                            },
+                            success: function(response) {
+                                if (response.success) {
+                                    Swal.fire({
+                                        title: '¡Guardado!',
+                                        text: 'El asiento contable y sus detalles han sido guardados correctamente.',
+                                        icon: 'success',
+                                        confirmButtonText: 'Aceptar'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.href = '{% url "asientos:asiento_detail" id=0 %}'.replace('0', asientoId);
+                                        }
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: 'Error',
+                                        text: 'Error al guardar los detalles: ' + response.error,
+                                        icon: 'error',
+                                        confirmButtonText: 'Aceptar'
+                                    });
+                                }
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                Swal.fire({
+                                    title: 'Error de Comunicación',
+                                    text: 'Error en la comunicación al guardar los detalles: ' + textStatus + ' - ' + errorThrown,
+                                    icon: 'error',
+                                    confirmButtonText: 'Aceptar'
+                                });
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Error al guardar el asiento: ' + response.error,
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        });
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    Swal.fire({
+                        title: 'Error de Comunicación',
+                        text: 'Error en la comunicación al guardar el asiento: ' + textStatus + ' - ' + errorThrown,
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar'
+                    });
+                }
+            });
+        });
+    });
+</script>
+<style>
+</style>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Plan de Cuentas{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row mb-3">
+        <div class="col">
+            <h2>Plan de Cuentas</h2>
+        </div>
+        <div class="col-auto">
+            <a href="{% url 'plan_cuentas:plan_cuenta_create' %}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Nueva Cuenta
+            </a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            {% if cuentas %}
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Empresa</th>
+                                <th>Grupo</th>
+                                <th>Código de Cuenta</th>
+                                <th>Descripción</th>
+                                <th>Cuenta Madre</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cuenta in cuentas %}
+                                <tr>
+                                    <td>{{ cuenta.empresa }}</td>
+                                    <td>{{ cuenta.grupo }}</td>
+                                    <td><a href="{% url 'plan_cuentas:plan_cuenta_detail' cuenta.id %}">{{ cuenta.codigocuenta }}</a></td>
+                                    <td>{{ cuenta.descripcion }}</td>
+                                    <td>{{ cuenta.cuentamadre|default:"-" }}</td>
+                                    <td>
+                                        <a href="{% url 'plan_cuentas:plan_cuenta_detail' cuenta.id %}" class="btn btn-sm btn-outline-info">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a href="{% url 'plan_cuentas:plan_cuenta_edit' cuenta.id %}" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="{% url 'plan_cuentas:plan_cuenta_delete' cuenta.id %}" class="btn btn-sm btn-outline-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    No hay cuentas contables registradas.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

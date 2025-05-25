@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle de Asiento Contable{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row mb-3">
+        <div class="col">
+            <h2>Detalle de Asiento Contable</h2>
+        </div>
+        <div class="col-auto">
+            <a href="{% url 'asientos:asiento_list' %}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
+            <a href="{% url 'asientos:asiento_edit' asiento.id %}" class="btn btn-primary">
+                <i class="fas fa-edit"></i> Editar
+            </a>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">Información del Asiento</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Hash Transacción:</strong> {{ asiento.id }}</p>
+                    <p><strong>Fecha:</strong> {{ asiento.fecha }}</p>
+                    <p><strong>Perfil Contable:</strong> {{ asiento.perfil }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Empresa:</strong> {{ asiento.empresa }}</p>
+                    <p><strong>Monto Total:</strong> {{ monto_total|floatformat:2 }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Detalles del Asiento</h5>
+            <a href="{% url 'asientos:add_detalle' asiento.id %}" class="btn btn-primary btn-sm">
+                <i class="fas fa-plus"></i> Añadir Detalle
+            </a>
+        </div>
+        <div class="card-body">
+            {% if detalles %}
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Cuenta</th>
+                                <th>Causa</th>
+                                <th>Referencia</th>
+                                <th>Valor</th>
+                                <th>Polaridad</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for detalle in detalles %}
+                                <tr>
+                                    <td>{{ detalle.tipo_cuenta }}</td>
+                                    <td>{{ detalle.cuenta }}</td>
+                                    <td>{{ detalle.DetalleDeCausa }}</td>
+                                    <td>{{ detalle.Referencia }}</td>
+                                    <td>{{ detalle.valor|floatformat:2 }}</td>
+                                    <td>{{ detalle.polaridad }}</td>
+                                    <td>
+                                        <a href="{% url 'asientos:edit_detalle' asiento.id detalle.id %}" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="{% url 'asientos:delete_detalle' asiento.id detalle.id %}" class="btn btn-sm btn-outline-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    No hay detalles registrados para este asiento.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

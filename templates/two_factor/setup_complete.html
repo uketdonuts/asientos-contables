@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}Autenticación de Dos Factores Configurada{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">¡Configuración Completada!</h4>
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                    <div class="mb-4">
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <div class="text-center mb-4">
+                        <i class="fas fa-check-circle fa-5x text-success mb-3"></i>
+                        <h4>La autenticación de dos factores ha sido configurada correctamente</h4>
+                        <p class="lead">Tu cuenta ahora está protegida con una capa adicional de seguridad.</p>
+                    </div>
+
+                    {% if recovery_codes %}
+                    <div class="alert alert-warning">
+                        <h5><i class="fas fa-exclamation-triangle"></i> Importante</h5>
+                        <p>Guarda estos códigos de recuperación en un lugar seguro. Te permitirán acceder a tu cuenta si pierdes el acceso a tu aplicación de autenticación.</p>
+                        <div class="bg-light p-3 my-3 border rounded">
+                            <p class="text-monospace mb-0">
+                                {% for code in recovery_codes %}
+                                    {{ code }}<br>
+                                {% endfor %}
+                            </p>
+                        </div>
+                        <p class="mb-0"><small>Estos códigos se muestran solo una vez. No los compartas con nadie.</small></p>
+                    </div>
+                    {% endif %}
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{% url 'two_factor_auth:disable' %}" class="btn btn-outline-danger">
+                            <i class="fas fa-times-circle"></i> Desactivar 2FA
+                        </a>
+                        <a href="{% url 'home' %}" class="btn btn-primary">
+                            <i class="fas fa-home"></i> Ir al inicio
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Dispositivos configurados</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Tipo</th>
+                                    <th>Añadido</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for device in devices %}
+                                <tr>
+                                    <td>{{ device.name }}</td>
+                                    <td>{{ device.device_type }}</td>
+                                    <td>{{ device.confirmed_at|date:"d/m/Y H:i" }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="3" class="text-center">No hay dispositivos configurados</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

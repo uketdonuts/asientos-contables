@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Recuperación de acceso con código{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="mb-0">Recuperación de acceso</h4>
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                    <div class="mb-4">
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <p class="mb-4">Si has perdido acceso a tu aplicación de autenticación, puedes usar uno de tus códigos de recuperación para acceder a tu cuenta.</p>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label for="recovery_code">Código de recuperación:</label>
+                            <input type="text" class="form-control" id="recovery_code" name="recovery_code" required 
+                                   placeholder="Ingresa tu código de recuperación" 
+                                   pattern="[A-Z0-9]{4}-[A-Z0-9]{4}" 
+                                   title="Ingresa el código en formato XXXX-XXXX">
+                            <small class="form-text text-muted">Ingresa uno de los códigos de recuperación que guardaste cuando configuraste la autenticación de dos factores.</small>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="{% url 'two_factor_auth:verify' %}" class="btn btn-outline-secondary">
+                                <i class="fas fa-chevron-left"></i> Volver a verificación
+                            </a>
+                            <button type="submit" class="btn btn-warning">
+                                <i class="fas fa-key"></i> Verificar código
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="text-center mt-3">
+                <p class="text-muted small">
+                    Los códigos de recuperación son de un solo uso. Una vez utilizado, ese código específico ya no funcionará.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

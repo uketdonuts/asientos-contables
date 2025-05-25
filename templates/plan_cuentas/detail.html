@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Detalle de Cuenta Contable</h2>
+    <div class="card">
+        <div class="card-header">
+            {{ cuenta.codigocuenta }} - {{ cuenta.descripcion }}
+        </div>
+        <div class="card-body">
+            <p><strong>Empresa:</strong> {{ cuenta.empresa }}</p>
+            <p><strong>Grupo:</strong> {{ cuenta.grupo }}</p>
+            <p><strong>Código de Cuenta:</strong> {{ cuenta.codigocuenta }}</p>
+            <p><strong>Descripción:</strong> {{ cuenta.descripcion }}</p>
+            <p><strong>Cuenta Madre:</strong> {{ cuenta.cuentamadre|default_if_none:"N/A" }}</p>
+        </div>
+        <div class="card-footer">
+            <a href="{% url 'plan_cuentas:plan_cuenta_edit' cuenta.pk %}" class="btn btn-warning btn-sm">Editar</a>
+            <a href="{% url 'plan_cuentas:plan_cuenta_list' %}" class="btn btn-secondary btn-sm">Volver al Listado</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

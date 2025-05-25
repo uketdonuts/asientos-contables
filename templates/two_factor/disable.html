@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Desactivar Autenticación de Dos Factores{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="mb-0">Desactivar Autenticación de Dos Factores</h4>
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                    <div class="mb-4">
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <div class="alert alert-danger mb-4">
+                        <h5><i class="fas fa-exclamation-triangle"></i> Advertencia</h5>
+                        <p>Estás a punto de desactivar la autenticación de dos factores. Esto reducirá la seguridad de tu cuenta.</p>
+                    </div>
+
+                    <p>Tienes configurados los siguientes dispositivos:</p>
+                    <ul class="list-group mb-4">
+                        {% for device in devices %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ device.name }}
+                            <span class="badge bg-primary rounded-pill">{{ device.device_type }}</span>
+                        </li>
+                        {% empty %}
+                        <li class="list-group-item">No hay dispositivos configurados</li>
+                        {% endfor %}
+                    </ul>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="confirm" value="yes">
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'two_factor_auth:setup_complete' %}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-times-circle"></i> Desactivar autenticación de dos factores
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

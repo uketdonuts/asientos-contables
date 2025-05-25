@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Two Factor Authentication</title>
+</head>
+<body>
+    <h1>Two Factor Authentication</h1>
+    <p>Select a device to authenticate:</p>
+    <ul>
+        {% for device in devices %}
+            <li>{{ device.name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

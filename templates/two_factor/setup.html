@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}Configurar Autenticación de Dos Factores{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Configurar Autenticación de Dos Factores (Obligatorio)</h4>
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                    <div class="mb-4">
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <div class="alert alert-warning">
+                        <h5>Configuración obligatoria de seguridad</h5>
+                        <p>La autenticación de dos factores es un requisito obligatorio para usar esta aplicación. No podrás acceder a las funciones del sistema hasta que la configures.</p>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <h5>¿Qué es la autenticación de dos factores?</h5>
+                        <p>La autenticación de dos factores añade una capa adicional de seguridad a tu cuenta. Además de tu contraseña, necesitarás un código generado por una aplicación en tu dispositivo móvil.</p>
+                    </div>
+
+                    <h5 class="mb-3">Sigue estos pasos para configurar:</h5>
+                    <ol class="mb-4">
+                        <li class="mb-2">Descarga una aplicación de autenticación como Google Authenticator o Microsoft Authenticator en tu dispositivo móvil.</li>
+                        <li class="mb-2">Escanea el código QR mostrado abajo o introduce la clave manualmente.</li>
+                        <li class="mb-2">Ingresa el código de 6 dígitos generado por la aplicación para verificar la configuración.</li>
+                    </ol>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6 text-center">
+                            <h5>Código QR</h5>
+                            <img src="data:image/png;base64,{{ qr_code }}" class="img-fluid border" style="max-width: 200px;">
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Clave secreta</h5>
+                            <p>Si no puedes escanear el código QR, introduce esta clave en tu aplicación:</p>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" value="{{ secret_key }}" id="secretKey" readonly>
+                                <button class="btn btn-outline-secondary" type="button" onclick="copyToClipboard()">Copiar</button>
+                            </div>
+                            <small class="text-muted">Etiqueta: {{ device.name }}</small>
+                        </div>
+                    </div>
+
+                    <form method="post" class="mt-4">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label for="token">Código de verificación (6 dígitos)</label>
+                            <input type="text" class="form-control" id="token" name="token" required
+                                   inputmode="numeric" pattern="[0-9]{6}" maxlength="6"
+                                   placeholder="Ingresa el código de 6 dígitos">
+                            <small class="form-text text-muted">Ingresa el código de 6 dígitos que aparece en tu aplicación autenticadora.</small>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary">Verificar y activar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extrajs %}
+<script>
+function copyToClipboard() {
+    const secretInput = document.getElementById('secretKey');
+    secretInput.select();
+    document.execCommand('copy');
+    
+    // Mostrar mensaje de copiado
+    const btn = event.currentTarget;
+    const originalText = btn.innerText;
+    btn.innerText = "¡Copiado!";
+    setTimeout(() => {
+        btn.innerText = originalText;
+    }, 2000);
+}
+</script>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Asientos Contables{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row mb-3">
+        <div class="col">
+            <h2>Asientos Contables</h2>
+        </div>
+        <div class="col-auto">
+            <a href="{% url 'asientos:asiento_create' %}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Nuevo Asiento
+            </a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            {% if asientos %}
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Fecha</th>
+                                <th>Perfil Contable</th>
+                                <th>Cuenta Haber</th>
+                                <th>Cuenta Debe</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for asiento in asientos %}
+                                <tr>
+                                    <td>{{ asiento.id|truncatechars:8 }}</td>
+                                    <td>{{ asiento.fecha }}</td>
+                                    <td>{{ asiento.perfil_contable.nombre }}</td>
+                                    <td>{{ asiento.cuenta_haber.codigo }} - {{ asiento.cuenta_haber.nombre }}</td>
+                                    <td>{{ asiento.cuenta_debe.codigo }} - {{ asiento.cuenta_debe.nombre }}</td>
+                                    <td>
+                                        <a href="{% url 'asientos:asiento_detail' asiento.id %}" class="btn btn-sm btn-outline-info">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a href="{% url 'asientos:asiento_edit' asiento.id %}" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="{% url 'asientos:asiento_delete' asiento.id %}" class="btn btn-sm btn-outline-danger delete-button-swal" data-item-name="el asiento {{ asiento.id|truncatechars:8 }}">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    No hay asientos contables registrados.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
