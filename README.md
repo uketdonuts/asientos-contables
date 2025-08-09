@@ -11,6 +11,7 @@ Asientos Contables is a Django project designed for managing accounting entries 
 - Management of accounting entries
 - Email confirmation for users with admin roles
 - Navigation panel with user avatar and submenu options
+- 🛡️ **Ultra-Secure Module**: High-security data management system (authorized personnel only)
 
 ## Project Structure
 ```

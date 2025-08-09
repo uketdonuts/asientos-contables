@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dashboard - Sistema Contable{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50">
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-primary-600 to-primary-700 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold mb-4">
+                    <i class="fas fa-calculator mr-3"></i>
+                    Sistema de Asientos Contables
+                </h1>
+                <p class="text-xl text-primary-100 max-w-2xl mx-auto">
+                    Gestiona tus asientos contables de manera eficiente y segura con balance automático
+                </p>
+            </div>
+        </div>
+    </div>
+
+    {% if user.is_authenticated %}
+    <!-- Dashboard Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Welcome Message -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                Bienvenido, {{ user.username }}
+            </h2>
+            <p class="text-gray-600">
+                Panel de control para la gestión de asientos contables
+            </p>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-primary-500">
+                <div class="flex items-center">
+                    <i class="fas fa-file-invoice text-3xl text-primary-600 mr-4"></i>
+                    <div>
+                        <p class="text-sm font-medium text-gray-600">Total Asientos</p>
+                        <p class="text-2xl font-bold text-gray-900">{{ total_asientos|default:0 }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-success-500">
+                <div class="flex items-center">
+                    <i class="fas fa-user-cog text-3xl text-success-600 mr-4"></i>
+                    <div>
+                        <p class="text-sm font-medium text-gray-600">Perfiles Activos</p>
+                        <p class="text-2xl font-bold text-gray-900">{{ total_perfiles|default:0 }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-warning-500">
+                <div class="flex items-center">
+                    <i class="fas fa-sitemap text-3xl text-warning-600 mr-4"></i>
+                    <div>
+                        <p class="text-sm font-medium text-gray-600">Cuentas</p>
+                        <p class="text-2xl font-bold text-gray-900">{{ total_cuentas|default:0 }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-purple-500">
+                <div class="flex items-center">
+                    <i class="fas fa-balance-scale text-3xl text-purple-600 mr-4"></i>
+                    <div>
+                        <p class="text-sm font-medium text-gray-600">Balance</p>
+                        <p class="text-2xl font-bold text-green-600">Equilibrado</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <!-- Actions Card -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                    <i class="fas fa-bolt mr-2 text-primary-600"></i>
+                    Acciones Rápidas
+                </h3>
+                <div class="space-y-3">
+                    <a href="{% url 'asientos:asiento_create' %}" class="flex items-center p-3 bg-primary-50 hover:bg-primary-100 rounded-lg transition-colors group">
+                        <i class="fas fa-plus text-primary-600 mr-3"></i>
+                        <div>
+                            <p class="font-medium text-gray-900 group-hover:text-primary-700">Crear Nuevo Asiento</p>
+                            <p class="text-sm text-gray-600">Registra un nuevo asiento contable</p>
+                        </div>
+                    </a>
+                    
+                    <a href="{% url 'perfiles:perfil_create' %}" class="flex items-center p-3 bg-success-50 hover:bg-success-100 rounded-lg transition-colors group">
+                        <i class="fas fa-user-plus text-success-600 mr-3"></i>
+                        <div>
+                            <p class="font-medium text-gray-900 group-hover:text-success-700">Crear Perfil</p>
+                            <p class="text-sm text-gray-600">Configura un nuevo perfil contable</p>
+                        </div>
+                    </a>
+                    
+                    <a href="{% url 'plan_cuentas:plan_cuenta_create' %}" class="flex items-center p-3 bg-warning-50 hover:bg-warning-100 rounded-lg transition-colors group">
+                        <i class="fas fa-sitemap text-warning-600 mr-3"></i>
+                        <div>
+                            <p class="font-medium text-gray-900 group-hover:text-warning-700">Agregar Cuenta</p>
+                            <p class="text-sm text-gray-600">Añade una nueva cuenta al plan</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                    <i class="fas fa-clock mr-2 text-primary-600"></i>
+                    Actividad Reciente
+                </h3>
+                {% if recent_asientos %}
+                    <div class="space-y-3">
+                        {% for asiento in recent_asientos %}
+                        <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                            <i class="fas fa-file-invoice text-gray-500 mr-3"></i>
+                            <div class="flex-1">
+                                <p class="font-medium text-gray-900">{{ asiento.descripcion|truncatechars:40 }}</p>
+                                <p class="text-sm text-gray-600">{{ asiento.fecha_creacion|date:"d/m/Y H:i" }}</p>
+                            </div>
+                            <a href="{% url 'asientos:asiento_detail' asiento.id %}" class="text-primary-600 hover:text-primary-700">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="text-center py-8">
+                        <i class="fas fa-inbox text-4xl text-gray-400 mb-3"></i>
+                        <p class="text-gray-600">No hay asientos recientes</p>
+                        <a href="{% url 'asientos:asiento_create' %}" class="text-primary-600 hover:text-primary-700 text-sm">
+                            Crear el primer asiento
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Navigation Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <a href="{% url 'asientos:asiento_list' %}" class="block bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border-t-4 border-primary-500">
+                <div class="text-center">
+                    <i class="fas fa-file-invoice text-4xl text-primary-600 mb-4"></i>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Gestión de Asientos</h3>
+                    <p class="text-gray-600">Ver, crear y editar asientos contables</p>
+                </div>
+            </a>
+            
+            <a href="{% url 'perfiles:perfil_list' %}" class="block bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border-t-4 border-success-500">
+                <div class="text-center">
+                    <i class="fas fa-user-cog text-4xl text-success-600 mb-4"></i>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Perfiles Contables</h3>
+                    <p class="text-gray-600">Configurar perfiles y sus cuentas asociadas</p>
+                </div>
+            </a>
+            
+            <a href="{% url 'plan_cuentas:plan_cuenta_list' %}" class="block bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border-t-4 border-warning-500">
+                <div class="text-center">
+                    <i class="fas fa-sitemap text-4xl text-warning-600 mb-4"></i>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Plan de Cuentas</h3>
+                    <p class="text-gray-600">Administrar el catálogo de cuentas contables</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    {% else %}
+    <!-- Not Authenticated -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <i class="fas fa-lock text-6xl text-gray-400 mb-6"></i>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Acceso Requerido</h2>
+            <p class="text-gray-600 mb-6">Necesitas iniciar sesión para acceder al sistema contable</p>
+            <a href="{% url 'users:login' %}" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                <i class="fas fa-sign-in-alt mr-2"></i>
+                Iniciar Sesión
+            </a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

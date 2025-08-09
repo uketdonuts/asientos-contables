@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Modo Seguro - Autenticación{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-shield-alt"></i>
+                        Modo Seguro
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <strong>Usuario autorizado:</strong> {{ user.email }}<br>
+                        <small>Ingrese la contraseña del modo seguro para continuar</small>
+                    </div>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label for="secure_password" class="form-label">Contraseña Segura:</label>
+                            <input 
+                                type="password" 
+                                class="form-control" 
+                                id="secure_password" 
+                                name="secure_password" 
+                                required
+                                autocomplete="off"
+                            >
+                        </div>
+
+                        {% if dev_mode %}
+                        <div class="alert alert-warning">
+                            <strong>MODO DESARROLLO:</strong><br>
+                            <small>Contraseñas de prueba disponibles:</small>
+                            <ul class="mb-0 mt-2">
+                                <li><code>DataView2024!</code> - Datos públicos</li>
+                                <li><code>TrueInfo#Secret99</code> - Datos confidenciales</li>
+                            </ul>
+                        </div>
+                        {% endif %}
+
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-unlock"></i>
+                            Acceder al Modo Seguro
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

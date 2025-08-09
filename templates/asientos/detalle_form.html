@@ -27,9 +27,6 @@
                 <div class="col-md-4">
                     <p><strong>Fecha:</strong> <span class="badge bg-light text-dark">{{ asiento.fecha }}</span></p>
                 </div>
-                <div class="col-md-4">
-                    <p><strong>Perfil:</strong> <span class="badge bg-light text-dark">{{ asiento.perfil }}</span></p>
-                </div>
             </div>
         </div>
     </div>
@@ -39,12 +36,15 @@
             <form method="post" novalidate>
                 {% csrf_token %}
                 
-                {% if form.hash_transaccion %}
                 <div class="mb-3">
-                    <label for="{{ form.hash_transaccion.id_for_label }}" class="form-label">Hash Transacción</label>
-                    {{ form.hash_transaccion }}
+                    <label for="{{ form.perfil.id_for_label }}" class="form-label">Perfil Contable</label>
+                    {{ form.perfil }}
+                    {% if form.perfil.errors %}
+                        <div class="text-danger">
+                            {{ form.perfil.errors }}
+                        </div>
+                    {% endif %}
                 </div>
-                {% endif %}
                 
                 <div class="mb-3">
                     <label for="{{ form.tipo_cuenta.id_for_label }}" class="form-label">Tipo de Cuenta</label>
@@ -104,7 +104,7 @@
                 </div>
                 
                 <div class="mb-3">
-                    <label class="form-label">Polaridad <small class="text-muted">(Se establece automáticamente según el tipo de cuenta)</small></label>
+                    <label class="form-label">Polaridad <small class="text-muted">(Sugerida automáticamente, pero puede modificarse)</small></label>
                     <div class="d-flex">
                         {% for radio in form.polaridad %}
                             <div class="form-check me-4">
@@ -133,48 +133,74 @@
 {% block extrajs %}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Get references to form elements
-    const tipoCuentaSelect = document.getElementById('{{ form.tipo_cuenta.id_for_label }}');
-    const polaridadInputs = document.querySelectorAll('input[name="{{ form.polaridad.html_name }}"]');
-    const cuentaSelect = document.getElementById('{{ form.cuenta.id_for_label }}');
+    // Get references to form elements using the exact IDs from forms.py
+    const tipoCuentaSelect = document.getElementById('id_tipo_cuenta');
+    const polaridadInputs = document.querySelectorAll('input[name="polaridad"]');
+    const cuentaSelect = document.getElementById('id_cuenta');
     const cuentaHelpText = document.getElementById('cuenta_help_text');
-    const valorInput = document.getElementById('{{ form.valor.auto_id }}');
+    const valorInput = document.getElementById('id_valor');
     
-    // Función para establecer y bloquear la polaridad según el tipo de cuenta
+    // Debug: Verificar que los elementos se encuentren
+    console.log('tipoCuentaSelect:', tipoCuentaSelect);
+    console.log('polaridadInputs:', polaridadInputs);
+    console.log('cuentaSelect:', cuentaSelect);
+    
+    // Función de validación para verificar que la polaridad sea correcta
+    function validatePolaridad() {
+        const tipoCuenta = tipoCuentaSelect ? tipoCuentaSelect.value : '';
+        const polaridadSeleccionada = document.querySelector('input[name="polaridad"]:checked');
+        
+        console.log('Validando - Tipo cuenta:', tipoCuenta);
+        console.log('Validando - Polaridad seleccionada:', polaridadSeleccionada ? polaridadSeleccionada.value : 'ninguna');
+        
+        // Reglas de validación
+        const esValido = (
+            (tipoCuenta === 'DEBE' && polaridadSeleccionada && polaridadSeleccionada.value === '+') ||
+            (tipoCuenta === 'HABER' && polaridadSeleccionada && polaridadSeleccionada.value === '-') ||
+            (!tipoCuenta || tipoCuenta === '') // Permitir si no hay tipo seleccionado aún
+        );
+        
+        // Mostrar/ocultar mensaje de error
+        let errorDiv = document.getElementById('polaridad-error');
+        if (!esValido) {
+            if (!errorDiv) {
+                errorDiv = document.createElement('div');
+                errorDiv.id = 'polaridad-error';
+                errorDiv.className = 'alert alert-warning mt-2';
+                errorDiv.innerHTML = '<strong>Atención:</strong> La polaridad no coincide con el tipo de cuenta seleccionado. <br>' +
+                                   '<small>DEBE debe tener polaridad positiva (+) y HABER debe tener polaridad negativa (-).</small>';
+                
+                const polaridadDiv = document.querySelector('.mb-3:has(input[name="polaridad"])') || 
+                                   polaridadInputs[0]?.closest('.mb-3');
+                if (polaridadDiv) {
+                    polaridadDiv.appendChild(errorDiv);
+                }
+            }
+        } else {
+            if (errorDiv) {
+                errorDiv.remove();
+            }
+        }
+        
+        return esValido;
+    }
+    
+    // Función para establecer la polaridad según el tipo de cuenta (pero permitir cambios manuales)
     function updatePolaridad(tipoCuenta) {
-        // Bloquear todas las opciones de polaridad
+        console.log('updatePolaridad called with:', tipoCuenta);
+        
+        // Habilitar todas las opciones de polaridad para permitir selección manual
         polaridadInputs.forEach(input => {
-            input.disabled = true;
+            input.disabled = false;
         });
         
         if (tipoCuenta === 'DEBE') {
-            // Seleccionar polaridad negativa para DEBE
-            polaridadInputs.forEach(input => {
-                if (input.value === '-') {
-                    input.checked = true;
-                    // Añadir un estilo visual para mostrar que está seleccionado incluso si está deshabilitado
-                    input.parentElement.classList.add('bg-light', 'border', 'border-primary', 'rounded');
-                } else {
-                    input.checked = false;
-                    input.parentElement.classList.remove('bg-light', 'border', 'border-primary', 'rounded');
-                }
-            });
-            
-            // Actualizar el texto de ayuda para la cuenta
-            cuentaHelpText.textContent = 'Seleccione una cuenta para el DEBE';
-            cuentaSelect.setAttribute('data-tipo', 'DEBE');
-            
-            // Cambiar visualmente el campo de cuenta
-            document.getElementById('div_cuenta').classList.add('border-start', 'border-danger', 'ps-2');
-            document.getElementById('div_cuenta').classList.remove('border-start', 'border-success', 'ps-2');
-            
-        } else if (tipoCuenta === 'HABER') {
-            // Seleccionar polaridad positiva para HABER
+            // Para DEBE, seleccionar polaridad POSITIVA (+)
             polaridadInputs.forEach(input => {
                 if (input.value === '+') {
                     input.checked = true;
-                    // Añadir un estilo visual para mostrar que está seleccionado incluso si está deshabilitado
                     input.parentElement.classList.add('bg-light', 'border', 'border-primary', 'rounded');
+                    console.log('DEBE: Seleccionando polaridad +');
                 } else {
                     input.checked = false;
                     input.parentElement.classList.remove('bg-light', 'border', 'border-primary', 'rounded');
@@ -182,33 +208,89 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
             // Actualizar el texto de ayuda para la cuenta
-            cuentaHelpText.textContent = 'Seleccione una cuenta para el HABER';
-            cuentaSelect.setAttribute('data-tipo', 'HABER');
+            if (cuentaHelpText) cuentaHelpText.textContent = 'Seleccione una cuenta para el DEBE (Polaridad: +)';
+            if (cuentaSelect) cuentaSelect.setAttribute('data-tipo', 'DEBE');
             
             // Cambiar visualmente el campo de cuenta
-            document.getElementById('div_cuenta').classList.add('border-start', 'border-success', 'ps-2');
-            document.getElementById('div_cuenta').classList.remove('border-start', 'border-danger', 'ps-2');
+            const divCuenta = document.getElementById('div_cuenta');
+            if (divCuenta) {
+                divCuenta.classList.add('border-start', 'border-danger', 'ps-2');
+                divCuenta.classList.remove('border-start', 'border-success', 'ps-2');
+            }
+            
+        } else if (tipoCuenta === 'HABER') {
+            // Para HABER, seleccionar polaridad NEGATIVA (-)
+            polaridadInputs.forEach(input => {
+                if (input.value === '-') {
+                    input.checked = true;
+                    input.parentElement.classList.add('bg-light', 'border', 'border-primary', 'rounded');
+                    console.log('HABER: Seleccionando polaridad -');
+                } else {
+                    input.checked = false;
+                    input.parentElement.classList.remove('bg-light', 'border', 'border-primary', 'rounded');
+                }
+            });
+            
+            // Actualizar el texto de ayuda para la cuenta
+            if (cuentaHelpText) cuentaHelpText.textContent = 'Seleccione una cuenta para el HABER (Polaridad: -)';
+            if (cuentaSelect) cuentaSelect.setAttribute('data-tipo', 'HABER');
+            
+            // Cambiar visualmente el campo de cuenta
+            const divCuenta = document.getElementById('div_cuenta');
+            if (divCuenta) {
+                divCuenta.classList.add('border-start', 'border-success', 'ps-2');
+                divCuenta.classList.remove('border-start', 'border-danger', 'ps-2');
+            }
         }
+        
+        // Validar después de actualizar
+        setTimeout(validatePolaridad, 100);
     }
     
+    // Permitir selección manual de polaridad
+    polaridadInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            console.log('Polaridad cambiada manualmente a:', this.value);
+            // Remover estilos de todos los inputs
+            polaridadInputs.forEach(inp => {
+                inp.parentElement.classList.remove('bg-light', 'border', 'border-primary', 'rounded');
+            });
+            // Agregar estilo al seleccionado
+            if (this.checked) {
+                this.parentElement.classList.add('bg-light', 'border', 'border-primary', 'rounded');
+            }
+            
+            // Validar la selección manual
+            validatePolaridad();
+        });
+    });
+
     // Inicializar polaridad basada en el valor actual de tipo_cuenta
     if (tipoCuentaSelect) {
+        // Ejecutar al cargar la página
         updatePolaridad(tipoCuentaSelect.value);
         
         // Configurar el evento para cambios en tipo_cuenta
         tipoCuentaSelect.addEventListener('change', function() {
+            console.log('Tipo cuenta cambiado a:', this.value);
             updatePolaridad(this.value);
             
             // No limpiar la selección de cuenta al editar
             if (!window.location.href.includes('/editar/')) {
-                cuentaSelect.selectedIndex = 0;
+                if (cuentaSelect) cuentaSelect.selectedIndex = 0;
             }
+        });
+    }
+    
+    // Validación en tiempo real cuando cambie el tipo de cuenta
+    if (tipoCuentaSelect) {
+        tipoCuentaSelect.addEventListener('change', function() {
+            setTimeout(validatePolaridad, 100);
         });
     }
     
     // Aplicar formato de número correcto al cargar la página
     if (valorInput && valorInput.value) {
-        // Asegurarse de que el valor tenga siempre 2 decimales
         const valorNumerico = parseFloat(valorInput.value);
         if (!isNaN(valorNumerico)) {
             valorInput.value = valorNumerico.toFixed(2);
@@ -218,20 +300,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Validar entrada de valor para asegurar formato correcto
     if (valorInput) {
         valorInput.addEventListener('input', function(e) {
-            // Eliminar caracteres no numéricos excepto punto y coma
             this.value = this.value.replace(/[^\d.,]/g, '');
-            
-            // Reemplazar coma por punto (para estandarizar)
             this.value = this.value.replace(/,/g, '.');
-            
-            // Asegurar que solo hay un punto decimal
             const parts = this.value.split('.');
             if (parts.length > 2) {
                 this.value = parts[0] + '.' + parts.slice(1).join('');
             }
         });
         
-        // Al perder el foco, formatear con 2 decimales
         valorInput.addEventListener('blur', function() {
             if (this.value) {
                 const valor = parseFloat(this.value);
@@ -242,20 +318,36 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Asegurarse de que el formulario tiene el valor correcto antes de enviarlo
-    document.querySelector('form').addEventListener('submit', function(e) {
-        // Habilitar temporalmente los campos deshabilitados para incluirlos en el envío del formulario
-        polaridadInputs.forEach(input => {
-            if (input.checked) {
-                input.disabled = false;
+    // Validación antes del envío del formulario
+    const form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            console.log('Formulario enviándose - validando polaridad...');
+            
+            if (!validatePolaridad()) {
+                e.preventDefault();
+                alert('Error: La polaridad seleccionada no es correcta para el tipo de cuenta.\n\n' +
+                      'DEBE debe tener polaridad positiva (+)\n' +
+                      'HABER debe tener polaridad negativa (-)');
+                return false;
+            }
+            
+            // Habilitar temporalmente los campos deshabilitados para incluirlos en el envío del formulario
+            polaridadInputs.forEach(input => {
+                if (input.checked) {
+                    input.disabled = false;
+                }
+            });
+            
+            // Asegurar que se envía con el formato correcto para el backend
+            if (valorInput && valorInput.value) {
+                valorInput.value = valorInput.value.replace(',', '.');
             }
         });
-        
-        // Asegurar que se envía con el formato correcto para el backend
-        if (valorInput && valorInput.value) {
-            valorInput.value = valorInput.value.replace(',', '.');
-        }
-    });
+    }
+    
+    // Validación inicial al cargar la página
+    setTimeout(validatePolaridad, 500);
 });
 </script>
 {% endblock %}

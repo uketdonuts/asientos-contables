@@ -1,0 +1,180 @@
+{% extends 'base_new.html' %}
+{% load static %}
+
+{% block title %}Eliminar Cuenta Contable - Sistema Contable{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'plan_cuentas:cuenta_list' %}">
+                            <i class="fas fa-list-alt me-2"></i>Cuentas Contables
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Eliminar Cuenta</li>
+                </ol>
+            </nav>
+
+            <!-- Warning Card -->
+            <div class="card border-danger shadow-sm">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        Confirmar Eliminación de Cuenta
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fas fa-warning me-2"></i>
+                        <strong>¡Atención!</strong> Esta acción eliminará permanentemente la cuenta contable.
+                    </div>
+
+                    <h6 class="fw-bold mb-3">¿Está seguro de que desea eliminar esta cuenta contable?</h6>
+                    
+                    <!-- Account Information -->
+                    <div class="bg-light rounded p-4 mb-4">
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">Código:</div>
+                            <div class="col-sm-8">
+                                <code class="bg-white px-3 py-2 rounded fs-5">{{ cuenta.codigocuenta }}</code>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">Descripción:</div>
+                            <div class="col-sm-8">{{ cuenta.descripcion }}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">Empresa:</div>
+                            <div class="col-sm-8">{{ cuenta.empresa }}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">Plan de Cuentas:</div>
+                            <div class="col-sm-8">{{ cuenta.plan_cuentas_id.descripcion }}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">Grupo:</div>
+                            <div class="col-sm-8">
+                                <span class="badge 
+                                    {% if cuenta.grupo == 1 %}bg-primary
+                                    {% elif cuenta.grupo == 2 %}bg-danger
+                                    {% elif cuenta.grupo == 3 %}bg-info
+                                    {% elif cuenta.grupo == 4 %}bg-success
+                                    {% elif cuenta.grupo == 5 %}bg-warning
+                                    {% else %}bg-secondary
+                                    {% endif %}">
+                                    {% if cuenta.grupo == 1 %}1 - Activos
+                                    {% elif cuenta.grupo == 2 %}2 - Pasivos
+                                    {% elif cuenta.grupo == 3 %}3 - Patrimonio
+                                    {% elif cuenta.grupo == 4 %}4 - Ingresos
+                                    {% elif cuenta.grupo == 5 %}5 - Gastos
+                                    {% else %}{{ cuenta.grupo }}
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                        {% if cuenta.cuentamadre %}
+                        <div class="row">
+                            <div class="col-sm-4 fw-bold">Cuenta Madre:</div>
+                            <div class="col-sm-8">
+                                <code class="bg-white px-2 py-1 rounded">{{ cuenta.cuentamadre }}</code>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Warning about consequences -->
+                    <div class="alert alert-info" role="alert">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>Consecuencias de la eliminación:</strong>
+                        <ul class="mb-0 mt-2">
+                            <li>La cuenta será eliminada permanentemente</li>
+                            <li>No podrá ser utilizada en futuros asientos contables</li>
+                            <li>Los asientos existentes que usen esta cuenta seguirán intactos</li>
+                            <li>Esta acción no se puede deshacer</li>
+                        </ul>
+                    </div>
+
+                    <!-- Type of account information -->
+                    <div class="bg-{% if cuenta.codigocuenta|length > 4 %}success{% else %}primary{% endif %}-50 border border-{% if cuenta.codigocuenta|length > 4 %}success{% else %}primary{% endif %} rounded p-3 mb-4">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-{% if cuenta.codigocuenta|length > 4 %}leaf{% else %}sitemap{% endif %} text-{% if cuenta.codigocuenta|length > 4 %}success{% else %}primary{% endif %} me-3 fa-2x"></i>
+                            <div>
+                                <h6 class="fw-bold mb-1">
+                                    {% if cuenta.codigocuenta|length > 4 %}
+                                        Cuenta de Movimiento
+                                    {% else %}
+                                        Cuenta de Agrupación
+                                    {% endif %}
+                                </h6>
+                                <small class="text-muted">
+                                    {% if cuenta.codigocuenta|length > 4 %}
+                                        Esta cuenta puede tener transacciones asociadas en asientos contables
+                                    {% else %}
+                                        Esta cuenta agrupa otras cuentas y generalmente no tiene movimientos directos
+                                    {% endif %}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="d-flex justify-content-between pt-3 border-top">
+                        <a href="{% url 'plan_cuentas:cuenta_detail' cuenta.id %}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Cancelar
+                        </a>
+                        
+                        <form method="post" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash me-2"></i>Sí, Eliminar Cuenta
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alternative Actions -->
+            <div class="card mt-4 border-info">
+                <div class="card-header bg-light">
+                    <h6 class="card-title mb-0">
+                        <i class="fas fa-lightbulb text-info me-2"></i>
+                        ¿Consideró estas alternativas?
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-md-6 mb-3">
+                            <div class="border rounded p-3 h-100">
+                                <i class="fas fa-edit text-warning fa-2x mb-2"></i>
+                                <h6 class="fw-bold">Editar Cuenta</h6>
+                                <small class="text-muted">Modifique la información en lugar de eliminar</small>
+                                <div class="mt-2">
+                                    <a href="{% url 'plan_cuentas:cuenta_edit' cuenta.id %}" class="btn btn-sm btn-warning">
+                                        <i class="fas fa-edit me-1"></i>Editar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="border rounded p-3 h-100">
+                                <i class="fas fa-eye text-info fa-2x mb-2"></i>
+                                <h6 class="fw-bold">Revisar Detalles</h6>
+                                <small class="text-muted">Verifique la información antes de eliminar</small>
+                                <div class="mt-2">
+                                    <a href="{% url 'plan_cuentas:cuenta_detail' cuenta.id %}" class="btn btn-sm btn-info">
+                                        <i class="fas fa-eye me-1"></i>Ver Detalles
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

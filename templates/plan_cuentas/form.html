@@ -1,92 +1,127 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}{{ button_text }} Cuenta Contable{% endblock %}
+{% block title %}{{ title }} - Sistema Contable{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="row mb-3">
-        <div class="col">
-            <h2>{{ button_text }} Cuenta Contable</h2>
-        </div>
-        <div class="col-auto">
-            <a href="{% url 'plan_cuentas:plan_cuenta_list' %}" class="btn btn-secondary">
-                <i class="fas fa-arrow-left"></i> Volver
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Header Section -->
+    <div class="bg-white shadow-sm rounded-lg mb-6">
+        <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+            <h3 class="text-lg font-medium text-gray-900">
+                <i class="fas fa-{% if button_text == 'Crear Plan' %}plus{% else %}edit{% endif %} mr-2"></i>
+                {{ title }}
+            </h3>
+            <a href="{% url 'plan_cuentas:plan_cuenta_list' %}" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                <i class="fas fa-arrow-left mr-1"></i> Volver
             </a>
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-body">
-            <form method="post" novalidate>
-                {% csrf_token %}
-                
-                <div class="mb-3">
-                    <label for="{{ form.empresa.id_for_label }}" class="form-label">Empresa</label>
+    <!-- Main Form Section -->
+    <div class="bg-white shadow-sm rounded-lg">
+        <!-- Información del Sistema - Solo para edición -->
+        {% if form.instance.pk %}
+        <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+            <h4 class="text-sm font-medium text-gray-700 mb-3">
+                <i class="fas fa-info-circle text-blue-600 mr-2"></i>Información del Sistema
+            </h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="flex items-center">
+                    <span class="text-sm text-gray-500 mr-3">ID:</span>
+                    <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">
+                        {{ form.instance.id }}
+                    </span>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <form method="post" class="p-6">
+            {% csrf_token %}
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Empresa Field -->
+                <div>
+                    <label for="{{ form.empresa.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                        <i class="fas fa-building text-blue-600 mr-2"></i>
+                        Empresa <span class="text-red-500">*</span>
+                    </label>
                     {{ form.empresa }}
+                    {% if form.empresa.help_text %}
+                        <p class="mt-1 text-sm text-gray-500">{{ form.empresa.help_text }}</p>
+                    {% endif %}
                     {% if form.empresa.errors %}
-                        <div class="text-danger">
-                            {{ form.empresa.errors }}
+                        <div class="mt-1 text-sm text-red-600">
+                            <i class="fas fa-exclamation-circle mr-1"></i>
+                            {{ form.empresa.errors.0 }}
                         </div>
                     {% endif %}
                 </div>
 
-                <div class="mb-3">
-                    <label for="{{ form.perfil.id_for_label }}" class="form-label">Perfil Contable</label>
+                <!-- Perfil Field -->
+                <div>
+                    <label for="{{ form.perfil.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                        <i class="fas fa-user-cog text-green-600 mr-2"></i>
+                        Perfil <span class="text-red-500">*</span>
+                    </label>
                     {{ form.perfil }}
+                    {% if form.perfil.help_text %}
+                        <p class="mt-1 text-sm text-gray-500">{{ form.perfil.help_text }}</p>
+                    {% endif %}
                     {% if form.perfil.errors %}
-                        <div class="text-danger">
-                            {{ form.perfil.errors }}
+                        <div class="mt-1 text-sm text-red-600">
+                            <i class="fas fa-exclamation-circle mr-1"></i>
+                            {{ form.perfil.errors.0 }}
                         </div>
                     {% endif %}
                 </div>
-                
-                <div class="mb-3">
-                    <label for="{{ form.grupo.id_for_label }}" class="form-label">Grupo</label>
-                    {{ form.grupo }}
-                    {% if form.grupo.errors %}
-                        <div class="text-danger">
-                            {{ form.grupo.errors }}
-                        </div>
-                    {% endif %}
-                </div>
-                
-                <div class="mb-3">
-                    <label for="{{ form.codigocuenta.id_for_label }}" class="form-label">Código de Cuenta</label>
-                    {{ form.codigocuenta }}
-                    {% if form.codigocuenta.errors %}
-                        <div class="text-danger">
-                            {{ form.codigocuenta.errors }}
-                        </div>
-                    {% endif %}
-                </div>
-                
-                <div class="mb-3">
-                    <label for="{{ form.descripcion.id_for_label }}" class="form-label">Descripción</label>
+
+                <!-- Descripción Field -->
+                <div class="md:col-span-2">
+                    <label for="{{ form.descripcion.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                        <i class="fas fa-file-alt text-purple-600 mr-2"></i>
+                        Descripción <span class="text-red-500">*</span>
+                    </label>
                     {{ form.descripcion }}
+                    {% if form.descripcion.help_text %}
+                        <p class="mt-1 text-sm text-gray-500">{{ form.descripcion.help_text }}</p>
+                    {% endif %}
                     {% if form.descripcion.errors %}
-                        <div class="text-danger">
-                            {{ form.descripcion.errors }}
+                        <div class="mt-1 text-sm text-red-600">
+                            <i class="fas fa-exclamation-circle mr-1"></i>
+                            {{ form.descripcion.errors.0 }}
                         </div>
                     {% endif %}
                 </div>
-                
-                <div class="mb-3">
-                    <label for="{{ form.cuentamadre.id_for_label }}" class="form-label">Cuenta Madre</label>
-                    {{ form.cuentamadre }}
-                    {% if form.cuentamadre.errors %}
-                        <div class="text-danger">
-                            {{ form.cuentamadre.errors }}
-                        </div>
-                    {% endif %}
-                </div>
-                
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i> {{ button_text }}
-                    </button>
-                </div>
-            </form>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="mt-6 flex justify-end space-x-3">
+                <a href="{% url 'plan_cuentas:plan_cuenta_list' %}" class="bg-gray-300 hover:bg-gray-400 text-gray-700 font-medium py-2 px-4 rounded-md transition-colors">
+                    Cancelar
+                </a>
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors">
+                    <i class="fas fa-save mr-2"></i>
+                    {{ button_text }}
+                </button>
+            </div>
+        </form>
+
+        <!-- Sección de ayuda para nuevos planes -->
+        {% if not form.instance.pk %}
+        <div class="px-6 py-4 border-t border-gray-200 bg-blue-50">
+            <h4 class="text-sm font-medium text-blue-800 mb-2">
+                <i class="fas fa-lightbulb text-blue-600 mr-2"></i>Información sobre planes de cuentas
+            </h4>
+            <ul class="text-sm text-blue-700 space-y-1">
+                <li><i class="fas fa-check text-blue-600 mr-2"></i>El ID se generará automáticamente</li>
+                <li><i class="fas fa-check text-blue-600 mr-2"></i>La descripción debe ser única por empresa</li>
+                <li><i class="fas fa-check text-blue-600 mr-2"></i>El perfil define la estructura contable a utilizar</li>
+                <li><i class="fas fa-check text-blue-600 mr-2"></i>Una vez creado, podrá agregar cuentas individuales</li>
+            </ul>
         </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

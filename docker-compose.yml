@@ -2,17 +2,51 @@ version: '3.8'
 
 services:
   db:
-    image: mysql:latest
-    environment:
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    image: mysql:8.0
+    platform: linux/arm64/v8
     volumes:
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
       - mysql_data:/var/lib/mysql
+    env_file:
+      - docker.env
     ports:
       - "3306:3306"
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 5s
+      retries: 10
 
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - "1025:1025"  # Puerto SMTP
+      - "8025:8025"  # Puerto web UI
+    networks:
+      - app-network
+
+  web:
+    build: .
+    command: ./docker-entrypoint.sh
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - docker.env
+    depends_on:
+      - db
+      - mailhog
+    networks:
+      - app-network
+    platform: linux/arm64/v8
 
 volumes:
   mysql_data:
+  static_volume:
+  media_volume:
+
+networks:
+  app-network:
+    driver: bridge

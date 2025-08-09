@@ -1,58 +1,132 @@
 {% load static %}
+<!-- Navbar updated: 2025-01-11 23:45:00 -->
 
-{% block content %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="{% url 'home' %}">Asientos Contables</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mr-auto">
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'asientos:asiento_list' %}">Asientos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'entries:entry_list' %}">Entradas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'perfiles:perfil_list' %}">Perfiles</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'plan_cuentas:plan_cuenta_list' %}">Plan de Cuentas</a>
-            </li>
-            {% endif %}
-        </ul>
-        {% if user.is_authenticated %}
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{ user.username }}
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{% url 'users:perfil' %}">
-                        <i class="fas fa-user"></i> Mi Perfil
-                    </a>
-                    <a class="dropdown-item" href="{% url 'two_factor_auth:setup' %}">
-                        <i class="fas fa-shield-alt"></i> Configuración 2FA
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{% url 'logout' %}">
-                        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+<nav class="bg-white shadow-lg border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <div class="flex">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="{% url 'home' %}" class="text-xl font-bold text-gray-800 hover:text-primary-600 transition-colors">
+                        <i class="fas fa-calculator mr-2 text-primary-600"></i>
+                        Sistema Contable
                     </a>
                 </div>
-            </li>
-        </ul>
-        {% else %}
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'users:login' %}">Iniciar Sesión</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'users:register' %}">Registrarse</a>
-            </li>
-        </ul>
-        {% endif %}
+                
+                <!-- Navigation Links -->
+                {% if user.is_authenticated %}
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-6">
+                    <!-- Dashboard -->
+                    <a href="{% url 'home' %}" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">
+                        <i class="fas fa-home mr-2"></i> Dashboard
+                    </a>
+                    
+                    <!-- Asientos -->
+                    <a href="{% url 'asientos:asiento_list' %}" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">
+                        <i class="fas fa-file-invoice mr-2"></i> Asientos
+                    </a>
+                    
+                    <!-- Plan de Cuentas -->
+                    <a href="{% url 'plan_cuentas:plan_cuenta_list' %}" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">
+                        <i class="fas fa-sitemap mr-2"></i> Plan de Cuentas
+                    </a>
+                    
+                    <!-- Cuentas -->
+                    <a href="{% url 'plan_cuentas:cuenta_list' %}" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">
+                        <i class="fas fa-coins mr-2"></i> Cuentas
+                    </a>
+                    
+                    <!-- Perfiles -->
+                    <a href="{% url 'perfiles:perfil_list' %}" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">
+                        <i class="fas fa-user-cog mr-2"></i> Perfiles
+                    </a>
+                    
+                    <!-- Empresas -->
+                    <a href="{% url 'empresas:empresa_list' %}" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">
+                        <i class="fas fa-building mr-2"></i> Empresas
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Right side -->
+            <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                {% if user.is_authenticated %}
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm text-gray-700">
+                            <i class="fas fa-user mr-2"></i>
+                            {{ user.username }}
+                        </span>
+                        <a href="{% url 'logout' %}" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                            <i class="fas fa-sign-out-alt mr-2"></i>
+                            Cerrar Sesión
+                        </a>
+                    </div>
+                {% else %}
+                    <a href="{% url 'users:login' %}" class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                        <i class="fas fa-sign-in-alt mr-2"></i>
+                        Iniciar Sesión
+                    </a>
+                {% endif %}
+            </div>
+            
+            <!-- Mobile menu button -->
+            <div class="-mr-2 flex items-center sm:hidden">
+                <button type="button" class="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500" id="mobile-menu-button">
+                    <span class="sr-only">Abrir menú principal</span>
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Mobile menu -->
+    <div class="sm:hidden hidden" id="mobile-menu">
+        <div class="pt-2 pb-3 space-y-1 bg-white border-t border-gray-200">
+            {% if user.is_authenticated %}
+                <a href="{% url 'home' %}" class="text-gray-500 hover:text-gray-700 block px-3 py-2 text-base font-medium">
+                    <i class="fas fa-home mr-2"></i> Dashboard
+                </a>
+                
+                <a href="{% url 'asientos:asiento_list' %}" class="text-gray-500 hover:text-gray-700 block px-3 py-2 text-base font-medium">
+                    <i class="fas fa-file-invoice mr-2"></i> Asientos
+                </a>
+                
+                <a href="{% url 'plan_cuentas:plan_cuenta_list' %}" class="text-gray-500 hover:text-gray-700 block px-3 py-2 text-base font-medium">
+                    <i class="fas fa-sitemap mr-2"></i> Plan de Cuentas
+                </a>
+                
+                <a href="{% url 'plan_cuentas:cuenta_list' %}" class="text-gray-500 hover:text-gray-700 block px-3 py-2 text-base font-medium">
+                    <i class="fas fa-coins mr-2"></i> Cuentas
+                </a>
+                
+                <a href="{% url 'perfiles:perfil_list' %}" class="text-gray-500 hover:text-gray-700 block px-3 py-2 text-base font-medium">
+                    <i class="fas fa-user-cog mr-2"></i> Perfiles
+                </a>
+                
+                <a href="{% url 'empresas:empresa_list' %}" class="text-gray-500 hover:text-gray-700 block px-3 py-2 text-base font-medium">
+                    <i class="fas fa-building mr-2"></i> Empresas
+                </a>
+                
+                <a href="{% url 'logout' %}" class="text-gray-500 hover:text-gray-700 block px-3 py-2 text-base font-medium">
+                    <i class="fas fa-sign-out-alt mr-2"></i> Cerrar Sesión
+                </a>
+            {% endif %}
+        </div>
     </div>
 </nav>
-{% endblock %}
+
+<script>
+    // Navbar v3.0 - Simple navigation
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    });
+</script>

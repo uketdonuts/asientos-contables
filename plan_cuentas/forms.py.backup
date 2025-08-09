@@ -1,0 +1,286 @@
+from django import forms
+from django.core.exceptions import ValidationError
+from .models import PlanCuenta, Cuenta
+from empresas.models import Empresa
+from perfiles.models import Perfil
+
+class PlanCuentaForm(forms.ModelForm):
+    """Formulario simplificado para Plan de Cuentas - Solo ID y descripción"""
+    class Meta:
+        model = PlanCuenta
+        fields = ['descripcion']
+        widgets = {
+            'descripcion': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Nombre del plan de cuentas (ej: Plan Contable PYMES, Plan Contable Completo)',
+                'maxlength': '80'
+            }),
+        }
+        labels = {
+            'descripcion': 'Descripción del Plan de Cuentas',
+        }
+
+    def clean_descripcion(self):
+        descripcion = self.cleaned_data.get('descripcion')
+        if not descripcion or descripcion.strip() == '':
+            raise ValidationError('La descripción es obligatoria')
+        return descripcion.strip()
+
+
+class CuentaForm(forms.ModelForm):
+    """Formulario completo para Cuentas - Contiene todos los campos detallados"""
+    class Meta:
+        model = Cuenta
+        fields = ['plan_cuentas_id', 'empresa_id', 'codigocuenta', 'descripcion', 'cuentamadre', 'grupo', 'numero_txt', 'cuentas_id_madre']
+        widgets = {
+            'plan_cuentas_id': forms.Select(attrs={
+                'class': 'form-select',
+                'placeholder': 'Seleccione un plan de cuentas'
+            }),
+            'empresa_id': forms.Select(attrs={
+                'class': 'form-select',
+                'placeholder': 'Seleccione una empresa'
+            }),
+            'descripcion': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Nombre descriptivo de la cuenta',
+                'maxlength': '80'
+            }),
+            'codigocuenta': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Ej: 1105, 110505, etc.',
+                'maxlength': '14',
+                'pattern': '[0-9]*'
+            }),
+            'cuentamadre': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Código de la cuenta padre (opcional)',
+                'maxlength': '14'
+            }),
+            'grupo': forms.Select(
+                choices=[
+                    ('', 'Seleccione un grupo'),
+                    (1, '1 - Activos'),
+                    (2, '2 - Pasivos'),
+                    (3, '3 - Patrimonio'),
+                    (4, '4 - Ingresos'),
+                    (5, '5 - Gastos')
+                ],
+                attrs={'class': 'form-select'}
+            ),
+            'numero_txt': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Código alternativo de la cuenta',
+                'maxlength': '14'
+            }),
+            'cuentas_id_madre': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'ID de la cuenta madre (opcional)',
+                'maxlength': '14'
+            }),
+        }
+        labels = {
+            'plan_cuentas_id': 'Plan de Cuentas',
+            'empresa_id': 'Empresa',
+            'descripcion': 'Descripción',
+        help_texts = {
+            'empresa_id': 'Empresa a la que pertenece esta cuenta',
+            'descripcion': 'Nombre descriptivo de la cuenta contable',
+            'codigocuenta': 'Código único numérico para identificar la cuenta',
+            'cuentamadre': 'Código de la cuenta padre (opcional para cuentas principales)',
+            'grupo': 'Clasificación contable según el plan de cuentas',
+            'perfil_id': 'Perfil contable asociado a esta cuenta'
+        }
+        error_messages = {
+            'empresa_id': {
+                'required': 'La empresa es requerida',
+                'invalid_choice': 'Seleccione una empresa válida'
+            },
+            'descripcion': {
+                'required': 'La descripción es requerida',
+                'max_length': 'La descripción no puede exceder 80 caracteres'
+            },
+            'codigocuenta': {
+                'required': 'El código de cuenta es requerido',
+                'max_length': 'El código no puede exceder 14 caracteres'
+            },
+            'grupo': {
+                'required': 'El grupo contable es requerido',
+                'invalid_choice': 'Seleccione un grupo válido'
+            },
+            'perfil_id': {
+                'required': 'El perfil contable es requerido',
+                'invalid_choice': 'Seleccione un perfil válido'
+            }
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        # Configurar querysets
+        self.fields['empresa_id'].queryset = Empresa.objects.all()
+        self.fields['perfil_id'].queryset = Perfil.objects.filter(vigencia='S')
+        
+        # Hacer campos obligatorios
+        self.fields['empresa_id'].required = True
+        self.fields['descripcion'].required = True
+        self.fields['codigocuenta'].required = True
+        self.fields['grupo'].required = True
+        self.fields['perfil_id'].required = True
+        
+        # Campo opcional
+        self.fields['cuentamadre'].required = False
+        
+        # Valores por defecto
+        if not self.instance.pk:
+            if Empresa.objects.filter(nombre='DEFAULT').exists():
+                self.fields['empresa_id'].initial = Empresa.objects.get(nombre='DEFAULT')
+
+    def clean_codigocuenta(self):
+        codigocuenta = self.cleaned_data.get('codigocuenta')
+        empresa = self.cleaned_data.get('empresa_id')
+        
+        if codigocuenta:
+            # Validar que solo contenga números
+            if not codigocuenta.isdigit():
+                raise ValidationError('El código de cuenta debe contener solo números')
+            
+            # Validar longitud
+            if len(codigocuenta) < 1:
+                raise ValidationError('El código de cuenta debe tener al menos 1 dígito')
+            if len(codigocuenta) > 14:
+                raise ValidationError('El código de cuenta no puede exceder 14 dígitos')
+            
+            # Validar unicidad por empresa
+            if empresa:
+                existing = PlanCuenta.objects.filter(
+                    empresa_id=empresa,
+                    codigocuenta=codigocuenta
+                ).exclude(pk=self.instance.pk if self.instance else None)
+                
+                if existing.exists():
+                    raise ValidationError(
+                        f'Ya existe una cuenta con el código {codigocuenta} para esta empresa'
+                    )
+        
+        return codigocuenta
+    
+    def clean_cuentamadre(self):
+        cuentamadre = self.cleaned_data.get('cuentamadre')
+        codigocuenta = self.cleaned_data.get('codigocuenta')
+        empresa = self.cleaned_data.get('empresa_id')
+        
+        if cuentamadre:
+            # Validar que solo contenga números
+            if not cuentamadre.isdigit():
+                raise ValidationError('El código de cuenta madre debe contener solo números')
+            
+            # Validar que no sea igual al código de la cuenta
+            if cuentamadre == codigocuenta:
+                raise ValidationError('Una cuenta no puede ser su propia cuenta madre')
+            
+            # Validar que la cuenta madre exista
+            if empresa:
+                cuenta_madre_exists = PlanCuenta.objects.filter(
+                    empresa_id=empresa,
+                    codigocuenta=cuentamadre
+                ).exists()
+                
+                if not cuenta_madre_exists:
+                    raise ValidationError(
+                        f'No existe una cuenta con el código {cuentamadre} en esta empresa'
+                    )
+            
+            # Validar jerarquía (cuenta madre debe ser más corta)
+            if codigocuenta and len(cuentamadre) >= len(codigocuenta):
+                raise ValidationError(
+                    'El código de cuenta madre debe ser más corto que el código de la cuenta'
+                )
+        
+        return cuentamadre
+    
+    def clean_grupo(self):
+        grupo = self.cleaned_data.get('grupo')
+        codigocuenta = self.cleaned_data.get('codigocuenta')
+        
+        if grupo and codigocuenta:
+            # Validar que el primer dígito del código coincida con el grupo
+            primer_digito = int(codigocuenta[0])
+            if primer_digito != grupo:
+                raise ValidationError(
+                    f'El código de cuenta debe comenzar con {grupo} para pertenecer al grupo {grupo}'
+                )
+        
+        return grupo
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        empresa = cleaned_data.get('empresa_id')
+        perfil = cleaned_data.get('perfil_id')
+        
+        # Validar que el perfil pertenezca a la misma empresa
+        if empresa and perfil:
+            if perfil.empresa != empresa.nombre:
+                raise ValidationError({
+                    'perfil_id': f'El perfil seleccionado no pertenece a la empresa {empresa.nombre}'
+                })
+        
+        return cleaned_data
+
+
+class CuentaForm(forms.ModelForm):
+    class Meta:
+        model = Cuenta
+        fields = ['plan_cuentas_id', 'empresa_id', 'numero_txt', 'cuentas_id_madre', 'descripcion']
+        widgets = {
+            'plan_cuentas_id': forms.Select(attrs={'class': 'form-select'}),
+            'empresa_id': forms.Select(attrs={'class': 'form-select'}),
+            'numero_txt': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Código numérico de la cuenta',
+                'maxlength': '14'
+            }),
+            'cuentas_id_madre': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Código de cuenta padre (opcional)',
+                'maxlength': '14'
+            }),
+            'descripcion': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Descripción de la cuenta',
+                'maxlength': '80'
+            }),
+        }
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['plan_cuentas_id'].queryset = PlanCuenta.objects.all()
+        self.fields['empresa_id'].queryset = Empresa.objects.all()
+        
+        # Campos requeridos
+        self.fields['plan_cuentas_id'].required = True
+        self.fields['empresa_id'].required = True
+        self.fields['numero_txt'].required = True
+        self.fields['descripcion'].required = True
+        
+    def clean_numero_txt(self):
+        numero_txt = self.cleaned_data.get('numero_txt')
+        plan_cuentas = self.cleaned_data.get('plan_cuentas_id')
+        
+        if numero_txt:
+            if not numero_txt.isdigit():
+                raise ValidationError('El número TXT debe contener solo números')
+            
+            # Validar unicidad por plan de cuentas
+            if plan_cuentas:
+                existing = Cuenta.objects.filter(
+                    plan_cuentas_id=plan_cuentas,
+                    numero_txt=numero_txt
+                ).exclude(pk=self.instance.pk if self.instance else None)
+                
+                if existing.exists():
+                    raise ValidationError(
+                        f'Ya existe una cuenta con el número {numero_txt} en este plan de cuentas'
+                    )
+        
+        return numero_txt

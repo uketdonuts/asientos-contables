@@ -7,7 +7,6 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('plan_cuentas', '0002_alter_plancuenta_options_plancuenta_codigocuenta_and_more'),
         ('perfiles', '0002_alter_perfil_options_perfil_empresa_and_more'),
         ('asientos', '0001_initial'),
     ]
@@ -26,16 +25,6 @@ class Migration(migrations.Migration):
             model_name='asiento',
             name='perfil',
             field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='perfiles.perfil', verbose_name='Perfil Contable'),
-        ),
-        migrations.AlterField(
-            model_name='asiento',
-            name='cuenta_debe',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='asientos_debe', to='plan_cuentas.plancuenta', verbose_name='Cuenta Debe'),
-        ),
-        migrations.AlterField(
-            model_name='asiento',
-            name='cuenta_haber',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='asientos_haber', to='plan_cuentas.plancuenta', verbose_name='Cuenta Haber'),
         ),
         migrations.AlterUniqueTogether(
             name='asiento',

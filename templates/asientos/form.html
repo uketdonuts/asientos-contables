@@ -1,496 +1,545 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}{{ button_text }} Asiento Contable{% endblock %}
+{% block title %}{{ button_text }} Asiento Contable - Sistema Contable{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="row mb-3">
-        <div class="col">
-            <h2>{{ button_text }} Asiento Contable</h2>
-        </div>
-        <div class="col-auto">
-            <a href="{% url 'asientos:asiento_list' %}" class="btn btn-secondary">
-                <i class="fas fa-arrow-left"></i> Volver
-            </a>
-        </div>
-    </div>
+<div class="min-h-screen bg-gray-50 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Breadcrumb -->
+        <nav class="flex mb-6" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="{% url 'asientos:asiento_list' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                        <i class="fas fa-file-invoice mr-2"></i>
+                        Asientos Contables
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
+                        <span class="text-sm font-medium text-gray-500">{{ button_text }}</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
 
-    <div class="card mb-4">
-        <div class="card-body">
-            <form method="post" id="asientoForm" novalidate>
+        <!-- Header Section -->
+        <div class="bg-white shadow-sm rounded-lg mb-6">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                    <div class="flex items-center space-x-3 mb-4 sm:mb-0">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-file-invoice text-blue-600 text-lg"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold text-gray-900">{{ button_text }} Asiento Contable</h1>
+                            <p class="text-sm text-gray-600 mt-1">Complete la información del asiento y sus detalles contables</p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="{% url 'asientos:asiento_list' %}" 
+                           class="inline-flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-sm font-medium rounded-lg shadow-sm transition-colors duration-200">
+                            <i class="fas fa-arrow-left mr-2"></i>
+                            Volver
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="bg-white shadow-sm rounded-lg overflow-hidden">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h3 class="text-lg font-medium text-gray-900">Información del Asiento</h3>
+                <p class="text-sm text-gray-600 mt-1">Complete los campos requeridos para crear el asiento contable</p>
+            </div>
+            
+            <form method="post" id="asientoForm" class="px-6 py-6 space-y-6">
                 {% csrf_token %}
                 <input type="hidden" name="asiento_id_provisional" value="{{ asiento_id_provisional }}">
                 
-                <div class="row mb-3">
-                    <div class="col-md-12">
-                        <label class="form-label fw-bold">ID de Transacción</label>
-                        <div class="form-control bg-light">{% if id %}{{ id }}{% else %}Nuevo{% endif %}</div>
+                <!-- Información del Sistema - Solo para edición -->
+                {% if id %}
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <h4 class="text-sm font-medium text-blue-800 mb-3">
+                        <i class="fas fa-info-circle text-blue-600 mr-2"></i>Información del Sistema
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="flex items-center">
+                            <span class="text-sm text-blue-700 mr-3">ID de Transacción:</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">
+                                {{ id }}
+                            </span>
+                        </div>
                     </div>
                 </div>
+                {% endif %}
                 
-                <div class="row">
-                    <div class="col-md-12 mb-3">
-                        <label for="{{ form.fecha.id_for_label }}" class="form-label">Fecha</label>
-                        <div class="input-group date" id="fechaDatetimePicker" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" 
-                                   id="{{ form.fecha.id_for_label }}" name="{{ form.fecha.html_name }}"
-                                   data-target="#fechaDatetimePicker" value="{{ form.fecha.value|date:'Y-m-d' }}" 
-                                   placeholder="Seleccione fecha" />
-                            <div class="input-group-append" data-target="#fechaDatetimePicker" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Fecha Field -->
+                    <div class="space-y-2">
+                        <label for="{{ form.fecha.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                            <i class="fas fa-calendar-alt text-gray-400 mr-2"></i>
+                            Fecha del Asiento
+                            <span class="text-red-500 ml-1">*</span>
+                        </label>
+                        <div class="relative">
+                            <input type="date" 
+                                   id="{{ form.fecha.id_for_label }}" 
+                                   name="{{ form.fecha.html_name }}"
+                                   value="{{ form.fecha.value|date:'Y-m-d' }}"
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                   required>
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <i class="fas fa-calendar-alt text-gray-400"></i>
                             </div>
                         </div>
                         {% if form.fecha.errors %}
-                            <div class="text-danger">
-                                {{ form.fecha.errors }}
+                            <div class="flex items-center space-x-2 text-red-600 text-sm">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span>{{ form.fecha.errors.0 }}</span>
                             </div>
                         {% endif %}
+                        <p class="text-xs text-gray-500">Fecha en que se realiza el asiento contable</p>
+                    </div>
+
+                    <!-- Empresa Field -->
+                    <div class="space-y-2">
+                        <label for="{{ form.empresa.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                            <i class="fas fa-building text-gray-400 mr-2"></i>
+                            Empresa
+                            <span class="text-red-500 ml-1">*</span>
+                        </label>
+                        <div class="relative">
+                            {{ form.empresa }}
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <i class="fas fa-building text-gray-400"></i>
+                            </div>
+                        </div>
+                        {% if form.empresa.errors %}
+                            <div class="flex items-center space-x-2 text-red-600 text-sm">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span>{{ form.empresa.errors.0 }}</span>
+                            </div>
+                        {% endif %}
+                        <p class="text-xs text-gray-500">Empresa a la que pertenece el asiento</p>
                     </div>
                 </div>
-                
-                <div class="mb-3">
-                    <label for="{{ form.perfil.id_for_label }}" class="form-label">Perfil Contable</label>
-                    {{ form.perfil }}
-                    {% if form.perfil.errors %}
-                        <div class="text-danger">
-                            {{ form.perfil.errors }}
+
+                <!-- Detalles del Asiento Section -->
+                <div class="border-t border-gray-200 pt-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="text-lg font-medium text-gray-900">
+                            <i class="fas fa-list text-blue-600 mr-2"></i>
+                            Detalles del Asiento
+                        </h4>
+                        <button type="button" id="addRow" class="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg shadow-sm transition-colors duration-200">
+                            <i class="fas fa-plus mr-2"></i>Agregar Detalle
+                        </button>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200" id="asientoTable">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <i class="fas fa-user-cog mr-1"></i>Perfil
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <i class="fas fa-coins mr-1"></i>Cuenta Haber
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <i class="fas fa-coins mr-1"></i>Cuenta Debe
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <i class="fas fa-comment mr-1"></i>Causa
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <i class="fas fa-tag mr-1"></i>Referencia
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <i class="fas fa-dollar-sign mr-1"></i>Monto Haber
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <i class="fas fa-dollar-sign mr-1"></i>Monto Debe
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <i class="fas fa-plus-minus mr-1"></i>Polaridad
+                                    </th>
+                                    <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <i class="fas fa-cogs mr-1"></i>Acciones
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200" id="asientoTableBody">
+                                <!-- Fila inicial -->
+                                <tr class="detalle-row hover:bg-gray-50 transition-colors duration-200">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm perfil-input">
+                                            <option value="">Seleccione perfil</option>
+                                            {% for perfil in perfiles_list %}
+                                                <option value="{{ perfil.id }}">{{ perfil.descripcion }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm cuenta-input cuenta-haber-input" data-tipo="haber">
+                                            <option value="">Seleccione cuenta</option>
+                                            {% for cuenta in plan_cuentas %}
+                                                <option value="{{ cuenta.codigocuenta }}">{{ cuenta.codigocuenta }} - {{ cuenta.descripcion }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm cuenta-input cuenta-debe-input" data-tipo="debe">
+                                            <option value="">Seleccione cuenta</option>
+                                            {% for cuenta in plan_cuentas %}
+                                                <option value="{{ cuenta.codigocuenta }}">{{ cuenta.codigocuenta }} - {{ cuenta.descripcion }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm causa-input" placeholder="Causa">
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm referencia-input" placeholder="Referencia">
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <input type="number" step="0.01" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm monto-input monto-haber-input" placeholder="0.00">
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <input type="number" step="0.01" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm monto-input monto-debe-input" placeholder="0.00">
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm polaridad-input">
+                                            <option value="+">+ (Debe)</option>
+                                            <option value="-">- (Haber)</option>
+                                        </select>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center">
+                                        <button type="button" class="inline-flex items-center p-2 text-red-600 hover:text-red-900 hover:bg-red-50 rounded-lg transition-colors duration-200 delete-row-btn">
+                                            <i class="fas fa-trash text-sm"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="bg-gray-50">
+                                <tr class="font-semibold">
+                                    <td colspan="5" class="px-6 py-3 text-right font-medium text-gray-900">Totales:</td>
+                                    <td class="px-6 py-3 text-right font-medium text-gray-900" id="totalHaber">$0.00</td>
+                                    <td class="px-6 py-3 text-right font-medium text-gray-900" id="totalDebe">$0.00</td>
+                                    <td class="px-6 py-3 text-center">
+                                        <span id="balanceIndicator" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                            <i class="fas fa-balance-scale mr-1"></i>Balance: $0.00
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-3"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    
+                    <!-- Mensaje cuando no hay detalles -->
+                    <div id="noDetallesMessage" class="text-center py-12 text-gray-500 hidden">
+                        <i class="fas fa-inbox text-6xl text-gray-400 mb-4"></i>
+                        <h3 class="text-lg font-medium text-gray-900 mb-2">No hay detalles agregados</h3>
+                        <p class="text-gray-500">Agregue los detalles del asiento contable</p>
+                    </div>
+                </div>
+
+                <!-- Información de ayuda -->
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div class="flex items-start space-x-2">
+                        <i class="fas fa-lightbulb text-blue-500 mt-0.5"></i>
+                        <div class="text-sm text-blue-700">
+                            <p class="font-medium">Información sobre asientos contables:</p>
+                            <ul class="mt-1 space-y-1">
+                                <li><i class="fas fa-check text-blue-600 mr-2"></i>El ID se generará automáticamente</li>
+                                <li><i class="fas fa-check text-blue-600 mr-2"></i>Debe seleccionar un perfil contable para cargar las cuentas</li>
+                                <li><i class="fas fa-check text-blue-600 mr-2"></i>Los montos de Debe y Haber deben estar balanceados</li>
+                                <li><i class="fas fa-check text-blue-600 mr-2"></i>Puede agregar múltiples detalles al asiento</li>
+                                <li><i class="fas fa-check text-blue-600 mr-2"></i>La polaridad indica si es un cargo (+) o abono (-)</li>
+                            </ul>
                         </div>
-                    {% endif %}
+                    </div>
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="flex justify-end space-x-3 pt-6">
+                    <a href="{% url 'asientos:asiento_list' %}" class="inline-flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-sm font-medium rounded-lg shadow-sm transition-colors duration-200">
+                        <i class="fas fa-times mr-2"></i>
+                        Cancelar
+                    </a>
+                    <button type="button" id="saveAsiento" class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg shadow-sm transition-colors duration-200">
+                        <i class="fas fa-save mr-2"></i>
+                        {{ button_text }} Asiento
+                    </button>
                 </div>
             </form>
         </div>
     </div>
-
-    <!-- Vista previa del asiento contable en formato tabla -->
-    <div class="card mb-4">
-        <div class="card-header">
-            <h5>Vista Previa de Asiento Contable</h5>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-sm">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Cuenta_Haber</th>
-                            <th>Cuenta_Debe</th>
-                            <th>Causa</th>
-                            <th>Referencia extra</th>
-                            <th>Monto_cuenta_haber</th>
-                            <th>Monto_cuenta_debe</th>
-                            <th>Polaridad</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="asientoTableBody">
-                        <!-- Fila del asiento principal (HABER) -->
-                        <tr id="mainRow" class="detalle-row">
-                            <td>
-                                <select class="form-select form-select-sm cuenta-input cuenta-haber-input" data-tipo="haber">
-                                    <option value="">Seleccione cuenta</option>
-                                    {% for cuenta in plan_cuentas %}
-                                        <option value="{{ cuenta.codigocuenta }}">{{ cuenta.codigocuenta }} - {{ cuenta.descripcion }}</option>
-                                    {% endfor %}
-                                </select>
-                            </td>
-                            <td>
-                                <select class="form-select form-select-sm cuenta-input cuenta-debe-input" data-tipo="debe">
-                                    <option value="">Seleccione cuenta</option>
-                                    {% for cuenta in plan_cuentas %}
-                                        <option value="{{ cuenta.codigocuenta }}">{{ cuenta.codigocuenta }} - {{ cuenta.descripcion }}</option>
-                                    {% endfor %}
-                                </select>
-                            </td>
-                            <td><input type="text" class="form-control form-control-sm causa-input" placeholder="Causa"></td>
-                            <td><input type="text" class="form-control form-control-sm referencia-input" placeholder="Referencia"></td>
-                            <td><input type="text" class="form-control form-control-sm monto-input monto-haber-input" placeholder="0,00"></td>
-                            <td><input type="text" class="form-control form-control-sm monto-input monto-debe-input" placeholder="0,00"></td>
-                            <td class="polaridad-cell">
-                                <select class="form-select form-select-sm polaridad-input">
-                                    <option value="+">+</option>
-                                    <option value="-">-</option>
-                                </select>
-                            </td>
-                            <td><button type="button" class="btn btn-danger btn-sm delete-row-btn"><i class="fas fa-trash"></i></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="mt-3 d-flex justify-content-between">
-                <button id="addRow" type="button" class="btn btn-outline-secondary btn-sm">
-                    <i class="fas fa-plus"></i> Agregar línea
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button type="button" id="saveAsiento" class="btn btn-primary">
-            <i class="fas fa-save"></i> {{ button_text }} Asiento Completo
-        </button>
-    </div>
 </div>
-{% endblock %}
 
-{% block extra_js %}
 <script>
-    $(document).ready(function() {
-        // Initialize DateTimePicker
-        $('#fechaDatetimePicker').datetimepicker({
-            format: 'YYYY-MM-DD',
-            icons: {
-                time: 'fa fa-clock',
-                date: 'fa fa-calendar',
-                up: 'fa fa-arrow-up',
-                down: 'fa fa-arrow-down',
-                previous: 'fa fa-chevron-left',
-                next: 'fa fa-chevron-right',
-                today: 'fa fa-calendar-check',
-                clear: 'fa fa-trash',
-                close: 'fa fa-times'
-            }
-        });
+document.addEventListener('DOMContentLoaded', function() {
+    // Variables globales
+    let detalleCounter = 0;
+    const addRowBtn = document.getElementById('addRow');
+    const saveAsientoBtn = document.getElementById('saveAsiento');
+    const tableBody = document.getElementById('asientoTableBody');
+    const noDetallesMessage = document.getElementById('noDetallesMessage');
+    const balanceIndicator = document.getElementById('balanceIndicator');
+    const totalHaber = document.getElementById('totalHaber');
+    const totalDebe = document.getElementById('totalDebe');
 
-        // Initialize Select2 for dropdown fields
-        $('.select2, .cuenta-haber-input, .cuenta-debe-input').select2({
-            theme: 'bootstrap4',
-            width: '100%'
-        });
-
-        // Update preview table when form fields change
-        function updatePreviewTable() {
-            // Update date
-            let fecha = $('#{{ form.fecha.id_for_label }}').val();
-            if (fecha) {
-                // Convert to dd-mmm-yy format
-                let dateObj = new Date(fecha);
-                let months = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
-                let formattedDate = dateObj.getDate() + '-' + months[dateObj.getMonth()] + '-' + 
-                                    (dateObj.getFullYear().toString().substr(2, 2));
-                $('.fecha-cell').text(formattedDate);
+    // Función para mostrar notificaciones
+    function showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 max-w-sm transition-all duration-300 ${
+            type === 'success' ? 'bg-green-500 text-white' :
+            type === 'error' ? 'bg-red-500 text-white' :
+            type === 'warning' ? 'bg-yellow-500 text-white' :
+            'bg-blue-500 text-white'
+        }`;
+        
+        notification.innerHTML = `
+            <div class="flex items-start">
+                <div class="flex-shrink-0">
+                    <i class="fas ${
+                        type === 'success' ? 'fa-check-circle' :
+                        type === 'error' ? 'fa-exclamation-circle' :
+                        type === 'warning' ? 'fa-exclamation-triangle' :
+                        'fa-info-circle'
+                    }"></i>
+                </div>
+                <div class="ml-3 text-sm font-medium">
+                    ${message}
+                </div>
+                <div class="ml-auto pl-3">
+                    <button class="text-white hover:text-gray-200 focus:outline-none" onclick="this.parentElement.parentElement.parentElement.remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
             }
+        }, 5000);
+    }
 
-            // Update perfil contable
-            let perfilText = $('#{{ form.perfil.id_for_label }} option:selected').text();
-            if (perfilText) {
-                // Extract just the sequential number if possible
-                let perfilNumber = perfilText.split('-')[1]?.trim() || perfilText;
-                $('.perfil-cell').text(perfilNumber).addClass('bg-warning');
-            }
+    // Función para cargar cuentas por perfil
+    function loadCuentasForPerfil(perfilId, row) {
+        if (!perfilId) {
+            row.querySelector('.cuenta-haber-input').innerHTML = '<option value="">Seleccione cuenta</option>';
+            row.querySelector('.cuenta-debe-input').innerHTML = '<option value="">Seleccione cuenta</option>';
+            return;
         }
 
-        // Add event listeners to form fields
-        $('#{{ form.fecha.id_for_label }}, #{{ form.perfil.id_for_label }}').change(updatePreviewTable);
-        
-        // Update preview when the datetime picker changes
-        $('#fechaDatetimePicker').on('change.datetimepicker', function(e) {
-            updatePreviewTable();
-        });
+        // Mostrar loading
+        row.querySelector('.cuenta-haber-input').innerHTML = '<option value="">Cargando...</option>';
+        row.querySelector('.cuenta-debe-input').innerHTML = '<option value="">Cargando...</option>';
+        row.querySelector('.cuenta-haber-input').disabled = true;
+        row.querySelector('.cuenta-debe-input').disabled = true;
 
-        // Initialize the preview table
-        updatePreviewTable();
-
-        // Add event listener for new delete buttons on each row
-        $(document).on('click', '.delete-row-btn', function() {
-            $(this).closest('tr').remove();
-            updatePreviewTable(); // If totals or other previews depend on rows
-        });
-
-        // Pre-populate table with existing detalles for edit mode
-        {% if detalles %}
-            // Clear the initial empty row
-            $('#asientoTableBody').empty();
-            
-            {% for detalle in detalles %}
-                // Obtener los valores originales sin procesar
-                var detalleValorRaw = "{{ detalle.valor }}";
-                var detalleTipoCuenta = "{{ detalle.tipo_cuenta }}";
-                var detallePolaridad = "{{ detalle.polaridad }}";
+        fetch(`{% url "asientos:get_cuentas_for_perfil" "dummy" %}`.replace('dummy', perfilId))
+            .then(response => response.json())
+            .then(data => {
+                // Restaurar estado
+                row.querySelector('.cuenta-haber-input').disabled = false;
+                row.querySelector('.cuenta-debe-input').disabled = false;
                 
-                console.log("Detalle (antes):", {
-                    id: "{{ detalle.id }}",
-                    tipo_cuenta: detalleTipoCuenta,
-                    valor_raw: detalleValorRaw,
-                    polaridad: detallePolaridad
-                });
-                
-                // Procesar el valor considerando que puede venir con coma como separador decimal
-                var valorNumerico = detalleValorRaw.replace(',', '.');
-                var detalleValor = parseFloat(valorNumerico) || 0;
-                
-                // Formatear el valor con coma como separador decimal
-                var formatearValor = function(valor) {
-                    return valor.toFixed(2).replace('.', ',');
-                };
-                
-                var haberValor = (detalleTipoCuenta === 'HABER') ? formatearValor(detalleValor) : '';
-                var debeValor = (detalleTipoCuenta === 'DEBE') ? formatearValor(detalleValor) : '';
-                
-                console.log("Valores procesados:", {
-                    haberValor: haberValor,
-                    debeValor: debeValor
-                });
-                
-                let rowHtml = `
-                    <tr class="detalle-row">
-                        <td>
-                            <select class="form-select form-select-sm cuenta-input cuenta-haber-input" data-tipo="haber">
-                                <option value="">Seleccione cuenta</option>
-                                {% for cuenta in plan_cuentas %}
-                                    <option value="{{ cuenta.codigocuenta }}" {% if detalle.tipo_cuenta == 'HABER' and detalle.cuenta.codigocuenta == cuenta.codigocuenta %}selected{% endif %}>{{ cuenta.codigocuenta }} - {{ cuenta.descripcion }}</option>
-                                {% endfor %}
-                            </select>
-                        </td>
-                        <td>
-                            <select class="form-select form-select-sm cuenta-input cuenta-debe-input" data-tipo="debe">
-                                <option value="">Seleccione cuenta</option>
-                                {% for cuenta in plan_cuentas %}
-                                    <option value="{{ cuenta.codigocuenta }}" {% if detalle.tipo_cuenta == 'DEBE' and detalle.cuenta.codigocuenta == cuenta.codigocuenta %}selected{% endif %}>{{ cuenta.codigocuenta }} - {{ cuenta.descripcion }}</option>
-                                {% endfor %}
-                            </select>
-                        </td>
-                        <td><input type="text" class="form-control form-control-sm causa-input" placeholder="Causa" value="{{ detalle.DetalleDeCausa }}"></td>
-                        <td><input type="text" class="form-control form-control-sm referencia-input" placeholder="Referencia" value="{{ detalle.Referencia }}"></td>
-                        <td><input type="text" class="form-control form-control-sm monto-input monto-haber-input" placeholder="0,00" 
-                            value="${haberValor}" 
-                            ${detalleTipoCuenta !== 'HABER' ? 'disabled' : ''}></td>
-                        <td><input type="text" class="form-control form-control-sm monto-input monto-debe-input" placeholder="0,00" 
-                            value="${debeValor}" 
-                            ${detalleTipoCuenta !== 'DEBE' ? 'disabled' : ''}></td>
-                        <td class="polaridad-cell">
-                            <select class="form-select form-select-sm polaridad-input" ${detalleTipoCuenta ? 'disabled' : ''}>
-                                <option value="+" ${detallePolaridad === '+' ? 'selected' : ''}>+</option>
-                                <option value="-" ${detallePolaridad === '-' ? 'selected' : ''}>-</option>
-                            </select>
-                        </td>
-                        <td><button type="button" class="btn btn-danger btn-sm delete-row-btn"><i class="fas fa-trash"></i></button></td>
-                    </tr>
-                `;
-                $('#asientoTableBody').append(rowHtml);
-            {% endfor %}
-            
-            // Initialize Select2 for all existing rows
-            $('#asientoTableBody tr').each(function() {
-                $(this).find('.cuenta-haber-input, .cuenta-debe-input').select2({
-                    theme: 'bootstrap4',
-                    width: '100%'
-                });
-                
-                // Aseguramos que los selectores de cuenta estén correctamente deshabilitados
-                let row = $(this);
-                if (row.find('.cuenta-haber-input').val()) {
-                    row.find('.cuenta-debe-input').prop('disabled', true);
-                    row.find('.monto-debe-input').prop('disabled', true);
-                    row.find('.polaridad-input').prop('disabled', true);
-                } else if (row.find('.cuenta-debe-input').val()) {
-                    row.find('.cuenta-haber-input').prop('disabled', true);
-                    row.find('.monto-haber-input').prop('disabled', true);
-                    row.find('.polaridad-input').prop('disabled', true);
+                if (data.success) {
+                    const haberSelect = row.querySelector('.cuenta-haber-input');
+                    const debeSelect = row.querySelector('.cuenta-debe-input');
+                    
+                    haberSelect.innerHTML = '<option value="">Seleccione cuenta</option>';
+                    debeSelect.innerHTML = '<option value="">Seleccione cuenta</option>';
+                    
+                    data.cuentas.forEach(cuenta => {
+                        const option = `<option value="${cuenta.codigocuenta}">${cuenta.codigocuenta} - ${cuenta.descripcion}</option>`;
+                        haberSelect.innerHTML += option;
+                        debeSelect.innerHTML += option;
+                    });
+                    
+                    showNotification('Cuentas cargadas exitosamente', 'success');
+                } else {
+                    row.querySelector('.cuenta-haber-input').innerHTML = '<option value="">Error al cargar</option>';
+                    row.querySelector('.cuenta-debe-input').innerHTML = '<option value="">Error al cargar</option>';
+                    showNotification('Error al cargar las cuentas: ' + (data.error || 'Error desconocido'), 'error');
                 }
+            })
+            .catch(error => {
+                console.error('AJAX error loading accounts:', error);
+                row.querySelector('.cuenta-haber-input').disabled = false;
+                row.querySelector('.cuenta-debe-input').disabled = false;
+                row.querySelector('.cuenta-haber-input').innerHTML = '<option value="">Error de conexión</option>';
+                row.querySelector('.cuenta-debe-input').innerHTML = '<option value="">Error de conexión</option>';
+                showNotification('Error de conexión al cargar las cuentas', 'error');
             });
-        {% endif %}
+    }
 
-        // Manejar la lógica de bloqueo entre cuenta_haber y cuenta_debe
-        $(document).on('change', '.cuenta-input', function() {
-            let row = $(this).closest('tr');
-            let tipo = $(this).data('tipo'); // 'haber' or 'debe'
-            let valor = $(this).val();
+    // Función para calcular totales
+    function calculateTotals() {
+        let totalHaberValue = 0;
+        let totalDebeValue = 0;
+
+        document.querySelectorAll('.detalle-row').forEach(row => {
+            const haberInput = row.querySelector('.monto-haber-input');
+            const debeInput = row.querySelector('.monto-debe-input');
             
-            if (valor) {
-                // Si se seleccionó una cuenta, desactivar la otra y ajustar la polaridad
-                if (tipo === 'haber') {
-                    // Desactivar cuenta debe
-                    row.find('.cuenta-debe-input').prop('disabled', true).val('').trigger('change.select2');
-                    row.find('.monto-debe-input').prop('disabled', true).val('');
-                    row.find('.monto-haber-input').prop('disabled', false);
-                    row.find('.polaridad-input').val('-').prop('disabled', true); // Corrected: HABER is '-'
-                } else { // debe
-                    // Desactivar cuenta haber
-                    row.find('.cuenta-haber-input').prop('disabled', true).val('').trigger('change.select2');
-                    row.find('.monto-haber-input').prop('disabled', true).val('');
-                    row.find('.monto-debe-input').prop('disabled', false);
-                    row.find('.polaridad-input').val('+').prop('disabled', true); // Corrected: DEBE is '+'
-                }
-            } else {
-                // Si se deseleccionó, habilitar ambas opciones de cuenta y monto, y la polaridad
-                row.find('.cuenta-haber-input, .cuenta-debe-input').prop('disabled', false);
-                row.find('.monto-haber-input, .monto-debe-input').prop('disabled', false);
-                row.find('.polaridad-input').prop('disabled', false);
+            if (haberInput && haberInput.value) {
+                totalHaberValue += parseFloat(haberInput.value) || 0;
+            }
+            if (debeInput && debeInput.value) {
+                totalDebeValue += parseFloat(debeInput.value) || 0;
             }
         });
 
-        // Handle adding a new row
-        $('#addRow').click(function() {
-            let newRow = `
-                <tr class="detalle-row">
-                    <td>
-                        <select class="form-select form-select-sm cuenta-input cuenta-haber-input" data-tipo="haber">
-                            <option value="">Seleccione cuenta</option>
-                            {% for cuenta in plan_cuentas %}
-                                <option value="{{ cuenta.codigocuenta }}">{{ cuenta.codigocuenta }} - {{ cuenta.descripcion }}</option>
-                            {% endfor %}
-                        </select>
-                    </td>
-                    <td>
-                        <select class="form-select form-select-sm cuenta-input cuenta-debe-input" data-tipo="debe">
-                            <option value="">Seleccione cuenta</option>
-                            {% for cuenta in plan_cuentas %}
-                                <option value="{{ cuenta.codigocuenta }}">{{ cuenta.codigocuenta }} - {{ cuenta.descripcion }}</option>
-                            {% endfor %}
-                        </select>
-                    </td>
-                    <td><input type="text" class="form-control form-control-sm causa-input" placeholder="Causa"></td>
-                    <td><input type="text" class="form-control form-control-sm referencia-input" placeholder="Referencia"></td>
-                    <td><input type="text" class="form-control form-control-sm monto-input monto-haber-input" placeholder="0,00"></td>
-                    <td><input type="text" class="form-control form-control-sm monto-input monto-debe-input" placeholder="0,00"></td>
-                    <td class="polaridad-cell">
-                        <select class="form-select form-select-sm polaridad-input">
-                            <option value="+">+</option>
-                            <option value="-">-</option>
-                        </select>
-                    </td>
-                    <td><button type="button" class="btn btn-danger btn-sm delete-row-btn"><i class="fas fa-trash"></i></button></td>
-                </tr>
-            `;
-            $('#asientoTableBody').append(newRow);
-            
-            // Initialize Select2 for the new row's dropdowns
-            let newRowElement = $('#asientoTableBody tr:last');
-            newRowElement.find('.cuenta-haber-input, .cuenta-debe-input').select2({
-                theme: 'bootstrap4',
-                width: '100%'
-            });
-            
-            updatePreviewTable();
+        totalHaber.textContent = `$${totalHaberValue.toFixed(2)}`;
+        totalDebe.textContent = `$${totalDebeValue.toFixed(2)}`;
+
+        const balance = totalDebeValue - totalHaberValue;
+        balanceIndicator.innerHTML = `<i class="fas fa-balance-scale mr-1"></i>Balance: $${balance.toFixed(2)}`;
+        
+        // Actualizar color del indicador de balance
+        balanceIndicator.className = 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ';
+        if (Math.abs(balance) < 0.01) {
+            balanceIndicator.className += 'bg-green-100 text-green-800';
+        } else {
+            balanceIndicator.className += 'bg-red-100 text-red-800';
+        }
+    }
+
+    // Función para agregar nueva fila
+    function addNewRow() {
+        detalleCounter++;
+        const newRow = document.createElement('tr');
+        newRow.className = 'detalle-row hover:bg-gray-50 transition-colors duration-200';
+        newRow.innerHTML = `
+            <td class="px-6 py-4 whitespace-nowrap">
+                <select class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm perfil-input">
+                    <option value="">Seleccione perfil</option>
+                    {% for perfil in perfiles_list %}
+                        <option value="{{ perfil.id }}">{{ perfil.descripcion }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <select class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm cuenta-input cuenta-haber-input" data-tipo="haber">
+                    <option value="">Seleccione cuenta</option>
+                </select>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <select class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm cuenta-input cuenta-debe-input" data-tipo="debe">
+                    <option value="">Seleccione cuenta</option>
+                </select>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm causa-input" placeholder="Causa">
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm referencia-input" placeholder="Referencia">
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <input type="number" step="0.01" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm monto-input monto-haber-input" placeholder="0.00">
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <input type="number" step="0.01" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm monto-input monto-debe-input" placeholder="0.00">
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <select class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm polaridad-input">
+                    <option value="+">+ (Debe)</option>
+                    <option value="-">- (Haber)</option>
+                </select>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-center">
+                <button type="button" class="inline-flex items-center p-2 text-red-600 hover:text-red-900 hover:bg-red-50 rounded-lg transition-colors duration-200 delete-row-btn">
+                    <i class="fas fa-trash text-sm"></i>
+                </button>
+            </td>
+        `;
+        
+        tableBody.appendChild(newRow);
+        setupRowEvents(newRow);
+        updateNoDetallesMessage();
+        showNotification('Nueva fila agregada', 'success');
+    }
+
+    // Función para configurar eventos de una fila
+    function setupRowEvents(row) {
+        // Evento para cambio de perfil
+        const perfilSelect = row.querySelector('.perfil-input');
+        perfilSelect.addEventListener('change', function() {
+            loadCuentasForPerfil(this.value, row);
         });
 
-        // Submit form and details
-        $('#saveAsiento').click(function() {
-            // First submit the main form to create/update the asiento
-            let formData = $('#asientoForm').serialize();
-            
-            // Log for debugging
-            console.log("Asiento form data:", formData);
-            
-            $.ajax({
-                url: window.location.pathname,
-                type: 'POST',
-                data: formData,
-                success: function(response) {
-                    if (response.success) {
-                        // After the asiento is saved, collect the details
-                        let asientoId = response.asiento_id;
-                        let detalles = [];
-                        
-                        // Collect from all rows (including main row)
-                        $('.detalle-row').each(function() {
-                            let cuentaHaberInput = $(this).find('.cuenta-haber-input');
-                            let cuentaDebeInput = $(this).find('.cuenta-debe-input');
-                            
-                            let cuentaHaber = cuentaHaberInput.val();
-                            let cuentaDebe = cuentaDebeInput.val();
-
-                            let causa = $(this).find('.causa-input').val();
-                            let referencia = $(this).find('.referencia-input').val();
-                            let montoHaber = $(this).find('.monto-haber-input').val() || '0,00';
-                            let montoDebe = $(this).find('.monto-debe-input').val() || '0,00';
-                            let polaridad = $(this).find('.polaridad-input').val(); // Read from input, should be correct now
-
-                            montoHaber = montoHaber.replace(',', '.');
-                            montoDebe = montoDebe.replace(',', '.');
-                            
-                            let cuenta = '';
-                            let valor = '0.00';
-
-                            // Determine cuenta and valor based on which input is NOT disabled and has a value
-                            if (cuentaHaber && !cuentaHaberInput.prop('disabled')) {
-                                cuenta = cuentaHaber;
-                                valor = montoHaber;
-                            } else if (cuentaDebe && !cuentaDebeInput.prop('disabled')) {
-                                cuenta = cuentaDebe;
-                                valor = montoDebe;
-                            } else {
-                                // No active account selected in this row, or ambiguous state
-                                return; // Skip this row (continue to next iteration)
-                            }
-                            
-                            let numericValor = parseFloat(valor);
-                            if (isNaN(numericValor)) {
-                                numericValor = 0;
-                            }
-
-                            // Only push if there's an account. Value can be zero.
-                            if (cuenta) { 
-                                detalles.push({
-                                    cuenta: cuenta,
-                                    DetalleDeCausa: causa,
-                                    Referencia: referencia,
-                                    valor: numericValor.toFixed(2), // Send as string with 2 decimal places
-                                    polaridad: polaridad 
-                                });
-                            }
-                        });
-                        
-                        console.log("Detalles to save:", detalles);
-                        
-                        $.ajax({
-                            url: '{% url "asientos:add_detalles_bulk" %}',
-                            type: 'POST',
-                            data: {
-                                asiento_id: asientoId,
-                                detalles: JSON.stringify(detalles),
-                                csrfmiddlewaretoken: '{{ csrf_token }}'
-                            },
-                            success: function(response) {
-                                if (response.success) {
-                                    Swal.fire({
-                                        title: '¡Guardado!',
-                                        text: 'El asiento contable y sus detalles han sido guardados correctamente.',
-                                        icon: 'success',
-                                        confirmButtonText: 'Aceptar'
-                                    }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            window.location.href = '{% url "asientos:asiento_detail" id=0 %}'.replace('0', asientoId);
-                                        }
-                                    });
-                                } else {
-                                    Swal.fire({
-                                        title: 'Error',
-                                        text: 'Error al guardar los detalles: ' + response.error,
-                                        icon: 'error',
-                                        confirmButtonText: 'Aceptar'
-                                    });
-                                }
-                            },
-                            error: function(jqXHR, textStatus, errorThrown) {
-                                Swal.fire({
-                                    title: 'Error de Comunicación',
-                                    text: 'Error en la comunicación al guardar los detalles: ' + textStatus + ' - ' + errorThrown,
-                                    icon: 'error',
-                                    confirmButtonText: 'Aceptar'
-                                });
-                            }
-                        });
-                    } else {
-                        Swal.fire({
-                            title: 'Error',
-                            text: 'Error al guardar el asiento: ' + response.error,
-                            icon: 'error',
-                            confirmButtonText: 'Aceptar'
-                        });
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    Swal.fire({
-                        title: 'Error de Comunicación',
-                        text: 'Error en la comunicación al guardar el asiento: ' + textStatus + ' - ' + errorThrown,
-                        icon: 'error',
-                        confirmButtonText: 'Aceptar'
-                    });
-                }
-            });
+        // Eventos para cálculo de totales
+        row.querySelectorAll('.monto-input').forEach(input => {
+            input.addEventListener('input', calculateTotals);
         });
+
+        // Evento para eliminar fila
+        const deleteBtn = row.querySelector('.delete-row-btn');
+        deleteBtn.addEventListener('click', function() {
+            if (tableBody.children.length > 1) {
+                row.remove();
+                calculateTotals();
+                updateNoDetallesMessage();
+                showNotification('Fila eliminada', 'info');
+            } else {
+                showNotification('Debe mantener al menos una fila de detalle', 'warning');
+            }
+        });
+    }
+
+    // Función para actualizar mensaje de no detalles
+    function updateNoDetallesMessage() {
+        if (tableBody.children.length === 0) {
+            noDetallesMessage.classList.remove('hidden');
+        } else {
+            noDetallesMessage.classList.add('hidden');
+        }
+    }
+
+    // Event listeners
+    addRowBtn.addEventListener('click', addNewRow);
+
+    // Configurar eventos para la fila inicial
+    document.querySelectorAll('.detalle-row').forEach(row => {
+        setupRowEvents(row);
     });
+
+    // Evento para guardar asiento
+    saveAsientoBtn.addEventListener('click', function() {
+        // Validar que haya al menos un detalle
+        if (tableBody.children.length === 0) {
+            showNotification('Debe agregar al menos un detalle al asiento', 'error');
+            return;
+        }
+
+        // Validar balance
+        const balance = parseFloat(totalDebe.textContent.replace('$', '')) - parseFloat(totalHaber.textContent.replace('$', ''));
+        if (Math.abs(balance) > 0.01) {
+            showNotification('El asiento no está balanceado. Debe = Haber', 'error');
+            return;
+        }
+
+        // Aquí iría la lógica para guardar el asiento
+        showNotification('Funcionalidad de guardado en desarrollo', 'info');
+    });
+
+    // Inicializar cálculos
+    calculateTotals();
+    updateNoDetallesMessage();
+});
 </script>
-<style>
-</style>
-{% endblock %}
+{% endblock %} 

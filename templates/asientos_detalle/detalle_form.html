@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title }} - Sistema Contable{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 py-6">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header Section -->
+        <div class="bg-white shadow-sm rounded-lg mb-6">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <div class="flex items-center space-x-3">
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-list-ul text-purple-600 text-lg"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900">{{ title }}</h1>
+                        <p class="text-sm text-gray-600 mt-1">Completa la información del detalle de asiento</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="bg-white shadow-sm rounded-lg">
+            <form method="post" class="space-y-6 p-6">
+                {% csrf_token %}
+                
+                {% if form.errors %}
+                <div class="bg-red-50 border border-red-200 rounded-md p-4">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-exclamation-triangle text-red-400"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="text-sm font-medium text-red-800">Errores en el formulario</h3>
+                            <div class="mt-2 text-sm text-red-700">
+                                <ul class="list-disc pl-5 space-y-1">
+                                    {% for field, errors in form.errors.items %}
+                                        {% for error in errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Asiento -->
+                    <div>
+                        <label for="{{ form.asiento.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                            {{ form.asiento.label }}
+                        </label>
+                        {{ form.asiento }}
+                        {% if form.asiento.help_text %}
+                            <p class="mt-1 text-sm text-gray-500">{{ form.asiento.help_text }}</p>
+                        {% endif %}
+                        {% if form.asiento.errors %}
+                            <p class="mt-1 text-sm text-red-600">{{ form.asiento.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Cuenta -->
+                    <div>
+                        <label for="{{ form.cuenta.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                            {{ form.cuenta.label }}
+                        </label>
+                        {{ form.cuenta }}
+                        {% if form.cuenta.help_text %}
+                            <p class="mt-1 text-sm text-gray-500">{{ form.cuenta.help_text }}</p>
+                        {% endif %}
+                        {% if form.cuenta.errors %}
+                            <p class="mt-1 text-sm text-red-600">{{ form.cuenta.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Monto -->
+                    <div>
+                        <label for="{{ form.monto.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                            {{ form.monto.label }}
+                        </label>
+                        {{ form.monto }}
+                        {% if form.monto.help_text %}
+                            <p class="mt-1 text-sm text-gray-500">{{ form.monto.help_text }}</p>
+                        {% endif %}
+                        {% if form.monto.errors %}
+                            <p class="mt-1 text-sm text-red-600">{{ form.monto.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Polaridad -->
+                    <div>
+                        <label for="{{ form.polaridad.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                            {{ form.polaridad.label }}
+                        </label>
+                        {{ form.polaridad }}
+                        {% if form.polaridad.help_text %}
+                            <p class="mt-1 text-sm text-gray-500">{{ form.polaridad.help_text }}</p>
+                        {% endif %}
+                        {% if form.polaridad.errors %}
+                            <p class="mt-1 text-sm text-red-600">{{ form.polaridad.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Empresa -->
+                    <div class="md:col-span-2">
+                        <label for="{{ form.empresa_id.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                            {{ form.empresa_id.label }}
+                        </label>
+                        {{ form.empresa_id }}
+                        {% if form.empresa_id.help_text %}
+                            <p class="mt-1 text-sm text-gray-500">{{ form.empresa_id.help_text }}</p>
+                        {% endif %}
+                        {% if form.empresa_id.errors %}
+                            <p class="mt-1 text-sm text-red-600">{{ form.empresa_id.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex justify-end space-x-3 pt-6 border-t border-gray-200">
+                    <a href="{% url 'asientos_detalle:detalle_list' %}" 
+                       class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+                        <i class="fas fa-times mr-2"></i>
+                        Cancelar
+                    </a>
+                    <button type="submit" 
+                            class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+                        <i class="fas fa-save mr-2"></i>
+                        {{ button_text }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Estilos para los campos del formulario */
+    select, input[type="number"], input[type="text"] {
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #d1d5db;
+        border-radius: 0.375rem;
+        font-size: 0.875rem;
+        transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    
+    select:focus, input:focus {
+        outline: none;
+        border-color: #8b5cf6;
+        box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+    }
+    
+    /* Estilos para los errores */
+    .errorlist {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        color: #dc2626;
+        font-size: 0.875rem;
+    }
+</style>
+{% endblock %} 

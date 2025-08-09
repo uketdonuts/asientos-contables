@@ -1,54 +1,169 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Perfiles Contables{% endblock %}
+{% block title %}Perfiles Contables - Sistema Contable{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/perfiles.css' %}">
+{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="row mb-3">
-        <div class="col">
-            <h2>Perfiles Contables</h2>
+<div class="min-h-screen bg-gray-50 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header Section -->
+        <div class="bg-white shadow-sm rounded-lg mb-6">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                    <div class="flex items-center space-x-3 mb-4 sm:mb-0">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-user-cog text-blue-600 text-lg"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold text-gray-900">Perfiles Contables</h1>
+                            <p class="text-sm text-gray-600 mt-1">Gestiona los perfiles contables del sistema</p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="{% url 'perfiles:perfil_create' %}" 
+                           class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors duration-200">
+                            <i class="fas fa-plus mr-2"></i>
+                            Nuevo Perfil
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-auto">
-            <a href="{% url 'perfiles:perfil_create' %}" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Nuevo Perfil
-            </a>
-        </div>
-    </div>
 
-    <div class="card">
-        <div class="card-body">
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-blue-100 rounded-md flex items-center justify-center">
+                            <i class="fas fa-user-cog text-blue-600"></i>
+                        </div>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-gray-500">Total Perfiles</p>
+                        <p class="text-2xl font-semibold text-gray-900">{{ perfiles|length }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-green-100 rounded-md flex items-center justify-center">
+                            <i class="fas fa-hashtag text-green-600"></i>
+                        </div>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-gray-500">ID Secuencial</p>
+                        <p class="text-2xl font-semibold text-gray-900">Auto</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-purple-100 rounded-md flex items-center justify-center">
+                            <i class="fas fa-list text-purple-600"></i>
+                        </div>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-gray-500">Con Descripción</p>
+                        <p class="text-2xl font-semibold text-gray-900">
+                            {% for perfil in perfiles %}{% if perfil.descripcion %}{% if forloop.first %}1{% else %}{{ forloop.counter }}{% endif %}{% endif %}{% empty %}0{% endfor %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Perfiles Table -->
+        <div class="bg-white shadow-sm rounded-lg overflow-hidden">
             {% if perfiles %}
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-medium text-gray-900">Lista de Perfiles</h3>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm text-gray-500">{{ perfiles|length }} perfil{{ perfiles|length|pluralize:"es" }}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
                             <tr>
-                                <th>Empresa</th>
-                                <th>Secuencial</th>
-                                <th>Descripción</th>
-                                <th>Vigencia</th>
-                                <th>Acciones</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <div class="flex items-center space-x-1">
+                                        <i class="fas fa-hashtag text-gray-400"></i>
+                                        <span>ID</span>
+                                    </div>
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <div class="flex items-center space-x-1">
+                                        <i class="fas fa-tag text-gray-400"></i>
+                                        <span>Nombre</span>
+                                    </div>
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <div class="flex items-center space-x-1">
+                                        <i class="fas fa-file-alt text-gray-400"></i>
+                                        <span>Descripción</span>
+                                    </div>
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Acciones
+                                </th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="bg-white divide-y divide-gray-200">
                             {% for perfil in perfiles %}
-                                <tr>
-                                    <td>{{ perfil.empresa }}</td>
-                                    <td>{{ perfil.secuencial }}</td>
-                                    <td>{{ perfil.descripcion|truncatechars:50 }}</td>
-                                    <td>
-                                        {% if perfil.vigencia == 'S' %}
-                                            <span class="badge bg-success">Activo</span>
-                                        {% else %}
-                                            <span class="badge bg-danger">Inactivo</span>
-                                        {% endif %}
+                                <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                {{ forloop.counter }}
+                                            </span>
+                                        </div>
                                     </td>
-                                    <td>
-                                        <a href="{% url 'perfiles:perfil_edit' perfil.id %}" class="btn btn-sm btn-outline-primary">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <a href="{% url 'perfiles:perfil_delete' perfil.id %}" class="btn btn-sm btn-outline-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-8 w-8">
+                                                <div class="h-8 w-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                                                    <i class="fas fa-user-cog text-blue-600 text-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <div class="text-sm font-medium text-gray-900">{{ perfil.nombre }}</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="text-sm text-gray-900">
+                                            {% if perfil.descripcion %}
+                                                {{ perfil.descripcion|truncatechars:80 }}
+                                            {% else %}
+                                                <span class="text-gray-400 italic">Sin descripción</span>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <div class="flex items-center justify-end space-x-2">
+                                            <a href="{% url 'perfiles:perfil_edit' perfil.id %}" 
+                                               class="inline-flex items-center p-2 text-blue-600 hover:text-blue-900 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                                               title="Editar perfil">
+                                                <i class="fas fa-edit text-sm"></i>
+                                            </a>
+                                            <a href="{% url 'perfiles:perfil_delete' perfil.id %}" 
+                                               class="inline-flex items-center p-2 text-red-600 hover:text-red-900 hover:bg-red-50 rounded-lg transition-colors duration-200"
+                                               title="Eliminar perfil">
+                                                <i class="fas fa-trash text-sm"></i>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -56,11 +171,26 @@
                     </table>
                 </div>
             {% else %}
-                <div class="alert alert-info">
-                    No hay perfiles contables registrados.
+                <div class="text-center py-12">
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-user-cog text-gray-400 text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-medium text-gray-900 mb-2">No hay perfiles contables</h3>
+                        <p class="text-gray-500 mb-6">Comienza creando tu primer perfil contable para organizar las cuentas.</p>
+                        <a href="{% url 'perfiles:perfil_create' %}" 
+                           class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors duration-200">
+                            <i class="fas fa-plus mr-2"></i>
+                            Crear Primer Perfil
+                        </a>
+                    </div>
                 </div>
             {% endif %}
         </div>
     </div>
 </div>
+
+{% block extra_js %}
+<script src="{% static 'js/perfiles.js' %}"></script>
+{% endblock %}
 {% endblock %}

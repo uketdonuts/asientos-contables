@@ -1,0 +1,473 @@
+{% extends "secure_data/base_secure.html" %}
+{% load static %}
+
+{% block title %}Matriz de Datos Seguros - Modo Excel Infinito{% endblock %}
+
+{% block extra_css %}
+<!-- X-Spreadsheet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/x-data-spreadsheet@1.1.5/dist/xspreadsheet.css">
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    
+    .x-spreadsheet-container {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100vw;
+        height: calc(100vh - 70px);
+        border: none;
+        border-radius: 0;
+        overflow: hidden;
+    }
+    
+    .x-spreadsheet {
+        height: calc(100vh - 70px) !important;
+        width: 100vw !important;
+    }
+    
+    .x-spreadsheet .x-spreadsheet-toolbar {
+        background: #f8fafc !important;
+        color: {% if is_real_data %}#dc2626{% else %}#374151{% endif %} !important;
+    }
+    
+    .x-spreadsheet .x-spreadsheet-toolbar .x-spreadsheet-toolbar-btns .x-spreadsheet-toolbar-btn {
+        color: white !important;
+    }
+    
+    .x-spreadsheet .x-spreadsheet-toolbar .x-spreadsheet-toolbar-btns .x-spreadsheet-toolbar-btn:hover {
+        background: rgba(255, 255, 255, 0.2) !important;
+    }
+    
+    /* Ocultar botones de exportación por seguridad */
+    .x-spreadsheet-toolbar-btn[title*="export"],
+    .x-spreadsheet-toolbar-btn[title*="Export"],
+    .x-spreadsheet-toolbar-btn[title*="download"],
+    .x-spreadsheet-toolbar-btn[title*="Download"],
+    .x-spreadsheet-toolbar-btn[title*="print"],
+    .x-spreadsheet-toolbar-btn[title*="Print"] {
+        display: none !important;
+    }
+    
+    .x-spreadsheet .x-spreadsheet-sheet .x-spreadsheet-table .x-spreadsheet-table-content .x-spreadsheet-cell.active {
+        border: 2px solid {% if is_real_data %}#ef4444{% else %}#22c55e{% endif %} !important;
+    }
+    
+    /* Barra de herramientas fija en la parte superior */
+    .toolbar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 70px;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95));
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+        min-width: auto;
+    }
+    
+    .toolbar-btn {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 8px;
+        background: #f8fafc;
+        color: #475569;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    
+    .toolbar-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+    
+    .toolbar-btn:not(:disabled):hover {
+        background: #e2e8f0;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .toolbar-btn.primary {
+        background: linear-gradient(135deg, #3b82f6, #2563eb);
+        color: white;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+    
+    .toolbar-btn.primary:not(:disabled):hover {
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+    }
+    
+    .toolbar-btn.danger {
+        background: linear-gradient(135deg, #ef4444, #dc2626);
+        color: white;
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    }
+    
+    .toolbar-btn.danger:not(:disabled):hover {
+        background: linear-gradient(135deg, #dc2626, #b91c1c);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+    }
+    
+    .keyboard-shortcuts-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 16px;
+        background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        color: #475569;
+        font-size: 13px;
+        font-weight: 500;
+        white-space: nowrap;
+        flex: 1;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    
+    .keyboard-shortcuts-info i {
+        color: #64748b;
+        font-size: 16px;
+    }
+    
+    .keyboard-shortcuts-info .shortcuts-text {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+    
+    .keyboard-shortcuts-info .shortcut-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 2px 6px;
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 4px;
+        font-size: 12px;
+    }
+    
+    .keyboard-shortcuts-info .shortcut-key {
+        background: #334155;
+        color: white;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-size: 11px;
+        font-weight: 600;
+        font-family: monospace;
+    }
+    
+    .security-badge {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border: 1px solid transparent;
+    }
+    
+    .security-badge.confidential {
+        background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(220, 38, 38, 0.1));
+        color: #dc2626;
+        border-color: rgba(239, 68, 68, 0.2);
+    }
+    
+    .security-badge.public {
+        background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(22, 163, 74, 0.1));
+        color: #16a34a;
+        border-color: rgba(34, 197, 94, 0.2);
+    }
+    
+    /* Responsive design para el toolbar */
+    @media (max-width: 768px) {
+        .toolbar-overlay {
+            height: auto;
+            min-height: 70px;
+            flex-direction: column;
+            gap: 12px;
+            padding: 16px 10px;
+        }
+        
+        .x-spreadsheet-container {
+            top: 110px;
+            height: calc(100vh - 110px);
+        }
+        
+        .x-spreadsheet {
+            height: calc(100vh - 110px) !important;
+        }
+        
+        .keyboard-shortcuts-info {
+            width: 100%;
+            justify-content: center;
+            order: 2;
+        }
+        
+        .keyboard-shortcuts-info .shortcuts-text {
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .toolbar-btn {
+            min-width: 120px;
+            justify-content: center;
+        }
+        
+        .security-badge {
+            order: 1;
+        }
+        
+        .notification {
+            top: 120px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .toolbar-overlay {
+            height: auto;
+            min-height: 90px;
+            padding: 12px 8px;
+        }
+        
+        .x-spreadsheet-container {
+            top: 130px;
+            height: calc(100vh - 130px);
+        }
+        
+        .x-spreadsheet {
+            height: calc(100vh - 130px) !important;
+        }
+        
+        .keyboard-shortcuts-info .shortcut-item {
+            font-size: 11px;
+        }
+        
+        .keyboard-shortcuts-info .shortcut-key {
+            font-size: 10px;
+            padding: 1px 4px;
+        }
+        
+        .notification {
+            top: 140px;
+            right: 10px;
+            left: 10px;
+            min-width: auto;
+            max-width: none;
+            padding: 12px 16px;
+            font-size: 13px;
+        }
+        
+        .notification::before {
+            width: 16px;
+            height: 16px;
+            background-size: 10px;
+        }
+    }
+    
+    .notification {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        padding: 16px 24px;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 500;
+        z-index: 10000;
+        min-width: 300px;
+        max-width: 500px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transform: translateX(100%);
+        animation: slideInToast 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .notification::before {
+        content: '';
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        background-size: 12px;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    
+    .notification.success {
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.95), rgba(5, 150, 105, 0.95));
+        color: white;
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .notification.success::before {
+        background-color: rgba(255, 255, 255, 0.2);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 20 20'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'/%3E%3C/svg%3E");
+    }
+    
+    .notification.error {
+        background: linear-gradient(135deg, rgba(239, 68, 68, 0.95), rgba(220, 38, 38, 0.95));
+        color: white;
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .notification.error::before {
+        background-color: rgba(255, 255, 255, 0.2);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 20 20'%3E%3Cpath fill-rule='evenodd' d='M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z'/%3E%3C/svg%3E");
+    }
+    
+    .notification.warning {
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.95), rgba(217, 119, 6, 0.95));
+        color: white;
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .notification.warning::before {
+        background-color: rgba(255, 255, 255, 0.2);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 20 20'%3E%3Cpath fill-rule='evenodd' d='M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z'/%3E%3C/svg%3E");
+    }
+    
+    .notification.info {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.95), rgba(37, 99, 235, 0.95));
+        color: white;
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .notification.info::before {
+        background-color: rgba(255, 255, 255, 0.2);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 20 20'%3E%3Cpath fill-rule='evenodd' d='M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z'/%3E%3C/svg%3E");
+    }
+    
+    .notification.closing {
+        animation: slideOutToast 0.3s ease-in forwards;
+    }
+    
+    @keyframes slideInToast {
+        from {
+            transform: translateX(100%) scale(0.9);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0) scale(1);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOutToast {
+        from {
+            transform: translateX(0) scale(1);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%) scale(0.9);
+            opacity: 0;
+        }
+    }
+    
+    .save-spinner {
+        width: 16px;
+        height: 16px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: white;
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Barra de herramientas -->
+<div class="toolbar-overlay" id="toolbarOverlay">
+    <div class="keyboard-shortcuts-info">
+        <i class="fas fa-keyboard"></i>
+        <div class="shortcuts-text">
+            <div class="shortcut-item">
+                <span>Deshacer:</span>
+                <span class="shortcut-key">Ctrl+Z</span>
+            </div>
+            <div class="shortcut-item">
+                <span>Rehacer:</span>
+                <span class="shortcut-key">Ctrl+Y</span>
+            </div>
+            <div class="shortcut-item">
+                <span>Guardar:</span>
+                <span class="shortcut-key">Ctrl+S</span>
+            </div>
+            <div class="shortcut-item">
+                <span>Salir:</span>
+                <span class="shortcut-key">Esc</span>
+            </div>
+        </div>
+    </div>
+    <button class="toolbar-btn primary" id="save-all-btn" onclick="window.saveMatrix ? window.saveMatrix() : console.log('saveMatrix not available')">
+        <i class="fas fa-save" id="save-btn-icon"></i>
+        <span id="save-btn-text">Guardar</span>
+    </button>
+    <button class="toolbar-btn danger" onclick="logoutSecure()">
+        <i class="fas fa-sign-out-alt"></i> Salir
+    </button>
+    <span class="security-badge {% if is_real_data %}confidential{% else %}public{% endif %}">
+        <i class="fas fa-shield-alt"></i>
+        {% if is_real_data %}
+            CONFIDENCIAL
+        {% else %}
+            PÚBLICO
+        {% endif %}
+    </span>
+    <span id="last-update" style="font-size: 12px; color: #6b7280; margin-left: 8px;">
+        Última actualización: --
+    </span>
+</div>
+
+<!-- Contenedor del Spreadsheet a pantalla completa -->
+<div class="x-spreadsheet-container" id="x-spreadsheet-container">
+    <!-- X-Spreadsheet se renderiza aquí -->
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- X-Spreadsheet JS -->
+<script src="https://unpkg.com/x-data-spreadsheet@1.1.9/dist/xspreadsheet.js"></script>
+
+<!-- Datos iniciales -->
+<script>
+    const initialData = {{ matrix_data|safe }};
+    const passwordType = '{{ password_type }}';
+    const isRealData = {{ is_real_data|yesno:"true,false" }};
+</script>
+
+<!-- Nuestro código -->
+<script src="{% static 'js/secure-matrix.js' %}"></script>
+{% endblock %}

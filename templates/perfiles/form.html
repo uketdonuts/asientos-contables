@@ -1,72 +1,207 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}{{ button_text }} Perfil{% endblock %}
+{% block title %}{{ button_text }} Perfil - Sistema Contable{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/perfiles.css' %}">
+{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="row mb-3">
-        <div class="col">
-            <h2>{{ button_text }} Perfil</h2>
-        </div>
-        <div class="col-auto">
-            <a href="{% url 'perfiles:perfil_list' %}" class="btn btn-secondary">
-                <i class="fas fa-arrow-left"></i> Volver
-            </a>
-        </div>
-    </div>
+<div class="min-h-screen bg-gray-50 py-6">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Breadcrumb -->
+        <nav class="flex mb-6" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="{% url 'perfiles:perfil_list' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                        <i class="fas fa-user-cog mr-2"></i>
+                        Perfiles
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
+                        <span class="text-sm font-medium text-gray-500">{{ button_text }} Perfil</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
 
-    <div class="card">
-        <div class="card-body">
-            <form method="post" novalidate>
+        <!-- Header Section -->
+        <div class="bg-white shadow-sm rounded-lg mb-6">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                    <div class="flex items-center space-x-3 mb-4 sm:mb-0">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                {% if button_text == "Crear" %}
+                                    <i class="fas fa-plus text-blue-600 text-lg"></i>
+                                {% else %}
+                                    <i class="fas fa-edit text-blue-600 text-lg"></i>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold text-gray-900">{{ button_text }} Perfil Contable</h1>
+                            <p class="text-sm text-gray-600 mt-1">
+                                {% if button_text == "Crear" %}
+                                    Configure un nuevo perfil contable
+                                {% else %}
+                                    Modifique la información del perfil contable
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="{% url 'perfiles:perfil_list' %}" 
+                           class="inline-flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-sm font-medium rounded-lg transition-colors duration-200">
+                            <i class="fas fa-arrow-left mr-2"></i>
+                            Volver
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="bg-white shadow-sm rounded-lg overflow-hidden">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h3 class="text-lg font-medium text-gray-900">Información del Perfil</h3>
+                <p class="text-sm text-gray-600 mt-1">Complete los campos para configurar el perfil contable</p>
+            </div>
+            
+            <form method="post" novalidate class="px-6 py-6 space-y-6">
                 {% csrf_token %}
                 
-                <div class="mb-3">
-                    <label for="{{ form.empresa.id_for_label }}" class="form-label">Empresa</label>
-                    {{ form.empresa }}
-                    {% if form.empresa.errors %}
-                        <div class="text-danger">
-                            {{ form.empresa.errors }}
+                <!-- Información del sistema (solo lectura) -->
+                {% if form.instance.pk %}
+                <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                    <h4 class="text-sm font-medium text-gray-900 mb-3">
+                        <i class="fas fa-info-circle text-gray-600 mr-2"></i>
+                        Información del Sistema
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                        <div>
+                            <span class="font-medium text-gray-700">ID:</span>
+                            <span class="ml-2 text-gray-900">#{{ form.instance.pk }}</span>
+                        </div>
+                        <div>
+                            <span class="font-medium text-gray-700">Tipo:</span>
+                            <span class="ml-2 text-gray-900">Perfil Contable</span>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Nombre Field -->
+                <div class="space-y-2">
+                    <label for="{{ form.nombre.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                        <i class="fas fa-tag text-gray-400 mr-2"></i>
+                        Nombre del Perfil
+                        <span class="text-red-500 ml-1">*</span>
+                    </label>
+                    <div class="relative">
+                        {{ form.nombre }}
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                            <i class="fas fa-tag text-gray-400"></i>
+                        </div>
+                    </div>
+                    {% if form.nombre.errors %}
+                        <div class="flex items-center space-x-2 text-red-600 text-sm">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>{{ form.nombre.errors.0 }}</span>
                         </div>
                     {% endif %}
+                    <p class="text-xs text-gray-500">Nombre identificativo y único para el perfil contable</p>
                 </div>
                 
-                <div class="mb-3">
-                    <label for="{{ form.secuencial.id_for_label }}" class="form-label">Secuencial</label>
-                    {{ form.secuencial }}
-                    {% if form.secuencial.errors %}
-                        <div class="text-danger">
-                            {{ form.secuencial.errors }}
+                <!-- Descripción Field -->
+                <div class="space-y-2">
+                    <label for="{{ form.descripcion.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                        <i class="fas fa-file-alt text-gray-400 mr-2"></i>
+                        Descripción
+                    </label>
+                    <div class="relative">
+                        {{ form.descripcion }}
+                        <div class="absolute top-3 right-3 pointer-events-none">
+                            <i class="fas fa-file-alt text-gray-400"></i>
                         </div>
-                    {% endif %}
-                </div>
-                
-                <div class="mb-3">
-                    <label for="{{ form.descripcion.id_for_label }}" class="form-label">Descripción</label>
-                    {{ form.descripcion }}
+                    </div>
                     {% if form.descripcion.errors %}
-                        <div class="text-danger">
-                            {{ form.descripcion.errors }}
+                        <div class="flex items-center space-x-2 text-red-600 text-sm">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>{{ form.descripcion.errors.0 }}</span>
                         </div>
                     {% endif %}
+                    <p class="text-xs text-gray-500">Descripción opcional del propósito del perfil contable</p>
                 </div>
-                
-                <div class="mb-3">
-                    <label for="{{ form.vigencia.id_for_label }}" class="form-label">Vigencia</label>
-                    {{ form.vigencia }}
-                    {% if form.vigencia.errors %}
-                        <div class="text-danger">
-                            {{ form.vigencia.errors }}
+
+                <!-- Form Actions -->
+                <div class="border-t border-gray-200 pt-6">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-3 sm:space-y-0">
+                        <div class="text-sm text-gray-500">
+                            <i class="fas fa-asterisk text-red-500 mr-1 text-xs"></i>
+                            Los campos marcados son obligatorios
                         </div>
-                    {% endif %}
-                </div>
-                
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i> {{ button_text }}
-                    </button>
+                        <div class="flex space-x-3">
+                            <a href="{% url 'perfiles:perfil_list' %}" 
+                               class="inline-flex items-center px-4 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                                <i class="fas fa-times mr-2"></i>
+                                Cancelar
+                            </a>
+                            <button type="submit" 
+                                    class="inline-flex items-center px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors duration-200">
+                                <i class="fas fa-save mr-2"></i>
+                                {{ button_text }} Perfil
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
+        
+        <!-- Help Section -->
+        {% if button_text == "Crear" %}
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+            <div class="flex items-start space-x-3">
+                <div class="flex-shrink-0">
+                    <i class="fas fa-lightbulb text-blue-600"></i>
+                </div>
+                <div>
+                    <h4 class="text-sm font-medium text-blue-800">Consejos para crear perfiles</h4>
+                    <div class="mt-2 text-sm text-blue-700">
+                        <ul class="space-y-1">
+                            <li>• Use nombres descriptivos y únicos</li>
+                            <li>• El ID se genera automáticamente de forma secuencial</li>
+                            <li>• La descripción ayuda a entender el propósito del perfil</li>
+                            <li>• Los perfiles organizan las cuentas contables para diferentes procesos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </div>
+
+<style>
+/* Custom styles for form fields */
+#id_empresa, #id_secuencial, #id_vigencia {
+    @apply block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm;
+}
+
+#id_descripcion {
+    @apply block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm resize-none;
+    height: 80px;
+}
+
+.errorlist {
+    @apply hidden;
+}
+</style>
+
+{% block extra_js %}
+<script src="{% static 'js/perfiles.js' %}"></script>
+{% endblock %}
 {% endblock %}

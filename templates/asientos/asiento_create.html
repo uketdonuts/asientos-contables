@@ -1,0 +1,472 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Crear Asiento Contable{% endblock %}
+
+{% block extra_css %}
+<style>
+    .balance-indicator {
+        transition: all 0.3s ease;
+    }
+    .balance-zero {
+        background-color: #10b981;
+        color: white;
+    }
+    .balance-unbalanced {
+        background-color: #ef4444;
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Breadcrumb -->
+        <nav class="flex mb-6" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="{% url 'asientos:asiento_list' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                        <i class="fas fa-file-invoice mr-2"></i>
+                        Asientos
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
+                        <span class="text-sm font-medium text-gray-500">Crear Asiento</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Header Section -->
+        <div class="bg-white shadow-sm rounded-lg mb-6">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                    <div class="flex items-center space-x-3 mb-4 sm:mb-0">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-plus text-blue-600 text-lg"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold text-gray-900">Crear Asiento Contable</h1>
+                            <p class="text-sm text-gray-600 mt-1">Complete la información del asiento y sus detalles</p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="{% url 'asientos:asiento_list' %}" 
+                           class="inline-flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-sm font-medium rounded-lg transition-colors duration-200">
+                            <i class="fas fa-arrow-left mr-2"></i>
+                            Volver
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form method="post" id="asientoForm" class="space-y-6">
+            {% csrf_token %}
+            
+            <!-- Información del Asiento -->
+            <div class="bg-white shadow-sm rounded-lg overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <h3 class="text-lg font-medium text-gray-900">
+                        <i class="fas fa-file-invoice text-gray-600 mr-2"></i>
+                        Información del Asiento
+                    </h3>
+                    <p class="text-sm text-gray-600 mt-1">Complete los datos básicos del asiento contable</p>
+                </div>
+                <div class="px-6 py-6 space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Fecha -->
+                        <div class="space-y-2">
+                            <label for="id_fecha" class="block text-sm font-medium text-gray-700">
+                                <i class="fas fa-calendar text-gray-400 mr-2"></i>
+                                Fecha
+                                <span class="text-red-500 ml-1">*</span>
+                            </label>
+                            <div class="relative">
+                                <input type="date" 
+                                       name="fecha" 
+                                       id="id_fecha"
+                                       value="{% now 'Y-m-d' %}"
+                                       class="block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                                       required>
+                                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-calendar text-gray-400"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-500">Fecha en que se realiza el asiento contable</p>
+                        </div>
+                        
+                        <!-- Perfil -->
+                        <div class="space-y-2">
+                            <label for="id_perfil" class="block text-sm font-medium text-gray-700">
+                                <i class="fas fa-user-cog text-gray-400 mr-2"></i>
+                                Perfil Contable
+                                <span class="text-red-500 ml-1">*</span>
+                            </label>
+                            <div class="relative">
+                                <select name="id_perfil" 
+                                        id="id_perfil"
+                                        class="block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                                        required>
+                                    <option value="">Seleccione un perfil</option>
+                                    {% for perfil in perfiles %}
+                                        <option value="{{ perfil.id }}">{{ perfil.nombre }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-user-cog text-gray-400"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-500">Perfil contable que define las cuentas disponibles</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Descripción -->
+                    <div class="space-y-2">
+                        <label for="id_descripcion" class="block text-sm font-medium text-gray-700">
+                            <i class="fas fa-file-alt text-gray-400 mr-2"></i>
+                            Descripción
+                        </label>
+                        <div class="relative">
+                            <textarea name="descripcion" 
+                                      id="id_descripcion"
+                                      rows="3"
+                                      class="block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm resize-none"
+                                      placeholder="Descripción del asiento contable..."></textarea>
+                            <div class="absolute top-3 right-3 pointer-events-none">
+                                <i class="fas fa-file-alt text-gray-400"></i>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500">Descripción opcional del asiento contable</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detalles del Asiento -->
+            <div class="bg-white shadow-sm rounded-lg overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-900">
+                                <i class="fas fa-list text-gray-600 mr-2"></i>
+                                Detalles del Asiento
+                            </h3>
+                            <p class="text-sm text-gray-600 mt-1">Agregue los movimientos contables del asiento</p>
+                        </div>
+                        <div class="balance-indicator px-4 py-2 rounded-lg text-sm font-semibold" id="balanceIndicator">
+                            Balance: $0.00
+                        </div>
+                    </div>
+                </div>
+                <div class="px-6 py-6">
+                    <!-- Formulario para agregar detalle -->
+                    <div class="bg-gray-50 p-4 rounded-lg mb-6 border border-gray-200">
+                        <h4 class="text-sm font-medium text-gray-900 mb-4">
+                            <i class="fas fa-plus-circle text-gray-600 mr-2"></i>
+                            Agregar Detalle
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <div class="space-y-1">
+                                <label class="block text-sm font-medium text-gray-700">Cuenta</label>
+                                <select id="cuenta_select" class="block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" disabled>
+                                    <option value="">Seleccione perfil primero</option>
+                                </select>
+                            </div>
+                            <div class="space-y-1">
+                                <label class="block text-sm font-medium text-gray-700">Tipo</label>
+                                <select id="tipo_select" class="block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm">
+                                    <option value="debe">Debe</option>
+                                    <option value="haber">Haber</option>
+                                </select>
+                            </div>
+                            <div class="space-y-1">
+                                <label class="block text-sm font-medium text-gray-700">Monto</label>
+                                <input type="number" 
+                                       id="monto_input" 
+                                       step="0.01" 
+                                       min="0"
+                                       class="block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                                       placeholder="0.00">
+                            </div>
+                            <div class="flex items-end">
+                                <button type="button" 
+                                        id="addDetalleBtn"
+                                        class="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 text-sm font-medium">
+                                    <i class="fas fa-plus mr-1"></i>Agregar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabla de detalles -->
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200" id="detallesTable">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cuenta</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Debe</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Haber</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200" id="detallesBody">
+                                <!-- Los detalles se agregarán dinámicamente aquí -->
+                            </tbody>
+                            <tfoot class="bg-gray-50">
+                                <tr class="font-semibold">
+                                    <td class="px-6 py-3 text-right">Totales:</td>
+                                    <td class="px-6 py-3 text-right" id="totalDebe">$0.00</td>
+                                    <td class="px-6 py-3 text-right" id="totalHaber">$0.00</td>
+                                    <td class="px-6 py-3"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                    <!-- Mensaje cuando no hay detalles -->
+                    <div id="noDetallesMessage" class="text-center py-8 text-gray-500">
+                        <i class="fas fa-inbox text-4xl mb-3"></i>
+                        <p>No hay detalles agregados. Seleccione un perfil y agregue los detalles del asiento.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="bg-white shadow-sm rounded-lg overflow-hidden">
+                <div class="border-t border-gray-200 px-6 py-4">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-3 sm:space-y-0">
+                        <div class="text-sm text-gray-500">
+                            <i class="fas fa-asterisk text-red-500 mr-1 text-xs"></i>
+                            Los campos marcados son obligatorios
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="{% url 'asientos:asiento_list' %}" 
+                               class="inline-flex items-center px-4 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                                <i class="fas fa-times mr-2"></i>
+                                Cancelar
+                            </a>
+                            <button type="submit" 
+                                    id="submitBtn"
+                                    class="inline-flex items-center px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    disabled>
+                                <i class="fas fa-save mr-2"></i>
+                                Guardar Asiento
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+        <!-- Help Section -->
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+            <div class="flex items-start space-x-3">
+                <div class="flex-shrink-0">
+                    <i class="fas fa-lightbulb text-blue-600"></i>
+                </div>
+                <div>
+                    <h4 class="text-sm font-medium text-blue-800">Consejos para crear asientos</h4>
+                    <div class="mt-2 text-sm text-blue-700">
+                        <ul class="space-y-1">
+                            <li>• Seleccione primero un perfil contable para ver las cuentas disponibles</li>
+                            <li>• El asiento debe estar balanceado (Total Debe = Total Haber)</li>
+                            <li>• Agregue al menos un detalle antes de guardar</li>
+                            <li>• Use la descripción para identificar el propósito del asiento</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hidden inputs for detalles -->
+<div id="hiddenInputs"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const perfilSelect = document.getElementById('id_perfil');
+    const cuentaSelect = document.getElementById('cuenta_select');
+    const tipoSelect = document.getElementById('tipo_select');
+    const montoInput = document.getElementById('monto_input');
+    const addBtn = document.getElementById('addDetalleBtn');
+    const detallesBody = document.getElementById('detallesBody');
+    const noDetallesMessage = document.getElementById('noDetallesMessage');
+    const balanceIndicator = document.getElementById('balanceIndicator');
+    const submitBtn = document.getElementById('submitBtn');
+    const hiddenInputs = document.getElementById('hiddenInputs');
+    
+    let detalles = [];
+    let cuentasDisponibles = {};
+    
+    // Cargar cuentas cuando se selecciona un perfil
+    perfilSelect.addEventListener('change', function() {
+        const perfilId = this.value;
+        if (perfilId) {
+            fetch(`/asientos/api/perfil/${perfilId}/cuentas/`)
+                .then(response => response.json())
+                .then(data => {
+                    cuentasDisponibles = {};
+                    cuentaSelect.innerHTML = '<option value="">Seleccione una cuenta</option>';
+                    
+                    data.cuentas.forEach(cuenta => {
+                        cuentasDisponibles[cuenta.id] = cuenta;
+                        const option = document.createElement('option');
+                        option.value = cuenta.id;
+                        option.textContent = `${cuenta.codigo} - ${cuenta.descripcion}`;
+                        cuentaSelect.appendChild(option);
+                    });
+                    
+                    cuentaSelect.disabled = false;
+                })
+                .catch(error => {
+                    console.error('Error cargando cuentas:', error);
+                    alert('Error al cargar las cuentas del perfil');
+                });
+        } else {
+            cuentaSelect.disabled = true;
+            cuentaSelect.innerHTML = '<option value="">Seleccione perfil primero</option>';
+        }
+    });
+    
+    // Agregar detalle
+    addBtn.addEventListener('click', function() {
+        const cuentaId = cuentaSelect.value;
+        const tipo = tipoSelect.value;
+        const monto = parseFloat(montoInput.value);
+        
+        if (!cuentaId || !monto || monto <= 0) {
+            alert('Por favor complete todos los campos correctamente');
+            return;
+        }
+        
+        const cuenta = cuentasDisponibles[cuentaId];
+        const detalle = {
+            id: Date.now(), // ID temporal
+            cuenta_id: cuentaId,
+            cuenta_codigo: cuenta.codigo,
+            cuenta_descripcion: cuenta.descripcion,
+            tipo: tipo,
+            monto: monto
+        };
+        
+        detalles.push(detalle);
+        renderDetalles();
+        updateBalance();
+        
+        // Limpiar formulario
+        cuentaSelect.value = '';
+        montoInput.value = '';
+    });
+    
+    // Renderizar tabla de detalles
+    function renderDetalles() {
+        if (detalles.length === 0) {
+            detallesBody.innerHTML = '';
+            noDetallesMessage.style.display = 'block';
+            return;
+        }
+        
+        noDetallesMessage.style.display = 'none';
+        
+        detallesBody.innerHTML = detalles.map(detalle => `
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm font-medium text-gray-900">${detalle.cuenta_codigo}</div>
+                    <div class="text-sm text-gray-500">${detalle.cuenta_descripcion}</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right">
+                    ${detalle.tipo === 'debe' ? `$${detalle.monto.toFixed(2)}` : '-'}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right">
+                    ${detalle.tipo === 'haber' ? `$${detalle.monto.toFixed(2)}` : '-'}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <button type="button" onclick="removeDetalle(${detalle.id})" 
+                            class="text-red-600 hover:text-red-900">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        `).join('');
+        
+        updateHiddenInputs();
+    }
+    
+    // Actualizar balance
+    function updateBalance() {
+        let totalDebe = 0;
+        let totalHaber = 0;
+        
+        detalles.forEach(detalle => {
+            if (detalle.tipo === 'debe') {
+                totalDebe += detalle.monto;
+            } else {
+                totalHaber += detalle.monto;
+            }
+        });
+        
+        document.getElementById('totalDebe').textContent = `$${totalDebe.toFixed(2)}`;
+        document.getElementById('totalHaber').textContent = `$${totalHaber.toFixed(2)}`;
+        
+        const balance = totalDebe - totalHaber;
+        balanceIndicator.textContent = `Balance: $${Math.abs(balance).toFixed(2)}`;
+        
+        if (Math.abs(balance) < 0.01) { // Considerando pequeños errores de precisión
+            balanceIndicator.className = 'balance-indicator balance-zero px-4 py-2 rounded-lg text-sm font-semibold';
+            submitBtn.disabled = detalles.length === 0;
+        } else {
+            balanceIndicator.className = 'balance-indicator balance-unbalanced px-4 py-2 rounded-lg text-sm font-semibold';
+            submitBtn.disabled = true;
+        }
+    }
+    
+    // Actualizar inputs ocultos
+    function updateHiddenInputs() {
+        hiddenInputs.innerHTML = detalles.map((detalle, index) => `
+            <input type="hidden" name="detalle_${index}_cuenta_id" value="${detalle.cuenta_id}">
+            <input type="hidden" name="detalle_${index}_tipo" value="${detalle.tipo}">
+            <input type="hidden" name="detalle_${index}_monto" value="${detalle.monto}">
+        `).join('') + `<input type="hidden" name="total_detalles" value="${detalles.length}">`;
+    }
+    
+    // Función global para remover detalles
+    window.removeDetalle = function(id) {
+        detalles = detalles.filter(d => d.id !== id);
+        renderDetalles();
+        updateBalance();
+    };
+    
+    // Validación antes de enviar
+    document.getElementById('asientoForm').addEventListener('submit', function(e) {
+        if (detalles.length === 0) {
+            e.preventDefault();
+            alert('Debe agregar al menos un detalle al asiento');
+            return;
+        }
+        
+        let totalDebe = 0;
+        let totalHaber = 0;
+        
+        detalles.forEach(detalle => {
+            if (detalle.tipo === 'debe') {
+                totalDebe += detalle.monto;
+            } else {
+                totalHaber += detalle.monto;
+            }
+        });
+        
+        if (Math.abs(totalDebe - totalHaber) >= 0.01) {
+            e.preventDefault();
+            alert('El asiento debe estar balanceado (Total Debe = Total Haber)');
+            return;
+        }
+    });
+});
+</script>
+{% endblock %}

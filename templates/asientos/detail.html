@@ -7,6 +7,7 @@
     <div class="row mb-3">
         <div class="col">
             <h2>Detalle de Asiento Contable</h2>
+            <p class="text-muted">Vista de solo lectura - Use el botón "Editar" para realizar cambios</p>
         </div>
         <div class="col-auto">
             <a href="{% url 'asientos:asiento_list' %}" class="btn btn-secondary">
@@ -25,68 +26,133 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
-                    <p><strong>Hash Transacción:</strong> {{ asiento.id }}</p>
-                    <p><strong>Fecha:</strong> {{ asiento.fecha }}</p>
-                    <p><strong>Perfil Contable:</strong> {{ asiento.perfil }}</p>
+                    <p><strong>Hash Transacción:</strong> <span class="font-monospace text-primary">{{ asiento.id }}</span></p>
+                    <p><strong>Fecha:</strong> <span class="badge bg-light text-dark">{{ asiento.fecha }}</span></p>
                 </div>
                 <div class="col-md-6">
                     <p><strong>Empresa:</strong> {{ asiento.empresa }}</p>
-                    <p><strong>Monto Total:</strong> {{ monto_total|floatformat:2 }}</p>
+                    <p><strong>Monto Total:</strong> 
+                        <span class="badge {% if monto_total == 0 %}bg-success{% else %}bg-warning text-dark{% endif %}">
+                            ${{ monto_total|floatformat:2 }}
+                        </span>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
+        <div class="card-header">
             <h5 class="mb-0">Detalles del Asiento</h5>
-            <a href="{% url 'asientos:add_detalle' asiento.id %}" class="btn btn-primary btn-sm">
-                <i class="fas fa-plus"></i> Añadir Detalle
-            </a>
         </div>
         <div class="card-body">
             {% if detalles %}
                 <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
+                    <table class="table table-striped table-hover">
+                        <thead class="table-light">
                             <tr>
+                                <th>Perfil</th>
                                 <th>Tipo</th>
                                 <th>Cuenta</th>
                                 <th>Causa</th>
                                 <th>Referencia</th>
-                                <th>Valor</th>
-                                <th>Polaridad</th>
-                                <th>Acciones</th>
+                                <th class="text-end">Valor</th>
+                                <th class="text-center">Polaridad</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for detalle in detalles %}
                                 <tr>
-                                    <td>{{ detalle.tipo_cuenta }}</td>
-                                    <td>{{ detalle.cuenta }}</td>
-                                    <td>{{ detalle.DetalleDeCausa }}</td>
-                                    <td>{{ detalle.Referencia }}</td>
-                                    <td>{{ detalle.valor|floatformat:2 }}</td>
-                                    <td>{{ detalle.polaridad }}</td>
                                     <td>
-                                        <a href="{% url 'asientos:edit_detalle' asiento.id detalle.id %}" class="btn btn-sm btn-outline-primary">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <a href="{% url 'asientos:delete_detalle' asiento.id detalle.id %}" class="btn btn-sm btn-outline-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
+                                        {% if detalle.perfil %}
+                                            <span class="badge bg-info text-white">{{ detalle.perfil.descripcion }}</span>
+                                        {% else %}
+                                            <span class="text-muted">Sin perfil</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <span class="badge {% if detalle.tipo_cuenta == 'DEBE' %}bg-danger{% else %}bg-success{% endif %}">
+                                            {{ detalle.tipo_cuenta }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <code class="text-dark">{{ detalle.cuenta.codigocuenta }}</code>
+                                        <br>
+                                        <small class="text-muted">{{ detalle.cuenta.descripcion|truncatechars:30 }}</small>
+                                    </td>
+                                    <td>{{ detalle.DetalleDeCausa|default:"-" }}</td>
+                                    <td>{{ detalle.Referencia|default:"-" }}</td>
+                                    <td class="text-end">
+                                        <strong>${{ detalle.valor|floatformat:2 }}</strong>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge {% if detalle.polaridad == '+' %}bg-success{% else %}bg-warning text-dark{% endif %}">
+                                            {{ detalle.polaridad }}
+                                        </span>
                                     </td>
                                 </tr>
                             {% endfor %}
                         </tbody>
                     </table>
                 </div>
+                
+                <!-- Resumen de totales -->
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <div class="alert alert-info">
+                            <strong>Resumen:</strong>
+                            {% with debe_total=0 haber_total=0 %}
+                                {% for detalle in detalles %}
+                                    {% if detalle.polaridad == '+' %}
+                                        {% with debe_total=debe_total|add:detalle.valor %}{% endwith %}
+                                    {% else %}
+                                        {% with haber_total=haber_total|add:detalle.valor %}{% endwith %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endwith %}
+                            Total de {{ detalles|length }} detalle{{ detalles|length|pluralize }} registrado{{ detalles|length|pluralize }}.
+                            {% if monto_total == 0 %}
+                                <span class="text-success">✓ El asiento está balanceado.</span>
+                            {% else %}
+                                <span class="text-warning">⚠ El asiento no está balanceado (diferencia: ${{ monto_total|floatformat:2 }}).</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
             {% else %}
                 <div class="alert alert-info">
-                    No hay detalles registrados para este asiento.
+                    <h6 class="alert-heading">Sin detalles</h6>
+                    <p class="mb-0">No hay detalles registrados para este asiento. Use el botón "Editar" para agregar detalles.</p>
                 </div>
             {% endif %}
         </div>
     </div>
 </div>
+
+{% block extra_js %}
+<script>
+// Funcionalidad adicional para mejorar la experiencia de visualización
+document.addEventListener('DOMContentLoaded', function() {
+    // Resaltar filas al pasar el mouse
+    const tableRows = document.querySelectorAll('tbody tr');
+    tableRows.forEach(row => {
+        row.addEventListener('mouseenter', function() {
+            this.style.backgroundColor = '#f8f9fa';
+        });
+        row.addEventListener('mouseleave', function() {
+            this.style.backgroundColor = '';
+        });
+    });
+    
+    // Tooltip para códigos de cuenta largos
+    const cuentaCodes = document.querySelectorAll('code.text-dark');
+    cuentaCodes.forEach(code => {
+        if (code.textContent.length > 10) {
+            code.setAttribute('title', code.textContent);
+            code.style.cursor = 'help';
+        }
+    });
+});
+</script>
+{% endblock %}
 {% endblock %}

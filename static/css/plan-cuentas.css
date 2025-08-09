@@ -1,0 +1,612 @@
+/* Estilos específicos para Plan de Cuentas */
+
+/* Animaciones y transiciones */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Efectos hover para filas de tabla */
+.table-hover-row {
+    transition: all 0.2s ease-in-out;
+}
+
+.table-hover-row:hover {
+    background-color: #f8fafc;
+    transform: translateX(2px);
+}
+
+/* Estilos para códigos de cuenta */
+.account-code {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    border: 1px solid #cbd5e1;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.account-code-parent {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    border-color: #93c5fd;
+    color: #1e40af;
+}
+
+/* Indicadores de nivel */
+.level-indicator {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.level-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transition: all 0.2s ease-in-out;
+}
+
+.level-dot.active {
+    background: linear-gradient(135deg, #10b981, #059669);
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+.level-dot.inactive {
+    background: #e5e7eb;
+}
+
+/* Badges de grupo */
+.group-badge {
+    position: relative;
+    overflow: hidden;
+}
+
+.group-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.group-badge:hover::before {
+    left: 100%;
+}
+
+/* Tree view styles */
+.tree-view {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.tree-node {
+    position: relative;
+    margin-left: 20px;
+    padding: 8px 0;
+}
+
+.tree-node::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 0;
+    bottom: 50%;
+    width: 15px;
+    border-left: 2px solid #d1d5db;
+    border-bottom: 2px solid #d1d5db;
+}
+
+.tree-node::after {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    bottom: -100%;
+    width: 0;
+    border-left: 2px solid #d1d5db;
+}
+
+.tree-node:last-child::after {
+    display: none;
+}
+
+.tree-node-content {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.tree-node-content:hover {
+    background: #f9fafb;
+    border-color: #10b981;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.tree-node-toggle {
+    margin-right: 8px;
+    color: #6b7280;
+    transition: transform 0.2s ease-in-out;
+}
+
+.tree-node-toggle.expanded {
+    transform: rotate(90deg);
+}
+
+/* Filtros y búsqueda */
+.search-highlight {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+.filter-active {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+}
+
+/* Loading states */
+.loading-skeleton {
+    background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Botones de acción mejorados */
+.action-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;
+}
+
+.action-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease-in-out;
+}
+
+.action-btn:hover::before {
+    width: 200%;
+    height: 200%;
+}
+
+/* Stats cards */
+.stat-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease-in-out;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-color: #10b981;
+}
+
+.stat-icon {
+    transition: all 0.3s ease-in-out;
+}
+
+.stat-card:hover .stat-icon {
+    transform: scale(1.1);
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .mobile-scroll {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .mobile-stack {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .mobile-full-width {
+        width: 100%;
+    }
+    
+    .tree-node {
+        margin-left: 10px;
+    }
+    
+    .account-code {
+        font-size: 0.75rem;
+        padding: 2px 6px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    .print-optimize {
+        background: white !important;
+        color: black !important;
+        box-shadow: none !important;
+    }
+    
+    .tree-node-content {
+        border: 1px solid #000;
+        margin-bottom: 2px;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .dark-mode .account-code {
+        background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+        border-color: #6b7280;
+        color: #f9fafb;
+    }
+    
+    .dark-mode .tree-node::before,
+    .dark-mode .tree-node::after {
+        border-color: #4b5563;
+    }
+    
+    .dark-mode .tree-node-content {
+        background: #1f2937;
+        border-color: #4b5563;
+        color: #f9fafb;
+    }
+    
+    .dark-mode .tree-node-content:hover {
+        background: #374151;
+        border-color: #10b981;
+    }
+}
+
+/* Accessibility improvements */
+.focus-visible {
+    outline: 2px solid #10b981;
+    outline-offset: 2px;
+}
+
+.screen-reader-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Export and print utilities */
+.export-btn {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+.export-btn:hover {
+    background: linear-gradient(135deg, #059669, #047857);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Estilos específicos para el módulo de Plan de Cuentas */
+
+/* Animaciones para las tarjetas de estadísticas */
+.stats-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.stats-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los códigos de cuenta */
+.cuenta-codigo {
+    font-family: 'Courier New', monospace;
+    background-color: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    color: #374151;
+}
+
+/* Estilos para los badges de grupo */
+.grupo-badge {
+    font-weight: 500;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.grupo-1 {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.grupo-2 {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.grupo-3 {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.grupo-4 {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.grupo-5 {
+    background-color: #f3f4f6;
+    color: #374151;
+}
+
+/* Estilos para los filtros */
+.filter-section {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+/* Estilos para la tabla */
+.cuentas-table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.cuentas-table th {
+    background-color: #f9fafb;
+    border-bottom: 2px solid #e5e7eb;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+}
+
+.cuentas-table td {
+    border-bottom: 1px solid #f3f4f6;
+    padding: 1rem 1.5rem;
+}
+
+.cuentas-table tbody tr:hover {
+    background-color: #f9fafb;
+    transition: background-color 0.15s ease-in-out;
+}
+
+/* Estilos para los botones de acción */
+.action-button {
+    transition: all 0.2s ease-in-out;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
+.action-button:hover {
+    transform: scale(1.05);
+}
+
+.action-button.edit {
+    color: #2563eb;
+}
+
+.action-button.edit:hover {
+    background-color: #eff6ff;
+    color: #1d4ed8;
+}
+
+.action-button.delete {
+    color: #dc2626;
+}
+
+.action-button.delete:hover {
+    background-color: #fef2f2;
+    color: #b91c1c;
+}
+
+/* Estilos para la paginación */
+.pagination-container {
+    background-color: #ffffff;
+    border-top: 1px solid #e5e7eb;
+}
+
+.pagination-button {
+    transition: all 0.2s ease-in-out;
+    border: 1px solid #d1d5db;
+    background-color: #ffffff;
+    color: #6b7280;
+    font-weight: 500;
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+}
+
+.pagination-button:hover {
+    background-color: #f9fafb;
+    color: #374151;
+    border-color: #9ca3af;
+}
+
+.pagination-button.active {
+    background-color: #10b981;
+    color: #ffffff;
+    border-color: #10b981;
+}
+
+.pagination-button.active:hover {
+    background-color: #059669;
+    border-color: #059669;
+}
+
+/* Estilos para el estado vacío */
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.empty-state-icon {
+    width: 4rem;
+    height: 4rem;
+    background-color: #f3f4f6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: #9ca3af;
+    font-size: 1.5rem;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .cuentas-table {
+        font-size: 0.875rem;
+    }
+    
+    .cuentas-table td,
+    .cuentas-table th {
+        padding: 0.75rem 0.5rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .filter-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animaciones de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* Estilos para tooltips */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #374151;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.75rem;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Estilos para los campos de formulario */
+.form-input {
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.form-input:focus {
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* Estilos para los selectores */
+.form-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+}
+
+/* Estilos para los mensajes de estado */
+.status-message {
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.status-success {
+    background-color: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.status-error {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+.status-warning {
+    background-color: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fed7aa;
+}
+
+.status-info {
+    background-color: #dbeafe;
+    color: #1e40af;
+    border: 1px solid #bfdbfe;
+}

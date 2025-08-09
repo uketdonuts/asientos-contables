@@ -1,57 +1,198 @@
-{% extends 'base.html' %}
+{% extends 'base_auth.html' %}
+{% load static %}
 
-{% block title %}Recuperación de acceso con código{% endblock %}
+{% block title %}Recuperación de Acceso 2FA - Sistema Contable{% endblock %}
+
+{% block extra_css %}
+<style>
+    .recovery-input {
+        letter-spacing: 0.2rem;
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    }
+    
+    .fade-in {
+        animation: fadeIn 0.6s ease-in;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow">
-                <div class="card-header bg-warning text-dark">
-                    <h4 class="mb-0">Recuperación de acceso</h4>
+<div class="min-h-screen bg-gradient-to-br from-yellow-50 to-orange-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full">
+        <!-- Header -->
+        <div class="text-center mb-8 fade-in">
+            <div class="w-20 h-20 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl">
+                <i class="fas fa-key text-white text-3xl"></i>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Recuperación de Acceso</h1>
+            <p class="text-gray-600">
+                Usa un código de recuperación para acceder a tu cuenta
+            </p>
+        </div>
+
+        <!-- Form Card -->
+        <div class="bg-white shadow-xl rounded-2xl p-8 border border-gray-100 fade-in">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="mb-6 p-4 rounded-xl border {% if message.tags == 'error' %}bg-red-50 border-red-200 text-red-800{% elif message.tags == 'warning' %}bg-yellow-50 border-yellow-200 text-yellow-800{% elif message.tags == 'success' %}bg-green-50 border-green-200 text-green-800{% else %}bg-blue-50 border-blue-200 text-blue-800{% endif %}">
+                <div class="flex items-center">
+                    <i class="fas fa-{% if message.tags == 'error' %}exclamation-triangle{% elif message.tags == 'warning' %}exclamation-circle{% elif message.tags == 'success' %}check-circle{% else %}info-circle{% endif %} mr-3"></i>
+                    <p class="font-medium">{{ message }}</p>
                 </div>
-                <div class="card-body">
-                    {% if messages %}
-                    <div class="mb-4">
-                        {% for message in messages %}
-                            <div class="alert alert-{{ message.tags }}">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <!-- Información -->
+            <div class="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200 rounded-xl p-4 mb-6">
+                <div class="flex items-start">
+                    <i class="fas fa-info-circle text-yellow-600 mt-1 mr-3 flex-shrink-0"></i>
+                    <div>
+                        <p class="text-yellow-800 font-medium text-sm">
+                            Si has perdido acceso a tu aplicación de autenticación, puedes usar uno de tus códigos de recuperación.
+                        </p>
+                        <p class="text-yellow-700 text-xs mt-1">
+                            Los códigos son de un solo uso y ya no funcionarán después de usarlos.
+                        </p>
                     </div>
-                    {% endif %}
-
-                    <p class="mb-4">Si has perdido acceso a tu aplicación de autenticación, puedes usar uno de tus códigos de recuperación para acceder a tu cuenta.</p>
-
-                    <form method="post">
-                        {% csrf_token %}
-                        <div class="form-group mb-3">
-                            <label for="recovery_code">Código de recuperación:</label>
-                            <input type="text" class="form-control" id="recovery_code" name="recovery_code" required 
-                                   placeholder="Ingresa tu código de recuperación" 
-                                   pattern="[A-Z0-9]{4}-[A-Z0-9]{4}" 
-                                   title="Ingresa el código en formato XXXX-XXXX">
-                            <small class="form-text text-muted">Ingresa uno de los códigos de recuperación que guardaste cuando configuraste la autenticación de dos factores.</small>
-                        </div>
-
-                        <div class="d-flex justify-content-between mt-4">
-                            <a href="{% url 'two_factor_auth:verify' %}" class="btn btn-outline-secondary">
-                                <i class="fas fa-chevron-left"></i> Volver a verificación
-                            </a>
-                            <button type="submit" class="btn btn-warning">
-                                <i class="fas fa-key"></i> Verificar código
-                            </button>
-                        </div>
-                    </form>
                 </div>
             </div>
 
-            <div class="text-center mt-3">
-                <p class="text-muted small">
-                    Los códigos de recuperación son de un solo uso. Una vez utilizado, ese código específico ya no funcionará.
-                </p>
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="mb-6">
+                    <label for="recovery_code" class="block text-sm font-medium text-gray-700 mb-3">
+                        Código de Recuperación
+                    </label>
+                    <input type="text" 
+                           name="recovery_code" 
+                           id="recovery_code" 
+                           maxlength="9" 
+                           autocomplete="off"
+                           autofocus
+                           class="recovery-input w-full px-4 py-4 text-lg font-bold text-center border-2 border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200"
+                           placeholder="XXXX-XXXX"
+                           pattern="[A-Z0-9]{4}-[A-Z0-9]{4}"
+                           title="Ingresa el código en formato XXXX-XXXX"
+                           required>
+                    <p class="text-xs text-gray-500 text-center mt-3">
+                        Ingresa el código exactamente como aparece guardado (con el guión)
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <button type="submit" 
+                            class="w-full bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 text-white font-semibold py-4 px-6 rounded-xl shadow-lg transition-all duration-200 hover:scale-105 transform">
+                        <i class="fas fa-key mr-2"></i>
+                        Verificar Código de Recuperación
+                    </button>
+                    
+                    <a href="{% url 'two_factor_auth:verify' %}" 
+                       class="block w-full text-center py-3 px-6 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-xl transition-colors duration-200">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        Volver a verificación normal
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Información adicional -->
+        <div class="mt-8 bg-white shadow-lg rounded-xl p-6 border border-gray-100 fade-in">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <i class="fas fa-shield-alt text-yellow-600 mr-2"></i>
+                Importante sobre los códigos de recuperación
+            </h3>
+            <div class="space-y-3 text-sm text-gray-600">
+                <div class="flex items-start">
+                    <i class="fas fa-exclamation-triangle text-red-500 mt-1 mr-3 flex-shrink-0"></i>
+                    <p>Cada código solo se puede usar <strong>una vez</strong></p>
+                </div>
+                <div class="flex items-start">
+                    <i class="fas fa-file-alt text-blue-500 mt-1 mr-3 flex-shrink-0"></i>
+                    <p>Los códigos están en formato <code class="bg-gray-100 px-1 rounded">XXXX-XXXX</code></p>
+                </div>
+                <div class="flex items-start">
+                    <i class="fas fa-lock text-green-500 mt-1 mr-3 flex-shrink-0"></i>
+                    <p>Guarda los códigos restantes en un lugar seguro</p>
+                </div>
+                <div class="flex items-start">
+                    <i class="fas fa-cog text-purple-500 mt-1 mr-3 flex-shrink-0"></i>
+                    <p>Después de acceder, considera reconfigurar tu 2FA</p>
+                </div>
             </div>
+        </div>
+
+        <!-- Back to Login -->
+        <div class="mt-6 text-center fade-in">
+            <a href="{% url 'users:login' %}" 
+               class="text-gray-600 hover:text-gray-900 text-sm font-medium transition-colors duration-200">
+                <i class="fas fa-arrow-left mr-1"></i>
+                Volver al inicio de sesión
+            </a>
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const recoveryInput = document.getElementById('recovery_code');
+    
+    // Auto-format código de recuperación
+    recoveryInput.addEventListener('input', function(e) {
+        // Solo letras mayúsculas, números y guiones
+        let value = this.value.toUpperCase().replace(/[^A-Z0-9-]/g, '');
+        
+        // Auto-insertar guión después de 4 caracteres
+        if (value.length === 4 && !value.includes('-')) {
+            value = value + '-';
+        }
+        
+        // Limitar a 9 caracteres (XXXX-XXXX)
+        value = value.substring(0, 9);
+        
+        this.value = value;
+        
+        // Auto-submit cuando esté completo
+        if (value.length === 9 && value.includes('-')) {
+            setTimeout(() => {
+                this.form.submit();
+            }, 500);
+        }
+    });
+    
+    // Focus automático
+    recoveryInput.focus();
+    
+    // Atajos de teclado
+    document.addEventListener('keydown', function(e) {
+        // Enter envía el formulario si el código está completo
+        if (e.key === 'Enter' && recoveryInput.value.length === 9) {
+            e.preventDefault();
+            recoveryInput.form.submit();
+        }
+        
+        // Escape limpia el campo
+        if (e.key === 'Escape') {
+            recoveryInput.value = '';
+            recoveryInput.focus();
+        }
+        
+        // Backspace maneja el guión automático
+        if (e.key === 'Backspace' && recoveryInput.value.endsWith('-')) {
+            setTimeout(() => {
+                let value = recoveryInput.value;
+                if (value.endsWith('-') && value.length === 5) {
+                    recoveryInput.value = value.substring(0, 4);
+                }
+            }, 0);
+        }
+    });
+});
+</script>
 {% endblock %}

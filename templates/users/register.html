@@ -1,26 +1,518 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Registration</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container">
-        <h2 class="mt-5">Register</h2>
-        <form method="post" class="mt-4">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
-        <div class="mt-3">
-            <a href="{% url 'login' %}">Already have an account? Login here.</a>
+{% extends 'base_auth.html' %}
+{% load static %}
+
+{% block title %}Registro - Sistema de Asientos Contables{% endblock %}
+
+{% block extra_css %}
+<style>
+    .register-container {
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    
+    .register-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        overflow: hidden;
+        max-width: 800px;
+        width: 100%;
+        transform: translateY(0);
+        transition: all 0.3s ease;
+    }
+    
+    .register-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    .register-header {
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        padding: 40px 30px;
+        text-align: center;
+        color: white;
+        position: relative;
+    }
+    
+    .register-header .icon {
+        font-size: 3rem;
+        margin-bottom: 16px;
+        opacity: 0.9;
+    }
+    
+    .register-header h1 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin: 0 0 8px 0;
+        color: white;
+    }
+    
+    .register-header p {
+        opacity: 0.9;
+        margin: 0;
+        font-size: 0.95rem;
+    }
+    
+    .register-body {
+        padding: 40px 30px;
+    }
+    
+    .form-group {
+        margin-bottom: 24px;
+        position: relative;
+    }
+    
+    .form-label {
+        display: block;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+    }
+    
+    .input-wrapper {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        background: #f9fafb;
+        border: 2px solid #e5e7eb;
+        transition: all 0.3s ease;
+    }
+    
+    .input-wrapper:focus-within {
+        border-color: #2563eb;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    .input-icon {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9ca3af;
+        font-size: 1rem;
+        z-index: 2;
+        transition: color 0.3s ease;
+    }
+    
+    .input-wrapper:focus-within .input-icon {
+        color: #2563eb;
+    }
+    
+    .form-input {
+        width: 100%;
+        padding: 12px 40px 12px 40px;
+        border: none;
+        background: transparent;
+        font-size: 0.95rem;
+        color: #374151;
+        outline: none;
+        transition: all 0.3s ease;
+    }
+    
+    .form-input::placeholder {
+        color: #9ca3af;
+        font-weight: 400;
+    }
+    
+    .password-toggle {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: #9ca3af;
+        cursor: pointer;
+        font-size: 1rem;
+        padding: 4px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        z-index: 2;
+    }
+    
+    .password-toggle:hover {
+        color: #2563eb;
+        background: rgba(37, 99, 235, 0.1);
+    }
+    
+    .checkbox-wrapper {
+        display: flex;
+        align-items: center;
+        margin: 24px 0;
+    }
+    
+    .checkbox-wrapper input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+        accent-color: #2563eb;
+    }
+    
+    .checkbox-wrapper label {
+        color: #6b7280;
+        font-size: 0.9rem;
+        margin: 0;
+        cursor: pointer;
+    }
+    
+    .register-button {
+        width: 100%;
+        background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+        color: white;
+        border: none;
+        padding: 14px 20px;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px -1px rgba(22, 163, 74, 0.2);
+        margin-bottom: 24px;
+    }
+    
+    .register-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 15px -3px rgba(22, 163, 74, 0.3);
+    }
+    
+    .register-button:active {
+        transform: translateY(0);
+    }
+    
+    .login-links {
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    .login-links a {
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+    }
+    
+    .login-links a:hover {
+        color: #1d4ed8;
+        text-decoration: underline;
+    }
+    
+    .security-footer {
+        text-align: center;
+        padding: 16px 30px;
+        background: #f1f5f9;
+        color: #64748b;
+        font-size: 0.8rem;
+    }
+    
+    .security-footer i {
+        color: #10b981;
+        margin-right: 4px;
+    }
+    
+    .alert {
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 16px;
+        border: 1px solid transparent;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .alert-danger {
+        background: #fef2f2;
+        border-color: #fecaca;
+        color: #dc2626;
+    }
+    
+    .alert-success {
+        background: #f0fdf4;
+        border-color: #bbf7d0;
+        color: #16a34a;
+    }
+    
+    .alert i {
+        margin-right: 6px;
+    }
+    
+    .section-title {
+        color: #2563eb;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #2563eb;
+    }
+    
+    .help-text {
+        font-size: 0.8rem;
+        color: #6b7280;
+        margin-top: 4px;
+    }
+    
+    @media (max-width: 768px) {
+        .register-container {
+            padding: 15px;
+        }
+        
+        .register-header {
+            padding: 30px 25px;
+        }
+        
+        .register-body {
+            padding: 30px 25px;
+        }
+        
+        .security-footer {
+            padding: 12px 25px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="register-container">
+    <div class="register-card">
+        <!-- Header -->
+        <div class="register-header">
+            <i class="fas fa-user-plus icon"></i>
+            <h1>Crear Nueva Cuenta</h1>
+            <p>Complete los siguientes datos para registrarse</p>
+        </div>
+        
+        <!-- Cuerpo del formulario -->
+        <div class="register-body">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {% if message.tags == 'error' %}
+                            <i class="fas fa-exclamation-circle"></i>
+                        {% elif message.tags == 'success' %}
+                            <i class="fas fa-check-circle"></i>
+                        {% else %}
+                            <i class="fas fa-info-circle"></i>
+                        {% endif %}
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            
+            <form method="post" class="needs-validation" novalidate>
+                {% csrf_token %}
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Información personal -->
+                    <div>
+                        <h3 class="section-title">
+                            <i class="fas fa-user mr-2"></i>
+                            Información Personal
+                        </h3>
+                        
+                        <!-- Nombre -->
+                        {% if form.first_name %}
+                        <div class="form-group">
+                            <label for="{{ form.first_name.id_for_label }}" class="form-label">
+                                Nombre
+                            </label>
+                            <div class="input-wrapper {% if form.first_name.errors %}error{% endif %}">
+                                <i class="fas fa-user input-icon"></i>
+                                <input type="text" 
+                                       class="form-input" 
+                                       id="{{ form.first_name.id_for_label }}" 
+                                       name="{{ form.first_name.html_name }}" 
+                                       value="{{ form.first_name.value|default:'' }}"
+                                       placeholder="Ingrese su nombre">
+                            </div>
+                            {% if form.first_name.errors %}
+                                <div class="text-red-500 text-sm mt-1">
+                                    {{ form.first_name.errors.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                        
+                        <!-- Apellido -->
+                        {% if form.last_name %}
+                        <div class="form-group">
+                            <label for="{{ form.last_name.id_for_label }}" class="form-label">
+                                Apellido
+                            </label>
+                            <div class="input-wrapper {% if form.last_name.errors %}error{% endif %}">
+                                <i class="fas fa-user input-icon"></i>
+                                <input type="text" 
+                                       class="form-input" 
+                                       id="{{ form.last_name.id_for_label }}" 
+                                       name="{{ form.last_name.html_name }}" 
+                                       value="{{ form.last_name.value|default:'' }}"
+                                       placeholder="Ingrese su apellido">
+                            </div>
+                            {% if form.last_name.errors %}
+                                <div class="text-red-500 text-sm mt-1">
+                                    {{ form.last_name.errors.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                        
+                        <!-- Email -->
+                        {% if form.email %}
+                        <div class="form-group">
+                            <label for="{{ form.email.id_for_label }}" class="form-label">
+                                Correo Electrónico
+                            </label>
+                            <div class="input-wrapper {% if form.email.errors %}error{% endif %}">
+                                <i class="fas fa-envelope input-icon"></i>
+                                <input type="email" 
+                                       class="form-input" 
+                                       id="{{ form.email.id_for_label }}" 
+                                       name="{{ form.email.html_name }}" 
+                                       value="{{ form.email.value|default:'' }}"
+                                       placeholder="correo@ejemplo.com">
+                            </div>
+                            {% if form.email.errors %}
+                                <div class="text-red-500 text-sm mt-1">
+                                    {{ form.email.errors.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Información de acceso -->
+                    <div>
+                        <h3 class="section-title">
+                            <i class="fas fa-key mr-2"></i>
+                            Información de Acceso
+                        </h3>
+                        
+                        <!-- Usuario -->
+                        <div class="form-group">
+                            <label for="{{ form.username.id_for_label }}" class="form-label">
+                                Nombre de Usuario
+                            </label>
+                            <div class="input-wrapper {% if form.username.errors %}error{% endif %}">
+                                <i class="fas fa-user-circle input-icon"></i>
+                                <input type="text" 
+                                       class="form-input" 
+                                       id="{{ form.username.id_for_label }}" 
+                                       name="{{ form.username.html_name }}" 
+                                       value="{{ form.username.value|default:'' }}"
+                                       placeholder="Ingrese su nombre de usuario">
+                            </div>
+                            {% if form.username.errors %}
+                                <div class="text-red-500 text-sm mt-1">
+                                    {{ form.username.errors.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Contraseña -->
+                        <div class="form-group">
+                            <label for="{{ form.password1.id_for_label }}" class="form-label">
+                                Contraseña
+                            </label>
+                            <div class="input-wrapper {% if form.password1.errors %}error{% endif %}">
+                                <i class="fas fa-lock input-icon"></i>
+                                <input type="password" 
+                                       class="form-input" 
+                                       id="{{ form.password1.id_for_label }}" 
+                                       name="{{ form.password1.html_name }}"
+                                       placeholder="Ingrese su contraseña">
+                                <button type="button" class="password-toggle" onclick="togglePassword('{{ form.password1.id_for_label }}')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            {% if form.password1.errors %}
+                                <div class="text-red-500 text-sm mt-1">
+                                    {{ form.password1.errors.0 }}
+                                </div>
+                            {% endif %}
+                            {% if form.password1.help_text %}
+                                <div class="help-text">
+                                    {{ form.password1.help_text }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Confirmar contraseña -->
+                        <div class="form-group">
+                            <label for="{{ form.password2.id_for_label }}" class="form-label">
+                                Confirmar Contraseña
+                            </label>
+                            <div class="input-wrapper {% if form.password2.errors %}error{% endif %}">
+                                <i class="fas fa-lock input-icon"></i>
+                                <input type="password" 
+                                       class="form-input" 
+                                       id="{{ form.password2.id_for_label }}" 
+                                       name="{{ form.password2.html_name }}"
+                                       placeholder="Confirme su contraseña">
+                                <button type="button" class="password-toggle" onclick="togglePassword('{{ form.password2.id_for_label }}')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            {% if form.password2.errors %}
+                                <div class="text-red-500 text-sm mt-1">
+                                    {{ form.password2.errors.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Términos y condiciones -->
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">
+                        Acepto los <a href="#" class="text-blue-600 hover:text-blue-800">términos y condiciones</a> del sistema
+                    </label>
+                </div>
+                
+                <!-- Botón de envío -->
+                <button type="submit" class="register-button">
+                    <i class="fas fa-user-plus mr-2"></i>
+                    Crear Cuenta
+                </button>
+            </form>
+            
+            <!-- Enlaces adicionales -->
+            <div class="login-links">
+                <p class="text-gray-600 mb-2">¿Ya tiene una cuenta?</p>
+                <a href="{% url 'users:login' %}">
+                    <i class="fas fa-sign-in-alt mr-1"></i>
+                    Iniciar Sesión
+                </a>
+            </div>
+        </div>
+        
+        <!-- Footer de seguridad -->
+        <div class="security-footer">
+            <i class="fas fa-shield-alt"></i>
+            Registro seguro con autenticación 2FA automática
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+</div>
+
+<script>
+function togglePassword(fieldId) {
+    const field = document.getElementById(fieldId);
+    const button = field.nextElementSibling;
+    const icon = button.querySelector('i');
+    
+    if (field.type === 'password') {
+        field.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    } else {
+        field.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    }
+}
+</script>
+{% endblock %}

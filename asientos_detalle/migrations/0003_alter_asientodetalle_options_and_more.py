@@ -7,7 +7,6 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('plan_cuentas', '0002_alter_plancuenta_options_plancuenta_codigocuenta_and_more'),
         ('asientos_detalle', '0002_alter_asientodetalle_options_and_more'),
     ]
 
@@ -30,11 +29,6 @@ class Migration(migrations.Migration):
             model_name='asientodetalle',
             name='Referencia',
             field=models.CharField(blank=True, max_length=45, null=True, verbose_name='Referencia Extra'),
-        ),
-        migrations.AlterField(
-            model_name='asientodetalle',
-            name='cuenta',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='asientos_detalles', to='plan_cuentas.plancuenta', verbose_name='Cuenta Contable'),
         ),
         migrations.AlterField(
             model_name='asientodetalle',

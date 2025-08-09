@@ -1,65 +1,1036 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Plan de Cuentas{% endblock %}
+{% block title %}Plan de Cuentas - Sistema Contable{% endblock %}
+
+{% block extra_css %}
+<style>
+    .cuentas-container {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+        min-height: 100vh;
+        padding: 20px 0;
+        position: relative;
+        overflow-x: hidden;
+    }
+    
+    .cuentas-container::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+        animation: pulseBackground 6s infinite;
+    }
+    
+    @keyframes pulseBackground {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 0.6; }
+    }
+    
+    .main-header {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 24px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        padding: 40px;
+        margin-bottom: 30px;
+        border-left: 5px solid #3b82f6;
+        position: relative;
+        overflow: hidden;
+        animation: slideInDown 0.6s ease-out;
+    }
+    
+    .main-header::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(135deg, #3b82f6, transparent);
+        opacity: 0.15;
+        border-radius: 50%;
+        animation: rotate 10s linear infinite;
+    }
+    
+    @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    
+    @keyframes slideInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .header-info {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .header-icon-wrapper {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2rem;
+        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-5px); }
+    }
+    
+    .header-text h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: white;
+        margin: 0 0 8px 0;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+    
+    .header-text p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.1rem;
+        margin: 0;
+    }
+    
+    .header-actions {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .tree-view-btn {
+        background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(107, 114, 128, 0.3);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .tree-view-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(107, 114, 128, 0.4);
+    }
+    
+    .new-cuenta-btn {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .new-cuenta-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        color: white;
+        text-decoration: none;
+    }
+    
+    .filters-panel {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 24px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        margin-bottom: 30px;
+        animation: slideInUp 0.8s ease-out;
+    }
+    
+    @keyframes slideInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .filters-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        align-items: end;
+    }
+    
+    .filter-group {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .filter-label {
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .filter-input {
+        padding: 12px 16px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        font-size: 0.95rem;
+        color: white;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        position: relative;
+    }
+    
+    .filter-input:focus {
+        outline: none;
+        border-color: #3b82f6;
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+    }
+    
+    .filter-input::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+    }
+    
+    .search-wrapper {
+        position: relative;
+    }
+    
+    .search-wrapper .filter-input {
+        padding-left: 45px;
+    }
+    
+    .search-icon {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 1.1rem;
+    }
+    
+    .clear-filters-btn {
+        background: #6b7280;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .clear-filters-btn:hover {
+        background: #4b5563;
+        transform: translateY(-1px);
+    }
+    
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .stat-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        border-left: 4px solid var(--accent-color);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        animation: slideInStagger 1s ease-out;
+    }
+    
+    @keyframes slideInStagger {
+        from {
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+    
+    .stat-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, var(--accent-color), transparent);
+        opacity: 0.1;
+        border-radius: 50%;
+        transform: translate(20%, -20%);
+    }
+    
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    .stat-card.total { --accent-color: #3b82f6; }
+    .stat-card.activos { --accent-color: #10b981; }
+    .stat-card.pasivos { --accent-color: #ef4444; }
+    .stat-card.niveles { --accent-color: #8b5cf6; }
+    
+    .stat-content {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .stat-icon {
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(135deg, var(--accent-color), var(--accent-color));
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.3rem;
+        opacity: 0.9;
+    }
+    
+    .stat-info h3 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: white;
+        margin: 0 0 5px 0;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .stat-info p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.85rem;
+        margin: 0;
+        font-weight: 500;
+    }
+    
+    .table-container {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 24px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        animation: slideInUp 1.2s ease-out;
+    }
+    
+    .table-header {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+        padding: 25px 30px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .table-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: white;
+        margin: 0;
+        flex: 1;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .table-actions {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .table-action-btn {
+        color: #3b82f6;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        padding: 8px 12px;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        backdrop-filter: blur(10px);
+    }
+    
+    .table-action-btn:hover {
+        background: #3b82f6;
+        color: white;
+        text-decoration: none;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+    }
+    
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .data-table thead th {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px 24px;
+        text-align: left;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+    
+    .data-table thead th:hover {
+        background: rgba(255, 255, 255, 0.15);
+        color: #3b82f6;
+    }
+    
+    .data-table thead th .sort-icon {
+        margin-left: 5px;
+        opacity: 0.5;
+        transition: opacity 0.3s ease;
+    }
+    
+    .data-table thead th:hover .sort-icon {
+        opacity: 1;
+    }
+    
+    .data-table tbody td {
+        padding: 20px 24px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.9);
+        vertical-align: middle;
+    }
+    
+    .data-table tbody tr {
+        transition: all 0.3s ease;
+    }
+    
+    .data-table tbody tr:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: scale(1.02);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+    
+    .empresa-cell {
+        font-weight: 600;
+        color: white;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .grupo-badge {
+        background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        color: #1e40af;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        border: 1px solid #93c5fd;
+    }
+    
+    .codigo-cell {
+        font-family: 'Courier New', monospace;
+        font-weight: 700;
+        color: #3b82f6;
+        font-size: 0.95rem;
+        background: rgba(59, 130, 246, 0.1);
+        padding: 8px 12px;
+        border-radius: 10px;
+        display: inline-block;
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        backdrop-filter: blur(10px);
+    }
+    
+    .descripcion-cell {
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.4;
+        max-width: 250px;
+    }
+    
+    .cuenta-madre-cell {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.9rem;
+        font-style: italic;
+    }
+    
+    .nivel-badge {
+        background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        color: #92400e;
+        padding: 4px 10px;
+        border-radius: 15px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        border: 1px solid #fbbf24;
+    }
+    
+    .actions-group {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+    
+    .action-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 2px solid;
+        font-size: 0.9rem;
+    }
+    
+    .action-btn.view {
+        color: #06b6d4;
+        border-color: #06b6d4;
+        background: rgba(6, 182, 212, 0.1);
+    }
+    
+    .action-btn.edit {
+        color: #f59e0b;
+        border-color: #f59e0b;
+        background: rgba(245, 158, 11, 0.1);
+    }
+    
+    .action-btn.delete {
+        color: #ef4444;
+        border-color: #ef4444;
+        background: rgba(239, 68, 68, 0.1);
+    }
+    
+    .action-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .action-btn.view:hover {
+        background: #06b6d4;
+        color: white;
+    }
+    
+    .action-btn.edit:hover {
+        background: #f59e0b;
+        color: white;
+    }
+    
+    .action-btn.delete:hover {
+        background: #ef4444;
+        color: white;
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 60px 30px;
+        color: #6b7280;
+    }
+    
+    .empty-icon {
+        font-size: 4rem;
+        color: rgba(255, 255, 255, 0.3);
+        margin-bottom: 20px;
+    }
+    
+    .empty-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: white;
+        margin-bottom: 10px;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .empty-description {
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 30px;
+        font-size: 1rem;
+    }
+    
+    .create-first-btn {
+        background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+        color: white;
+        padding: 15px 30px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .create-first-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);
+        color: white;
+        text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+        .cuentas-container {
+            padding: 15px;
+        }
+        
+        .main-header {
+            padding: 20px;
+        }
+        
+        .header-content {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .header-info {
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .header-text h1 {
+            font-size: 2rem;
+        }
+        
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .filters-panel {
+            padding: 20px;
+        }
+        
+        .filters-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+        }
+        
+        .data-table {
+            min-width: 1000px;
+        }
+        
+        .table-header {
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        
+        .table-actions {
+            align-self: stretch;
+            justify-content: center;
+        }
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="row mb-3">
-        <div class="col">
-            <h2>Plan de Cuentas</h2>
+<div class="cuentas-container">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header Principal -->
+        <div class="main-header">
+            <div class="header-content">
+                <div class="header-info">
+                    <div class="header-icon-wrapper">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <div class="header-text">
+                        <h1>Plan de Cuentas</h1>
+                        <p>Estructura contable completa y organizada</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button onclick="toggleTreeView()" class="tree-view-btn">
+                        <i class="fas fa-project-diagram"></i>
+                        Vista Árbol
+                    </button>
+                    <a href="{% url 'plan_cuentas:plan_cuenta_create' %}" class="new-cuenta-btn">
+                        <i class="fas fa-plus"></i>
+                        Nueva Cuenta
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="col-auto">
-            <a href="{% url 'plan_cuentas:plan_cuenta_create' %}" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Nueva Cuenta
-            </a>
-        </div>
-    </div>
 
-    <div class="card">
-        <div class="card-body">
+        <!-- Panel de Filtros -->
+        <div class="filters-panel">
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label class="filter-label">Buscar Cuentas</label>
+                    <div class="search-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" 
+                               id="searchInput" 
+                               placeholder="Buscar por código o descripción..." 
+                               class="filter-input">
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Grupo Contable</label>
+                    <select id="grupoFilter" class="filter-input">
+                        <option value="">Todos los grupos</option>
+                        <option value="1">Grupo 1 - Activos</option>
+                        <option value="2">Grupo 2 - Pasivos</option>
+                        <option value="3">Grupo 3 - Patrimonio</option>
+                        <option value="4">Grupo 4 - Ingresos</option>
+                        <option value="5">Grupo 5 - Gastos</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Empresa</label>
+                    <select id="empresaFilter" class="filter-input">
+                        <option value="">Todas las empresas</option>
+                        <option value="DEFAULT">DEFAULT</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <button onclick="clearFilters()" class="clear-filters-btn">
+                        <i class="fas fa-broom"></i>
+                        Limpiar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjetas de Estadísticas -->
+        <div class="stats-grid">
+            <div class="stat-card total">
+                <div class="stat-content">
+                    <div class="stat-icon">
+                        <i class="fas fa-list"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalCuentas">{{ cuentas|length }}</h3>
+                        <p>Total Cuentas</p>
+                    </div>
+                </div>
+            </div>
+            <div class="stat-card activos">
+                <div class="stat-content">
+                    <div class="stat-icon">
+                        <i class="fas fa-arrow-up"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>{% with activos=cuentas|length %}{{ activos|default:0 }}{% endwith %}</h3>
+                        <p>Cuentas Activo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="stat-card pasivos">
+                <div class="stat-content">
+                    <div class="stat-icon">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>0</h3>
+                        <p>Cuentas Pasivo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="stat-card niveles">
+                <div class="stat-content">
+                    <div class="stat-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>5</h3>
+                        <p>Niveles</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de Cuentas -->
+        <div class="table-container">
             {% if cuentas %}
-                <div class="table-responsive">
-                    <table class="table table-striped">
+                <div class="table-header">
+                    <h2 class="table-title">Catálogo de Cuentas Contables</h2>
+                    <div class="table-actions">
+                        <span style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;">{{ cuentas|length }} cuenta{{ cuentas|length|pluralize:"s" }}</span>
+                        <a href="#" onclick="exportToExcel()" class="table-action-btn">
+                            <i class="fas fa-file-excel"></i>
+                            Excel
+                        </a>
+                        <a href="#" onclick="printTable()" class="table-action-btn">
+                            <i class="fas fa-print"></i>
+                            Imprimir
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="data-table" id="cuentasTable">
                         <thead>
                             <tr>
-                                <th>Empresa</th>
-                                <th>Grupo</th>
-                                <th>Código de Cuenta</th>
-                                <th>Descripción</th>
-                                <th>Cuenta Madre</th>
-                                <th>Acciones</th>
+                                <th onclick="sortTable(0)">
+                                    <i class="fas fa-building"></i>
+                                    Empresa
+                                    <i class="fas fa-sort sort-icon"></i>
+                                </th>
+                                <th onclick="sortTable(1)">
+                                    <i class="fas fa-layer-group"></i>
+                                    Grupo
+                                    <i class="fas fa-sort sort-icon"></i>
+                                </th>
+                                <th onclick="sortTable(2)">
+                                    <i class="fas fa-hashtag"></i>
+                                    Código
+                                    <i class="fas fa-sort sort-icon"></i>
+                                </th>
+                                <th>
+                                    <i class="fas fa-file-alt"></i>
+                                    Descripción
+                                </th>
+                                <th>
+                                    <i class="fas fa-code-branch"></i>
+                                    Cuenta Madre
+                                </th>
+                                <th>
+                                    <i class="fas fa-chart-bar"></i>
+                                    Nivel
+                                </th>
+                                <th style="text-align: center;">
+                                    <i class="fas fa-cogs"></i>
+                                    Acciones
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for cuenta in cuentas %}
-                                <tr>
-                                    <td>{{ cuenta.empresa }}</td>
-                                    <td>{{ cuenta.grupo }}</td>
-                                    <td><a href="{% url 'plan_cuentas:plan_cuenta_detail' cuenta.id %}">{{ cuenta.codigocuenta }}</a></td>
-                                    <td>{{ cuenta.descripcion }}</td>
-                                    <td>{{ cuenta.cuentamadre|default:"-" }}</td>
-                                    <td>
-                                        <a href="{% url 'plan_cuentas:plan_cuenta_detail' cuenta.id %}" class="btn btn-sm btn-outline-info">
+                            <tr class="cuenta-row">
+                                <td class="empresa-cell">{{ cuenta.empresa|default:"DEFAULT" }}</td>
+                                <td>
+                                    <span class="grupo-badge">
+                                        Grupo {{ cuenta.grupo|default:"1" }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="codigo-cell">{{ cuenta.codigocuenta }}</span>
+                                </td>
+                                <td class="descripcion-cell">{{ cuenta.descripcion }}</td>
+                                <td class="cuenta-madre-cell">
+                                    {% if cuenta.cuenta_madre %}
+                                        {{ cuenta.cuenta_madre.descripcion|truncatechars:30 }}
+                                    {% else %}
+                                        Cuenta Raíz
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <span class="nivel-badge">
+                                        Nivel {{ cuenta.nivel|default:"1" }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="actions-group">
+                                        <a href="{% url 'plan_cuentas:plan_cuenta_detail' cuenta.id %}" 
+                                           class="action-btn view"
+                                           title="Ver detalles">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        <a href="{% url 'plan_cuentas:plan_cuenta_edit' cuenta.id %}" class="btn btn-sm btn-outline-primary">
+                                        <a href="{% url 'plan_cuentas:plan_cuenta_edit' cuenta.id %}" 
+                                           class="action-btn edit"
+                                           title="Editar">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="{% url 'plan_cuentas:plan_cuenta_delete' cuenta.id %}" class="btn btn-sm btn-outline-danger">
+                                        <a href="{% url 'plan_cuentas:plan_cuenta_delete' cuenta.id %}" 
+                                           class="action-btn delete"
+                                           title="Eliminar"
+                                           onclick="return confirm('¿Está seguro de eliminar esta cuenta?')">
                                             <i class="fas fa-trash"></i>
                                         </a>
-                                    </td>
-                                </tr>
+                                    </div>
+                                </td>
+                            </tr>
                             {% endfor %}
                         </tbody>
                     </table>
                 </div>
             {% else %}
-                <div class="alert alert-info">
-                    No hay cuentas contables registradas.
+                <div class="empty-state">
+                    <div class="empty-icon">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <h3 class="empty-title">No hay cuentas registradas</h3>
+                    <p class="empty-description">Comience creando las cuentas base de su plan contable</p>
+                    <a href="{% url 'plan_cuentas:plan_cuenta_create' %}" class="create-first-btn">
+                        <i class="fas fa-plus"></i>Crear Primera Cuenta
+                    </a>
                 </div>
             {% endif %}
         </div>
     </div>
 </div>
+
+<script>
+// Función para alternar vista de árbol
+function toggleTreeView() {
+    alert('Funcionalidad de vista árbol en desarrollo');
+}
+
+// Función para limpiar filtros
+function clearFilters() {
+    document.getElementById('searchInput').value = '';
+    document.getElementById('grupoFilter').value = '';
+    document.getElementById('empresaFilter').value = '';
+    filterCuentas();
+}
+
+// Función para filtrar cuentas
+function filterCuentas() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const grupoFilter = document.getElementById('grupoFilter').value;
+    const empresaFilter = document.getElementById('empresaFilter').value;
+    const rows = document.querySelectorAll('.cuenta-row');
+    
+    let visibleCount = 0;
+    
+    rows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        const empresa = cells[0].textContent.trim();
+        const codigo = cells[2].textContent.trim().toLowerCase();
+        const descripcion = cells[3].textContent.trim().toLowerCase();
+        
+        let showRow = true;
+        
+        // Filtro de búsqueda
+        if (searchTerm && !codigo.includes(searchTerm) && !descripcion.includes(searchTerm)) {
+            showRow = false;
+        }
+        
+        // Filtro de grupo
+        if (grupoFilter && !cells[1].textContent.includes('Grupo ' + grupoFilter)) {
+            showRow = false;
+        }
+        
+        // Filtro de empresa
+        if (empresaFilter && empresa !== empresaFilter) {
+            showRow = false;
+        }
+        
+        if (showRow) {
+            row.style.display = '';
+            visibleCount++;
+        } else {
+            row.style.display = 'none';
+        }
+    });
+    
+    // Actualizar título de la tabla
+    const tableTitle = document.querySelector('.table-title');
+    if (visibleCount !== rows.length) {
+        tableTitle.textContent = `Catálogo de Cuentas Contables (${visibleCount} de ${rows.length})`;
+    } else {
+        tableTitle.textContent = 'Catálogo de Cuentas Contables';
+    }
+}
+
+// Función para ordenar tabla
+function sortTable(n) {
+    const table = document.getElementById('cuentasTable');
+    let rows = Array.from(table.rows).slice(1);
+    const isAscending = table.getAttribute('data-sort-order') !== 'asc';
+    
+    rows.sort((a, b) => {
+        const aVal = a.cells[n].textContent.trim();
+        const bVal = b.cells[n].textContent.trim();
+        
+        if (isAscending) {
+            return aVal.localeCompare(bVal, undefined, {numeric: true});
+        } else {
+            return bVal.localeCompare(aVal, undefined, {numeric: true});
+        }
+    });
+    
+    table.setAttribute('data-sort-order', isAscending ? 'asc' : 'desc');
+    
+    // Remover y agregar filas ordenadas
+    const tbody = table.querySelector('tbody');
+    rows.forEach(row => tbody.appendChild(row));
+    
+    // Actualizar iconos de ordenamiento
+    const headers = table.querySelectorAll('th .sort-icon');
+    headers.forEach(icon => {
+        icon.className = 'fas fa-sort sort-icon';
+    });
+    
+    const currentHeader = table.querySelectorAll('th')[n].querySelector('.sort-icon');
+    currentHeader.className = isAscending ? 'fas fa-sort-up sort-icon' : 'fas fa-sort-down sort-icon';
+}
+
+// Función para exportar a Excel
+function exportToExcel() {
+    alert('Funcionalidad de exportación a Excel en desarrollo');
+}
+
+// Función para imprimir tabla
+function printTable() {
+    window.print();
+}
+
+// Event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('searchInput').addEventListener('input', filterCuentas);
+    document.getElementById('grupoFilter').addEventListener('change', filterCuentas);
+    document.getElementById('empresaFilter').addEventListener('change', filterCuentas);
+});
+</script>
+{% endblock %}
 {% endblock %}

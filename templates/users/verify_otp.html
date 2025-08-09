@@ -1,26 +1,372 @@
-{% extends 'base.html' %}
+{% extends 'base_auth.html' %}
+{% load static %}
+
+{% block title %}Verificar OTP - Sistema de Asientos Contables{% endblock %}
+
+{% block extra_css %}
+<style>
+    .otp-container {
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    
+    .otp-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        overflow: hidden;
+        max-width: 450px;
+        width: 100%;
+        transform: translateY(0);
+        transition: all 0.3s ease;
+    }
+    
+    .otp-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    .otp-header {
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        padding: 40px 30px;
+        text-align: center;
+        color: white;
+        position: relative;
+    }
+    
+    .otp-header .icon {
+        font-size: 3rem;
+        margin-bottom: 16px;
+        opacity: 0.9;
+    }
+    
+    .otp-header h1 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin: 0 0 8px 0;
+        color: white;
+    }
+    
+    .otp-header p {
+        opacity: 0.9;
+        margin: 0;
+        font-size: 0.95rem;
+    }
+    
+    .otp-body {
+        padding: 40px 30px;
+    }
+    
+    .otp-info {
+        text-align: center;
+        margin-bottom: 24px;
+        color: #6b7280;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    
+    .form-group {
+        margin-bottom: 24px;
+        position: relative;
+    }
+    
+    .form-label {
+        display: block;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+    }
+    
+    .input-wrapper {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        background: #f9fafb;
+        border: 2px solid #e5e7eb;
+        transition: all 0.3s ease;
+    }
+    
+    .input-wrapper:focus-within {
+        border-color: #2563eb;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    .input-icon {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9ca3af;
+        font-size: 1rem;
+        z-index: 2;
+        transition: color 0.3s ease;
+    }
+    
+    .input-wrapper:focus-within .input-icon {
+        color: #2563eb;
+    }
+    
+    .form-input {
+        width: 100%;
+        padding: 12px 40px 12px 40px;
+        border: none;
+        background: transparent;
+        font-size: 0.95rem;
+        color: #374151;
+        outline: none;
+        transition: all 0.3s ease;
+        text-align: center;
+        letter-spacing: 2px;
+        font-weight: 600;
+    }
+    
+    .form-input::placeholder {
+        color: #9ca3af;
+        font-weight: 400;
+        letter-spacing: normal;
+    }
+    
+    .verify-button {
+        width: 100%;
+        background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+        color: white;
+        border: none;
+        padding: 14px 20px;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px -1px rgba(22, 163, 74, 0.2);
+        margin-bottom: 24px;
+    }
+    
+    .verify-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 15px -3px rgba(22, 163, 74, 0.3);
+    }
+    
+    .verify-button:active {
+        transform: translateY(0);
+    }
+    
+    .login-links {
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    .login-links a {
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+    }
+    
+    .login-links a:hover {
+        color: #1d4ed8;
+        text-decoration: underline;
+    }
+    
+    .security-footer {
+        text-align: center;
+        padding: 16px 30px;
+        background: #f1f5f9;
+        color: #64748b;
+        font-size: 0.8rem;
+    }
+    
+    .security-footer i {
+        color: #10b981;
+        margin-right: 4px;
+    }
+    
+    .alert {
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 16px;
+        border: 1px solid transparent;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .alert-danger {
+        background: #fef2f2;
+        border-color: #fecaca;
+        color: #dc2626;
+    }
+    
+    .alert-success {
+        background: #f0fdf4;
+        border-color: #bbf7d0;
+        color: #16a34a;
+    }
+    
+    .alert i {
+        margin-right: 6px;
+    }
+    
+    .timer {
+        text-align: center;
+        margin-top: 16px;
+        color: #6b7280;
+        font-size: 0.9rem;
+    }
+    
+    .timer .time {
+        color: #2563eb;
+        font-weight: 600;
+    }
+    
+    @media (max-width: 768px) {
+        .otp-container {
+            padding: 15px;
+        }
+        
+        .otp-header {
+            padding: 30px 25px;
+        }
+        
+        .otp-body {
+            padding: 30px 25px;
+        }
+        
+        .security-footer {
+            padding: 12px 25px;
+        }
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
-    <div class="card shadow-sm w-100" style="max-width: 400px;">
-        <div class="card-body">
-            <h2 class="card-title text-center">Verificar Código OTP</h2>
-            <p class="card-text text-center">Ingrese el código OTP que ha sido enviado a su correo electrónico. Este código es válido por 10 minutos.</p>
+<div class="otp-container">
+    <div class="otp-card">
+        <!-- Header -->
+        <div class="otp-header">
+            <i class="fas fa-mobile-alt icon"></i>
+            <h1>Verificar Código OTP</h1>
+            <p>Ingrese el código enviado a su correo</p>
+        </div>
+        
+        <!-- Cuerpo del formulario -->
+        <div class="otp-body">
+            <div class="otp-info">
+                <p>Se ha enviado un código de verificación a su correo electrónico. Este código es válido por <strong>2 minutos</strong>.</p>
+            </div>
+            
             {% if form.errors %}
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-circle"></i>
                     Código OTP incorrecto o expirado. Por favor, inténtelo de nuevo.
                 </div>
             {% endif %}
+            
             <form method="post">
                 {% csrf_token %}
+                
+                <!-- Campo oculto de email -->
                 {{ form.email }}
-                <div class="mb-3">
-                    <label for="{{ form.otp.id_for_label }}" class="form-label">{{ form.otp.label }}</label>
-                    {{ form.otp }}
+                
+                <!-- Campo de OTP -->
+                <div class="form-group">
+                    <label for="{{ form.otp.id_for_label }}" class="form-label">
+                        Código OTP
+                    </label>
+                    <div class="input-wrapper {% if form.otp.errors %}error{% endif %}">
+                        <i class="fas fa-key input-icon"></i>
+                        <input type="text" 
+                               class="form-input" 
+                               id="{{ form.otp.id_for_label }}" 
+                               name="{{ form.otp.html_name }}"
+                               placeholder="000000"
+                               maxlength="6"
+                               pattern="[0-9]{6}"
+                               required>
+                    </div>
+                    {% if form.otp.errors %}
+                        <div class="text-red-500 text-sm mt-1">
+                            {{ form.otp.errors.0 }}
+                        </div>
+                    {% endif %}
                 </div>
-                <button type="submit" class="btn btn-primary w-100 mt-3">Verificar</button>
+                
+                <!-- Botón de verificación -->
+                <button type="submit" class="verify-button">
+                    <i class="fas fa-check mr-2"></i>
+                    Verificar Código
+                </button>
             </form>
+            
+            <!-- Timer -->
+            <div class="timer">
+                <i class="fas fa-clock mr-1"></i>
+                Tiempo restante: <span class="time" id="timer">02:00</span>
+            </div>
+            
+            <!-- Enlaces adicionales -->
+            <div class="login-links">
+                <a href="{% url 'users:password_reset' %}">
+                    <i class="fas fa-arrow-left mr-1"></i>
+                    Solicitar nuevo código
+                </a>
+            </div>
+        </div>
+        
+        <!-- Footer de seguridad -->
+        <div class="security-footer">
+            <i class="fas fa-shield-alt"></i>
+            Verificación segura por email
         </div>
     </div>
 </div>
+
+<script>
+// Timer para el código OTP (2 minutos)
+let timeLeft = 120; // 2 minutos en segundos
+const timerElement = document.getElementById('timer');
+
+function updateTimer() {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    
+    if (timeLeft <= 0) {
+        timerElement.textContent = '00:00';
+        timerElement.style.color = '#dc2626';
+        return;
+    }
+    
+    timeLeft--;
+    setTimeout(updateTimer, 1000);
+}
+
+// Iniciar timer cuando se carga la página
+document.addEventListener('DOMContentLoaded', function() {
+    updateTimer();
+});
+
+// Auto-focus en el campo OTP
+document.addEventListener('DOMContentLoaded', function() {
+    const otpInput = document.getElementById('{{ form.otp.id_for_label }}');
+    if (otpInput) {
+        otpInput.focus();
+    }
+});
+
+// Solo permitir números en el campo OTP
+document.addEventListener('DOMContentLoaded', function() {
+    const otpInput = document.getElementById('{{ form.otp.id_for_label }}');
+    if (otpInput) {
+        otpInput.addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+    }
+});
+</script>
 {% endblock %}

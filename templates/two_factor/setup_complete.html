@@ -1,90 +1,583 @@
-{% extends 'base.html' %}
+{% extends 'base_auth.html' %}
+{% load static %}
 
 {% block title %}Autenticación de Dos Factores Configurada{% endblock %}
 
+{% block extra_css %}
+<style>
+    .complete-container {
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    
+    .complete-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        overflow: hidden;
+        max-width: 800px;
+        width: 100%;
+        transform: translateY(0);
+        transition: all 0.3s ease;
+    }
+    
+    .complete-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    .complete-header {
+        background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+        padding: 40px 30px;
+        text-align: center;
+        color: white;
+        position: relative;
+    }
+    
+    .complete-header .icon {
+        font-size: 3rem;
+        margin-bottom: 16px;
+        opacity: 0.9;
+        animation: bounce 1s ease-in-out infinite;
+    }
+    
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+        }
+        40% {
+            transform: translateY(-10px);
+        }
+        60% {
+            transform: translateY(-5px);
+        }
+    }
+    
+    .complete-header h1 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin: 0 0 8px 0;
+        color: white;
+    }
+    
+    .complete-header p {
+        opacity: 0.9;
+        margin: 0;
+        font-size: 0.95rem;
+    }
+    
+    .complete-body {
+        padding: 40px 30px;
+    }
+    
+    .alert {
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 24px;
+        border: 1px solid transparent;
+        position: relative;
+    }
+    
+    .alert-success {
+        background: #f0fdf4;
+        border-color: #bbf7d0;
+        color: #16a34a;
+    }
+    
+    .alert h5 {
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: inherit;
+        font-size: 0.95rem;
+    }
+    
+    .alert p {
+        margin: 0;
+        line-height: 1.5;
+        font-size: 0.9rem;
+    }
+    
+    .recovery-section {
+        background: #f9fafb;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 24px 0;
+        border: 2px dashed #e5e7eb;
+    }
+    
+    .recovery-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+    
+    .recovery-icon {
+        background: #f59e0b;
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 12px;
+        font-size: 1.1rem;
+    }
+    
+    .recovery-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #374151;
+        margin: 0;
+    }
+    
+    .recovery-subtitle {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin: 0;
+    }
+    
+    .recovery-info {
+        background: #fffbeb;
+        border: 1px solid #fde68a;
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 16px;
+    }
+    
+    .recovery-info p {
+        color: #92400e;
+        font-size: 0.875rem;
+        margin: 0;
+        line-height: 1.4;
+    }
+    
+    .codes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+    
+    .code-item {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 12px 8px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-align: center;
+        color: #374151;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .code-item:hover {
+        background: #f3f4f6;
+        border-color: #2563eb;
+        transform: translateY(-1px);
+    }
+    
+    .warning-box {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 8px;
+        padding: 12px;
+    }
+    
+    .warning-box .warning-icon {
+        color: #dc2626;
+        margin-right: 8px;
+    }
+    
+    .warning-text {
+        color: #dc2626;
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin: 0;
+    }
+    
+    .warning-subtext {
+        color: #b91c1c;
+        font-size: 0.75rem;
+        margin: 4px 0 0 0;
+    }
+    
+    .actions-section {
+        margin: 32px 0;
+    }
+    
+    .actions-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .actions-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+    
+    .action-button {
+        display: flex;
+        align-items: center;
+        padding: 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+    }
+    
+    .action-button.primary {
+        background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+        color: white;
+    }
+    
+    .action-button.primary:hover {
+        background: linear-gradient(135deg, #15803d 0%, #166534 100%);
+        color: white;
+    }
+    
+    .action-button.secondary {
+        background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+        color: white;
+    }
+    
+    .action-button.secondary:hover {
+        background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+        color: white;
+    }
+    
+    .action-icon {
+        font-size: 1.5rem;
+        margin-right: 12px;
+    }
+    
+    .action-content {
+        flex: 1;
+    }
+    
+    .action-title {
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+    
+    .action-subtitle {
+        font-size: 0.8rem;
+        opacity: 0.9;
+    }
+    
+    .devices-section {
+        background: #f9fafb;
+        border-radius: 12px;
+        padding: 24px;
+        margin-top: 24px;
+    }
+    
+    .devices-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+    }
+    
+    .devices-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #374151;
+        margin: 0;
+        display: flex;
+        align-items: center;
+    }
+    
+    .devices-icon {
+        background: #2563eb;
+        color: white;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 8px;
+        font-size: 0.9rem;
+    }
+    
+    .devices-count {
+        background: #dbeafe;
+        color: #1e40af;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+    
+    .device-item {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .device-info {
+        display: flex;
+        align-items: center;
+    }
+    
+    .device-icon {
+        background: #f3f4f6;
+        color: #6b7280;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 12px;
+        font-size: 0.8rem;
+    }
+    
+    .device-details h4 {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #374151;
+        margin: 0 0 2px 0;
+    }
+    
+    .device-details p {
+        font-size: 0.75rem;
+        color: #6b7280;
+        margin: 0;
+    }
+    
+    .device-status {
+        background: #dcfce7;
+        color: #16a34a;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 0.7rem;
+        font-weight: 600;
+    }
+    
+    @media (max-width: 768px) {
+        .complete-container {
+            padding: 15px;
+        }
+        
+        .complete-header {
+            padding: 30px 20px;
+        }
+        
+        .complete-header h1 {
+            font-size: 1.5rem;
+        }
+        
+        .complete-body {
+            padding: 30px 20px;
+        }
+        
+        .actions-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .codes-grid {
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        }
+    }
+</style>
+{% endblock %}
+
 {% block content %}
-<div class="container mt-4">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card shadow">
-                <div class="card-header bg-success text-white">
-                    <h4 class="mb-0">¡Configuración Completada!</h4>
+<div class="complete-container">
+    <div class="complete-card">
+        <!-- Header -->
+        <div class="complete-header">
+            <i class="fas fa-check-circle icon"></i>
+            <h1>¡Configuración Completada!</h1>
+            <p>Tu cuenta ahora está protegida con autenticación de dos factores</p>
+        </div>
+        
+        <div class="complete-body">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success">
+                        <h5><i class="fas fa-check-circle mr-2"></i>Éxito</h5>
+                        <p>{{ message }}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <!-- Códigos de recuperación -->
+            {% if recovery_codes %}
+            <div class="recovery-section">
+                <div class="recovery-header">
+                    <div class="recovery-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div>
+                        <h3 class="recovery-title">Códigos de Recuperación</h3>
+                        <p class="recovery-subtitle">Guarda estos códigos en un lugar seguro</p>
+                    </div>
                 </div>
-                <div class="card-body">
-                    {% if messages %}
-                    <div class="mb-4">
-                        {% for message in messages %}
-                            <div class="alert alert-{{ message.tags }}">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
+                
+                <div class="recovery-info">
+                    <p>
+                        <i class="fas fa-shield-alt mr-2"></i>
+                        Estos códigos te permitirán acceder a tu cuenta si pierdes el acceso a tu aplicación de autenticación.
+                    </p>
+                </div>
+                
+                <div class="codes-grid">
+                    {% for code in recovery_codes %}
+                    <div class="code-item" onclick="copyToClipboard('{{ code }}', this)" title="Clic para copiar">
+                        {{ code }}
                     </div>
-                    {% endif %}
+                    {% endfor %}
+                </div>
+                
+                <div class="warning-box">
+                    <p class="warning-text">
+                        <i class="fas fa-exclamation-circle warning-icon"></i>
+                        <strong>Importante:</strong> Estos códigos se muestran solo una vez. 
+                        Descárgalos o imprímelos ahora.
+                    </p>
+                    <p class="warning-subtext">
+                        No los compartas con nadie y mantenlos en un lugar seguro.
+                    </p>
+                </div>
+            </div>
+            {% endif %}
 
-                    <div class="text-center mb-4">
-                        <i class="fas fa-check-circle fa-5x text-success mb-3"></i>
-                        <h4>La autenticación de dos factores ha sido configurada correctamente</h4>
-                        <p class="lead">Tu cuenta ahora está protegida con una capa adicional de seguridad.</p>
-                    </div>
-
-                    {% if recovery_codes %}
-                    <div class="alert alert-warning">
-                        <h5><i class="fas fa-exclamation-triangle"></i> Importante</h5>
-                        <p>Guarda estos códigos de recuperación en un lugar seguro. Te permitirán acceder a tu cuenta si pierdes el acceso a tu aplicación de autenticación.</p>
-                        <div class="bg-light p-3 my-3 border rounded">
-                            <p class="text-monospace mb-0">
-                                {% for code in recovery_codes %}
-                                    {{ code }}<br>
-                                {% endfor %}
-                            </p>
+            <!-- Acciones principales -->
+            <div class="actions-section">
+                <h3 class="actions-title">
+                    <i class="fas fa-cogs mr-2"></i>
+                    Acciones Disponibles
+                </h3>
+                <div class="actions-grid">
+                    <a href="{% url 'home' %}" class="action-button primary">
+                        <i class="fas fa-home action-icon"></i>
+                        <div class="action-content">
+                            <div class="action-title">Ir al Dashboard</div>
+                            <div class="action-subtitle">Continuar usando el sistema</div>
                         </div>
-                        <p class="mb-0"><small>Estos códigos se muestran solo una vez. No los compartas con nadie.</small></p>
-                    </div>
-                    {% endif %}
-
-                    <div class="d-flex justify-content-between mt-4">
-                        <a href="{% url 'two_factor_auth:disable' %}" class="btn btn-outline-danger">
-                            <i class="fas fa-times-circle"></i> Desactivar 2FA
-                        </a>
-                        <a href="{% url 'home' %}" class="btn btn-primary">
-                            <i class="fas fa-home"></i> Ir al inicio
-                        </a>
-                    </div>
+                    </a>
+                    
+                    <a href="{% url 'two_factor_auth:disable' %}" class="action-button secondary">
+                        <i class="fas fa-times-circle action-icon"></i>
+                        <div class="action-content">
+                            <div class="action-title">Desactivar 2FA</div>
+                            <div class="action-subtitle">Quitar protección adicional</div>
+                        </div>
+                    </a>
                 </div>
             </div>
 
-            <div class="card mt-4">
-                <div class="card-header bg-light">
-                    <h5 class="mb-0">Dispositivos configurados</h5>
+            <!-- Dispositivos configurados -->
+            {% if devices %}
+            <div class="devices-section">
+                <div class="devices-header">
+                    <h3 class="devices-title">
+                        <div class="devices-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        Dispositivos Configurados
+                    </h3>
+                    <span class="devices-count">
+                        {{ devices|length }} dispositivo{{ devices|length|pluralize:"s" }}
+                    </span>
                 </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>Tipo</th>
-                                    <th>Añadido</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for device in devices %}
-                                <tr>
-                                    <td>{{ device.name }}</td>
-                                    <td>{{ device.device_type }}</td>
-                                    <td>{{ device.confirmed_at|date:"d/m/Y H:i" }}</td>
-                                </tr>
-                                {% empty %}
-                                <tr>
-                                    <td colspan="3" class="text-center">No hay dispositivos configurados</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+                
+                {% for device in devices %}
+                <div class="device-item">
+                    <div class="device-info">
+                        <div class="device-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="device-details">
+                            <h4>{{ device.name }}</h4>
+                            <p>{{ device.get_type_display }}</p>
+                        </div>
                     </div>
+                    <span class="device-status">Activo</span>
                 </div>
+                {% endfor %}
             </div>
+            {% endif %}
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function copyToClipboard(text, element) {
+    navigator.clipboard.writeText(text).then(function() {
+        // Cambiar el elemento para mostrar éxito
+        const originalBackground = element.style.background;
+        const originalColor = element.style.color;
+        
+        element.style.background = '#16a34a';
+        element.style.color = 'white';
+        element.textContent = '¡Copiado!';
+        
+        setTimeout(() => {
+            element.style.background = originalBackground;
+            element.style.color = originalColor;
+            element.textContent = text;
+        }, 2000);
+    }).catch(function() {
+        // Fallback para navegadores más antiguos
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        
+        // Mostrar feedback visual
+        const originalBackground = element.style.background;
+        const originalColor = element.style.color;
+        
+        element.style.background = '#16a34a';
+        element.style.color = 'white';
+        element.textContent = '¡Copiado!';
+        
+        setTimeout(() => {
+            element.style.background = originalBackground;
+            element.style.color = originalColor;
+            element.textContent = text;
+        }, 2000);
+    });
+}
+
+// Auto-focus en el primer código de recuperación para facilitar la navegación
+document.addEventListener('DOMContentLoaded', function() {
+    const firstCode = document.querySelector('.code-item');
+    if (firstCode) {
+        firstCode.focus();
+    }
+});
+</script>
 {% endblock %}

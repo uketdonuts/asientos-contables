@@ -1,22 +1,311 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ cuenta.codigocuenta }} - {{ cuenta.descripcion }} - Sistema Contable{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/plan-cuentas.css' %}">
+{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <h2>Detalle de Cuenta Contable</h2>
-    <div class="card">
-        <div class="card-header">
-            {{ cuenta.codigocuenta }} - {{ cuenta.descripcion }}
+<div class="min-h-screen bg-gray-50 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Breadcrumb -->
+        <nav class="flex mb-6" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="{% url 'plan_cuentas:plan_cuenta_list' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-emerald-600">
+                        <i class="fas fa-chart-line mr-2"></i>
+                        Plan de Cuentas
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
+                        <span class="text-sm font-medium text-gray-500">{{ cuenta.codigocuenta }}</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Header Section -->
+        <div class="bg-white shadow-sm rounded-lg mb-6">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                    <div class="flex items-center space-x-3 mb-4 sm:mb-0">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-file-invoice text-emerald-600 text-xl"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-2 mb-1">
+                                <code class="px-3 py-1 bg-gray-100 rounded-lg text-lg font-mono font-bold">{{ cuenta.codigocuenta }}</code>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium 
+                                             {% if cuenta.grupo == 1 %}bg-green-100 text-green-800
+                                             {% elif cuenta.grupo == 2 %}bg-red-100 text-red-800
+                                             {% elif cuenta.grupo == 3 %}bg-blue-100 text-blue-800
+                                             {% elif cuenta.grupo == 4 %}bg-yellow-100 text-yellow-800
+                                             {% elif cuenta.grupo == 5 %}bg-purple-100 text-purple-800
+                                             {% else %}bg-gray-100 text-gray-800{% endif %}">
+                                    Grupo {{ cuenta.grupo }}
+                                </span>
+                            </div>
+                            <h1 class="text-2xl font-bold text-gray-900">{{ cuenta.descripcion }}</h1>
+                            <p class="text-sm text-gray-600 mt-1">
+                                {% if cuenta.empresa_id %}{{ cuenta.empresa_id.nombre }}{% else %}N/A{% endif %}
+                                • Nivel {{ nivel }}
+                                {% if cuenta.cuentamadre %}• Subcuenta de {{ cuenta.cuentamadre }}{% else %}• Cuenta principal{% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="{% url 'plan_cuentas:plan_cuenta_edit' cuenta.id %}" 
+                           class="inline-flex items-center px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg shadow-sm transition-colors duration-200">
+                            <i class="fas fa-edit mr-2"></i>
+                            Editar
+                        </a>
+                        <a href="{% url 'plan_cuentas:plan_cuenta_list' %}" 
+                           class="inline-flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-sm font-medium rounded-lg shadow-sm transition-colors duration-200">
+                            <i class="fas fa-arrow-left mr-2"></i>
+                            Volver
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            <p><strong>Empresa:</strong> {{ cuenta.empresa }}</p>
-            <p><strong>Grupo:</strong> {{ cuenta.grupo }}</p>
-            <p><strong>Código de Cuenta:</strong> {{ cuenta.codigocuenta }}</p>
-            <p><strong>Descripción:</strong> {{ cuenta.descripcion }}</p>
-            <p><strong>Cuenta Madre:</strong> {{ cuenta.cuentamadre|default_if_none:"N/A" }}</p>
-        </div>
-        <div class="card-footer">
-            <a href="{% url 'plan_cuentas:plan_cuenta_edit' cuenta.pk %}" class="btn btn-warning btn-sm">Editar</a>
-            <a href="{% url 'plan_cuentas:plan_cuenta_list' %}" class="btn btn-secondary btn-sm">Volver al Listado</a>
+
+        <!-- Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Main Information -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Account Details Card -->
+                <div class="bg-white shadow-sm rounded-lg overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-medium text-gray-900">Información de la Cuenta</h3>
+                    </div>
+                    <div class="px-6 py-4">
+                        <dl class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <dt class="text-sm font-medium text-gray-500 mb-1">
+                                    <i class="fas fa-hashtag mr-2"></i>Código de Cuenta
+                                </dt>
+                                <dd class="text-sm text-gray-900">
+                                    <code class="px-2 py-1 bg-gray-100 rounded font-mono">{{ cuenta.codigocuenta }}</code>
+                                </dd>
+                            </div>
+                            <div>
+                                <dt class="text-sm font-medium text-gray-500 mb-1">
+                                    <i class="fas fa-layer-group mr-2"></i>Grupo Contable
+                                </dt>
+                                <dd class="text-sm text-gray-900">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium 
+                                                 {% if cuenta.grupo == 1 %}bg-green-100 text-green-800
+                                                 {% elif cuenta.grupo == 2 %}bg-red-100 text-red-800
+                                                 {% elif cuenta.grupo == 3 %}bg-blue-100 text-blue-800
+                                                 {% elif cuenta.grupo == 4 %}bg-yellow-100 text-yellow-800
+                                                 {% elif cuenta.grupo == 5 %}bg-purple-100 text-purple-800
+                                                 {% else %}bg-gray-100 text-gray-800{% endif %}">
+                                        Grupo {{ cuenta.grupo }} - 
+                                        {% if cuenta.grupo == 1 %}Activos
+                                        {% elif cuenta.grupo == 2 %}Pasivos
+                                        {% elif cuenta.grupo == 3 %}Patrimonio
+                                        {% elif cuenta.grupo == 4 %}Ingresos
+                                        {% elif cuenta.grupo == 5 %}Gastos
+                                        {% else %}Desconocido{% endif %}
+                                    </span>
+                                </dd>
+                            </div>
+                            <div>
+                                <dt class="text-sm font-medium text-gray-500 mb-1">
+                                    <i class="fas fa-building mr-2"></i>Empresa
+                                </dt>
+                                <dd class="text-sm text-gray-900">
+                                    {% if cuenta.empresa_id %}{{ cuenta.empresa_id.nombre }}{% else %}No asignada{% endif %}
+                                </dd>
+                            </div>
+                            <div>
+                                <dt class="text-sm font-medium text-gray-500 mb-1">
+                                    <i class="fas fa-user-cog mr-2"></i>Perfil Contable
+                                </dt>
+                                <dd class="text-sm text-gray-900">
+                                    {% if cuenta.perfil_id %}{{ cuenta.perfil_id.descripcion }}{% else %}No asignado{% endif %}
+                                </dd>
+                            </div>
+                            <div class="md:col-span-2">
+                                <dt class="text-sm font-medium text-gray-500 mb-1">
+                                    <i class="fas fa-file-alt mr-2"></i>Descripción
+                                </dt>
+                                <dd class="text-sm text-gray-900">{{ cuenta.descripcion }}</dd>
+                            </div>
+                            <div>
+                                <dt class="text-sm font-medium text-gray-500 mb-1">
+                                    <i class="fas fa-code-branch mr-2"></i>Cuenta Madre
+                                </dt>
+                                <dd class="text-sm text-gray-900">
+                                    {% if cuenta.cuentamadre %}
+                                        <code class="px-2 py-1 bg-blue-50 rounded font-mono text-blue-800">{{ cuenta.cuentamadre }}</code>
+                                        {% if cuenta_madre %}
+                                            <span class="text-gray-600">- {{ cuenta_madre.descripcion }}</span>
+                                        {% endif %}
+                                    {% else %}
+                                        <span class="text-gray-400 italic">Cuenta principal</span>
+                                    {% endif %}
+                                </dd>
+                            </div>
+                            <div>
+                                <dt class="text-sm font-medium text-gray-500 mb-1">
+                                    <i class="fas fa-chart-bar mr-2"></i>Nivel Jerárquico
+                                </dt>
+                                <dd class="text-sm text-gray-900">
+                                    <div class="flex items-center">
+                                        <div class="flex space-x-1 mr-2">
+                                            {% for i in "12345"|make_list %}
+                                                {% if forloop.counter <= nivel %}
+                                                    <div class="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                                                {% else %}
+                                                    <div class="w-2 h-2 bg-gray-200 rounded-full"></div>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                        <span>Nivel {{ nivel }}</span>
+                                    </div>
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+
+                <!-- Subcuentas -->
+                {% if tiene_hijas %}
+                <div class="bg-white shadow-sm rounded-lg overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-medium text-gray-900">Subcuentas</h3>
+                        <p class="text-sm text-gray-600 mt-1">Cuentas que dependen de esta cuenta</p>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Código</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descripción</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Grupo</th>
+                                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                {% for subcuenta in cuentas_hijas %}
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <code class="px-2 py-1 bg-gray-100 rounded text-sm font-mono">{{ subcuenta.codigocuenta }}</code>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="text-sm text-gray-900">{{ subcuenta.descripcion }}</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium 
+                                                     {% if subcuenta.grupo == 1 %}bg-green-100 text-green-800
+                                                     {% elif subcuenta.grupo == 2 %}bg-red-100 text-red-800
+                                                     {% elif subcuenta.grupo == 3 %}bg-blue-100 text-blue-800
+                                                     {% elif subcuenta.grupo == 4 %}bg-yellow-100 text-yellow-800
+                                                     {% elif subcuenta.grupo == 5 %}bg-purple-100 text-purple-800
+                                                     {% else %}bg-gray-100 text-gray-800{% endif %}">
+                                            Grupo {{ subcuenta.grupo }}
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="{% url 'plan_cuentas:plan_cuenta_detail' subcuenta.id %}" 
+                                           class="text-emerald-600 hover:text-emerald-900 mr-3">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a href="{% url 'plan_cuentas:plan_cuenta_edit' subcuenta.id %}" 
+                                           class="text-blue-600 hover:text-blue-900">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- Quick Actions -->
+                <div class="bg-white shadow-sm rounded-lg overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-medium text-gray-900">Acciones Rápidas</h3>
+                    </div>
+                    <div class="px-6 py-4 space-y-3">
+                        <a href="{% url 'plan_cuentas:plan_cuenta_edit' cuenta.id %}" 
+                           class="w-full inline-flex items-center justify-center px-4 py-2 border border-emerald-300 text-emerald-700 text-sm font-medium rounded-lg hover:bg-emerald-50 transition-colors duration-200">
+                            <i class="fas fa-edit mr-2"></i>
+                            Editar Cuenta
+                        </a>
+                        {% if not tiene_hijas %}
+                        <a href="{% url 'plan_cuentas:plan_cuenta_delete' cuenta.id %}" 
+                           class="w-full inline-flex items-center justify-center px-4 py-2 border border-red-300 text-red-700 text-sm font-medium rounded-lg hover:bg-red-50 transition-colors duration-200">
+                            <i class="fas fa-trash mr-2"></i>
+                            Eliminar Cuenta
+                        </a>
+                        {% endif %}
+                        <a href="{% url 'plan_cuentas:plan_cuenta_create' %}" 
+                           class="w-full inline-flex items-center justify-center px-4 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                            <i class="fas fa-plus mr-2"></i>
+                            Nueva Subcuenta
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Account Stats -->
+                <div class="bg-white shadow-sm rounded-lg overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-medium text-gray-900">Estadísticas</h3>
+                    </div>
+                    <div class="px-6 py-4 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Subcuentas</span>
+                            <span class="text-sm font-medium text-gray-900">{{ cuentas_hijas.count }}</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Nivel jerárquico</span>
+                            <span class="text-sm font-medium text-gray-900">{{ nivel }}</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Tipo de cuenta</span>
+                            <span class="text-sm font-medium text-gray-900">
+                                {% if cuenta.cuentamadre %}Subcuenta{% else %}Principal{% endif %}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hierarchy Navigation -->
+                {% if cuenta.cuentamadre or cuenta_madre %}
+                <div class="bg-white shadow-sm rounded-lg overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-medium text-gray-900">Navegación</h3>
+                    </div>
+                    <div class="px-6 py-4 space-y-3">
+                        {% if cuenta_madre %}
+                        <a href="{% url 'plan_cuentas:plan_cuenta_detail' cuenta_madre.id %}" 
+                           class="w-full inline-flex items-center justify-center px-4 py-2 border border-blue-300 text-blue-700 text-sm font-medium rounded-lg hover:bg-blue-50 transition-colors duration-200">
+                            <i class="fas fa-arrow-up mr-2"></i>
+                            Cuenta Madre
+                        </a>
+                        {% endif %}
+                        <a href="{% url 'plan_cuentas:plan_cuenta_list' %}" 
+                           class="w-full inline-flex items-center justify-center px-4 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                            <i class="fas fa-list mr-2"></i>
+                            Ver Todo el Plan
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>

@@ -1,0 +1,252 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title }} - Sistema Contable{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 py-6">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Breadcrumb -->
+        <nav class="flex mb-6" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="{% url 'empresas:empresa_list' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                        <i class="fas fa-building mr-2"></i>
+                        Empresas
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
+                        <span class="text-sm font-medium text-gray-500">{{ title }}</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Header Section -->
+        <div class="bg-white shadow-sm rounded-lg mb-6">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                    <div class="flex items-center space-x-3 mb-4 sm:mb-0">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                {% if button_text == "Crear Empresa" %}
+                                    <i class="fas fa-plus text-blue-600 text-lg"></i>
+                                {% else %}
+                                    <i class="fas fa-edit text-blue-600 text-lg"></i>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold text-gray-900">{{ title }}</h1>
+                            <p class="text-sm text-gray-600 mt-1">
+                                {% if button_text == "Crear Empresa" %}
+                                    Configure una nueva empresa en el sistema contable
+                                {% else %}
+                                    Modifique la información de la empresa
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="{% url 'empresas:empresa_list' %}" 
+                           class="inline-flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-sm font-medium rounded-lg shadow-sm transition-colors duration-200">
+                            <i class="fas fa-arrow-left mr-2"></i>
+                            Volver
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="bg-white shadow-sm rounded-lg overflow-hidden">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h3 class="text-lg font-medium text-gray-900">Información de la Empresa</h3>
+                <p class="text-sm text-gray-600 mt-1">Complete los campos requeridos para configurar la empresa</p>
+            </div>
+            
+            <form method="post" novalidate class="px-6 py-6 space-y-6">
+                {% csrf_token %}
+                
+                {% if form.non_field_errors %}
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                        <div class="flex items-center space-x-2 text-red-700">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="font-medium">{{ form.non_field_errors }}</span>
+                        </div>
+                    </div>
+                {% endif %}
+                
+                <!-- Nombre Field -->
+                <div class="space-y-2">
+                    <label for="{{ form.nombre.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                        <i class="fas fa-building text-gray-400 mr-2"></i>
+                        Nombre de la Empresa
+                        <span class="text-red-500 ml-1">*</span>
+                    </label>
+                    <div class="relative">
+                        {{ form.nombre }}
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                            <i class="fas fa-building text-gray-400"></i>
+                        </div>
+                    </div>
+                    {% if form.nombre.errors %}
+                        <div class="flex items-center space-x-2 text-red-600 text-sm">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>{{ form.nombre.errors.0 }}</span>
+                        </div>
+                    {% endif %}
+                    <p class="text-xs text-gray-500">Nombre completo y oficial de la empresa</p>
+                </div>
+                
+                <!-- Tipo Field -->
+                <div class="space-y-2">
+                    <label for="{{ form.type.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                        <i class="fas fa-tag text-gray-400 mr-2"></i>
+                        Tipo de Empresa
+                    </label>
+                    <div class="relative">
+                        {{ form.type }}
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                            <i class="fas fa-tag text-gray-400"></i>
+                        </div>
+                    </div>
+                    {% if form.type.errors %}
+                        <div class="flex items-center space-x-2 text-red-600 text-sm">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>{{ form.type.errors.0 }}</span>
+                        </div>
+                    {% endif %}
+                    <p class="text-xs text-gray-500">Clasificación o tipo de empresa (opcional)</p>
+                </div>
+                
+                <!-- Descripción Field -->
+                <div class="space-y-2">
+                    <label for="{{ form.descripcion.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                        <i class="fas fa-file-alt text-gray-400 mr-2"></i>
+                        Descripción
+                    </label>
+                    <div class="relative">
+                        {{ form.descripcion }}
+                        <div class="absolute top-3 right-3 pointer-events-none">
+                            <i class="fas fa-file-alt text-gray-400"></i>
+                        </div>
+                    </div>
+                    {% if form.descripcion.errors %}
+                        <div class="flex items-center space-x-2 text-red-600 text-sm">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>{{ form.descripcion.errors.0 }}</span>
+                        </div>
+                    {% endif %}
+                    <p class="text-xs text-gray-500">Información adicional sobre la empresa</p>
+                </div>
+                
+                <!-- Estado Activa -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">
+                        <i class="fas fa-toggle-on text-gray-400 mr-2"></i>
+                        Estado de la Empresa
+                    </label>
+                    <div class="flex items-center space-x-3">
+                        <div class="flex items-center">
+                            {{ form.activa }}
+                            <label for="{{ form.activa.id_for_label }}" class="ml-2 text-sm text-gray-900">
+                                ¿Empresa Activa?
+                            </label>
+                        </div>
+                    </div>
+                    {% if form.activa.errors %}
+                        <div class="flex items-center space-x-2 text-red-600 text-sm">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>{{ form.activa.errors.0 }}</span>
+                        </div>
+                    {% endif %}
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                        <div class="flex items-start space-x-2">
+                            <i class="fas fa-info-circle text-blue-500 mt-0.5"></i>
+                            <div class="text-sm text-blue-700">
+                                <p class="font-medium">Estado de la empresa:</p>
+                                <ul class="mt-1 space-y-1">
+                                    <li><strong>Activa:</strong> La empresa está disponible para usar en el sistema</li>
+                                    <li><strong>Inactiva:</strong> La empresa no está disponible para nuevas operaciones</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% if empresa %}
+                <!-- Información adicional para edición -->
+                <div class="border-t border-gray-200 pt-6">
+                    <h4 class="text-sm font-medium text-gray-700 mb-4">
+                        <i class="fas fa-info-circle text-gray-400 mr-2"></i>
+                        Información del Sistema
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-gray-50 rounded-lg p-3">
+                            <label class="block text-xs font-medium text-gray-500 mb-1">ID de la Empresa</label>
+                            <div class="text-sm text-gray-900 font-medium">#{{ empresa.id }}</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3">
+                            <label class="block text-xs font-medium text-gray-500 mb-1">Fecha de Creación</label>
+                            <div class="text-sm text-gray-900">{{ empresa.fecha_creacion|date:"d/m/Y H:i:s" }}</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3">
+                            <label class="block text-xs font-medium text-gray-500 mb-1">Última Modificación</label>
+                            <div class="text-sm text-gray-900">{{ empresa.fecha_modificacion|date:"d/m/Y H:i:s" }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Form Actions -->
+                <div class="border-t border-gray-200 pt-6">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-3 sm:space-y-0">
+                        <div class="text-sm text-gray-500">
+                            <i class="fas fa-asterisk text-red-500 mr-1 text-xs"></i>
+                            Los campos marcados son obligatorios
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="{% url 'empresas:empresa_list' %}" 
+                               class="inline-flex items-center px-4 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                                <i class="fas fa-times mr-2"></i>
+                                Cancelar
+                            </a>
+                            <button type="submit" 
+                                    class="inline-flex items-center px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg shadow-sm transition-colors duration-200">
+                                <i class="fas fa-save mr-2"></i>
+                                {{ button_text }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Help Section -->
+        {% if button_text == "Crear Empresa" %}
+        <div class="bg-white shadow-sm rounded-lg mt-6">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h3 class="text-lg font-medium text-gray-900">
+                    <i class="fas fa-question-circle text-blue-600 mr-2"></i>
+                    Ayuda
+                </h3>
+            </div>
+            <div class="px-6 py-4">
+                <div class="text-sm text-gray-600 space-y-2">
+                    <p><strong>Nombre:</strong> Ingrese el nombre oficial y completo de su empresa.</p>
+                    <p><strong>Tipo:</strong> Puede especificar el tipo de empresa (ej: Comercial, Industrial, Servicios).</p>
+                    <p><strong>Descripción:</strong> Agregue información adicional que ayude a identificar la empresa.</p>
+                    <p><strong>Estado:</strong> Una empresa activa puede usarse en todas las operaciones del sistema.</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}

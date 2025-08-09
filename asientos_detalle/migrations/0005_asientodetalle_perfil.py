@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('perfiles', '0004_perfilplancuenta'),
+        ('perfiles', '0003_alter_perfil_id'),
         ('asientos_detalle', '0004_alter_asientodetalle_options'),
     ]
 

@@ -1,93 +1,576 @@
-{% extends 'base.html' %}
+{% extends 'base_auth.html' %}
+{% load static %}
 
 {% block title %}Configurar Autenticación de Dos Factores{% endblock %}
 
+{% block extra_css %}
+<style>
+    .setup-container {
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    
+    .setup-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        overflow: hidden;
+        max-width: 800px;
+        width: 100%;
+        transform: translateY(0);
+        transition: all 0.3s ease;
+    }
+    
+    .setup-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    .setup-header {
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        padding: 40px 30px;
+        text-align: center;
+        color: white;
+        position: relative;
+    }
+    
+    .setup-header .icon {
+        font-size: 3rem;
+        margin-bottom: 16px;
+        opacity: 0.9;
+    }
+    
+    .setup-header h1 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin: 0 0 8px 0;
+        color: white;
+    }
+    
+    .setup-header p {
+        opacity: 0.9;
+        margin: 0;
+        font-size: 0.95rem;
+    }
+    
+    .setup-body {
+        padding: 40px 30px;
+    }
+    
+    .alert {
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 24px;
+        border: 1px solid transparent;
+        position: relative;
+    }
+    
+    .alert-warning {
+        background: #fffbeb;
+        border-color: #fde68a;
+        color: #92400e;
+    }
+    
+    .alert-info {
+        background: #eff6ff;
+        border-color: #bfdbfe;
+        color: #1e40af;
+    }
+    
+    .alert h5 {
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: inherit;
+        font-size: 0.95rem;
+    }
+    
+    .alert p {
+        margin: 0;
+        line-height: 1.5;
+        font-size: 0.9rem;
+    }
+    
+    .steps-section {
+        margin: 32px 0;
+    }
+    
+    .steps-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .steps-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .step-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 16px;
+        padding: 16px;
+        background: #f9fafb;
+        border-radius: 8px;
+        border-left: 4px solid #2563eb;
+        transition: all 0.3s ease;
+    }
+    
+    .step-item:hover {
+        background: #f3f4f6;
+        transform: translateX(2px);
+    }
+    
+    .step-number {
+        background: #2563eb;
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        margin-right: 12px;
+        flex-shrink: 0;
+        font-size: 0.875rem;
+    }
+    
+    .step-content {
+        flex: 1;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: #374151;
+    }
+    
+    .step-content strong {
+        color: #1f2937;
+        font-weight: 600;
+    }
+    
+    .qr-section {
+        background: #f9fafb;
+        border-radius: 12px;
+        padding: 32px;
+        margin: 32px 0;
+        text-align: center;
+        border: 2px dashed #e5e7eb;
+    }
+    
+    .qr-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        align-items: center;
+    }
+    
+    .qr-code-container {
+        text-align: center;
+    }
+    
+    .qr-code-container h5 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 16px;
+    }
+    
+    .qr-code-frame {
+        background: white;
+        padding: 16px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+        border: 1px solid #e5e7eb;
+    }
+    
+    .qr-code-frame img {
+        border-radius: 8px;
+        max-width: 180px;
+        height: auto;
+    }
+    
+    .secret-key-container h5 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 12px;
+    }
+    
+    .secret-key-description {
+        color: #6b7280;
+        margin-bottom: 16px;
+        line-height: 1.5;
+        font-size: 0.875rem;
+    }
+    
+    .secret-key-input {
+        position: relative;
+        margin-bottom: 12px;
+    }
+    
+    .secret-key-input input {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.875rem;
+        background: #f9fafb;
+        color: #374151;
+        font-weight: 600;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+    }
+    
+    .secret-key-input input:focus {
+        outline: none;
+        border-color: #2563eb;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    .copy-button {
+        background: #2563eb;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.875rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+    }
+    
+    .copy-button:hover {
+        background: #1d4ed8;
+        transform: translateY(-1px);
+        box-shadow: 0 8px 15px -3px rgba(37, 99, 235, 0.3);
+    }
+    
+    .device-label {
+        color: #6b7280;
+        font-size: 0.8rem;
+        margin-top: 8px;
+    }
+    
+    .verification-form {
+        background: white;
+        border-radius: 12px;
+        padding: 32px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e5e7eb;
+        margin-top: 32px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-label {
+        display: block;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+    }
+    
+    .verification-input {
+        width: 100%;
+        padding: 16px;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 1.25rem;
+        font-weight: 600;
+        text-align: center;
+        letter-spacing: 6px;
+        font-family: 'Courier New', monospace;
+        background: #f9fafb;
+        color: #374151;
+        transition: all 0.3s ease;
+    }
+    
+    .verification-input:focus {
+        outline: none;
+        border-color: #2563eb;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    .verification-input::placeholder {
+        color: #9ca3af;
+        letter-spacing: 3px;
+    }
+    
+    .form-help {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin-top: 8px;
+        line-height: 1.4;
+    }
+    
+    .submit-section {
+        text-align: center;
+        margin-top: 24px;
+    }
+    
+    .submit-button {
+        background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+        color: white;
+        border: none;
+        padding: 14px 32px;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px -1px rgba(22, 163, 74, 0.2);
+        min-width: 200px;
+    }
+    
+    .submit-button:hover {
+        background: linear-gradient(135deg, #15803d 0%, #166534 100%);
+        transform: translateY(-1px);
+        box-shadow: 0 8px 15px -3px rgba(22, 163, 74, 0.3);
+    }
+    
+    .submit-button:active {
+        transform: translateY(0);
+    }
+    
+    .back-link {
+        text-align: center;
+        margin-top: 16px;
+    }
+    
+    .back-link a {
+        color: #6b7280;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.875rem;
+        transition: color 0.3s ease;
+    }
+    
+    .back-link a:hover {
+        color: #374151;
+    }
+    
+    @media (max-width: 768px) {
+        .setup-container {
+            padding: 15px;
+        }
+        
+        .setup-header {
+            padding: 30px 20px;
+        }
+        
+        .setup-header h1 {
+            font-size: 1.5rem;
+        }
+        
+        .setup-body {
+            padding: 30px 20px;
+        }
+        
+        .qr-grid {
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+        
+        .verification-form {
+            padding: 24px 20px;
+        }
+        
+        .verification-input {
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+        }
+    }
+</style>
+{% endblock %}
+
 {% block content %}
-<div class="container mt-4">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">Configurar Autenticación de Dos Factores (Obligatorio)</h4>
+<div class="setup-container">
+    <div class="setup-card">
+        <!-- Header -->
+        <div class="setup-header">
+            <i class="fas fa-shield-alt icon"></i>
+            <h1>Configuración de Seguridad</h1>
+            <p>Protege tu cuenta con autenticación de dos factores</p>
+        </div>
+        
+        <div class="setup-body">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="alert alert-warning">
+                <h5><i class="fas fa-exclamation-triangle mr-2"></i>Configuración Obligatoria</h5>
+                <p>La autenticación de dos factores es un requisito obligatorio para usar esta aplicación. No podrás acceder a las funciones del sistema hasta que la configures correctamente.</p>
+            </div>
+
+            <div class="alert alert-info">
+                <h5><i class="fas fa-info-circle mr-2"></i>¿Qué es la autenticación de dos factores?</h5>
+                <p>La autenticación de dos factores (2FA) añade una capa adicional de seguridad a tu cuenta. Además de tu contraseña, necesitarás un código temporal generado por una aplicación en tu dispositivo móvil.</p>
+            </div>
+
+            <!-- Pasos de configuración -->
+            <div class="steps-section">
+                <h2 class="steps-title">Sigue estos pasos para configurar:</h2>
+                <ol class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <strong>Descarga una aplicación autenticadora</strong><br>
+                            Instala Google Authenticator, Microsoft Authenticator o cualquier aplicación TOTP compatible en tu dispositivo móvil.
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <strong>Escanea el código QR o introduce la clave</strong><br>
+                            Usa la cámara de tu aplicación para escanear el código QR o introduce manualmente la clave secreta mostrada abajo.
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <strong>Ingresa el código de verificación</strong><br>
+                            Introduce el código de 6 dígitos que aparece en tu aplicación para verificar que la configuración es correcta.
+                        </div>
+                    </li>
+                </ol>
+            </div>
+
+            <!-- QR Code y Clave Secreta -->
+            <div class="qr-section">
+                <div class="qr-grid">
+                    <div class="qr-code-container">
+                        <h5><i class="fas fa-qrcode mr-2"></i>Código QR</h5>
+                        <div class="qr-code-frame">
+                            <img src="data:image/png;base64,{{ qr_code }}" alt="Código QR para 2FA">
+                        </div>
+                    </div>
+                    <div class="secret-key-container">
+                        <h5><i class="fas fa-key mr-2"></i>Clave Secreta</h5>
+                        <p class="secret-key-description">
+                            Si no puedes escanear el código QR, introduce esta clave en tu aplicación autenticadora:
+                        </p>
+                        <div class="secret-key-input">
+                            <input type="text" value="{{ secret_key }}" id="secretKey" readonly>
+                        </div>
+                        <button type="button" class="copy-button" onclick="copyToClipboard()">
+                            <i class="fas fa-copy mr-2"></i>Copiar Clave
+                        </button>
+                        <div class="device-label">
+                            <i class="fas fa-tag mr-1"></i>Etiqueta: {{ device.name }}
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    {% if messages %}
-                    <div class="mb-4">
-                        {% for message in messages %}
-                            <div class="alert alert-{{ message.tags }}">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
+            </div>
 
-                    <div class="alert alert-warning">
-                        <h5>Configuración obligatoria de seguridad</h5>
-                        <p>La autenticación de dos factores es un requisito obligatorio para usar esta aplicación. No podrás acceder a las funciones del sistema hasta que la configures.</p>
-                    </div>
-
-                    <div class="alert alert-info">
-                        <h5>¿Qué es la autenticación de dos factores?</h5>
-                        <p>La autenticación de dos factores añade una capa adicional de seguridad a tu cuenta. Además de tu contraseña, necesitarás un código generado por una aplicación en tu dispositivo móvil.</p>
-                    </div>
-
-                    <h5 class="mb-3">Sigue estos pasos para configurar:</h5>
-                    <ol class="mb-4">
-                        <li class="mb-2">Descarga una aplicación de autenticación como Google Authenticator o Microsoft Authenticator en tu dispositivo móvil.</li>
-                        <li class="mb-2">Escanea el código QR mostrado abajo o introduce la clave manualmente.</li>
-                        <li class="mb-2">Ingresa el código de 6 dígitos generado por la aplicación para verificar la configuración.</li>
-                    </ol>
-
-                    <div class="row mb-4">
-                        <div class="col-md-6 text-center">
-                            <h5>Código QR</h5>
-                            <img src="data:image/png;base64,{{ qr_code }}" class="img-fluid border" style="max-width: 200px;">
-                        </div>
-                        <div class="col-md-6">
-                            <h5>Clave secreta</h5>
-                            <p>Si no puedes escanear el código QR, introduce esta clave en tu aplicación:</p>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" value="{{ secret_key }}" id="secretKey" readonly>
-                                <button class="btn btn-outline-secondary" type="button" onclick="copyToClipboard()">Copiar</button>
-                            </div>
-                            <small class="text-muted">Etiqueta: {{ device.name }}</small>
+            <!-- Formulario de verificación -->
+            <div class="verification-form">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="token" class="form-label">
+                            <i class="fas fa-mobile-alt mr-2"></i>Código de Verificación
+                        </label>
+                        <input type="text" 
+                               class="verification-input" 
+                               id="token" 
+                               name="token" 
+                               required
+                               inputmode="numeric" 
+                               pattern="[0-9]{6}" 
+                               maxlength="6"
+                               placeholder="000000"
+                               autocomplete="one-time-code">
+                        <div class="form-help">
+                            <i class="fas fa-clock mr-1"></i>
+                            Ingresa el código de 6 dígitos que aparece en tu aplicación autenticadora. 
+                            Los códigos cambian cada 30 segundos y son válidos por aproximadamente 90 segundos.
                         </div>
                     </div>
-
-                    <form method="post" class="mt-4">
-                        {% csrf_token %}
-                        <div class="form-group mb-3">
-                            <label for="token">Código de verificación (6 dígitos)</label>
-                            <input type="text" class="form-control" id="token" name="token" required
-                                   inputmode="numeric" pattern="[0-9]{6}" maxlength="6"
-                                   placeholder="Ingresa el código de 6 dígitos">
-                            <small class="form-text text-muted">Ingresa el código de 6 dígitos que aparece en tu aplicación autenticadora.</small>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary">Verificar y activar</button>
-                        </div>
-                    </form>
-                </div>
+                    <div class="submit-section">
+                        <button type="submit" class="submit-button">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            Verificar y Activar 2FA
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Enlace de regreso -->
+            <div class="back-link">
+                <a href="{% url 'home' %}">
+                    <i class="fas fa-arrow-left mr-1"></i>
+                    Volver al Dashboard
+                </a>
             </div>
         </div>
     </div>
 </div>
 {% endblock %}
 
-{% block extrajs %}
+{% block extra_js %}
 <script>
 function copyToClipboard() {
     const secretInput = document.getElementById('secretKey');
     secretInput.select();
-    document.execCommand('copy');
+    secretInput.setSelectionRange(0, 99999); // Para dispositivos móviles
     
-    // Mostrar mensaje de copiado
-    const btn = event.currentTarget;
-    const originalText = btn.innerText;
-    btn.innerText = "¡Copiado!";
-    setTimeout(() => {
-        btn.innerText = originalText;
-    }, 2000);
+    navigator.clipboard.writeText(secretInput.value).then(function() {
+        // Cambiar el botón para mostrar éxito
+        const btn = document.querySelector('.copy-button');
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check mr-2"></i>¡Copiado!';
+        btn.style.background = '#16a34a';
+        
+        setTimeout(() => {
+            btn.innerHTML = originalHtml;
+            btn.style.background = '#2563eb';
+        }, 2000);
+    }).catch(function() {
+        // Fallback para navegadores más antiguos
+        document.execCommand('copy');
+        const btn = document.querySelector('.copy-button');
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check mr-2"></i>¡Copiado!';
+        btn.style.background = '#16a34a';
+        
+        setTimeout(() => {
+            btn.innerHTML = originalHtml;
+            btn.style.background = '#2563eb';
+        }, 2000);
+    });
 }
+
+// Auto-formatear el input del código
+document.getElementById('token').addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\D/g, ''); // Solo números
+    if (value.length > 6) {
+        value = value.substring(0, 6);
+    }
+    e.target.value = value;
+});
+
+// Focus automático en el input del código cuando se carga la página
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('token').focus();
+});
 </script>
 {% endblock %}

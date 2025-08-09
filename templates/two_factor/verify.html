@@ -1,52 +1,170 @@
-{% extends 'base.html' %}
+{% extends 'base_auth.html' %}
+{% load static %}
 
-{% block title %}Verificar Autenticación de Dos Factores{% endblock %}
+{% block title %}Verificar Autenticación de Dos Factores - Sistema Contable{% endblock %}
+
+{% block extra_css %}
+<style>
+    .code-input {
+        letter-spacing: 0.5rem;
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    }
+    
+    .pulse-animation {
+        animation: pulse 2s infinite;
+    }
+    
+    .fade-in {
+        animation: fadeIn 0.6s ease-in;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">Verificación de Dos Factores</h4>
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full">
+        <!-- Header -->
+        <div class="text-center mb-8 fade-in">
+            <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl pulse-animation">
+                <i class="fas fa-shield-alt text-white text-3xl"></i>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Verificación 2FA</h1>
+            <p class="text-gray-600">
+                Ingresa el código de 6 dígitos de tu aplicación de autenticación
+            </p>
+        </div>
+
+        <!-- Form Card -->
+        <div class="bg-white shadow-xl rounded-2xl p-8 border border-gray-100 fade-in">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="mb-6 p-4 rounded-xl border {% if message.tags == 'error' %}bg-red-50 border-red-200 text-red-800{% elif message.tags == 'warning' %}bg-yellow-50 border-yellow-200 text-yellow-800{% else %}bg-blue-50 border-blue-200 text-blue-800{% endif %}">
+                <div class="flex items-center">
+                    <i class="fas fa-{% if message.tags == 'error' %}exclamation-triangle{% elif message.tags == 'warning' %}exclamation-circle{% else %}info-circle{% endif %} mr-3"></i>
+                    <p class="font-medium">{{ message }}</p>
                 </div>
-                <div class="card-body">
-                    {% if messages %}
-                    <div class="mb-4">
-                        {% for message in messages %}
-                            <div class="alert alert-{{ message.tags }}">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="mb-6">
+                    <label for="token" class="block text-sm font-medium text-gray-700 mb-3 text-center">
+                        Código de Autenticación
+                    </label>
+                    <div class="flex justify-center">
+                        <input type="text" 
+                               name="token" 
+                               id="token" 
+                               maxlength="6" 
+                               autocomplete="off"
+                               autofocus
+                               class="code-input w-48 px-4 py-4 text-2xl font-bold text-center border-2 border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                               placeholder="000000"
+                               required>
                     </div>
+                    <p class="text-xs text-gray-500 text-center mt-3">
+                        Abre tu aplicación de autenticación (Google Authenticator, Authy, etc.)
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <button type="submit" 
+                            class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-4 px-6 rounded-xl shadow-lg transition-all duration-200 hover:scale-105 transform">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        Verificar Código
+                    </button>
+                    
+                    {% if show_recovery_link %}
+                    <a href="{% url 'two_factor_auth:recovery' %}" 
+                       class="block w-full text-center py-3 px-6 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-xl transition-colors duration-200">
+                        <i class="fas fa-key mr-2"></i>
+                        Usar código de recuperación
+                    </a>
                     {% endif %}
+                </div>
+            </form>
+        </div>
 
-                    <div class="alert alert-info mb-4">
-                        <p class="mb-0">Para continuar, introduce el código de 6 dígitos generado por tu aplicación de autenticación.</p>
-                    </div>
-
-                    <form method="post">
-                        {% csrf_token %}
-                        <div class="form-group mb-4">
-                            <label for="token">Código de verificación</label>
-                            <input type="text" class="form-control form-control-lg" id="token" name="token" required
-                                   inputmode="numeric" pattern="[0-9]{6}" maxlength="6"
-                                   placeholder="Ingresa el código de 6 dígitos" autofocus>
-                            <small class="form-text text-muted">Ingresa el código que aparece en tu aplicación de autenticación (Google Authenticator, Microsoft Authenticator, etc).</small>
-                        </div>
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary btn-lg">Verificar</button>
-                        </div>
-                    </form>
-
-                    <div class="mt-4 text-center">
-                        <a href="{% url 'two_factor_auth:recovery' %}" class="text-decoration-none">
-                            <i class="fas fa-key"></i> ¿Perdiste acceso a tu aplicación? Usa un código de recuperación
-                        </a>
-                    </div>
+        <!-- Help Section -->
+        <div class="mt-8 bg-white shadow-lg rounded-xl p-6 border border-gray-100 fade-in">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <i class="fas fa-question-circle text-blue-600 mr-2"></i>
+                ¿Necesitas ayuda?
+            </h3>
+            <div class="space-y-3 text-sm text-gray-600">
+                <div class="flex items-start">
+                    <i class="fas fa-mobile-alt text-blue-500 mt-1 mr-3 flex-shrink-0"></i>
+                    <p>Abre tu aplicación de autenticación y busca la cuenta de este sistema</p>
+                </div>
+                <div class="flex items-start">
+                    <i class="fas fa-clock text-green-500 mt-1 mr-3 flex-shrink-0"></i>
+                    <p>Los códigos cambian cada 30 segundos</p>
+                </div>
+                <div class="flex items-start">
+                    <i class="fas fa-sync-alt text-purple-500 mt-1 mr-3 flex-shrink-0"></i>
+                    <p>Si el código no funciona, espera al siguiente y vuelve a intentarlo</p>
                 </div>
             </div>
         </div>
+
+        <!-- Back to Login -->
+        <div class="mt-6 text-center fade-in">
+            <a href="{% url 'users:login' %}" 
+               class="text-gray-600 hover:text-gray-900 text-sm font-medium transition-colors duration-200">
+                <i class="fas fa-arrow-left mr-1"></i>
+                Volver al inicio de sesión
+            </a>
+        </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tokenInput = document.getElementById('token');
+    
+    // Auto-submit cuando se complete el código
+    tokenInput.addEventListener('input', function(e) {
+        // Solo números
+        this.value = this.value.replace(/[^0-9]/g, '');
+        
+        // Auto-submit cuando tenga 6 dígitos
+        if (this.value.length === 6) {
+            setTimeout(() => {
+                this.form.submit();
+            }, 500);
+        }
+    });
+    
+    // Focus automático
+    tokenInput.focus();
+    
+    // Atajos de teclado
+    document.addEventListener('keydown', function(e) {
+        // Enter en cualquier lugar envía el formulario si hay código
+        if (e.key === 'Enter' && tokenInput.value.length === 6) {
+            e.preventDefault();
+            tokenInput.form.submit();
+        }
+        
+        // Escape limpia el campo
+        if (e.key === 'Escape') {
+            tokenInput.value = '';
+            tokenInput.focus();
+        }
+    });
+});
+</script>
 {% endblock %}

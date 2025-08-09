@@ -24,9 +24,14 @@ class CustomAuthenticationForm(AuthenticationForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs.update({'class': 'form-control'})
-        self.fields['username'].error_messages['required'] = 'Nombre de usuario es obligatorio'
+        # Actualizar etiqueta y placeholder para indicar que acepta email o username
+        self.fields['username'].label = 'Usuario o Email'
+        self.fields['username'].widget.attrs.update({
+            'placeholder': 'Ingrese su usuario o correo electrónico'
+        })
+        self.fields['username'].error_messages['required'] = 'Usuario o email es obligatorio'
         self.fields['password'].error_messages['required'] = 'Contraseña es obligatoria'
-        self.error_messages['invalid_login'] = 'Nombre de usuario o contraseña incorrectos'
+        self.error_messages['invalid_login'] = 'Usuario/email o contraseña incorrectos'
 
 class PasswordRecoveryForm(forms.Form):
     email = forms.EmailField(label='Email', max_length=254)

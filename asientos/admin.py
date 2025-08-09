@@ -11,8 +11,8 @@ class AsientoDetalleInline(admin.TabularInline):
 
 @admin.register(Asiento)
 class AsientoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'fecha', 'perfil')
-    list_filter = ('fecha', 'perfil')
-    search_fields = ('id', 'perfil__descripcion')
+    list_display = ('id', 'fecha', 'id_perfil')  # Use id_perfil instead of empresa
+    list_filter = ('fecha', 'id_perfil')  # Use id_perfil instead of empresa
+    search_fields = ('id', 'id_perfil__descripcion')  # Use id_perfil relationship
     readonly_fields = ('id',)
     inlines = [AsientoDetalleInline]

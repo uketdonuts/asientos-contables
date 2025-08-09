@@ -17,6 +17,18 @@ EXEMPT_URLS = [
     '/users/password-reset-complete/',
     '/logout/',
     '/admin/login/',
+    '/secure/',                   # Módulo seguro - tiene sus propias validaciones
+]
+
+# Lista de URLs que no deben ser guardadas como destino de redirección
+IGNORED_REDIRECT_URLS = [
+    '/.well-known/',              # Solicitudes automáticas del navegador
+    '/favicon.ico',               # Favicon
+    '/robots.txt',                # Robots.txt
+    '/sitemap.xml',               # Sitemap
+    '/manifest.json',             # Web app manifest
+    '/service-worker.js',         # Service worker
+    '/.well-known/appspecific/',  # Configuraciones específicas del navegador
 ]
 
 class TwoFactorMiddleware:
@@ -107,7 +119,17 @@ class TwoFactorMiddleware:
         return is_exempt
     
     def save_next_url(self, request):
-        """Guarda la URL actual como próximo destino, evitando URLs de autenticación"""
-        if not request.path.startswith('/two_factor/') and not request.path.startswith('/users/'):
-            request.session['next'] = request.path
-            print(f"[DEBUG] Guardando next URL en sesión: {request.path}")
+        """Guarda la URL actual como próximo destino, evitando URLs de autenticación y solicitudes automáticas"""
+        # No guardar URLs de autenticación
+        if request.path.startswith('/two_factor/') or request.path.startswith('/users/'):
+            return
+        
+        # No guardar URLs que son solicitudes automáticas del navegador
+        for ignored_url in IGNORED_REDIRECT_URLS:
+            if request.path.startswith(ignored_url):
+                print(f"[DEBUG] Ignorando URL para redirección: {request.path}")
+                return
+        
+        # Solo guardar URLs válidas que no sean solicitudes automáticas
+        request.session['next'] = request.path
+        print(f"[DEBUG] Guardando next URL en sesión: {request.path}")

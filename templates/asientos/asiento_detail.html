@@ -1,0 +1,253 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Detalle de Asiento - {{ asiento.id }}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="mb-8">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900">Detalle de Asiento</h1>
+                    <p class="text-gray-600 mt-2">Información completa del asiento contable</p>
+                </div>
+                <div class="flex space-x-3">
+                    <a href="{% url 'asientos:asiento_list' %}" 
+                       class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Volver
+                    </a>
+                    <a href="{% url 'asientos:asiento_edit' asiento.id %}" 
+                       class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg transition-colors">
+                        <i class="fas fa-edit mr-2"></i>Editar
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Información del Asiento -->
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-8">
+            <div class="bg-gradient-to-r from-primary-600 to-primary-700 px-6 py-4">
+                <h2 class="text-xl font-semibold text-white">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    Información General
+                </h2>
+            </div>
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">ID de Transacción</label>
+                        <div class="bg-gray-50 px-4 py-3 rounded-lg">
+                            <code class="text-sm text-primary-600 font-mono">{{ asiento.id }}</code>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Fecha</label>
+                        <div class="bg-gray-50 px-4 py-3 rounded-lg">
+                            <span class="text-sm text-gray-900">{{ asiento.fecha|date:"d/m/Y" }}</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Perfil Contable</label>
+                        <div class="bg-gray-50 px-4 py-3 rounded-lg">
+                            <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-primary-100 text-primary-800">
+                                {{ asiento.id_perfil.nombre }}
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Empresa</label>
+                        <div class="bg-gray-50 px-4 py-3 rounded-lg">
+                            <span class="text-sm text-gray-900">{{ asiento.empresa }}</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Usuario Creación</label>
+                        <div class="bg-gray-50 px-4 py-3 rounded-lg">
+                            <span class="text-sm text-gray-900">{{ asiento.usuario_creacion.username }}</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Estado del Balance</label>
+                        <div class="bg-gray-50 px-4 py-3 rounded-lg">
+                            {% if monto_total == 0 %}
+                                <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                                    <i class="fas fa-check mr-1"></i>Balanceado
+                                </span>
+                            {% else %}
+                                <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">
+                                    <i class="fas fa-exclamation-triangle mr-1"></i>Desbalanceado
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                {% if asiento.descripcion %}
+                <div class="mt-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Descripción</label>
+                    <div class="bg-gray-50 px-4 py-3 rounded-lg">
+                        <p class="text-sm text-gray-900">{{ asiento.descripcion }}</p>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Detalles del Asiento -->
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-semibold text-white">
+                        <i class="fas fa-list mr-2"></i>
+                        Detalles del Asiento
+                    </h2>
+                    <div class="text-white text-sm">
+                        {{ detalles.count }} detalle{{ detalles.count|pluralize }}
+                    </div>
+                </div>
+            </div>
+            
+            {% if detalles %}
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Cuenta
+                            </th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Tipo
+                            </th>
+                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Debe
+                            </th>
+                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Haber
+                            </th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Polaridad
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        {% for detalle in detalles %}
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">
+                                    {{ detalle.cuenta.codigo }}
+                                </div>
+                                <div class="text-sm text-gray-500">
+                                    {{ detalle.cuenta.descripcion }}
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full 
+                                             {% if detalle.tipo_cuenta == 'ACTIVO' %}bg-blue-100 text-blue-800
+                                             {% elif detalle.tipo_cuenta == 'PASIVO' %}bg-red-100 text-red-800
+                                             {% elif detalle.tipo_cuenta == 'PATRIMONIO' %}bg-purple-100 text-purple-800
+                                             {% elif detalle.tipo_cuenta == 'INGRESO' %}bg-green-100 text-green-800
+                                             {% elif detalle.tipo_cuenta == 'GASTO' %}bg-yellow-100 text-yellow-800
+                                             {% else %}bg-gray-100 text-gray-800{% endif %}">
+                                    {{ detalle.tipo_cuenta }}
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm">
+                                {% if detalle.polaridad == '+' %}
+                                    <span class="font-medium text-green-600">
+                                        ${{ detalle.monto|floatformat:2 }}
+                                    </span>
+                                {% else %}
+                                    <span class="text-gray-400">-</span>
+                                {% endif %}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm">
+                                {% if detalle.polaridad == '-' %}
+                                    <span class="font-medium text-blue-600">
+                                        ${{ detalle.monto|floatformat:2 }}
+                                    </span>
+                                {% else %}
+                                    <span class="text-gray-400">-</span>
+                                {% endif %}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                {% if detalle.polaridad == '+' %}
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                        <i class="fas fa-plus mr-1"></i>Debe
+                                    </span>
+                                {% else %}
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                        <i class="fas fa-minus mr-1"></i>Haber
+                                    </span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot class="bg-gray-50">
+                        <tr class="font-semibold">
+                            <td colspan="2" class="px-6 py-3 text-right text-sm font-medium text-gray-900">
+                                Totales:
+                            </td>
+                            <td class="px-6 py-3 text-right text-sm font-medium text-gray-900">
+                                {% with total_debe=detalles|dictsort:"polaridad"|first %}
+                                    {% if total_debe %}
+                                        ${{ total_debe.monto|floatformat:2 }}
+                                    {% else %}
+                                        $0.00
+                                    {% endif %}
+                                {% endwith %}
+                            </td>
+                            <td class="px-6 py-3 text-right text-sm font-medium text-gray-900">
+                                {% with total_haber=detalles|dictsort:"polaridad"|last %}
+                                    {% if total_haber %}
+                                        ${{ total_haber.monto|floatformat:2 }}
+                                    {% else %}
+                                        $0.00
+                                    {% endif %}
+                                {% endwith %}
+                            </td>
+                            <td class="px-6 py-3 text-left text-sm">
+                                {% if monto_total == 0 %}
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                        <i class="fas fa-check mr-1"></i>Balanceado
+                                    </span>
+                                {% else %}
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                        <i class="fas fa-exclamation-triangle mr-1"></i>Diferencia: ${{ monto_total|floatformat:2 }}
+                                    </span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            {% else %}
+            <div class="text-center py-12">
+                <i class="fas fa-inbox text-6xl text-gray-400 mb-4"></i>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">Sin detalles</h3>
+                <p class="text-gray-600 mb-6">Este asiento no tiene detalles asociados</p>
+                <a href="{% url 'asientos:asiento_edit' asiento.id %}" 
+                   class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                    <i class="fas fa-plus mr-2"></i>Agregar Detalles
+                </a>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Acciones adicionales -->
+        <div class="mt-8 flex justify-center space-x-4">
+            <a href="{% url 'asientos:asiento_edit' asiento.id %}" 
+               class="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                <i class="fas fa-edit mr-2"></i>Editar Asiento
+            </a>
+            <a href="{% url 'asientos:asiento_delete' asiento.id %}" 
+               class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+               onclick="return confirm('¿Está seguro de eliminar este asiento? Esta acción no se puede deshacer.')">
+                <i class="fas fa-trash mr-2"></i>Eliminar Asiento
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

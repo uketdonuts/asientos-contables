@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Detalles: {{ empresa.nombre }}{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="bg-white shadow-sm rounded-lg">
+        <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+            <h3 class="text-lg font-medium text-gray-900">
+                <i class="fas fa-building mr-2"></i> {{ empresa.nombre }}
+            </h3>
+            <div class="flex space-x-3">
+                <a href="{% url 'empresas:empresa_edit' empresa.id %}" class="bg-warning-500 hover:bg-warning-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                    <i class="fas fa-edit mr-1"></i> Editar
+                </a>
+                <a href="{% url 'empresas:empresa_list' %}" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                    <i class="fas fa-arrow-left mr-1"></i> Volver
+                </a>
+            </div>
+        </div>
+        
+        <div class="p-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Información Principal -->
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-info-circle text-primary-600 mr-2"></i>
+                        <h5 class="text-lg font-medium text-gray-900">Información General</h5>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between">
+                            <dt class="text-sm font-medium text-gray-500">ID:</dt>
+                            <dd class="text-sm text-gray-900">
+                                <code class="bg-gray-200 px-2 py-1 rounded text-xs">{{ empresa.id }}</code>
+                            </dd>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <dt class="text-sm font-medium text-gray-500">Nombre:</dt>
+                            <dd class="text-sm text-gray-900 font-medium">{{ empresa.nombre }}</dd>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <dt class="text-sm font-medium text-gray-500">Tipo:</dt>
+                            <dd class="text-sm text-gray-900">
+                                {% if empresa.type %}
+                                    <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">{{ empresa.type }}</span>
+                                {% else %}
+                                    <span class="text-gray-400">No especificado</span>
+                                {% endif %}
+                            </dd>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <dt class="text-sm font-medium text-gray-500">Estado:</dt>
+                            <dd class="text-sm text-gray-900">
+                                {% if empresa.activa %}
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-success-100 text-success-800">
+                                        <i class="fas fa-check mr-1"></i> Activa
+                                    </span>
+                                {% else %}
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                        <i class="fas fa-times mr-1"></i> Inactiva
+                                    </span>
+                                {% endif %}
+                            </dd>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <dt class="text-sm font-medium text-gray-500">Creada:</dt>
+                            <dd class="text-sm text-gray-900">{{ empresa.fecha_creacion|date:"d/m/Y H:i:s" }}</dd>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <dt class="text-sm font-medium text-gray-500">Modificada:</dt>
+                            <dd class="text-sm text-gray-900">{{ empresa.fecha_modificacion|date:"d/m/Y H:i:s" }}</dd>
+                        </div>
+                    </div>
+                    
+                    {% if empresa.descripcion %}
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <h6 class="text-sm font-medium text-gray-500 mb-2">Descripción:</h6>
+                        <p class="text-sm text-gray-700">{{ empresa.descripcion }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Estadísticas -->
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-chart-bar text-primary-600 mr-2"></i>
+                        <h5 class="text-lg font-medium text-gray-900">Estadísticas</h5>
+                    </div>
+                    <div class="grid grid-cols-1 gap-4 mb-6">
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 text-center">
+                            <h4 class="text-2xl font-bold text-primary-600">{{ stats.planes_cuentas }}</h4>
+                            <p class="text-sm text-gray-500">Planes de Cuentas</p>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 text-center">
+                            <h4 class="text-2xl font-bold text-success-600">{{ stats.cuentas }}</h4>
+                            <p class="text-sm text-gray-500">Cuentas Contables</p>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 text-center">
+                            <h4 class="text-2xl font-bold text-blue-600">{{ stats.asientos }}</h4>
+                            <p class="text-sm text-gray-500">Asientos Contables</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h6 class="text-sm font-medium text-gray-500 mb-3">Acciones Rápidas:</h6>
+                        <div class="space-y-2">
+                            <a href="{% url 'plan_cuentas:plan_cuenta_list' %}?empresa={{ empresa.nombre }}" 
+                               class="block w-full text-center bg-primary-50 text-primary-700 border border-primary-200 px-3 py-2 rounded-md text-sm font-medium hover:bg-primary-100 transition-colors">
+                                <i class="fas fa-list mr-1"></i> Ver Planes de Cuentas
+                            </a>
+                            <a href="{% url 'plan_cuentas:cuenta_list' %}?empresa={{ empresa.nombre }}" 
+                               class="block w-full text-center bg-success-50 text-success-700 border border-success-200 px-3 py-2 rounded-md text-sm font-medium hover:bg-success-100 transition-colors">
+                                <i class="fas fa-coins mr-1"></i> Ver Cuentas Contables
+                            </a>
+                            <a href="{% url 'asientos:asiento_list' %}?empresa={{ empresa.id }}" 
+                               class="block w-full text-center bg-blue-50 text-blue-700 border border-blue-200 px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-100 transition-colors">
+                                <i class="fas fa-book mr-1"></i> Ver Asientos Contables
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="px-6 py-4 border-t border-gray-200 flex justify-between items-center">
+            <div>
+                <form method="post" action="{% url 'empresas:empresa_toggle_active' empresa.id %}" 
+                      class="inline" onsubmit="return confirm('¿Está seguro de cambiar el estado de esta empresa?')">
+                    {% csrf_token %}
+                    <button type="submit" class="{% if empresa.activa %}bg-warning-500 hover:bg-warning-600{% else %}bg-success-600 hover:bg-success-700{% endif %} text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                        <i class="fas {% if empresa.activa %}fa-pause{% else %}fa-play{% endif %} mr-1"></i>
+                        {% if empresa.activa %}Desactivar{% else %}Activar{% endif %} Empresa
+                    </button>
+                </form>
+            </div>
+            
+            <div>
+                <form method="post" action="{% url 'empresas:empresa_delete' empresa.id %}" 
+                      class="inline" onsubmit="return confirm('¿Está seguro de eliminar esta empresa? Esta acción no se puede deshacer y eliminará todos los datos relacionados.')">
+                    {% csrf_token %}
+                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                        <i class="fas fa-trash mr-1"></i> Eliminar Empresa
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

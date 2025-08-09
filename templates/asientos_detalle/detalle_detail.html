@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title }} - Sistema Contable{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 py-6">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header Section -->
+        <div class="bg-white shadow-sm rounded-lg mb-6">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                    <div class="flex items-center space-x-3 mb-4 sm:mb-0">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-list-ul text-purple-600 text-lg"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold text-gray-900">{{ title }}</h1>
+                            <p class="text-sm text-gray-600 mt-1">Información detallada del detalle de asiento</p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="{% url 'asientos_detalle:detalle_edit' detalle.id %}" 
+                           class="inline-flex items-center px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white text-sm font-medium rounded-lg shadow-sm transition-colors duration-200">
+                            <i class="fas fa-edit mr-2"></i>
+                            Editar
+                        </a>
+                        <a href="{% url 'asientos_detalle:detalle_delete' detalle.id %}" 
+                           class="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-lg shadow-sm transition-colors duration-200">
+                            <i class="fas fa-trash mr-2"></i>
+                            Eliminar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detail Section -->
+        <div class="bg-white shadow-sm rounded-lg overflow-hidden">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h3 class="text-lg font-medium text-gray-900">Información del Detalle</h3>
+            </div>
+            
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Asiento Information -->
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Asiento</h4>
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <div class="space-y-2">
+                                    <div class="flex justify-between">
+                                        <span class="text-sm text-gray-600">Descripción:</span>
+                                        <span class="text-sm font-medium text-gray-900">{{ detalle.asiento.descripcion }}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-sm text-gray-600">Fecha:</span>
+                                        <span class="text-sm font-medium text-gray-900">{{ detalle.asiento.fecha|date:"d/m/Y" }}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-sm text-gray-600">Número:</span>
+                                        <span class="text-sm font-medium text-gray-900">#{{ detalle.asiento.numero }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cuenta Information -->
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Cuenta Contable</h4>
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <div class="space-y-2">
+                                    <div class="flex justify-between">
+                                        <span class="text-sm text-gray-600">Código:</span>
+                                        <span class="text-sm font-medium text-gray-900 font-mono">{{ detalle.cuenta.codigocuenta }}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-sm text-gray-600">Descripción:</span>
+                                        <span class="text-sm font-medium text-gray-900">{{ detalle.cuenta.descripcion }}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-sm text-gray-600">Grupo:</span>
+                                        <span class="text-sm font-medium text-gray-900">{{ detalle.cuenta.grupo }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detalle Information -->
+                    <div class="space-y-4">
+                        <!-- Monto y Polaridad -->
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Información Financiera</h4>
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <div class="space-y-2">
+                                    <div class="flex justify-between">
+                                        <span class="text-sm text-gray-600">Monto:</span>
+                                        <span class="text-lg font-bold text-gray-900">${{ detalle.valor|floatformat:2 }}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-sm text-gray-600">Polaridad:</span>
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium 
+                                                   {% if detalle.polaridad == 'D' %}bg-green-100 text-green-800
+                                                   {% else %}bg-red-100 text-red-800{% endif %}">
+                                            {% if detalle.polaridad == 'D' %}
+                                                <i class="fas fa-arrow-up mr-1"></i>Debe
+                                            {% else %}
+                                                <i class="fas fa-arrow-down mr-1"></i>Haber
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Empresa Information -->
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Empresa</h4>
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <div class="space-y-2">
+                                    <div class="flex justify-between">
+                                        <span class="text-sm text-gray-600">Nombre:</span>
+                                        <span class="text-sm font-medium text-gray-900">{{ detalle.empresa_id.nombre }}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-sm text-gray-600">RUC:</span>
+                                        <span class="text-sm font-medium text-gray-900">{{ detalle.empresa_id.ruc }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Metadata -->
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Información del Sistema</h4>
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <div class="space-y-2">
+                                    <div class="flex justify-between">
+                                        <span class="text-sm text-gray-600">ID:</span>
+                                        <span class="text-sm font-medium text-gray-900">#{{ detalle.id }}</span>
+                                    </div>
+                                    {% if detalle.fecha_creacion %}
+                                    <div class="flex justify-between">
+                                        <span class="text-sm text-gray-600">Creado:</span>
+                                        <span class="text-sm font-medium text-gray-900">{{ detalle.fecha_creacion|date:"d/m/Y H:i" }}</span>
+                                    </div>
+                                    {% endif %}
+                                    {% if detalle.fecha_modificacion %}
+                                    <div class="flex justify-between">
+                                        <span class="text-sm text-gray-600">Modificado:</span>
+                                        <span class="text-sm font-medium text-gray-900">{{ detalle.fecha_modificacion|date:"d/m/Y H:i" }}</span>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex justify-end space-x-3 pt-6 border-t border-gray-200 mt-6">
+                    <a href="{% url 'asientos_detalle:detalle_list' %}" 
+                       class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        Volver a la Lista
+                    </a>
+                    <a href="{% url 'asientos_detalle:detalle_edit' detalle.id %}" 
+                       class="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+                        <i class="fas fa-edit mr-2"></i>
+                        Editar Detalle
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -11,7 +11,7 @@ from .forms import (
     CustomSetPasswordForm,
     UserProfileForm
 )
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django_otp import devices_for_user
 from django_otp.plugins.otp_totp.models import TOTPDevice
 from django.core.mail import send_mail
@@ -86,8 +86,8 @@ def login_view(request):
                     request.session['next'] = '/admin/'
                     print("[DEBUG] Guardando ruta de admin en sesión")
                 else:
-                    request.session['next'] = reverse('entries:entry_list')
-                    print("[DEBUG] Guardando ruta de entries en sesión")
+                    request.session['next'] = reverse('asientos:asiento_list')
+                    print("[DEBUG] Guardando ruta de asientos en sesión")
                 
                 # Primero se debe verificar 2FA antes de redirigir al destino deseado
                 print("[DEBUG] Redirigiendo a verify desde login_view")
@@ -136,9 +136,9 @@ class CustomPasswordResetView(FormView):
             device = create_or_get_totp_device(user)
             
             if device:
-                # Generar OTP y establecer tiempo de expiración (10 minutos)
+                # Generar OTP y establecer tiempo de expiración (2 minutos)
                 otp_code = generate_otp_code()
-                expiry_time = timezone.now() + timedelta(minutes=10)
+                expiry_time = timezone.now() + timedelta(minutes=2)
                 
                 # Almacenar OTP y tiempo de expiración en nuestro almacén temporal
                 OTP_STORE[email] = {
@@ -162,7 +162,7 @@ class CustomPasswordResetView(FormView):
                     # Crear el mensaje de correo
                     subject = 'Su código OTP para restablecer la contraseña'
                     message = (f'Su código OTP para restablecer la contraseña es: {otp_code}\n'
-                              f'Este código es válido por 10 minutos.')
+                              f'Este código es válido por 2 minutos.')
                     from_email = settings.DEFAULT_FROM_EMAIL
                     to_email = user.email
                     

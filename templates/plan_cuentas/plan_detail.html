@@ -1,0 +1,261 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Detalles: {{ plan.descripcion }}{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="bg-white shadow-sm rounded-lg">
+        <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+            <h3 class="text-lg font-medium text-gray-900">
+                <i class="fas fa-sitemap mr-2"></i> {{ plan.descripcion }}
+            </h3>
+            <div class="flex space-x-3">
+                <a href="{% url 'plan_cuentas:plan_cuenta_edit' plan.id %}" class="bg-warning-500 hover:bg-warning-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                    <i class="fas fa-edit mr-1"></i> Editar
+                </a>
+                <a href="{% url 'plan_cuentas:plan_cuenta_list' %}" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                    <i class="fas fa-arrow-left mr-1"></i> Volver
+                </a>
+            </div>
+        </div>
+        
+        <div class="p-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Información Principal -->
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-info-circle text-primary-600 mr-2"></i>
+                        <h5 class="text-lg font-medium text-gray-900">Información General</h5>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between">
+                            <dt class="text-sm font-medium text-gray-500">ID:</dt>
+                            <dd class="text-sm text-gray-900">
+                                <code class="bg-gray-200 px-2 py-1 rounded text-xs">{{ plan.id }}</code>
+                            </dd>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <dt class="text-sm font-medium text-gray-500">Descripción:</dt>
+                            <dd class="text-sm text-gray-900 font-medium">{{ plan.descripcion }}</dd>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <dt class="text-sm font-medium text-gray-500">Empresa:</dt>
+                            <dd class="text-sm text-gray-900">
+                                <span class="inline-flex items-center px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+                                    <i class="fas fa-building mr-1"></i>{{ plan.empresa }}
+                                </span>
+                            </dd>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <dt class="text-sm font-medium text-gray-500">Perfil:</dt>
+                            <dd class="text-sm text-gray-900">
+                                <span class="inline-flex items-center px-2 py-1 text-xs font-semibold rounded-full bg-success-100 text-success-800">
+                                    <i class="fas fa-user-cog mr-1"></i>{{ plan.perfil.descripcion }}
+                                </span>
+                            </dd>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <dt class="text-sm font-medium text-gray-500">Código Principal:</dt>
+                            <dd class="text-sm text-gray-900">
+                                <code class="bg-primary-100 text-primary-800 px-2 py-1 rounded">{{ plan.codigocuenta }}</code>
+                            </dd>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <dt class="text-sm font-medium text-gray-500">Grupo:</dt>
+                            <dd class="text-sm text-gray-900">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+                                    {% if plan.grupo == 1 %}bg-primary-100 text-primary-800
+                                    {% elif plan.grupo == 2 %}bg-red-100 text-red-800
+                                    {% elif plan.grupo == 3 %}bg-blue-100 text-blue-800
+                                    {% elif plan.grupo == 4 %}bg-success-100 text-success-800
+                                    {% elif plan.grupo == 5 %}bg-warning-100 text-warning-800
+                                    {% else %}bg-gray-100 text-gray-800
+                                    {% endif %}">
+                                    {% if plan.grupo == 1 %}1 - Activos
+                                    {% elif plan.grupo == 2 %}2 - Pasivos
+                                    {% elif plan.grupo == 3 %}3 - Patrimonio
+                                    {% elif plan.grupo == 4 %}4 - Ingresos
+                                    {% elif plan.grupo == 5 %}5 - Gastos
+                                    {% else %}Grupo {{ plan.grupo }}
+                                    {% endif %}
+                                </span>
+                            </dd>
+                        </div>
+                        
+                        {% if plan.cuentamadre %}
+                        <div class="flex justify-between">
+                            <dt class="text-sm font-medium text-gray-500">Cuenta Madre:</dt>
+                            <dd class="text-sm text-gray-900">
+                                <code class="bg-gray-200 px-2 py-1 rounded text-xs">{{ plan.cuentamadre }}</code>
+                            </dd>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <!-- Estadísticas -->
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-chart-bar text-primary-600 mr-2"></i>
+                        <h5 class="text-lg font-medium text-gray-900">Estadísticas</h5>
+                    </div>
+                    <div class="grid grid-cols-1 gap-4 mb-6">
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 text-center">
+                            <h4 class="text-2xl font-bold text-primary-600">{{ stats.total_cuentas }}</h4>
+                            <p class="text-sm text-gray-500">Cuentas Asociadas</p>
+                        </div>
+                        {% if stats.cuentas_por_grupo %}
+                            {% for grupo in stats.cuentas_por_grupo %}
+                            <div class="bg-white border border-gray-200 rounded-lg p-3 text-center">
+                                <h5 class="text-lg font-bold
+                                    {% if grupo.grupo == 1 %}text-primary-600
+                                    {% elif grupo.grupo == 2 %}text-red-600
+                                    {% elif grupo.grupo == 3 %}text-blue-600
+                                    {% elif grupo.grupo == 4 %}text-success-600
+                                    {% elif grupo.grupo == 5 %}text-warning-600
+                                    {% else %}text-gray-600
+                                    {% endif %}">{{ grupo.count }}</h5>
+                                <p class="text-xs text-gray-500">
+                                    {% if grupo.grupo == 1 %}Activos
+                                    {% elif grupo.grupo == 2 %}Pasivos
+                                    {% elif grupo.grupo == 3 %}Patrimonio
+                                    {% elif grupo.grupo == 4 %}Ingresos
+                                    {% elif grupo.grupo == 5 %}Gastos
+                                    {% else %}Grupo {{ grupo.grupo }}
+                                    {% endif %}
+                                </p>
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    
+                    <div>
+                        <h6 class="text-sm font-medium text-gray-500 mb-3">Acciones Rápidas:</h6>
+                        <div class="space-y-2">
+                            <a href="{% url 'plan_cuentas:cuenta_create' %}?plan={{ plan.id }}" 
+                               class="block w-full text-center bg-success-50 text-success-700 border border-success-200 px-3 py-2 rounded-md text-sm font-medium hover:bg-success-100 transition-colors">
+                                <i class="fas fa-plus mr-1"></i> Nueva Cuenta
+                            </a>
+                            <a href="{% url 'plan_cuentas:cuenta_list' %}?plan={{ plan.id }}" 
+                               class="block w-full text-center bg-primary-50 text-primary-700 border border-primary-200 px-3 py-2 rounded-md text-sm font-medium hover:bg-primary-100 transition-colors">
+                                <i class="fas fa-list mr-1"></i> Ver Todas las Cuentas
+                            </a>
+                            <a href="{% url 'asientos:asiento_list' %}?plan={{ plan.id }}" 
+                               class="block w-full text-center bg-blue-50 text-blue-700 border border-blue-200 px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-100 transition-colors">
+                                <i class="fas fa-book mr-1"></i> Ver Asientos Relacionados
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Cuentas Asociadas -->
+        <div class="px-6 py-4 border-t border-gray-200">
+            <div class="flex justify-between items-center mb-4">
+                <h4 class="text-lg font-medium text-gray-900">
+                    <i class="fas fa-list-alt mr-2"></i>
+                    Cuentas Asociadas ({{ stats.total_cuentas }})
+                </h4>
+                <a href="{% url 'plan_cuentas:cuenta_create' %}?plan={{ plan.id }}" 
+                   class="bg-success-600 hover:bg-success-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                    <i class="fas fa-plus mr-1"></i> Nueva Cuenta
+                </a>
+            </div>
+            
+            {% if cuentas %}
+                <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                    <table class="min-w-full divide-y divide-gray-300">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Código</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descripción</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Grupo</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cuenta Madre</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            {% for cuenta in cuentas %}
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <code class="bg-gray-100 px-2 py-1 rounded text-sm">{{ cuenta.cuenta }}</code>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                    {{ cuenta.descripcion }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    {% if cuenta.grupo %}
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+                                            {% if cuenta.grupo == 1 %}bg-primary-100 text-primary-800
+                                            {% elif cuenta.grupo == 2 %}bg-red-100 text-red-800
+                                            {% elif cuenta.grupo == 3 %}bg-blue-100 text-blue-800
+                                            {% elif cuenta.grupo == 4 %}bg-success-100 text-success-800
+                                            {% elif cuenta.grupo == 5 %}bg-warning-100 text-warning-800
+                                            {% else %}bg-gray-100 text-gray-800
+                                            {% endif %}">
+                                            {{ cuenta.grupo }}
+                                        </span>
+                                    {% else %}
+                                        <span class="text-gray-400">-</span>
+                                    {% endif %}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {% if cuenta.cuenta_madre %}
+                                        <code class="bg-gray-100 px-2 py-1 rounded text-xs">{{ cuenta.cuenta_madre.cuenta }}</code>
+                                    {% else %}
+                                        <span class="text-gray-400">-</span>
+                                    {% endif %}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <div class="flex space-x-2">
+                                        <a href="{% url 'plan_cuentas:cuenta_detail' cuenta.id %}" 
+                                           class="text-primary-600 hover:text-primary-900" title="Ver detalles">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a href="{% url 'plan_cuentas:cuenta_edit' cuenta.id %}" 
+                                           class="text-warning-600 hover:text-warning-900" title="Editar">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="{% url 'plan_cuentas:cuenta_delete' cuenta.id %}" 
+                                           class="text-red-600 hover:text-red-900" title="Eliminar">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="text-center py-12 bg-gray-50 rounded-lg">
+                    <i class="fas fa-inbox text-6xl text-gray-400 mb-4"></i>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">No hay cuentas asociadas</h3>
+                    <p class="text-gray-500 mb-4">Comience agregando cuentas a este plan contable</p>
+                    <a href="{% url 'plan_cuentas:cuenta_create' %}?plan={{ plan.id }}" 
+                       class="bg-success-600 hover:bg-success-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                        <i class="fas fa-plus mr-1"></i> Crear Primera Cuenta
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="px-6 py-4 border-t border-gray-200 flex justify-end">
+            <form method="post" action="{% url 'plan_cuentas:plan_cuenta_delete' plan.id %}" 
+                  class="inline" onsubmit="return confirm('¿Está seguro de eliminar este plan de cuentas? Esta acción no se puede deshacer y eliminará todas las cuentas relacionadas.')">
+                {% csrf_token %}
+                <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                    <i class="fas fa-trash mr-1"></i> Eliminar Plan
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %} 

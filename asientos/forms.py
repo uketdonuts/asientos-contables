@@ -5,24 +5,26 @@ from perfiles.models import Perfil
 class AsientoForm(forms.ModelForm):
     class Meta:
         model = Asiento
-        fields = ['fecha', 'perfil']
+        fields = ['fecha', 'id_perfil']  # Use id_perfil instead of empresa
         widgets = {
-            'perfil': forms.Select(attrs={'class': 'form-select select2'}),
+            'fecha': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'id_perfil': forms.Select(attrs={'class': 'form-control'}),
         }
         error_messages = {
             'fecha': {'required': 'La fecha es requerida'},
-            'perfil': {'required': 'El perfil contable es requerido'},
+            'id_perfil': {'required': 'El perfil es requerido'},
         }
     
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
         
-        # Filter active profiles
-        self.fields['perfil'].queryset = Perfil.objects.filter(vigencia='S')
-        
         # Add user to form fields for later use in save
         self.user = user
+        
+        # Set default empresa if not provided
+        if not self.instance.pk:
+            self.fields['empresa'].initial = 'DEFAULT'
     
     def clean(self):
         cleaned_data = super().clean()
@@ -39,11 +41,11 @@ class AsientoForm(forms.ModelForm):
         if asiento.pk: # Condition simplified: if asiento.pk is true, hasattr(asiento, 'detalles') is implied for a standard setup.
             total_movimientos = 0
             for detalle in asiento.detalles.all():
-                if detalle.valor is not None:
+                if detalle.monto is not None:
                     if detalle.polaridad == '+':
-                        total_movimientos += detalle.valor
+                        total_movimientos += detalle.monto
                     elif detalle.polaridad == '-':
-                        total_movimientos -= detalle.valor
+                        total_movimientos -= detalle.monto
             
             if total_movimientos != 0:
                 raise forms.ValidationError(

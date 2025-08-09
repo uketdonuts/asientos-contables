@@ -1,33 +1,222 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Confirmar Eliminación{% endblock %}
+{% block title %}Eliminar Cuenta Contable - Sistema Contable{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/plan-cuentas.css' %}">
+{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="row mb-3">
-        <div class="col">
-            <h2>Confirmar Eliminación</h2>
+<div class="min-h-screen bg-gray-50 py-6">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Breadcrumb -->
+        <nav class="flex mb-6" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="{% url 'plan_cuentas:plan_cuenta_list' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-emerald-600">
+                        <i class="fas fa-chart-line mr-2"></i>
+                        Plan de Cuentas
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
+                        <span class="text-sm font-medium text-gray-500">Eliminar Cuenta</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Warning Card -->
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <!-- Header -->
+            <div class="bg-red-50 px-6 py-4 border-b border-red-200">
+                <div class="flex items-center space-x-3">
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-exclamation-triangle text-red-600 text-lg"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-red-900">Confirmar Eliminación</h1>
+                        <p class="text-sm text-red-700 mt-1">Esta acción no se puede deshacer</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="px-6 py-6">
+                <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+                    <div class="flex items-start space-x-3">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-exclamation-circle text-red-600 text-xl mt-1"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-medium text-red-900 mb-2">
+                                ¿Está seguro de eliminar esta cuenta contable?
+                            </h3>
+                            <p class="text-red-800 mb-3">
+                                Una vez eliminada, no podrá recuperar la información de la cuenta ni sus dependencias.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Details -->
+                <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                    <h4 class="text-sm font-medium text-gray-900 mb-3">Detalles de la cuenta a eliminar:</h4>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between py-2 border-b border-gray-200">
+                            <span class="text-sm text-gray-600">
+                                <i class="fas fa-hashtag mr-2"></i>Código:
+                            </span>
+                            <code class="text-sm font-mono bg-white px-2 py-1 rounded border">{{ cuenta.codigocuenta }}</code>
+                        </div>
+                        <div class="flex items-center justify-between py-2 border-b border-gray-200">
+                            <span class="text-sm text-gray-600">
+                                <i class="fas fa-file-alt mr-2"></i>Descripción:
+                            </span>
+                            <span class="text-sm font-medium text-gray-900">{{ cuenta.descripcion }}</span>
+                        </div>
+                        <div class="flex items-center justify-between py-2 border-b border-gray-200">
+                            <span class="text-sm text-gray-600">
+                                <i class="fas fa-building mr-2"></i>Empresa:
+                            </span>
+                            <span class="text-sm font-medium text-gray-900">
+                                {% if cuenta.empresa_id %}{{ cuenta.empresa_id.nombre }}{% else %}N/A{% endif %}
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between py-2 border-b border-gray-200">
+                            <span class="text-sm text-gray-600">
+                                <i class="fas fa-layer-group mr-2"></i>Grupo:
+                            </span>
+                            <span class="text-sm font-medium">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium 
+                                             {% if cuenta.grupo == 1 %}bg-green-100 text-green-800
+                                             {% elif cuenta.grupo == 2 %}bg-red-100 text-red-800
+                                             {% elif cuenta.grupo == 3 %}bg-blue-100 text-blue-800
+                                             {% elif cuenta.grupo == 4 %}bg-yellow-100 text-yellow-800
+                                             {% elif cuenta.grupo == 5 %}bg-purple-100 text-purple-800
+                                             {% else %}bg-gray-100 text-gray-800{% endif %}">
+                                    Grupo {{ cuenta.grupo }}
+                                </span>
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between py-2">
+                            <span class="text-sm text-gray-600">
+                                <i class="fas fa-code-branch mr-2"></i>Cuenta Madre:
+                            </span>
+                            <span class="text-sm font-medium text-gray-900">
+                                {% if cuenta.cuentamadre %}
+                                    <code class="px-2 py-1 bg-blue-50 rounded text-blue-800">{{ cuenta.cuentamadre }}</code>
+                                {% else %}
+                                    <span class="text-gray-400 italic">Cuenta principal</span>
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dependencies Warning -->
+                {% if tiene_dependencias %}
+                <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+                    <div class="flex items-start space-x-3">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-ban text-red-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-medium text-red-800 mb-2">¡No se puede eliminar!</h4>
+                            <p class="text-sm text-red-700 mb-3">
+                                Esta cuenta tiene {{ cuentas_hijas.count }} cuenta{{ cuentas_hijas.count|pluralize:"s" }} dependiente{{ cuentas_hijas.count|pluralize:"s" }}:
+                            </p>
+                            <div class="space-y-1">
+                                {% for hija in cuentas_hijas %}
+                                <div class="flex items-center space-x-2 text-sm text-red-700">
+                                    <i class="fas fa-arrow-right text-xs"></i>
+                                    <code class="px-1 py-0.5 bg-white rounded">{{ hija.codigocuenta }}</code>
+                                    <span>{{ hija.descripcion }}</span>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <!-- Consequences Warning -->
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                    <div class="flex items-start space-x-3">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-exclamation-triangle text-yellow-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-medium text-yellow-800 mb-2">Consecuencias de la eliminación:</h4>
+                            <ul class="text-sm text-yellow-700 space-y-1">
+                                <li class="flex items-start space-x-2">
+                                    <i class="fas fa-dot-circle text-yellow-600 mt-1 text-xs"></i>
+                                    <span>Se eliminarán todas las configuraciones asociadas a esta cuenta</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <i class="fas fa-dot-circle text-yellow-600 mt-1 text-xs"></i>
+                                    <span>Los asientos contables que usen esta cuenta podrían verse afectados</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <i class="fas fa-dot-circle text-yellow-600 mt-1 text-xs"></i>
+                                    <span>Esta acción no se puede deshacer</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Form Actions -->
+                {% if not tiene_dependencias %}
+                <form method="post" class="border-t border-gray-200 pt-6">
+                    {% csrf_token %}
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-3 sm:space-y-0 sm:space-x-3">
+                        <div class="text-sm text-gray-500">
+                            <i class="fas fa-info-circle mr-1"></i>
+                            Revise cuidadosamente antes de confirmar
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="{% url 'plan_cuentas:plan_cuenta_list' %}" 
+                               class="inline-flex items-center px-4 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                                <i class="fas fa-times mr-2"></i>
+                                Cancelar
+                            </a>
+                            <button type="submit" 
+                                    class="inline-flex items-center px-6 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-lg shadow-sm transition-colors duration-200">
+                                <i class="fas fa-trash mr-2"></i>
+                                Eliminar Cuenta
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                {% else %}
+                <div class="border-t border-gray-200 pt-6">
+                    <div class="flex justify-center">
+                        <a href="{% url 'plan_cuentas:plan_cuenta_list' %}" 
+                           class="inline-flex items-center px-6 py-2 bg-gray-600 hover:bg-gray-700 text-white text-sm font-medium rounded-lg shadow-sm transition-colors duration-200">
+                            <i class="fas fa-arrow-left mr-2"></i>
+                            Volver al Plan de Cuentas
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
         </div>
-        <div class="col-auto">
-            <a href="{% url 'plan_cuentas:plan_cuenta_list' %}" class="btn btn-secondary">
-                <i class="fas fa-arrow-left"></i> Volver
-            </a>
+
+        <!-- Additional Info -->
+        <div class="mt-4 text-center">
+            <p class="text-sm text-gray-500">
+                ¿Necesita ayuda? 
+                <a href="#" class="text-emerald-600 hover:text-emerald-500">Contacte al soporte técnico</a>
+            </p>
         </div>
     </div>
-
-    <div class="card">
-        <div class="card-body">
-            <div class="alert alert-danger">
-                <h4 class="alert-heading">¿Está seguro de eliminar esta cuenta?</h4>
-                <p>Esta acción no se puede deshacer. Se eliminará la cuenta <strong>{{ cuenta.codigo }} - {{ cuenta.nombre }}</strong>.</p>
-            </div>
-            
-            <form method="post">
-                {% csrf_token %}
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a href="{% url 'plan_cuentas:plan_cuenta_list' %}" class="btn btn-secondary me-md-2">
-                        <i class="fas fa-times"></i> Cancelar
-                    </a>
+</div>
+{% endblock %}
                     <button type="submit" class="btn btn-danger">
                         <i class="fas fa-trash"></i> Eliminar
                     </button>

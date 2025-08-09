@@ -53,7 +53,11 @@ class TwoFactorAuthSetupView(LoginRequiredMixin, View):
         device, created = TOTPDevice.objects.get_or_create(
             user=request.user,
             confirmed=False,
-            defaults={'name': f"Autenticador de {request.user.username}"}
+            defaults={
+                'name': f"Autenticador de {request.user.username}",
+                'tolerance': 1,  # Solo permitir 1 ventana de tiempo (±30s = 90s total)
+                'drift': 0       # Sin deriva temporal
+            }
         )
         
         # Si ya existía un dispositivo no confirmado, regenerar la clave secreta
@@ -62,6 +66,8 @@ class TwoFactorAuthSetupView(LoginRequiredMixin, View):
             # En lugar de TOTPDevice.random_key() que ya no existe
             key = os.urandom(20)
             device.key = binascii.hexlify(key).decode('ascii')
+            device.tolerance = 1  # Configurar tolerancia estricta
+            device.drift = 0      # Sin deriva temporal
             device.save()
         
         # Generar el código QR

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title }} - Sistema Contable{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 py-6">
+    <div class="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header Section -->
+        <div class="bg-white shadow-sm rounded-lg mb-6">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <div class="flex items-center space-x-3">
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-exclamation-triangle text-red-600 text-lg"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900">{{ title }}</h1>
+                        <p class="text-sm text-gray-600 mt-1">Confirmar eliminación</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirmation Section -->
+        <div class="bg-white shadow-sm rounded-lg">
+            <div class="p-6">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-trash text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">¿Está seguro de eliminar este detalle?</h3>
+                    <p class="text-gray-500 mb-6">
+                        Esta acción no se puede deshacer. El detalle será eliminado permanentemente.
+                    </p>
+                </div>
+
+                <!-- Detalle Info -->
+                <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                    <h4 class="text-sm font-medium text-gray-900 mb-3">Información del detalle:</h4>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <div class="flex justify-between">
+                            <span>Asiento:</span>
+                            <span class="font-medium">{{ detalle.asiento.descripcion|truncatechars:30 }}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Cuenta:</span>
+                            <span class="font-medium">{{ detalle.cuenta.codigocuenta }} - {{ detalle.cuenta.descripcion|truncatechars:20 }}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Monto:</span>
+                            <span class="font-medium">${{ detalle.valor|floatformat:2 }}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Polaridad:</span>
+                            <span class="font-medium">
+                                {% if detalle.polaridad == 'D' %}
+                                    <span class="text-green-600">Debe</span>
+                                {% else %}
+                                    <span class="text-red-600">Haber</span>
+                                {% endif %}
+                            </span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Empresa:</span>
+                            <span class="font-medium">{{ detalle.empresa_id.nombre }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex space-x-3">
+                    <a href="{% url 'asientos_detalle:detalle_list' %}" 
+                       class="flex-1 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 text-center">
+                        <i class="fas fa-times mr-2"></i>
+                        Cancelar
+                    </a>
+                    <form method="post" class="flex-1">
+                        {% csrf_token %}
+                        <button type="submit" 
+                                class="w-full bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+                            <i class="fas fa-trash mr-2"></i>
+                            Eliminar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

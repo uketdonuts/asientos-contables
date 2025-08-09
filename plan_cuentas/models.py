@@ -2,46 +2,116 @@ from django.db import models
 from django.conf import settings
 from django.core.exceptions import ValidationError
 
+
 class PlanCuenta(models.Model):
-    empresa = models.CharField(max_length=24, default="DEFAULT")
-    perfil = models.ForeignKey(
-        'perfiles.Perfil',  # Use string reference
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        verbose_name="Perfil Contable Asociado",
-        related_name="cuentas_directas"
+    """
+    Plan de Cuentas - Catálogo de planes contables por empresa
+    Contiene ID, empresa y descripción como referencia general
+    """
+    id = models.AutoField(primary_key=True)
+    empresa = models.ForeignKey(
+        'empresas.Empresa',
+        on_delete=models.CASCADE,
+        verbose_name="Empresa",
+        help_text="Empresa a la que pertenece el plan de cuentas"
     )
-    grupo = models.IntegerField(default=0)
-    codigocuenta = models.CharField(max_length=14, default="DEFAULT")
-    descripcion = models.CharField(max_length=80, blank=True, null=True)
-    cuentamadre = models.CharField(max_length=14, blank=True, null=True)
+    descripcion = models.CharField(
+        max_length=255, 
+        verbose_name="Descripción del Plan de Cuentas"
+    )
+    perfil = models.ForeignKey(
+        'perfiles.Perfil',
+        on_delete=models.CASCADE,
+        verbose_name="Perfil",
+        db_column="perfil_id",
+        help_text="Perfil contable asociado"
+    )
 
     class Meta:
-        verbose_name = "Cuenta Contable"
-        verbose_name_plural = "Plan de Cuentas"
-        ordering = ['codigocuenta']
-        unique_together = ('empresa', 'codigocuenta') # Asumiendo que codigocuenta es único por empresa
+        verbose_name = "Plan de Cuentas"
+        verbose_name_plural = "Planes de Cuentas"
+        ordering = ['empresa', 'descripcion']
+        unique_together = ('empresa', 'descripcion')  # Plan único por empresa
 
     def clean(self):
         super().clean()
-        if self.perfil:
-            if self.empresa != self.perfil.empresa:
-                raise ValidationError({
-                    'perfil': f"La empresa de la cuenta ('{self.empresa}') no coincide con la empresa del perfil seleccionado ('{self.perfil.empresa}').",
-                    'empresa': f"La empresa de la cuenta ('{self.empresa}') no coincide con la empresa del perfil seleccionado ('{self.perfil.empresa}')."
-                })
+        if not self.empresa:
+            raise ValidationError({'empresa': 'La empresa es obligatoria.'})
+        if not self.perfil:
+            raise ValidationError({'perfil': 'El perfil es obligatorio.'})
+        if not self.descripcion:
+            raise ValidationError({'descripcion': 'La descripción es obligatoria.'})
 
     def save(self, *args, **kwargs):
-        if self.perfil and not self.empresa:
-             self.empresa = self.perfil.empresa
-        elif self.perfil and self.empresa and self.empresa != self.perfil.empresa:
-            raise ValidationError(f"Conflicto de empresas: Cuenta '{self.empresa}', Perfil '{self.perfil.empresa}'.")
-        
         self.full_clean()
         super().save(*args, **kwargs)
 
     def __str__(self):
-        if self.perfil:
-            return f"{self.codigocuenta} - {self.descripcion} (Perfil: {self.perfil.secuencial})"
-        return f"{self.codigocuenta} - {self.descripcion}"
+        try:
+            empresa_nombre = self.empresa.nombre
+        except AttributeError:
+            empresa_nombre = "Sin empresa"
+        return f"{self.descripcion} - {empresa_nombre}"
+
+
+class Cuenta(models.Model):
+    """
+    Cuentas contables - Cuentas individuales dentro de un plan de cuentas
+    """
+    id = models.AutoField(primary_key=True)
+    cuenta = models.CharField(
+        max_length=14, 
+        verbose_name="Código de Cuenta"
+    )
+    descripcion = models.CharField(
+        max_length=255, 
+        verbose_name="Descripción de la Cuenta"
+    )
+    cuenta_madre = models.ForeignKey(
+        'self',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        verbose_name="Cuenta Madre",
+        help_text="Cuenta padre en la jerarquía",
+        related_name="cuentas_hijas"
+    )
+    plan_cuentas = models.ForeignKey(
+        PlanCuenta,
+        on_delete=models.CASCADE,
+        verbose_name="Plan de Cuentas",
+        help_text="Plan de cuentas al que pertenece"
+    )
+    grupo = models.IntegerField(
+        verbose_name="Grupo", 
+        help_text="1=Activos, 2=Pasivos, 3=Patrimonio, 4=Ingresos, 5=Gastos",
+        null=True,
+        blank=True
+    )
+
+    class Meta:
+        verbose_name = "Cuenta Contable"
+        verbose_name_plural = "Cuentas Contables"
+        ordering = ['plan_cuentas', 'cuenta']
+        unique_together = ('plan_cuentas', 'cuenta')  # Código único por plan de cuentas
+
+    def clean(self):
+        super().clean()
+        if not self.cuenta:
+            raise ValidationError({'cuenta': 'El código de cuenta es obligatorio.'})
+        if not self.descripcion:
+            raise ValidationError({'descripcion': 'La descripción es obligatoria.'})
+        if not self.plan_cuentas:
+            raise ValidationError({'plan_cuentas': 'El plan de cuentas es obligatorio.'})
+        # Validar que la cuenta madre pertenezca al mismo plan de cuentas
+        if self.cuenta_madre and self.cuenta_madre.plan_cuentas != self.plan_cuentas:
+            raise ValidationError({
+                'cuenta_madre': 'La cuenta madre debe pertenecer al mismo plan de cuentas.'
+            })
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.cuenta} - {self.descripcion}"

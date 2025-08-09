@@ -1,0 +1,604 @@
+/* ========================================
+   MÓDULO ULTRA-SEGURO - PALETA SUAVIZADA
+   ======================================== */
+:root {
+    --secure-primary: #b91c1c; /* Rojo apagado */
+    --secure-primary-light: #f3f4f6; /* Gris claro */
+    --secure-primary-dark: #7f1d1d; /* Rojo oscuro */
+    --secure-success: #15803d; /* Verde oscuro */
+    --secure-success-light: #e7f6ed; /* Verde muy claro */
+    --secure-warning: #b45309; /* Mostaza suave */
+    --secure-warning-light: #fef9c3; /* Amarillo pálido */
+    --secure-danger: #c2410c; /* Rojo anaranjado */
+    --secure-danger-light: #fbeee6; /* Naranja muy claro */
+    --secure-info: #334155; /* Azul grisáceo */
+    --secure-info-light: #e0e7ef; /* Azul muy claro */
+}
+
+/* ========================================
+   ANIMACIONES Y TRANSICIONES
+   ======================================== */
+
+@keyframes securePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes secureGlow {
+    0%, 100% { box-shadow: 0 0 5px rgba(185, 28, 28, 0.15); }
+    50% { box-shadow: 0 0 20px rgba(185, 28, 28, 0.25); }
+}
+
+@keyframes secureShake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+    20%, 40%, 60%, 80% { transform: translateX(2px); }
+}
+
+@keyframes secureFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes secureSlideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+/* ========================================
+   ESTILOS BASE DEL MÓDULO SEGURO
+   ======================================== */
+
+.secure-module {
+    animation: secureFadeIn 0.5s ease-out;
+}
+
+.secure-header {
+    background: linear-gradient(135deg, var(--secure-primary-dark) 0%, var(--secure-primary) 100%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.secure-badge {
+    animation: securePulse 2s infinite;
+}
+
+.secure-warning {
+    animation: secureGlow 3s infinite;
+}
+
+/* ========================================
+   FORMULARIOS SEGUROS
+   ======================================== */
+
+.secure-form {
+    background: #f9fafb;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.04);
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.secure-form:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    border-color: var(--secure-primary);
+}
+
+.secure-form input,
+.secure-form select,
+.secure-form textarea {
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    background: #f3f4f6;
+    color: #334155;
+    transition: all 0.3s ease;
+}
+
+.secure-form input:focus,
+.secure-form select:focus,
+.secure-form textarea:focus {
+    outline: none;
+    border-color: var(--secure-primary);
+    background: #fff;
+    color: #1e293b;
+}
+
+.secure-form input:valid,
+.secure-form select:valid,
+.secure-form textarea:valid {
+    border-color: var(--secure-success);
+    background: var(--secure-success-light);
+}
+
+.secure-form input:invalid:not(:placeholder-shown),
+.secure-form select:invalid:not(:placeholder-shown),
+.secure-form textarea:invalid:not(:placeholder-shown) {
+    border-color: var(--secure-danger);
+    background: var(--secure-danger-light);
+    animation: secureShake 0.5s ease-in-out;
+}
+
+/* ========================================
+   BOTONES SEGUROS
+   ======================================== */
+
+.btn-secure {
+    background: linear-gradient(135deg, var(--secure-primary) 0%, var(--secure-primary-dark) 100%);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+}
+
+.btn-secure:hover {
+    background: linear-gradient(135deg, var(--secure-primary-dark) 0%, var(--secure-primary) 100%);
+    color: white;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.10);
+}
+
+.btn-secure:active {
+    background: var(--secure-primary-dark);
+}
+
+.btn-secure:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-secure::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-secure:hover::before {
+    left: 100%;
+}
+
+/* ========================================
+   TARJETAS DE INFORMACIÓN
+   ======================================== */
+
+.secure-card {
+    background: #f9fafb;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.04);
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.secure-card:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.secure-card-header {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    padding: 16px 20px;
+    border-bottom: 1px solid #e5e7eb;
+    font-weight: 600;
+    color: #334155;
+}
+
+.secure-card-body {
+    padding: 20px;
+}
+
+.secure-card-footer {
+    background: #f3f4f6;
+    padding: 12px 20px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* ========================================
+   AVISOS DE SEGURIDAD
+   ======================================== */
+
+.secure-alert {
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    border-left: 4px solid;
+    animation: secureSlideIn 0.5s ease-out;
+}
+
+.secure-alert-success {
+    background: var(--secure-success-light);
+    border-left-color: var(--secure-success);
+    color: #166534;
+}
+
+.secure-alert-error {
+    background: var(--secure-danger-light);
+    border-left-color: var(--secure-danger);
+    color: #7f1d1d;
+    animation: secureShake 0.5s ease-in-out;
+}
+
+.secure-alert-warning {
+    background: var(--secure-warning-light);
+    border-left-color: var(--secure-warning);
+    color: #b45309;
+}
+
+.secure-alert-info {
+    background: var(--secure-info-light);
+    border-left-color: var(--secure-info);
+    color: #334155;
+}
+
+/* ========================================
+   MATRIZ DE DATOS
+   ======================================== */
+
+.secure-matrix {
+    background: #f9fafb;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.04);
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+
+.secure-matrix-header {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    padding: 16px 20px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.secure-matrix-status {
+    background: #f3f4f6;
+    padding: 8px 16px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 12px;
+    color: #64748b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.secure-matrix-container {
+    height: calc(100vh - 300px);
+    background: #f0f0f0;
+    position: relative;
+}
+
+/* ========================================
+   ESTADÍSTICAS Y MÉTRICAS
+   ======================================== */
+
+.secure-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.secure-stat-card {
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.secure-stat-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.secure-stat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.secure-stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 4px;
+}
+
+.secure-stat-label {
+    font-size: 12px;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+/* ========================================
+   NAVEGACIÓN SEGURA
+   ======================================== */
+
+.secure-nav {
+    background: linear-gradient(135deg, var(--secure-primary-dark) 0%, var(--secure-primary) 100%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.secure-nav-brand {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.secure-nav-brand-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+}
+
+.secure-nav-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: 8px;
+}
+
+.secure-nav-badge-user {
+    background: #e0e7ef;
+    color: #334155;
+}
+
+.secure-nav-badge-status {
+    background: #fef9c3;
+    color: #b45309;
+}
+
+.secure-nav-badge-encryption {
+    background: #e7f6ed;
+    color: #15803d;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 768px) {
+    .secure-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .secure-matrix-container {
+        height: calc(100vh - 400px);
+    }
+    
+    .secure-nav-brand {
+        font-size: 16px;
+    }
+    
+    .secure-nav-badge {
+        font-size: 10px;
+        padding: 2px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .secure-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .secure-form {
+        padding: 16px;
+    }
+    
+    .btn-secure {
+        padding: 12px 20px;
+        font-size: 13px;
+    }
+}
+
+/* ========================================
+   MODO OSCURO
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+    .secure-form, .secure-card, .secure-matrix {
+        background: #23272e;
+        border-color: #374151;
+        color: #e5e7eb;
+    }
+    .secure-card-header, .secure-matrix-header {
+        background: linear-gradient(135deg, #23272e 0%, #374151 100%);
+        color: #e5e7eb;
+        border-bottom-color: #374151;
+    }
+    .secure-card-footer, .secure-matrix-status {
+        background: #23272e;
+        border-top-color: #374151;
+        color: #9ca3af;
+    }
+    .secure-form input,
+    .secure-form select,
+    .secure-form textarea {
+        background: #374151;
+        border-color: #4b5563;
+        color: #e5e7eb;
+    }
+    .secure-form input:focus,
+    .secure-form select:focus,
+    .secure-form textarea:focus {
+        background: #23272e;
+        color: #fff;
+    }
+}
+
+/* ========================================
+   UTILIDADES ADICIONALES
+   ======================================== */
+
+.secure-loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+}
+
+.secure-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+    margin: 16px 0;
+}
+
+.secure-badge-small {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.secure-text-gradient {
+    background: linear-gradient(135deg, var(--secure-primary) 0%, var(--secure-primary-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ========================================
+   ANIMACIONES DE ENTRADA
+   ======================================== */
+
+.secure-fade-in {
+    animation: secureFadeIn 0.5s ease-out;
+}
+
+.secure-slide-in {
+    animation: secureSlideIn 0.5s ease-out;
+}
+
+.secure-bounce-in {
+    animation: secureFadeIn 0.6s ease-out, secureShake 0.3s ease-in-out 0.3s;
+}
+
+/* ========================================
+   ESTADOS DE HOVER Y FOCUS
+   ======================================== */
+
+.secure-interactive {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.secure-interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.secure-interactive:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/* ========================================
+   ESTILOS ESPECÍFICOS PARA X-SPREADSHEET
+   ======================================== */
+
+.x-spreadsheet .x-spreadsheet-toolbar {
+    background: #f8fafc !important;
+    border-bottom: 1px solid #e5e7eb !important;
+}
+
+.x-spreadsheet .x-spreadsheet-toolbar .x-spreadsheet-toolbar-btns .x-spreadsheet-toolbar-btn {
+    color: #374151 !important;
+    border-radius: 4px !important;
+    transition: all 0.2s ease !important;
+}
+
+.x-spreadsheet .x-spreadsheet-toolbar .x-spreadsheet-toolbar-btns .x-spreadsheet-toolbar-btn:hover {
+    background: rgba(220, 38, 38, 0.1) !important;
+    color: var(--secure-primary) !important;
+}
+
+.x-spreadsheet .x-spreadsheet-sheet .x-spreadsheet-table .x-spreadsheet-table-content .x-spreadsheet-cell {
+    border: 1px solid #e5e7eb !important;
+    font-family: 'Arial', sans-serif !important;
+    font-size: 12px !important;
+}
+
+.x-spreadsheet .x-spreadsheet-sheet .x-spreadsheet-table .x-spreadsheet-table-content .x-spreadsheet-cell.active {
+    border: 2px solid var(--secure-primary) !important;
+    box-shadow: 0 0 0 1px rgba(220, 38, 38, 0.2) !important;
+}
+
+.x-spreadsheet .x-spreadsheet-sheet .x-spreadsheet-table .x-spreadsheet-table-content .x-spreadsheet-cell.selected {
+    background: rgba(220, 38, 38, 0.1) !important;
+}
+
+/* ========================================
+   ESTILOS PARA MENSAJES DE ERROR Y ÉXITO
+   ======================================== */
+
+.secure-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    max-width: 400px;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    animation: secureSlideIn 0.3s ease-out;
+}
+
+.secure-message-success {
+    background: var(--secure-success-light);
+    border-left: 4px solid var(--secure-success);
+    color: #166534;
+}
+
+.secure-message-error {
+    background: var(--secure-danger-light);
+    border-left: 4px solid var(--secure-danger);
+    color: #7f1d1d;
+}
+
+.secure-message-warning {
+    background: var(--secure-warning-light);
+    border-left: 4px solid var(--secure-warning);
+    color: #b45309;
+}
+
+.secure-message-info {
+    background: var(--secure-info-light);
+    border-left: 4px solid var(--secure-info);
+    color: #334155;
+} 
