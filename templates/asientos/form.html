@@ -175,7 +175,11 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200" id="asientoTableBody">
-                                <!-- Fila inicial -->
+                                <!-- Los detalles se cargarán dinámicamente con JavaScript -->
+                                <!-- En modo edición, se cargarán los detalles existentes -->
+                                <!-- En modo creación, se mostrará una fila vacía -->
+                                
+                                <!-- Fila inicial para nuevos detalles -->
                                 <tr class="detalle-row hover:bg-gray-50 transition-colors duration-200">
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <select class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm perfil-input">
@@ -189,7 +193,7 @@
                                         <select class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm cuenta-input cuenta-haber-input" data-tipo="haber">
                                             <option value="">Seleccione cuenta</option>
                                             {% for cuenta in plan_cuentas %}
-                                                <option value="{{ cuenta.codigocuenta }}">{{ cuenta.codigocuenta }} - {{ cuenta.descripcion }}</option>
+                                                <option value="{{ cuenta.cuenta }}">{{ cuenta.cuenta }} - {{ cuenta.descripcion }}</option>
                                             {% endfor %}
                                         </select>
                                     </td>
@@ -197,7 +201,7 @@
                                         <select class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm cuenta-input cuenta-debe-input" data-tipo="debe">
                                             <option value="">Seleccione cuenta</option>
                                             {% for cuenta in plan_cuentas %}
-                                                <option value="{{ cuenta.codigocuenta }}">{{ cuenta.codigocuenta }} - {{ cuenta.descripcion }}</option>
+                                                <option value="{{ cuenta.cuenta }}">{{ cuenta.cuenta }} - {{ cuenta.descripcion }}</option>
                                             {% endfor %}
                                         </select>
                                     </td>
@@ -337,7 +341,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Función para cargar cuentas por perfil
-    function loadCuentasForPerfil(perfilId, row) {
+    function loadCuentasForPerfil(perfilId, row, selectedCuentaCodigo = null) {
         if (!perfilId) {
             row.querySelector('.cuenta-haber-input').innerHTML = '<option value="">Seleccione cuenta</option>';
             row.querySelector('.cuenta-debe-input').innerHTML = '<option value="">Seleccione cuenta</option>';
@@ -365,10 +369,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     debeSelect.innerHTML = '<option value="">Seleccione cuenta</option>';
                     
                     data.cuentas.forEach(cuenta => {
-                        const option = `<option value="${cuenta.codigocuenta}">${cuenta.codigocuenta} - ${cuenta.descripcion}</option>`;
+                        const option = `<option value="${cuenta.cuenta}">${cuenta.cuenta} - ${cuenta.descripcion}</option>`;
                         haberSelect.innerHTML += option;
                         debeSelect.innerHTML += option;
                     });
+                    
+                    // Establecer cuenta seleccionada si se proporcionó
+                    if (selectedCuentaCodigo) {
+                        // Buscar en qué columna debe estar basándose en la polaridad
+                        const polaridad = row.querySelector('.polaridad-input').value;
+                        if (polaridad === '-') {
+                            haberSelect.value = selectedCuentaCodigo;
+                        } else {
+                            debeSelect.value = selectedCuentaCodigo;
+                        }
+                    }
                     
                     showNotification('Cuentas cargadas exitosamente', 'success');
                 } else {
@@ -537,9 +552,91 @@ document.addEventListener('DOMContentLoaded', function() {
         showNotification('Funcionalidad de guardado en desarrollo', 'info');
     });
 
+    // Función para cargar detalles existentes en modo edición
+    function loadExistingDetalles() {
+        {% if is_edit_mode and asiento_id_provisional %}
+        console.log('Modo edición detectado, cargando detalles existentes...');
+        
+        fetch(`/asientos/api/asiento/{{ asiento_id_provisional }}/detalles/`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success && data.detalles && data.detalles.length > 0) {
+                    console.log('Detalles cargados:', data.detalles);
+                    
+                    // Limpiar tabla existente (excepto la fila vacía inicial)
+                    const rows = tableBody.querySelectorAll('tr.detalle-row');
+                    rows.forEach((row, index) => {
+                        if (index > 0) { // Mantener la primera fila vacía
+                            row.remove();
+                        }
+                    });
+                    
+                    // Agregar cada detalle existente
+                    data.detalles.forEach((detalle, index) => {
+                        if (index === 0) {
+                            // Llenar la primera fila con el primer detalle
+                            fillRowWithDetalle(rows[0], detalle);
+                        } else {
+                            // Crear nuevas filas para el resto
+                            addDetalleRow(detalle);
+                        }
+                    });
+                    
+                    calculateTotals();
+                    updateNoDetallesMessage();
+                } else {
+                    console.log('No hay detalles existentes para cargar');
+                }
+            })
+            .catch(error => {
+                console.error('Error cargando detalles:', error);
+                showNotification('Error al cargar los detalles existentes', 'error');
+            });
+        {% endif %}
+    }
+
+    // Función para llenar una fila con datos de un detalle
+    function fillRowWithDetalle(row, detalle) {
+        const perfilSelect = row.querySelector('.perfil-input');
+        const haberSelect = row.querySelector('.cuenta-haber-input');
+        const debeSelect = row.querySelector('.cuenta-debe-input');
+        const causaInput = row.querySelector('.causa-input');
+        const referenciaInput = row.querySelector('.referencia-input');
+        const haberInput = row.querySelector('.monto-haber-input');
+        const debeInput = row.querySelector('.monto-debe-input');
+        const polaridadSelect = row.querySelector('.polaridad-input');
+
+        // Establecer perfil
+        if (perfilSelect && detalle.perfil_id) {
+            perfilSelect.value = detalle.perfil_id;
+            // Cargar cuentas para este perfil y establecer la cuenta seleccionada
+            loadCuentasForPerfil(detalle.perfil_id, row, detalle.cuenta_codigo);
+        }
+
+        // Establecer valores
+        if (causaInput) causaInput.value = detalle.causa || '';
+        if (referenciaInput) referenciaInput.value = detalle.referencia || '';
+        if (polaridadSelect) polaridadSelect.value = detalle.polaridad || '+';
+
+        // Establecer monto en la columna correcta según polaridad
+        if (detalle.polaridad === '-') {
+            if (haberInput) haberInput.value = detalle.valor || 0;
+            if (debeInput) debeInput.value = '';
+        } else {
+            if (debeInput) debeInput.value = detalle.valor || 0;
+            if (haberInput) haberInput.value = '';
+        }
+
+        // Establecer cuenta (se establecerá cuando se carguen las cuentas)
+        row.dataset.cuentaCodigo = detalle.cuenta_codigo;
+    }
+
     // Inicializar cálculos
     calculateTotals();
     updateNoDetallesMessage();
+    
+    // Cargar detalles existentes si estamos en modo edición
+    loadExistingDetalles();
 });
 </script>
 {% endblock %} 

@@ -28,11 +28,10 @@ services:
 
   web:
     build: .
-    command: ./docker-entrypoint.sh
     volumes:
       - .:/app
     ports:
-      - "8000:8000"
+      - "8002:8000"
     env_file:
       - docker.env
     depends_on:

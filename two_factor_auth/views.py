@@ -49,42 +49,54 @@ class TwoFactorAuthSetupView(LoginRequiredMixin, View):
             # Si ya hay dispositivos, mostrar información
             return render(request, 'two_factor/setup_complete.html', {'devices': devices})
         
-        # Crear un nuevo dispositivo TOTP si no existe
-        device, created = TOTPDevice.objects.get_or_create(
-            user=request.user,
-            confirmed=False,
-            defaults={
-                'name': f"Autenticador de {request.user.username}",
-                'tolerance': 1,  # Solo permitir 1 ventana de tiempo (±30s = 90s total)
-                'drift': 0       # Sin deriva temporal
-            }
-        )
+        # Crear un nuevo dispositivo TOTP si no existe (manejar múltiples pendientes)
+        try:
+            device, created = TOTPDevice.objects.get_or_create(
+                user=request.user,
+                confirmed=False,
+                defaults={
+                    'name': f"Autenticador de {request.user.username}",
+                    'tolerance': 1,  # Solo permitir 1 ventana de tiempo (±30s = 90s total)
+                    'drift': 0       # Sin deriva temporal
+                }
+            )
+        except TOTPDevice.MultipleObjectsReturned:
+            device = TOTPDevice.objects.filter(user=request.user, confirmed=False).order_by('-id').first()
+            created = False
         
-        # Si ya existía un dispositivo no confirmado, regenerar la clave secreta
-        if not created:
-            # Generar una nueva clave aleatoria utilizando os.urandom
-            # En lugar de TOTPDevice.random_key() que ya no existe
-            key = os.urandom(20)
-            device.key = binascii.hexlify(key).decode('ascii')
-            device.tolerance = 1  # Configurar tolerancia estricta
-            device.drift = 0      # Sin deriva temporal
-            device.save()
-        
-        # Generar el código QR
+    # Importante: NO regenerar la clave en cada GET.
+    # Mantener estable el secreto mientras el dispositivo esté sin confirmar,
+    # para que el código del usuario coincida con el que verifica el servidor.
+        # Asegurar configuración coherente (sin cambiar la clave ni bajar tolerancia)
+        updates = []
+        if device.tolerance is None:
+            device.tolerance = 1
+            updates.append("tolerance")
+        if device.drift is None:
+            device.drift = 0
+            updates.append("drift")
+        if updates:
+            device.save(update_fields=updates)
+
+        # Generar el código QR usando la URL oficial del dispositivo (usa bin_key internamente)
         url = device.config_url
         qr = qrcode.make(url)
         buffered = BytesIO()
         qr.save(buffered)
         qr_code = base64.b64encode(buffered.getvalue()).decode('utf-8')
-        
+
         # Obtener la clave en formato Base32 para mostrarla al usuario
+        # Derivar secreto Base32 directamente desde bin_key para evitar ambigüedades
         try:
-            bin_key = binascii.unhexlify(device.key.encode())
-            secret_key = base64.b32encode(bin_key).decode('utf-8')
-        except (TypeError, binascii.Error):
-            # Si hay un error con la clave, usamos la representación directa
-            secret_key = device.key
-        
+            key_bytes = device.bin_key
+        except Exception:
+            # Fallback a interpretar como HEX si bin_key no está disponible
+            try:
+                key_bytes = binascii.unhexlify(device.key.encode())
+            except Exception:
+                key_bytes = bytes(device.key)
+        secret_key = base64.b32encode(key_bytes).decode('utf-8')
+
         return render(request, 'two_factor/setup.html', {
             'device': device,
             'qr_code': qr_code,
@@ -100,6 +112,8 @@ class TwoFactorAuthSetupView(LoginRequiredMixin, View):
         except TOTPDevice.DoesNotExist:
             messages.error(request, "No se encontró un dispositivo de autenticación pendiente.")
             return redirect('two_factor_auth:setup')
+        except TOTPDevice.MultipleObjectsReturned:
+            device = TOTPDevice.objects.filter(user=request.user, confirmed=False).order_by('-id').first()
         
         # Validar el token
         if device.verify_token(token):

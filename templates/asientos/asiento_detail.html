@@ -63,11 +63,31 @@
                         </div>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Usuario Creación</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Creado por</label>
                         <div class="bg-gray-50 px-4 py-3 rounded-lg">
-                            <span class="text-sm text-gray-900">{{ asiento.usuario_creacion.username }}</span>
+                            <div class="flex items-center">
+                                <i class="fas fa-user text-blue-500 mr-2"></i>
+                                <div>
+                                    <div class="text-sm font-medium text-gray-900">
+                                        {{ asiento.usuario_creacion.get_full_name|default:asiento.usuario_creacion.username|default:"Sistema" }}
+                                    </div>
+                                    {% if asiento.fecha_creacion %}
+                                    <div class="text-xs text-gray-500">
+                                        {{ asiento.fecha_creacion|date:"d/m/Y H:i:s" }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    {% if asiento.descripcion %}
+                    <div class="md:col-span-2 lg:col-span-3">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Descripción</label>
+                        <div class="bg-gray-50 px-4 py-3 rounded-lg">
+                            <p class="text-sm text-gray-900">{{ asiento.descripcion }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Estado del Balance</label>
                         <div class="bg-gray-50 px-4 py-3 rounded-lg">

@@ -25,7 +25,9 @@ COPY . /app/
 
 # Copy and make executable the entrypoint script
 COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+# Normalize Windows CRLF to LF to avoid bad interpreter issues
+RUN sed -i 's/\r$//' /usr/local/bin/docker-entrypoint.sh \
+    && chmod +x /usr/local/bin/docker-entrypoint.sh
 
 # Install netcat for database connection checking
 RUN apt-get update && apt-get install -y netcat-openbsd && rm -rf /var/lib/apt/lists/*
@@ -44,8 +46,8 @@ ENV DB_PORT=3306
 # Expose port
 EXPOSE 8000
 
-# Use entrypoint script
-ENTRYPOINT ["docker-entrypoint.sh"]
+# Use entrypoint script (explicit path)
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 
 # Default command
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

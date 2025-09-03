@@ -1,12 +1,15 @@
 from django.core.mail import send_mail
 from django.conf import settings
+from django.urls import reverse
 from django.contrib.auth import get_user_model
 import random
 import string
 import hashlib
 from django.core.cache import cache
+import logging
 
 User = get_user_model()
+logger = logging.getLogger('secure_data')
 
 def generate_email_2fa_code():
     """Genera un código 2FA de 6 dígitos"""
@@ -15,60 +18,78 @@ def generate_email_2fa_code():
 def send_2fa_email(user):
     """Envía código 2FA por email"""
     if user.email != 'c.rodriguez@figbiz.net':
-        print(f"[DEBUG] Email no autorizado: {user.email}")
+        logger.warning(f"[2FA][EMAIL] Email no autorizado: {user.email}")
         return False
     
     code = generate_email_2fa_code()
-    print(f"[DEBUG] Código generado: {code}")
+    # No loguear el código completo en texto claro; mostrar solo últimos 2 dígitos
+    masked_code = f"****{code[-2:]}"
     
     # Guardar código en cache por 2 minutos (para cumplir con el estándar del sistema)
     cache_key = f"email_2fa_{user.usr_id}"
     cache.set(cache_key, code, 120)  # 2 minutos
-    print(f"[DEBUG] Código guardado en cache con key: {cache_key}")
+    logger.info(f"[2FA][EMAIL] Código generado {masked_code} y guardado en cache (key={cache_key}) para user_id={user.usr_id}")
     
     try:
-        print(f"[DEBUG] Intentando enviar email a: {user.email}")
-        print(f"[DEBUG] Configuración EMAIL_HOST: {settings.EMAIL_HOST}")
-        print(f"[DEBUG] Configuración EMAIL_PORT: {settings.EMAIL_PORT}")
-        print(f"[DEBUG] Configuración DEFAULT_FROM_EMAIL: {settings.DEFAULT_FROM_EMAIL}")
-        
+        logger.info(
+            f"[2FA][EMAIL] Enviando email a {user.email} (host={getattr(settings, 'EMAIL_HOST', None)}, "
+            f"port={getattr(settings, 'EMAIL_PORT', None)}, from={getattr(settings, 'DEFAULT_FROM_EMAIL', None)})"
+        )
+
+        # Construir enlace directo al acceso ultra-seguro
+        # Nota: la ruta se define estáticamente en secure_data/urls.py
+        secure_path = reverse('secure_data:access')  # '/secure/xk9mz8p4q7w3n6v2/'
+        # reverse devuelve '/secure/' + ... gracias a include('secure_data.urls') en urls raíz
+        # Pero como el patrón exacto está en secure_data/urls.py, reverse('secure_data:access') devolverá '/secure/xk9mz8p4q7w3n6v2/'
+        full_secure_url = f"{settings.SITE_BASE_URL}{secure_path}"
+
         send_mail(
             subject='Código de Verificación - Acceso Seguro',
-            message=f'''
-            Código de verificación para acceso al módulo seguro:
-            
-            {code}
-            
-            Este código expira en 2 minutos.
-            
-            Si no solicitaste este código, ignora este email.
-            ''',
+            message=(
+                "Código de verificación para acceso al módulo seguro:\n\n"
+                f"{code}\n\n"
+                "Este código expira en 2 minutos.\n\n"
+                "Accede directamente con este enlace (requiere autenticación previa):\n"
+                f"{full_secure_url}\n\n"
+                "Si no solicitaste este código, ignora este email."
+            ),
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[user.email],
             fail_silently=False,
         )
-        print(f"[DEBUG] Email enviado exitosamente")
+        logger.info("[2FA][EMAIL] Email enviado exitosamente")
         return True
     except Exception as e:
-        print(f"[DEBUG] Error al enviar email: {str(e)}")
-        import traceback
-        print(f"[DEBUG] Traceback completo: {traceback.format_exc()}")
+        logger.exception(f"[2FA][EMAIL] Error al enviar email: {str(e)}")
         return False
 
 def validate_email_2fa(user, code):
     """Valida el código 2FA del email"""
     if user.email != 'c.rodriguez@figbiz.net':
+        logger.warning(f"[2FA][EMAIL] Validación rechazada: email no autorizado {user.email}")
         return False
     
     cache_key = f"email_2fa_{user.usr_id}"
     stored_code = cache.get(cache_key)
-    
-    if stored_code and stored_code == code:
-        # Invalidar código después de uso
-        cache.delete(cache_key)
-        return True
-    
-    return False
+    masked_input = f"****{code[-2:]}" if code else "(vacío)"
+
+    if stored_code:
+        masked_stored = f"****{stored_code[-2:]}"
+        if stored_code == code:
+            # Invalidar código después de uso
+            cache.delete(cache_key)
+            logger.info(f"[2FA][EMAIL] Código válido {masked_input} para user_id={user.usr_id}; invalidado tras uso")
+            return True
+        else:
+            logger.warning(
+                f"[2FA][EMAIL] Código inválido para user_id={user.usr_id}: recibido {masked_input}, esperado {masked_stored}"
+            )
+            return False
+    else:
+        logger.warning(
+            f"[2FA][EMAIL] No se encontró código en cache para user_id={user.usr_id} (key={cache_key}); recibido {masked_input}"
+        )
+        return False
 
 def initialize_demo_data():
     """Inicializa datos demo para las contraseñas de forma idempotente"""

@@ -1,24 +1,22 @@
-#!/bin/bash
+#!/bin/sh
 
 # Docker entrypoint script para Asientos Contables
 set -e
 
 # Función para esperar a que la base de datos esté disponible
 wait_for_db() {
-    echo "🔄 Esperando a que la base de datos esté disponible..."
-    
-    while ! nc -z $DB_HOST $DB_PORT; do
-        echo "⏳ Base de datos no disponible, esperando..."
+    echo "Esperando a que la base de datos esté disponible..."
+    while ! nc -z "$DB_HOST" "$DB_PORT"; do
+        echo "Base de datos no disponible, esperando..."
         sleep 2
     done
-    
-    echo "✅ Base de datos disponible!"
+    echo "Base de datos disponible!"
 }
 
 # Main execution
 main() {
-    echo "🚀 Iniciando Asientos Contables..."
-    echo "📅 $(date)"
+    echo "Iniciando Asientos Contables..."
+    echo "$(date)"
     
     # Esperar a la base de datos si está configurada
     if [ "$DB_HOST" ] && [ "$DB_PORT" ]; then
@@ -26,11 +24,11 @@ main() {
     fi
     
     # Crear migraciones si no existen
-    echo "🔄 Creando migraciones..."
+    echo "Creando migraciones..."
     python manage.py makemigrations --noinput || true
     
     # Ejecutar migraciones básicas
-    echo "🔄 Aplicando migraciones..."
+    echo "Aplicando migraciones..."
     python manage.py migrate --noinput || true
     
     # Ejecutar el comando pasado como argumentos o runserver por defecto

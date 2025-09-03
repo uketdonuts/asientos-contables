@@ -19499,3 +19499,1931 @@ WARNING 2025-07-10 20:40:43,732 log 20 281473072558496 Not Found: /api/test/ship
 WARNING 2025-07-10 20:40:43,733 basehttp 20 281473072558496 "POST /api/test/shipment-new-format/ HTTP/1.1" 404 3676
 WARNING 2025-07-10 20:40:47,265 log 20 281473072558496 Not Found: /api/test/shipment-new-format/
 WARNING 2025-07-10 20:40:47,266 basehttp 20 281473072558496 "POST /api/test/shipment-new-format/ HTTP/1.1" 404 3676
+INFO 2025-08-09 11:59:46,205 autoreload 21 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-09 11:59:56,367 basehttp 21 70368985588128 "GET / HTTP/1.1" 302 0
+INFO 2025-08-09 11:59:56,428 basehttp 21 70368985588128 "GET /users/login/?next=/ HTTP/1.1" 200 12418
+INFO 2025-08-09 11:59:56,468 basehttp 21 70368985588128 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-08-09 11:59:57,168 log 21 70368985588128 Not Found: /favicon.ico
+WARNING 2025-08-09 11:59:57,170 basehttp 21 70368985588128 "GET /favicon.ico HTTP/1.1" 404 3621
+INFO 2025-08-09 12:13:41,059 basehttp 21 70368985588128 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-08-09 12:13:41,380 basehttp 21 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 21426
+INFO 2025-08-09 12:13:41,428 basehttp 21 70368985588128 "GET /static/css/tailwind-custom.css HTTP/1.1" 304 0
+INFO 2025-08-09 12:13:41,506 basehttp 21 70369130389920 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:13:41,787 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 22523
+INFO 2025-08-09 12:14:28,914 basehttp 21 70369130389920 "POST /two_factor/setup/ HTTP/1.1" 302 0
+INFO 2025-08-09 12:14:29,211 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 22260
+INFO 2025-08-09 12:14:29,280 basehttp 21 70369130389920 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:14:29,607 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 22343
+INFO 2025-08-09 12:14:43,431 basehttp 21 70369130389920 "POST /two_factor/setup/ HTTP/1.1" 302 0
+INFO 2025-08-09 12:14:43,677 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 22304
+INFO 2025-08-09 12:14:43,742 basehttp 21 70369130389920 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:14:44,071 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 22379
+INFO 2025-08-09 12:15:13,181 basehttp 21 70369130389920 "POST /two_factor/setup/ HTTP/1.1" 302 0
+INFO 2025-08-09 12:15:13,462 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 22312
+INFO 2025-08-09 12:15:13,522 basehttp 21 70369130389920 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:15:13,824 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 22415
+INFO 2025-08-09 12:16:50,640 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 21402
+INFO 2025-08-09 12:16:50,700 basehttp 21 70368985588128 "GET /static/css/tailwind-custom.css HTTP/1.1" 304 0
+INFO 2025-08-09 12:16:50,717 basehttp 21 70369130389920 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:16:51,030 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 22351
+INFO 2025-08-09 12:16:51,476 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 21494
+INFO 2025-08-09 12:16:51,540 basehttp 21 70369130389920 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:16:51,830 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 22495
+INFO 2025-08-09 12:17:17,736 basehttp 21 70369130389920 "GET / HTTP/1.1" 302 0
+INFO 2025-08-09 12:17:18,023 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 22459
+INFO 2025-08-09 12:17:18,085 basehttp 21 70369130389920 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:17:18,400 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 22419
+INFO 2025-08-09 12:17:20,517 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 21458
+INFO 2025-08-09 12:17:20,577 basehttp 21 70368985588128 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-08-09 12:17:20,586 basehttp 21 70369130389920 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:17:20,893 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 22495
+INFO 2025-08-09 12:17:20,962 basehttp 21 70369130389920 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-08-09 12:17:21,269 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 22379
+INFO 2025-08-09 12:17:23,694 basehttp 21 70369130389920 "GET /logout HTTP/1.1" 302 0
+INFO 2025-08-09 12:17:24,032 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 22479
+INFO 2025-08-09 12:17:24,109 basehttp 21 70369130389920 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:17:24,487 basehttp 21 70368985588128 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-08-09 12:17:24,488 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 22399
+INFO 2025-08-09 12:17:24,779 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 21402
+INFO 2025-08-09 12:17:27,784 basehttp 21 70369130389920 "GET /logout HTTP/1.1" 302 0
+INFO 2025-08-09 12:17:28,077 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 22423
+INFO 2025-08-09 12:17:28,134 basehttp 21 70369130389920 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:17:28,464 basehttp 21 70368985588128 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-08-09 12:17:28,475 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 22387
+INFO 2025-08-09 12:17:28,719 basehttp 21 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 21430
+INFO 2025-08-09 12:17:30,311 basehttp 21 70368985588128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:17:30,641 basehttp 21 70369130389920 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-08-09 12:17:30,655 basehttp 21 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 22427
+INFO 2025-08-09 12:17:30,949 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 21346
+INFO 2025-08-09 12:17:31,387 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 21426
+INFO 2025-08-09 12:17:31,437 basehttp 21 70368985588128 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-08-09 12:17:31,445 basehttp 21 70369130389920 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:17:31,780 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 22447
+INFO 2025-08-09 12:17:31,788 basehttp 21 70368985588128 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-08-09 12:17:32,040 basehttp 21 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 21514
+INFO 2025-08-09 12:17:42,139 basehttp 21 70368985588128 "POST /two_factor/setup/ HTTP/1.1" 302 0
+INFO 2025-08-09 12:17:42,415 basehttp 21 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 22312
+INFO 2025-08-09 12:17:42,469 basehttp 21 70368985588128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:17:42,802 basehttp 21 70369130389920 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-08-09 12:17:42,813 basehttp 21 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 22307
+INFO 2025-08-09 12:17:43,104 basehttp 21 70369130389920 "GET /two_factor/setup/ HTTP/1.1" 200 21438
+INFO 2025-08-09 12:19:54,790 autoreload 21 70368760885280 /app/two_factor_auth/views.py changed, reloading.
+INFO 2025-08-09 12:20:02,334 autoreload 66 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-09 12:21:12,080 basehttp 66 70368985588128 "GET / HTTP/1.1" 302 0
+INFO 2025-08-09 12:21:12,489 basehttp 66 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 22403
+INFO 2025-08-09 12:21:12,557 basehttp 66 70369129324960 "GET /static/css/tailwind-custom.css HTTP/1.1" 304 0
+INFO 2025-08-09 12:21:12,580 basehttp 66 70368985588128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:21:12,839 basehttp 66 70369129324960 "GET /favicon.ico HTTP/1.1" 302 0
+ERROR 2025-08-09 12:21:13,049 log 66 70368985588128 Internal Server Error: /two_factor/setup/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/two_factor_auth/views.py", line 72, in get
+    url = device.config_url
+          ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 155, in config_url
+    'secret': b32encode(self.bin_key),
+                        ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 107, in bin_key
+    return unhexlify(self.key.encode())
+                     ^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'encode'
+ERROR 2025-08-09 12:21:13,071 basehttp 66 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 500 84879
+ERROR 2025-08-09 12:21:13,427 log 66 70369129324960 Internal Server Error: /two_factor/setup/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/two_factor_auth/views.py", line 72, in get
+    url = device.config_url
+          ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 155, in config_url
+    'secret': b32encode(self.bin_key),
+                        ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 107, in bin_key
+    return unhexlify(self.key.encode())
+                     ^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'encode'
+ERROR 2025-08-09 12:21:13,472 basehttp 66 70369129324960 "GET /two_factor/setup/ HTTP/1.1" 500 85542
+ERROR 2025-08-09 12:21:13,799 log 66 70368985588128 Internal Server Error: /two_factor/setup/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/two_factor_auth/views.py", line 72, in get
+    url = device.config_url
+          ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 155, in config_url
+    'secret': b32encode(self.bin_key),
+                        ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 107, in bin_key
+    return unhexlify(self.key.encode())
+                     ^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'encode'
+ERROR 2025-08-09 12:21:13,811 basehttp 66 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 500 85947
+INFO 2025-08-09 12:21:13,931 basehttp 66 70368985588128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:21:14,129 basehttp 66 70368985588128 "GET /favicon.ico HTTP/1.1" 302 0
+ERROR 2025-08-09 12:21:14,547 log 66 70369129324960 Internal Server Error: /two_factor/setup/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/two_factor_auth/views.py", line 72, in get
+    url = device.config_url
+          ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 155, in config_url
+    'secret': b32encode(self.bin_key),
+                        ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 107, in bin_key
+    return unhexlify(self.key.encode())
+                     ^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'encode'
+ERROR 2025-08-09 12:21:14,762 log 66 70369273078176 Internal Server Error: /two_factor/setup/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/two_factor_auth/views.py", line 72, in get
+    url = device.config_url
+          ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 155, in config_url
+    'secret': b32encode(self.bin_key),
+                        ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 107, in bin_key
+    return unhexlify(self.key.encode())
+                     ^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'encode'
+ERROR 2025-08-09 12:21:14,799 basehttp 66 70369273078176 "GET /two_factor/setup/ HTTP/1.1" 500 84879
+ERROR 2025-08-09 12:21:14,959 log 66 70368985588128 Internal Server Error: /two_factor/setup/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/two_factor_auth/views.py", line 72, in get
+    url = device.config_url
+          ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 155, in config_url
+    'secret': b32encode(self.bin_key),
+                        ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 107, in bin_key
+    return unhexlify(self.key.encode())
+                     ^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'encode'
+ERROR 2025-08-09 12:21:14,986 basehttp 66 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 500 86139
+ERROR 2025-08-09 12:21:15,331 log 66 70369273078176 Internal Server Error: /two_factor/setup/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/two_factor_auth/views.py", line 72, in get
+    url = device.config_url
+          ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 155, in config_url
+    'secret': b32encode(self.bin_key),
+                        ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 107, in bin_key
+    return unhexlify(self.key.encode())
+                     ^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'encode'
+ERROR 2025-08-09 12:21:15,339 basehttp 66 70369273078176 "GET /two_factor/setup/ HTTP/1.1" 500 86279
+INFO 2025-08-09 12:21:15,397 basehttp 66 70369273078176 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:21:15,529 basehttp 66 70368985588128 "GET /favicon.ico HTTP/1.1" 302 0
+ERROR 2025-08-09 12:21:15,920 log 66 70369273078176 Internal Server Error: /two_factor/setup/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/two_factor_auth/views.py", line 72, in get
+    url = device.config_url
+          ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 155, in config_url
+    'secret': b32encode(self.bin_key),
+                        ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 107, in bin_key
+    return unhexlify(self.key.encode())
+                     ^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'encode'
+ERROR 2025-08-09 12:21:15,959 basehttp 66 70369273078176 "GET /two_factor/setup/ HTTP/1.1" 500 84547
+ERROR 2025-08-09 12:21:16,074 log 66 70368985588128 Internal Server Error: /two_factor/setup/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/two_factor_auth/views.py", line 72, in get
+    url = device.config_url
+          ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 155, in config_url
+    'secret': b32encode(self.bin_key),
+                        ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 107, in bin_key
+    return unhexlify(self.key.encode())
+                     ^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'encode'
+ERROR 2025-08-09 12:21:16,081 basehttp 66 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 500 86139
+INFO 2025-08-09 12:21:17,095 basehttp 66 70368985588128 "GET / HTTP/1.1" 302 0
+ERROR 2025-08-09 12:21:17,437 log 66 70368985588128 Internal Server Error: /two_factor/setup/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/two_factor_auth/views.py", line 72, in get
+    url = device.config_url
+          ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 155, in config_url
+    'secret': b32encode(self.bin_key),
+                        ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 107, in bin_key
+    return unhexlify(self.key.encode())
+                     ^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'encode'
+ERROR 2025-08-09 12:21:17,444 basehttp 66 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 500 85682
+INFO 2025-08-09 12:21:17,503 basehttp 66 70368985588128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:21:17,721 basehttp 66 70369273078176 "GET /favicon.ico HTTP/1.1" 302 0
+ERROR 2025-08-09 12:21:17,932 log 66 70368985588128 Internal Server Error: /two_factor/setup/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/two_factor_auth/views.py", line 72, in get
+    url = device.config_url
+          ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 155, in config_url
+    'secret': b32encode(self.bin_key),
+                        ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 107, in bin_key
+    return unhexlify(self.key.encode())
+                     ^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'encode'
+ERROR 2025-08-09 12:21:17,940 basehttp 66 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 500 84879
+ERROR 2025-08-09 12:21:18,235 log 66 70369273078176 Internal Server Error: /two_factor/setup/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/two_factor_auth/views.py", line 72, in get
+    url = device.config_url
+          ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 155, in config_url
+    'secret': b32encode(self.bin_key),
+                        ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 107, in bin_key
+    return unhexlify(self.key.encode())
+                     ^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'encode'
+ERROR 2025-08-09 12:21:18,243 basehttp 66 70369273078176 "GET /two_factor/setup/ HTTP/1.1" 500 85542
+ERROR 2025-08-09 12:21:18,539 log 66 70368985588128 Internal Server Error: /two_factor/setup/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/two_factor_auth/views.py", line 72, in get
+    url = device.config_url
+          ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 155, in config_url
+    'secret': b32encode(self.bin_key),
+                        ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 107, in bin_key
+    return unhexlify(self.key.encode())
+                     ^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'encode'
+ERROR 2025-08-09 12:21:18,546 basehttp 66 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 500 85542
+INFO 2025-08-09 12:21:36,951 basehttp 66 70368985588128 "GET / HTTP/1.1" 302 0
+INFO 2025-08-09 12:21:37,029 basehttp 66 70368985588128 "GET /users/login/?next=/ HTTP/1.1" 200 12418
+WARNING 2025-08-09 12:21:37,130 log 66 70368985588128 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:21:37,133 basehttp 66 70368985588128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+WARNING 2025-08-09 12:21:37,313 log 66 70368985588128 Not Found: /favicon.ico
+WARNING 2025-08-09 12:21:37,316 basehttp 66 70368985588128 "GET /favicon.ico HTTP/1.1" 404 3621
+INFO 2025-08-09 12:21:58,216 basehttp 66 70368985588128 "POST /users/login/ HTTP/1.1" 302 0
+ERROR 2025-08-09 12:21:58,522 log 66 70368985588128 Internal Server Error: /two_factor/setup/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/two_factor_auth/views.py", line 72, in get
+    url = device.config_url
+          ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 155, in config_url
+    'secret': b32encode(self.bin_key),
+                        ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 107, in bin_key
+    return unhexlify(self.key.encode())
+                     ^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'encode'
+ERROR 2025-08-09 12:21:58,530 basehttp 66 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 500 85989
+INFO 2025-08-09 12:21:58,598 basehttp 66 70368985588128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+ERROR 2025-08-09 12:21:58,952 log 66 70368985588128 Internal Server Error: /two_factor/setup/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/two_factor_auth/views.py", line 72, in get
+    url = device.config_url
+          ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 155, in config_url
+    'secret': b32encode(self.bin_key),
+                        ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 107, in bin_key
+    return unhexlify(self.key.encode())
+                     ^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'encode'
+ERROR 2025-08-09 12:21:58,960 basehttp 66 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 500 84879
+ERROR 2025-08-09 12:22:32,790 log 66 70368985588128 Internal Server Error: /two_factor/setup/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/two_factor_auth/views.py", line 72, in get
+    url = device.config_url
+          ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 155, in config_url
+    'secret': b32encode(self.bin_key),
+                        ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 107, in bin_key
+    return unhexlify(self.key.encode())
+                     ^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'encode'
+ERROR 2025-08-09 12:22:32,799 basehttp 66 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 500 86321
+INFO 2025-08-09 12:22:32,866 basehttp 66 70368985588128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+ERROR 2025-08-09 12:22:33,230 log 66 70368985588128 Internal Server Error: /two_factor/setup/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/two_factor_auth/views.py", line 72, in get
+    url = device.config_url
+          ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 155, in config_url
+    'secret': b32encode(self.bin_key),
+                        ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django_otp/plugins/otp_totp/models.py", line 107, in bin_key
+    return unhexlify(self.key.encode())
+                     ^^^^^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'encode'
+ERROR 2025-08-09 12:22:33,238 basehttp 66 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 500 84547
+INFO 2025-08-09 12:22:42,679 autoreload 66 70368760885280 /app/two_factor_auth/views.py changed, reloading.
+INFO 2025-08-09 12:22:50,359 autoreload 82 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-09 12:23:02,178 basehttp 82 70368985588128 "GET / HTTP/1.1" 302 0
+INFO 2025-08-09 12:23:02,557 basehttp 82 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 22379
+INFO 2025-08-09 12:23:02,619 basehttp 82 70368985588128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:23:02,933 basehttp 82 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 22503
+INFO 2025-08-09 12:23:21,375 basehttp 82 70368985588128 "POST /two_factor/setup/ HTTP/1.1" 302 0
+INFO 2025-08-09 12:23:21,670 basehttp 82 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 22310
+INFO 2025-08-09 12:23:21,726 basehttp 82 70368985588128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:23:22,046 basehttp 82 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 22427
+INFO 2025-08-09 12:23:24,251 basehttp 82 70368985588128 "GET / HTTP/1.1" 302 0
+INFO 2025-08-09 12:23:24,540 basehttp 82 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 22471
+INFO 2025-08-09 12:23:24,593 basehttp 82 70368985588128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:23:24,903 basehttp 82 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 22323
+INFO 2025-08-09 12:23:27,458 basehttp 82 70368985588128 "GET / HTTP/1.1" 302 0
+INFO 2025-08-09 12:23:27,753 basehttp 82 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 22463
+INFO 2025-08-09 12:23:27,826 basehttp 82 70368985588128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:23:28,147 basehttp 82 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 22431
+INFO 2025-08-09 12:23:28,899 basehttp 82 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 21422
+INFO 2025-08-09 12:23:28,956 basehttp 82 70369129324960 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-08-09 12:23:28,957 basehttp 82 70368985588128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:23:29,284 basehttp 82 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 22419
+INFO 2025-08-09 12:23:29,301 basehttp 82 70369129324960 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-08-09 12:23:29,557 basehttp 82 70369129324960 "GET /two_factor/setup/ HTTP/1.1" 200 21442
+INFO 2025-08-09 12:23:32,689 basehttp 82 70369129324960 "GET /two_factor/setup/ HTTP/1.1" 302 0
+INFO 2025-08-09 12:23:32,764 basehttp 82 70369129324960 "GET /users/login/?next=/two_factor/setup/ HTTP/1.1" 200 12418
+INFO 2025-08-09 12:23:32,825 basehttp 82 70368985588128 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-08-09 12:23:32,891 log 82 70369129324960 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:23:32,893 basehttp 82 70369129324960 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:23:33,016 basehttp 82 70369129324960 "GET /users/login/?next=/two_factor/setup/ HTTP/1.1" 200 12418
+INFO 2025-08-09 12:23:33,090 basehttp 82 70368985588128 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-08-09 12:23:33,107 log 82 70369129324960 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:23:33,109 basehttp 82 70369129324960 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+WARNING 2025-08-09 12:23:33,408 log 82 70369129324960 Not Found: /favicon.ico
+WARNING 2025-08-09 12:23:33,409 basehttp 82 70369129324960 "GET /favicon.ico HTTP/1.1" 404 3621
+INFO 2025-08-09 12:23:45,072 autoreload 82 70368760885280 /app/two_factor_auth/views.py changed, reloading.
+INFO 2025-08-09 12:23:52,979 autoreload 95 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-09 12:24:04,944 basehttp 95 70368985801120 "GET /users/login/?next=/two_factor/setup/ HTTP/1.1" 200 12418
+INFO 2025-08-09 12:24:05,020 basehttp 95 70369128489376 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-08-09 12:24:05,079 log 95 70368985801120 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:24:05,081 basehttp 95 70368985801120 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+WARNING 2025-08-09 12:24:05,311 log 95 70368985801120 Not Found: /favicon.ico
+WARNING 2025-08-09 12:24:05,313 basehttp 95 70368985801120 "GET /favicon.ico HTTP/1.1" 404 3621
+INFO 2025-08-09 12:24:05,719 basehttp 95 70368985801120 "GET /users/login/?next=/two_factor/setup/ HTTP/1.1" 200 12418
+INFO 2025-08-09 12:24:05,791 basehttp 95 70369128489376 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-08-09 12:24:05,812 log 95 70368985801120 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:24:05,814 basehttp 95 70368985801120 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+WARNING 2025-08-09 12:24:06,213 log 95 70368985801120 Not Found: /favicon.ico
+WARNING 2025-08-09 12:24:06,221 basehttp 95 70368985801120 "GET /favicon.ico HTTP/1.1" 404 3621
+INFO 2025-08-09 12:24:47,871 basehttp 95 70368985801120 "GET / HTTP/1.1" 302 0
+INFO 2025-08-09 12:24:47,886 basehttp 95 70368985801120 "GET /users/login/?next=/ HTTP/1.1" 200 12418
+WARNING 2025-08-09 12:24:47,998 log 95 70368985801120 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:24:48,000 basehttp 95 70368985801120 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:25:05,515 basehttp 95 70368985801120 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-08-09 12:25:05,834 basehttp 95 70368985801120 "GET /two_factor/setup/ HTTP/1.1" 200 21394
+INFO 2025-08-09 12:25:05,936 basehttp 95 70368985801120 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:25:06,281 basehttp 95 70368985801120 "GET /two_factor/setup/ HTTP/1.1" 200 22455
+INFO 2025-08-09 12:25:25,754 basehttp 95 70368985801120 "POST /two_factor/setup/ HTTP/1.1" 302 0
+INFO 2025-08-09 12:25:26,051 basehttp 95 70368985801120 "GET /two_factor/setup/ HTTP/1.1" 200 22272
+INFO 2025-08-09 12:25:26,148 basehttp 95 70368985801120 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:25:26,477 basehttp 95 70368985801120 "GET /two_factor/setup/ HTTP/1.1" 200 22415
+INFO 2025-08-09 12:26:00,122 basehttp 95 70368985801120 "GET /two_factor/setup/ HTTP/1.1" 302 0
+INFO 2025-08-09 12:26:00,135 basehttp 95 70368985801120 "GET /users/login/?next=/two_factor/setup/ HTTP/1.1" 200 12418
+INFO 2025-08-09 12:26:00,211 basehttp 95 70369128489376 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-08-09 12:26:00,232 log 95 70368985801120 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:26:00,234 basehttp 95 70368985801120 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+WARNING 2025-08-09 12:26:00,594 log 95 70368985801120 Not Found: /favicon.ico
+WARNING 2025-08-09 12:26:00,596 basehttp 95 70368985801120 "GET /favicon.ico HTTP/1.1" 404 3621
+INFO 2025-08-09 12:26:32,172 autoreload 95 70368760885280 /app/two_factor_auth/views.py changed, reloading.
+INFO 2025-08-09 12:26:39,641 autoreload 109 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-09 12:27:21,526 autoreload 109 70368760885280 /app/two_factor_auth/views.py changed, reloading.
+INFO 2025-08-09 12:27:29,159 autoreload 113 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-09 12:28:09,682 autoreload 113 70368760885280 /app/two_factor_auth/views.py changed, reloading.
+INFO 2025-08-09 12:28:17,309 autoreload 131 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-09 12:28:21,177 basehttp 131 70368985588128 "GET / HTTP/1.1" 302 0
+INFO 2025-08-09 12:28:21,281 basehttp 131 70368985588128 "GET /users/login/?next=/ HTTP/1.1" 200 12418
+WARNING 2025-08-09 12:28:21,457 log 131 70368985588128 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:28:21,461 basehttp 131 70368985588128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+WARNING 2025-08-09 12:28:21,673 log 131 70368985588128 Not Found: /favicon.ico
+WARNING 2025-08-09 12:28:21,680 basehttp 131 70368985588128 "GET /favicon.ico HTTP/1.1" 404 3621
+INFO 2025-08-09 12:28:22,015 basehttp 131 70368985588128 "GET /users/login/?next=/ HTTP/1.1" 200 12418
+INFO 2025-08-09 12:28:22,110 basehttp 131 70369129324960 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-08-09 12:28:22,130 log 131 70368985588128 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:28:22,131 basehttp 131 70368985588128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+WARNING 2025-08-09 12:28:22,445 log 131 70368985588128 Not Found: /favicon.ico
+WARNING 2025-08-09 12:28:22,446 basehttp 131 70368985588128 "GET /favicon.ico HTTP/1.1" 404 3621
+INFO 2025-08-09 12:28:39,341 basehttp 131 70368985588128 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-08-09 12:28:39,676 basehttp 131 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 21446
+INFO 2025-08-09 12:28:39,763 basehttp 131 70368985588128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:28:40,120 basehttp 131 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 22455
+INFO 2025-08-09 12:28:49,580 basehttp 131 70368985588128 "POST /two_factor/setup/ HTTP/1.1" 302 0
+INFO 2025-08-09 12:28:49,873 basehttp 131 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 22252
+INFO 2025-08-09 12:28:49,946 basehttp 131 70368985588128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:28:50,314 basehttp 131 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 22447
+INFO 2025-08-09 12:30:28,568 autoreload 131 70368760885280 /app/two_factor_auth/views.py changed, reloading.
+INFO 2025-08-09 12:30:36,357 autoreload 137 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-09 12:31:50,688 autoreload 137 70368760885280 /app/two_factor_auth/views.py changed, reloading.
+INFO 2025-08-09 12:31:58,359 autoreload 141 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-09 12:32:01,741 basehttp 141 70368985588128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:32:02,190 basehttp 141 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 22447
+INFO 2025-08-09 12:32:02,237 basehttp 141 70368985588128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:32:02,547 basehttp 141 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 22447
+INFO 2025-08-09 12:32:10,734 basehttp 141 70368985588128 "POST /two_factor/setup/ HTTP/1.1" 302 0
+INFO 2025-08-09 12:32:11,014 basehttp 141 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 22340
+INFO 2025-08-09 12:32:11,075 basehttp 141 70368985588128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-08-09 12:32:11,429 basehttp 141 70368985588128 "GET /two_factor/setup/ HTTP/1.1" 200 22447
+INFO 2025-08-09 12:32:11,431 basehttp 141 70369129324960 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-08-09 12:32:11,683 basehttp 141 70369129324960 "GET /two_factor/setup/ HTTP/1.1" 200 21466
+INFO 2025-08-09 12:32:41,746 autoreload 141 70368760885280 /app/asientos_contables/settings.py changed, reloading.
+INFO 2025-08-09 12:32:49,355 autoreload 147 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-09 12:34:19,092 autoreload 51 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-09 12:34:24,005 basehttp 51 70368985743776 "GET / HTTP/1.1" 302 0
+INFO 2025-08-09 12:34:24,070 basehttp 51 70368985743776 "GET /users/login/?next=/ HTTP/1.1" 200 12418
+INFO 2025-08-09 12:34:24,145 basehttp 51 70369129480608 "GET /static/css/tailwind-custom.css HTTP/1.1" 304 0
+WARNING 2025-08-09 12:34:24,218 log 51 70368985743776 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:34:24,219 basehttp 51 70368985743776 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+WARNING 2025-08-09 12:34:24,440 log 51 70368985743776 Not Found: /favicon.ico
+WARNING 2025-08-09 12:34:24,442 basehttp 51 70368985743776 "GET /favicon.ico HTTP/1.1" 404 3621
+INFO 2025-08-09 12:34:38,649 autoreload 51 70368760885280 /app/asientos_contables/settings.py changed, reloading.
+INFO 2025-08-09 12:34:46,210 autoreload 57 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-09 12:34:53,337 basehttp 57 70368985530784 "GET /users/login/ HTTP/1.1" 200 12418
+WARNING 2025-08-09 12:35:14,041 log 57 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:35:14,044 basehttp 57 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+WARNING 2025-08-09 12:35:14,124 log 57 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:35:14,126 basehttp 57 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:35:29,735 basehttp 57 70368985530784 "GET /users/login/?next=/ HTTP/1.1" 200 12418
+WARNING 2025-08-09 12:35:29,831 log 57 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:35:29,833 basehttp 57 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:35:41,197 basehttp 57 70369129267616 "GET / HTTP/1.1" 302 0
+INFO 2025-08-09 12:35:44,494 basehttp 57 70368985530784 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-08-09 12:35:44,796 basehttp 57 70368985530784 "GET /two_factor/setup/ HTTP/1.1" 200 21466
+WARNING 2025-08-09 12:35:44,928 log 57 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:35:44,931 basehttp 57 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:36:18,520 basehttp 57 70368985530784 "POST /two_factor/setup/ HTTP/1.1" 302 0
+INFO 2025-08-09 12:36:18,614 basehttp 57 70368985530784 "GET /two_factor/setup-complete/ HTTP/1.1" 200 20762
+WARNING 2025-08-09 12:36:18,767 log 57 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:36:18,770 basehttp 57 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:36:27,290 basehttp 57 70368985530784 "GET / HTTP/1.1" 200 19427
+WARNING 2025-08-09 12:36:27,435 log 57 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:36:27,437 basehttp 57 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:36:27,572 basehttp 57 70368985530784 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+INFO 2025-08-09 12:36:47,750 basehttp 57 70368985530784 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-08-09 12:36:50,018 basehttp 57 70368985530784 "GET /plan_cuentas/ HTTP/1.1" 200 21214
+INFO 2025-08-09 12:36:50,659 basehttp 57 70368985530784 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 17863
+INFO 2025-08-09 12:36:50,698 basehttp 57 70368985530784 "GET /static/css/plan-cuentas.css HTTP/1.1" 200 12660
+INFO 2025-08-09 12:36:51,250 basehttp 57 70368985530784 "GET /perfiles/ HTTP/1.1" 200 16681
+INFO 2025-08-09 12:36:51,295 basehttp 57 70368985530784 "GET /static/css/perfiles.css HTTP/1.1" 200 2817
+INFO 2025-08-09 12:36:51,299 basehttp 57 70369129267616 "GET /static/js/perfiles.js HTTP/1.1" 200 9709
+INFO 2025-08-09 12:36:51,743 basehttp 57 70369129267616 "GET /empresas/ HTTP/1.1" 200 16647
+INFO 2025-08-09 12:36:52,670 basehttp 57 70369129267616 "GET / HTTP/1.1" 200 19427
+INFO 2025-08-09 12:36:53,959 basehttp 57 70369129267616 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-08-09 12:36:54,818 basehttp 57 70369129267616 "GET /plan_cuentas/ HTTP/1.1" 200 21214
+INFO 2025-08-09 12:36:55,531 basehttp 57 70369129267616 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 17863
+INFO 2025-08-09 12:36:56,151 basehttp 57 70369129267616 "GET /perfiles/ HTTP/1.1" 200 16681
+INFO 2025-08-09 12:36:56,812 basehttp 57 70369129267616 "GET /empresas/ HTTP/1.1" 200 16647
+INFO 2025-08-09 12:36:57,450 basehttp 57 70369129267616 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-08-09 12:36:57,927 basehttp 57 70369129267616 "GET / HTTP/1.1" 200 19427
+INFO 2025-08-09 12:37:15,339 basehttp 57 70369129267616 "GET / HTTP/1.1" 200 19427
+INFO 2025-08-09 12:38:13,234 basehttp 57 70369129267616 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 17863
+INFO 2025-08-09 12:38:14,102 basehttp 57 70369129267616 "GET /perfiles/ HTTP/1.1" 200 16681
+INFO 2025-08-09 12:38:15,183 basehttp 57 70369129267616 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-08-09 12:38:15,951 basehttp 57 70369129267616 "GET /plan_cuentas/ HTTP/1.1" 200 21214
+INFO 2025-08-09 12:38:18,116 basehttp 57 70369129267616 "GET /empresas/ HTTP/1.1" 200 16647
+INFO 2025-08-09 12:38:30,347 basehttp 57 70369129267616 "GET /empresas/crear/ HTTP/1.1" 200 22188
+INFO 2025-08-09 12:38:44,960 basehttp 57 70369129267616 "POST /empresas/crear/ HTTP/1.1" 302 0
+INFO 2025-08-09 12:38:45,075 basehttp 57 70369129267616 "GET /empresas/ HTTP/1.1" 200 23573
+INFO 2025-08-09 12:38:48,701 basehttp 57 70369129267616 "GET /perfiles/ HTTP/1.1" 200 16681
+INFO 2025-08-09 12:38:50,225 basehttp 57 70369129267616 "GET /perfiles/crear/ HTTP/1.1" 200 20261
+INFO 2025-08-09 12:41:38,305 basehttp 57 70369129267616 "GET /static/css/tailwind-custom.css HTTP/1.1" 304 0
+WARNING 2025-08-09 12:41:38,391 log 57 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:41:38,393 basehttp 57 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:41:43,230 basehttp 57 70368985530784 "GET /perfiles/ HTTP/1.1" 200 16681
+WARNING 2025-08-09 12:41:43,368 log 57 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:41:43,370 basehttp 57 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:41:43,478 basehttp 57 70368985530784 "GET /static/img/favicon.ico HTTP/1.1" 304 0
+INFO 2025-08-09 12:41:45,575 basehttp 57 70368985530784 "GET /perfiles/ HTTP/1.1" 200 16681
+WARNING 2025-08-09 12:41:45,696 log 57 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:41:45,699 basehttp 57 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:41:46,133 basehttp 57 70368985530784 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 17863
+WARNING 2025-08-09 12:41:46,255 log 57 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:41:46,257 basehttp 57 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:41:46,953 basehttp 57 70368985530784 "GET /perfiles/ HTTP/1.1" 200 16681
+WARNING 2025-08-09 12:41:47,082 log 57 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:41:47,085 basehttp 57 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:41:47,913 basehttp 57 70368985530784 "GET /perfiles/crear/ HTTP/1.1" 200 20261
+INFO 2025-08-09 12:41:47,987 basehttp 57 70369129267616 "GET /static/css/perfiles.css HTTP/1.1" 304 0
+INFO 2025-08-09 12:41:47,999 basehttp 57 70369274069408 "GET /static/js/perfiles.js HTTP/1.1" 304 0
+WARNING 2025-08-09 12:41:48,066 log 57 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:41:48,068 basehttp 57 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:42:55,359 basehttp 57 70368985530784 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 17863
+INFO 2025-08-09 12:42:55,421 basehttp 57 70368985530784 "GET /static/css/plan-cuentas.css HTTP/1.1" 304 0
+WARNING 2025-08-09 12:42:55,507 log 57 70369274069408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:42:55,510 basehttp 57 70369274069408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:42:57,908 basehttp 57 70369274069408 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 23096
+WARNING 2025-08-09 12:42:58,059 log 57 70369274069408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:42:58,061 basehttp 57 70369274069408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:43:02,105 basehttp 57 70369274069408 "GET /plan_cuentas/ HTTP/1.1" 200 21214
+WARNING 2025-08-09 12:43:02,259 log 57 70369274069408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:43:02,261 basehttp 57 70369274069408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:43:04,264 basehttp 57 70369274069408 "GET /plan_cuentas/crear/ HTTP/1.1" 200 16709
+WARNING 2025-08-09 12:43:04,405 log 57 70369274069408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:43:04,407 basehttp 57 70369274069408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:43:06,579 basehttp 57 70369274069408 "GET /perfiles/ HTTP/1.1" 200 16681
+WARNING 2025-08-09 12:43:06,717 log 57 70369274069408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:43:06,719 basehttp 57 70369274069408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:43:07,643 basehttp 57 70369274069408 "GET /plan_cuentas/ HTTP/1.1" 200 21214
+WARNING 2025-08-09 12:43:07,787 log 57 70369274069408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:43:07,790 basehttp 57 70369274069408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:43:08,829 basehttp 57 70369274069408 "GET /plan_cuentas/crear/ HTTP/1.1" 200 16709
+WARNING 2025-08-09 12:43:08,979 log 57 70369274069408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:43:08,981 basehttp 57 70369274069408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:43:10,848 basehttp 57 70369274069408 "GET /perfiles/ HTTP/1.1" 200 16681
+WARNING 2025-08-09 12:43:10,993 log 57 70369274069408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:43:10,996 basehttp 57 70369274069408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:43:12,261 basehttp 57 70369274069408 "GET /plan_cuentas/ HTTP/1.1" 200 21214
+WARNING 2025-08-09 12:43:12,420 log 57 70369274069408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:43:12,424 basehttp 57 70369274069408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:43:12,717 basehttp 57 70369274069408 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 17863
+WARNING 2025-08-09 12:43:12,873 log 57 70369274069408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:43:12,876 basehttp 57 70369274069408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:43:13,851 basehttp 57 70369274069408 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 23096
+WARNING 2025-08-09 12:43:14,006 log 57 70369274069408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:43:14,008 basehttp 57 70369274069408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:43:18,813 basehttp 57 70369274069408 "GET /plan_cuentas/ HTTP/1.1" 200 21214
+WARNING 2025-08-09 12:43:18,961 log 57 70369274069408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:43:18,964 basehttp 57 70369274069408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:43:20,923 basehttp 57 70369274069408 "GET /plan_cuentas/crear/ HTTP/1.1" 200 16709
+WARNING 2025-08-09 12:43:21,076 log 57 70369274069408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:43:21,081 basehttp 57 70369274069408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:43:24,002 basehttp 57 70369274069408 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 17863
+WARNING 2025-08-09 12:43:24,155 log 57 70369274069408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:43:24,156 basehttp 57 70369274069408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:43:24,620 basehttp 57 70369274069408 "GET /perfiles/ HTTP/1.1" 200 16681
+WARNING 2025-08-09 12:43:24,770 log 57 70369274069408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:43:24,772 basehttp 57 70369274069408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:43:27,764 basehttp 57 70369274069408 "GET /perfiles/crear/ HTTP/1.1" 200 20261
+WARNING 2025-08-09 12:43:27,922 log 57 70369274069408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:43:27,924 basehttp 57 70369274069408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:44:13,125 autoreload 57 70368760885280 /app/perfiles/forms.py changed, reloading.
+INFO 2025-08-09 12:44:20,866 autoreload 65 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-09 12:46:22,533 autoreload 65 70368760885280 /app/perfiles/views.py changed, reloading.
+INFO 2025-08-09 12:46:30,167 autoreload 69 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-09 12:48:14,078 basehttp 69 70368985530784 "GET /perfiles/crear/ HTTP/1.1" 200 20261
+INFO 2025-08-09 12:48:14,157 basehttp 69 70369129267616 "GET /static/css/tailwind-custom.css HTTP/1.1" 304 0
+INFO 2025-08-09 12:48:14,173 basehttp 69 70369414644128 "GET /static/js/perfiles.js HTTP/1.1" 304 0
+INFO 2025-08-09 12:48:14,175 basehttp 69 70369271955872 "GET /static/css/perfiles.css HTTP/1.1" 304 0
+WARNING 2025-08-09 12:48:14,287 log 69 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:48:14,290 basehttp 69 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:48:14,361 basehttp 69 70368985530784 "GET /static/img/favicon.ico HTTP/1.1" 304 0
+INFO 2025-08-09 12:49:36,162 autoreload 51 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-09 12:49:40,554 basehttp 51 70368985530784 "GET / HTTP/1.1" 200 19427
+WARNING 2025-08-09 12:49:40,714 log 51 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:49:40,716 basehttp 51 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:49:42,385 basehttp 51 70368985530784 "GET /perfiles/ HTTP/1.1" 200 16681
+WARNING 2025-08-09 12:49:42,502 log 51 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:49:42,505 basehttp 51 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:49:44,059 basehttp 51 70368985530784 "GET /perfiles/crear/ HTTP/1.1" 200 20261
+WARNING 2025-08-09 12:49:44,192 log 51 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:49:44,194 basehttp 51 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:51:33,841 basehttp 51 70368985530784 "GET /perfiles/ HTTP/1.1" 200 21290
+WARNING 2025-08-09 12:51:34,004 log 51 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:51:34,008 basehttp 51 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:51:44,528 basehttp 51 70368985530784 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 17863
+INFO 2025-08-09 12:51:44,601 basehttp 51 70369130316192 "GET /static/css/plan-cuentas.css HTTP/1.1" 304 0
+WARNING 2025-08-09 12:51:44,665 log 51 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:51:44,666 basehttp 51 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:51:46,415 basehttp 51 70368985530784 "GET /plan_cuentas/ HTTP/1.1" 200 21214
+WARNING 2025-08-09 12:51:46,549 log 51 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:51:46,552 basehttp 51 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:51:49,114 basehttp 51 70368985530784 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 17863
+WARNING 2025-08-09 12:51:49,246 log 51 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:51:49,248 basehttp 51 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:51:50,327 basehttp 51 70368985530784 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 23096
+WARNING 2025-08-09 12:51:50,456 log 51 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:51:50,457 basehttp 51 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:51:53,865 basehttp 51 70368985530784 "GET /plan_cuentas/ HTTP/1.1" 200 21214
+WARNING 2025-08-09 12:51:54,004 log 51 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:51:54,006 basehttp 51 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:51:55,732 basehttp 51 70368985530784 "GET /plan_cuentas/crear/ HTTP/1.1" 200 16754
+WARNING 2025-08-09 12:51:55,865 log 51 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:51:55,867 basehttp 51 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:54:42,550 basehttp 51 70368985530784 "POST /plan_cuentas/crear/ HTTP/1.1" 302 0
+INFO 2025-08-09 12:54:42,665 basehttp 51 70368985530784 "GET /plan_cuentas/ HTTP/1.1" 200 27384
+INFO 2025-08-09 12:54:42,746 basehttp 51 70369130316192 "GET /static/css/tailwind-custom.css HTTP/1.1" 304 0
+WARNING 2025-08-09 12:54:42,831 log 51 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:54:42,834 basehttp 51 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:54:42,961 basehttp 51 70368985530784 "GET /static/img/favicon.ico HTTP/1.1" 304 0
+INFO 2025-08-09 12:54:46,336 basehttp 51 70368985530784 "GET /plan_cuentas/cuentas/?plan_cuentas=1 HTTP/1.1" 200 17863
+WARNING 2025-08-09 12:54:46,459 log 51 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:54:46,461 basehttp 51 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:54:50,048 basehttp 51 70368985530784 "GET /asientos/ HTTP/1.1" 200 18997
+WARNING 2025-08-09 12:54:50,203 log 51 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:54:50,205 basehttp 51 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:54:50,663 basehttp 51 70368985530784 "GET /plan_cuentas/ HTTP/1.1" 200 26691
+WARNING 2025-08-09 12:54:50,793 log 51 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:54:50,796 basehttp 51 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:54:55,755 basehttp 51 70368985530784 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 17863
+WARNING 2025-08-09 12:54:55,890 log 51 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:54:55,892 basehttp 51 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:56:57,700 basehttp 51 70368985530784 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 23154
+WARNING 2025-08-09 12:56:57,839 log 51 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:56:57,841 basehttp 51 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:57:13,695 basehttp 51 70368985530784 "GET /plan_cuentas/ HTTP/1.1" 200 26691
+WARNING 2025-08-09 12:57:13,833 log 51 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:57:13,837 basehttp 51 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:57:16,489 basehttp 51 70368985530784 "GET /plan_cuentas/crear/ HTTP/1.1" 200 16754
+WARNING 2025-08-09 12:57:16,628 log 51 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:57:16,631 basehttp 51 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:57:33,775 basehttp 51 70368985530784 "GET /plan_cuentas/ HTTP/1.1" 200 26691
+WARNING 2025-08-09 12:57:33,917 log 51 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:57:33,919 basehttp 51 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:57:43,205 basehttp 51 70368985530784 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 17863
+WARNING 2025-08-09 12:57:43,339 log 51 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:57:43,341 basehttp 51 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:57:45,212 basehttp 51 70368985530784 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 23154
+WARNING 2025-08-09 12:57:45,349 log 51 70368985530784 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 12:57:45,352 basehttp 51 70368985530784 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 12:58:41,086 basehttp 51 70368985530784 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=1 HTTP/1.1" 200 15
+INFO 2025-08-09 13:06:16,361 basehttp 51 70368985530784 "POST /plan_cuentas/cuentas/crear/ HTTP/1.1" 302 0
+INFO 2025-08-09 13:06:16,431 basehttp 51 70368985530784 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 20907
+INFO 2025-08-09 13:06:16,496 basehttp 51 70368985530784 "GET /static/css/tailwind-custom.css HTTP/1.1" 304 0
+INFO 2025-08-09 13:06:16,500 basehttp 51 70369130316192 "GET /static/css/plan-cuentas.css HTTP/1.1" 304 0
+INFO 2025-08-09 13:06:16,688 basehttp 51 70368985530784 "GET /static/img/favicon.ico HTTP/1.1" 304 0
+INFO 2025-08-09 13:06:21,578 basehttp 51 70368985530784 "GET /plan_cuentas/cuentas/detalle/1/ HTTP/1.1" 200 21310
+INFO 2025-08-09 13:06:32,984 basehttp 51 70368985530784 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 20193
+INFO 2025-08-09 13:06:38,664 basehttp 51 70368985530784 "GET /plan_cuentas/cuentas/detalle/1/ HTTP/1.1" 200 21310
+INFO 2025-08-09 13:06:41,161 basehttp 51 70368985530784 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 20193
+INFO 2025-08-09 13:06:42,047 basehttp 51 70368985530784 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 23154
+INFO 2025-08-09 13:06:45,227 basehttp 51 70368985530784 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 20193
+INFO 2025-08-09 13:06:49,923 basehttp 51 70368985530784 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 20193
+INFO 2025-08-09 13:06:51,172 basehttp 51 70368985530784 "GET /plan_cuentas/ HTTP/1.1" 200 26691
+INFO 2025-08-09 13:06:53,023 basehttp 51 70368985530784 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-08-09 13:07:00,413 basehttp 51 70368985530784 "GET /plan_cuentas/ HTTP/1.1" 200 26691
+INFO 2025-08-09 13:07:02,042 basehttp 51 70368985530784 "GET /perfiles/ HTTP/1.1" 200 21290
+INFO 2025-08-09 13:07:02,076 basehttp 51 70368985530784 "GET /static/css/perfiles.css HTTP/1.1" 304 0
+INFO 2025-08-09 13:07:02,078 basehttp 51 70369130316192 "GET /static/js/perfiles.js HTTP/1.1" 304 0
+INFO 2025-08-09 13:09:43,666 autoreload 51 70368760885280 /app/perfiles/views.py changed, reloading.
+INFO 2025-08-09 13:09:51,658 autoreload 59 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-09 13:10:13,270 basehttp 59 70368985743776 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 20193
+INFO 2025-08-09 13:10:14,161 basehttp 59 70368985743776 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 23154
+INFO 2025-08-09 13:12:07,292 basehttp 59 70368985743776 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-08-09 13:12:08,106 basehttp 59 70368985743776 "GET /asientos/crear/ HTTP/1.1" 200 35121
+INFO 2025-08-09 13:12:42,580 basehttp 59 70368985743776 "GET /asientos/api/perfil/1/cuentas/ HTTP/1.1" 200 162
+INFO 2025-08-09 13:17:49,966 basehttp 59 70368985743776 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 20193
+INFO 2025-08-09 13:17:50,004 basehttp 59 70368985743776 "GET /static/css/tailwind-custom.css HTTP/1.1" 304 0
+INFO 2025-08-09 13:17:50,019 basehttp 59 70369129496992 "GET /static/css/plan-cuentas.css HTTP/1.1" 304 0
+INFO 2025-08-09 13:17:50,278 basehttp 59 70368985743776 "GET /static/img/favicon.ico HTTP/1.1" 304 0
+INFO 2025-08-09 13:17:51,998 basehttp 59 70368985743776 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 20193
+INFO 2025-08-09 13:17:52,899 basehttp 59 70368985743776 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 23154
+INFO 2025-08-09 13:18:03,568 basehttp 59 70368985743776 "GET /static/css/tailwind-custom.css HTTP/1.1" 304 0
+WARNING 2025-08-09 13:18:03,699 log 59 70369129496992 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-09 13:18:03,701 basehttp 59 70369129496992 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-09 13:20:32,161 basehttp 59 70369129496992 "GET /secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 200 24683
+INFO 2025-08-09 13:20:32,205 basehttp 59 70369129496992 "GET /static/css/secure-module.css HTTP/1.1" 200 15076
+WARNING 2025-08-09 13:20:32,453 log 59 70369129496992 Not Found: /favicon.ico
+WARNING 2025-08-09 13:20:32,456 basehttp 59 70369129496992 "GET /favicon.ico HTTP/1.1" 404 3621
+INFO 2025-08-09 13:21:54,865 basehttp 59 70369129496992 "POST /secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 200 26176
+INFO 2025-08-09 13:22:15,435 basehttp 59 70369129496992 "POST /secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 200 26174
+INFO 2025-08-09 13:22:22,732 basehttp 59 70369129496992 "GET /secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 200 24683
+INFO 2025-08-09 13:22:42,926 basehttp 59 70369129496992 "POST /secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 200 26176
+INFO 2025-08-09 13:22:56,224 basehttp 59 70369129496992 "POST /secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 200 26174
+INFO 2025-08-09 13:27:01,134 autoreload 59 70368760885280 /app/secure_data/utils.py changed, reloading.
+INFO 2025-08-09 13:27:09,502 autoreload 66 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-09 13:27:44,638 autoreload 66 70368760885280 /app/secure_data/utils.py changed, reloading.
+INFO 2025-08-09 13:27:52,437 autoreload 70 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-09 13:28:04,268 basehttp 70 70368985530784 "GET /secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 200 24683
+INFO 2025-08-09 13:28:04,313 basehttp 70 70368985530784 "GET /static/css/tailwind-custom.css HTTP/1.1" 304 0
+INFO 2025-08-09 13:28:53,515 basehttp 70 70368985530784 "POST /secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 200 26176
+INFO 2025-08-09 13:29:03,852 basehttp 70 70368985530784 "POST /secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 200 26174
+INFO 2025-08-09 13:31:00,975 basehttp 70 70368985530784 "GET /secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 200 24683
+INFO 2025-08-09 13:31:01,002 basehttp 70 70368985530784 "GET /static/css/secure-module.css HTTP/1.1" 304 0
+INFO 2025-08-09 13:31:26,618 basehttp 70 70368985530784 "POST /secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 200 26176
+INFO 2025-08-09 13:37:25,954 basehttp 70 70369129267616 "GET /secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 200 24683
+INFO 2025-08-09 13:37:49,541 basehttp 70 70369129267616 "POST /secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 302 0
+INFO 2025-08-09 13:37:49,622 basehttp 70 70369129267616 "GET /secure/matrix-view/ HTTP/1.1" 200 27354
+INFO 2025-08-09 13:37:49,675 basehttp 70 70369129267616 "GET /static/js/secure-matrix.js HTTP/1.1" 200 19770
+INFO 2025-08-09 13:38:24,625 basehttp 70 70369129267616 "POST /secure/api/save-matrix/ HTTP/1.1" 200 37
+INFO 2025-08-09 13:38:24,990 basehttp 70 70368985530784 "POST /secure/api/save-matrix/ HTTP/1.1" 200 37
+INFO 2025-08-09 13:38:31,634 basehttp 70 70368985530784 "POST /secure/api/logout-beacon/ HTTP/1.1" 200 58
+INFO 2025-08-09 13:38:31,639 basehttp 70 70369129267616 "POST /secure/logout-secure/ HTTP/1.1" 200 58
+INFO 2025-08-09 13:38:32,568 basehttp 70 70369129267616 "GET /secure/logout-secure/ HTTP/1.1" 302 0
+INFO 2025-08-09 13:38:32,607 basehttp 70 70369129267616 "GET /users/login/?next=/secure/logout-secure/ HTTP/1.1" 200 12418
+INFO 2025-08-09 13:38:32,635 basehttp 70 70369129267616 "GET /static/css/tailwind-custom.css HTTP/1.1" 304 0
+INFO 2025-08-09 13:38:53,990 basehttp 70 70369129267616 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-08-09 13:38:54,037 basehttp 70 70369129267616 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+INFO 2025-08-09 13:39:03,231 basehttp 70 70369129267616 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-08-09 13:39:03,274 basehttp 70 70369129267616 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+INFO 2025-08-09 13:39:09,024 basehttp 70 70369129267616 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-08-09 13:39:09,207 basehttp 70 70369129267616 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-08-09 13:39:09,396 basehttp 70 70369129267616 "GET /static/img/favicon.ico HTTP/1.1" 304 0
+INFO 2025-08-09 13:39:14,807 basehttp 70 70369129267616 "GET /secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 200 24683
+INFO 2025-08-09 13:39:37,104 basehttp 70 70369129267616 "POST /secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 302 0
+INFO 2025-08-09 13:39:37,158 basehttp 70 70369129267616 "GET /secure/matrix-view/ HTTP/1.1" 200 27366
+INFO 2025-08-09 13:40:03,232 basehttp 70 70369129267616 "POST /secure/api/save-matrix/ HTTP/1.1" 200 37
+INFO 2025-08-09 13:41:08,312 autoreload 70 70368760885280 /app/secure_data/utils.py changed, reloading.
+INFO 2025-08-09 13:41:16,058 autoreload 105 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-09 13:43:09,449 basehttp 105 70368985530784 "POST /secure/api/save-matrix/ HTTP/1.1" 200 37
+INFO 2025-08-09 13:43:40,739 basehttp 105 70368985530784 "POST /secure/api/save-matrix/ HTTP/1.1" 200 37
+INFO 2025-08-09 13:45:11,933 basehttp 105 70368985530784 "POST /secure/api/save-matrix/ HTTP/1.1" 200 37
+INFO 2025-08-09 13:45:19,750 basehttp 105 70368985530784 "POST /secure/api/save-matrix/ HTTP/1.1" 200 37
+INFO 2025-08-09 13:46:54,028 basehttp 105 70368985530784 "POST /secure/api/logout-beacon/ HTTP/1.1" 200 58
+INFO 2025-08-09 13:46:54,030 basehttp 105 70369131037088 "POST /secure/logout-secure/ HTTP/1.1" 200 58
+INFO 2025-08-09 13:46:55,398 basehttp 105 70369131037088 "GET /secure/logout-secure/ HTTP/1.1" 302 0
+INFO 2025-08-09 13:46:55,462 basehttp 105 70369131037088 "GET /users/login/?next=/secure/logout-secure/ HTTP/1.1" 200 12418
+INFO 2025-08-09 13:47:11,849 basehttp 105 70369131037088 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-08-09 13:47:11,899 basehttp 105 70369131037088 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+INFO 2025-08-09 13:47:23,103 basehttp 105 70369131037088 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-08-09 13:47:23,249 basehttp 105 70369131037088 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-08-09 13:49:25,253 basehttp 105 70369131037088 "GET /admin HTTP/1.1" 301 0
+INFO 2025-08-09 13:49:25,548 basehttp 105 70368985530784 "GET /admin/ HTTP/1.1" 200 4591
+INFO 2025-08-09 13:49:25,614 basehttp 105 70369131037088 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2929
+INFO 2025-08-09 13:49:25,627 basehttp 105 70369418527136 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-08-09 13:49:25,630 basehttp 105 70369275838880 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2694
+INFO 2025-08-09 13:49:25,635 basehttp 105 70369131037088 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2025-08-09 13:49:25,636 basehttp 105 70369703903648 "GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+INFO 2025-08-09 13:49:25,637 basehttp 105 70368985530784 "GET /static/admin/css/base.css HTTP/1.1" 200 21207
+INFO 2025-08-09 13:49:25,640 basehttp 105 70369561215392 "GET /static/admin/css/responsive.css HTTP/1.1" 200 18557
+INFO 2025-08-09 13:49:27,791 basehttp 105 70368985530784 "GET /admin/ HTTP/1.1" 200 4591
+INFO 2025-08-09 13:49:33,413 basehttp 105 70368985530784 "GET / HTTP/1.1" 200 19427
+INFO 2025-08-09 13:49:35,525 basehttp 105 70368985530784 "GET /admin/ HTTP/1.1" 200 4591
+INFO 2025-08-09 13:49:37,724 basehttp 105 70368985530784 "GET / HTTP/1.1" 200 19427
+INFO 2025-08-09 13:56:19,673 basehttp 105 70368985530784 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-08-09 13:56:19,685 basehttp 105 70368985530784 "GET / HTTP/1.1" 302 0
+INFO 2025-08-09 13:56:19,758 basehttp 105 70368985530784 "GET /users/login/?next=/ HTTP/1.1" 200 12418
+INFO 2025-08-09 13:56:19,797 basehttp 105 70368985530784 "GET /static/css/tailwind-custom.css HTTP/1.1" 304 0
+INFO 2025-08-09 13:59:15,322 basehttp 105 70368985530784 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-08-09 13:59:15,356 basehttp 105 70368985530784 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+INFO 2025-08-09 13:59:29,275 basehttp 105 70368985530784 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-08-09 13:59:29,350 basehttp 105 70368985530784 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-08-09 13:59:29,534 basehttp 105 70368985530784 "GET /static/img/favicon.ico HTTP/1.1" 304 0
+INFO 2025-08-09 14:00:16,304 basehttp 105 70368985530784 "GET /secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 200 24683
+INFO 2025-08-09 14:00:16,337 basehttp 105 70368985530784 "GET /static/css/secure-module.css HTTP/1.1" 304 0
+INFO 2025-08-09 14:00:42,299 basehttp 105 70368985530784 "GET /secure/logout-secure/ HTTP/1.1" 302 0
+INFO 2025-08-09 14:00:42,318 basehttp 105 70368985530784 "GET /users/login/ HTTP/1.1" 200 13461
+INFO 2025-08-09 14:00:44,126 basehttp 105 70368985530784 "GET /users/login/ HTTP/1.1" 200 12418
+WARNING 2025-08-09 14:00:54,216 log 105 70368985530784 Not Found: /secure/
+WARNING 2025-08-09 14:00:54,218 basehttp 105 70368985530784 "GET /secure/ HTTP/1.1" 404 5384
+INFO 2025-08-09 14:01:14,035 basehttp 105 70368985530784 "GET /secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 302 0
+INFO 2025-08-09 14:01:14,051 basehttp 105 70368985530784 "GET /users/login/?next=/secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 200 12418
+INFO 2025-08-09 14:01:32,022 basehttp 105 70368985530784 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-08-09 14:01:32,053 basehttp 105 70368985530784 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+INFO 2025-08-09 14:01:40,888 basehttp 105 70369561215392 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-08-09 14:01:40,925 basehttp 105 70369561215392 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+INFO 2025-08-09 14:01:45,413 basehttp 105 70369561215392 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-08-09 14:01:45,450 basehttp 105 70369561215392 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+INFO 2025-08-09 14:01:52,306 basehttp 105 70369561215392 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-08-09 14:01:52,339 basehttp 105 70369561215392 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+INFO 2025-08-09 14:01:58,336 basehttp 105 70369561215392 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-08-09 14:01:58,370 basehttp 105 70369561215392 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+INFO 2025-08-09 14:02:06,519 basehttp 105 70369561215392 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-08-09 14:02:06,581 basehttp 105 70369561215392 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-08-09 14:02:11,884 basehttp 105 70369561215392 "GET /secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 200 24683
+INFO 2025-08-09 14:02:38,228 basehttp 105 70369561215392 "POST /secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 302 0
+INFO 2025-08-09 14:02:42,608 basehttp 105 70369561215392 "GET /secure/matrix-view/ HTTP/1.1" 200 27459
+INFO 2025-08-09 14:02:42,650 basehttp 105 70369561215392 "GET /static/js/secure-matrix.js HTTP/1.1" 304 0
+INFO 2025-08-09 14:03:47,205 basehttp 105 70369561215392 "POST /secure/api/save-matrix/ HTTP/1.1" 200 37
+INFO 2025-08-09 14:04:10,253 basehttp 105 70369561215392 "POST /secure/matrix/undo/ HTTP/1.1" 200 69
+INFO 2025-08-09 14:04:10,631 basehttp 105 70369561215392 "POST /secure/matrix/undo/ HTTP/1.1" 200 69
+INFO 2025-08-09 14:04:11,020 basehttp 105 70369561215392 "POST /secure/matrix/undo/ HTTP/1.1" 200 69
+INFO 2025-08-09 14:04:11,752 basehttp 105 70369561215392 "POST /secure/matrix/undo/ HTTP/1.1" 200 69
+INFO 2025-08-09 14:04:17,425 basehttp 105 70369561215392 "POST /secure/api/save-matrix/ HTTP/1.1" 200 37
+INFO 2025-08-09 14:04:33,066 basehttp 105 70369561215392 "POST /secure/api/save-matrix/ HTTP/1.1" 200 37
+INFO 2025-08-09 14:05:07,796 basehttp 105 70369561215392 "POST /secure/api/save-matrix/ HTTP/1.1" 200 37
+INFO 2025-08-09 14:06:51,267 basehttp 105 70369561215392 "POST /secure/logout-secure/ HTTP/1.1" 200 58
+INFO 2025-08-09 14:06:51,268 basehttp 105 70368985530784 "POST /secure/api/logout-beacon/ HTTP/1.1" 200 58
+INFO 2025-08-09 14:06:58,636 basehttp 105 70368985530784 "GET /secure/matrix-view/ HTTP/1.1" 302 0
+INFO 2025-08-09 14:06:58,650 basehttp 105 70368985530784 "GET /users/login/?next=/secure/matrix-view/ HTTP/1.1" 200 12418
+INFO 2025-08-09 14:07:25,232 basehttp 105 70368985530784 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-08-09 14:07:25,263 basehttp 105 70368985530784 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+INFO 2025-08-09 14:07:41,134 basehttp 105 70368985530784 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-08-09 14:07:41,195 basehttp 105 70368985530784 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-08-09 14:07:46,898 basehttp 105 70368985530784 "GET /secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 200 24683
+INFO 2025-08-09 14:08:39,399 basehttp 105 70368985530784 "POST /secure/xk9mz8p4q7w3n6v2/ HTTP/1.1" 302 0
+INFO 2025-08-09 14:08:47,074 basehttp 105 70368985530784 "GET /secure/matrix-view/ HTTP/1.1" 200 27528
+INFO 2025-08-09 14:14:13,834 basehttp 105 70368985530784 "POST /secure/api/logout-beacon/ HTTP/1.1" 200 58
+INFO 2025-08-09 14:14:16,554 basehttp 105 70368985530784 "GET /asientos/ HTTP/1.1" 302 0
+INFO 2025-08-09 14:14:16,570 basehttp 105 70368985530784 "GET /users/login/?next=/asientos/ HTTP/1.1" 200 12418
+INFO 2025-08-09 14:14:16,596 basehttp 105 70368985530784 "GET /static/css/tailwind-custom.css HTTP/1.1" 304 0
+INFO 2025-08-09 14:14:35,814 basehttp 105 70368985530784 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-08-09 14:14:35,852 basehttp 105 70368985530784 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+INFO 2025-08-09 14:14:43,811 basehttp 105 70368985530784 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-08-09 14:14:43,867 basehttp 105 70368985530784 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-08-09 14:14:44,062 basehttp 105 70368985530784 "GET /static/img/favicon.ico HTTP/1.1" 304 0
+INFO 2025-08-09 14:14:45,622 basehttp 105 70368985530784 "GET /plan_cuentas/ HTTP/1.1" 200 26691
+INFO 2025-08-09 14:15:41,097 basehttp 105 70368985530784 "GET /plan_cuentas/crear/ HTTP/1.1" 200 16754
+INFO 2025-08-09 14:17:09,596 basehttp 105 70368985530784 "GET /plan_cuentas/ HTTP/1.1" 200 26691
+INFO 2025-08-09 14:17:10,193 basehttp 105 70368985530784 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-08-09 14:17:11,146 basehttp 105 70368985530784 "GET /asientos/crear/ HTTP/1.1" 200 35121
+INFO 2025-08-11 21:05:42,288 autoreload 58 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-11 21:07:22,499 basehttp 58 70368985829792 "GET / HTTP/1.1" 302 0
+INFO 2025-08-11 21:07:22,566 basehttp 58 70368985829792 "GET /users/login/?next=/ HTTP/1.1" 200 12418
+INFO 2025-08-11 21:07:22,615 basehttp 58 70368985829792 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-08-11 21:07:23,169 log 58 70368985829792 Not Found: /favicon.ico
+WARNING 2025-08-11 21:07:23,171 basehttp 58 70368985829792 "GET /favicon.ico HTTP/1.1" 404 3621
+INFO 2025-08-11 21:08:03,211 basehttp 58 70368985829792 "POST /users/login/ HTTP/1.1" 200 12440
+INFO 2025-08-11 21:08:48,799 autoreload 58 70368760885280 /app/asientos_contables/settings.py changed, reloading.
+INFO 2025-08-11 21:08:57,014 autoreload 63 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-11 21:09:21,085 basehttp 63 70368985616800 "POST /users/login/ HTTP/1.1" 200 12440
+INFO 2025-08-11 21:09:40,829 basehttp 63 70368985616800 "POST /users/login/ HTTP/1.1" 200 12440
+INFO 2025-08-11 21:10:18,983 basehttp 63 70368985616800 "POST /users/login/ HTTP/1.1" 200 12440
+INFO 2025-08-11 21:10:56,113 basehttp 63 70368985616800 "POST /users/login/ HTTP/1.1" 200 12440
+INFO 2025-08-11 21:11:06,998 basehttp 63 70368985616800 "POST /users/login/ HTTP/1.1" 200 12440
+INFO 2025-08-11 21:12:07,555 basehttp 63 70368985616800 "POST /users/login/ HTTP/1.1" 200 12440
+INFO 2025-08-11 21:13:44,522 basehttp 63 70368985616800 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-08-11 21:13:44,579 basehttp 63 70368985616800 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+INFO 2025-08-20 22:16:59,771 autoreload 58 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-20 23:00:38,254 autoreload 58 70368760885280 /app/plan_cuentas/admin.py changed, reloading.
+INFO 2025-08-20 23:00:46,668 autoreload 196 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-20 23:03:47,753 autoreload 196 70368760885280 /app/plan_cuentas/forms.py changed, reloading.
+INFO 2025-08-20 23:03:55,865 autoreload 200 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-20 23:03:58,565 autoreload 200 70368760885280 /app/plan_cuentas/forms.py changed, reloading.
+INFO 2025-08-20 23:04:06,821 autoreload 204 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-20 23:06:59,409 autoreload 204 70368760885280 /app/plan_cuentas/forms.py changed, reloading.
+INFO 2025-08-20 23:07:07,709 autoreload 208 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-20 23:09:35,081 autoreload 208 70368760885280 /app/plan_cuentas/forms.py changed, reloading.
+INFO 2025-08-20 23:09:42,895 autoreload 212 70368760885280 Watching for file changes with StatReloader
+INFO 2025-08-20 23:35:35,458 autoreload 35 70368761147424 Watching for file changes with StatReloader
+INFO 2025-08-21 00:06:41,504 autoreload 35 70368761147424 /app/plan_cuentas/forms.py changed, reloading.
+INFO 2025-08-21 00:07:38,731 autoreload 39 70368761147424 Watching for file changes with StatReloader
+INFO 2025-08-21 00:08:08,339 basehttp 39 70368987591072 "GET / HTTP/1.1" 200 19427
+INFO 2025-08-21 00:08:08,448 basehttp 39 70368987591072 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-08-21 00:08:09,311 basehttp 39 70368987591072 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+INFO 2025-08-21 00:08:13,477 basehttp 39 70368987591072 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-08-21 00:08:15,254 basehttp 39 70368987591072 "GET /asientos/crear/ HTTP/1.1" 200 35121
+INFO 2025-08-21 00:08:24,901 basehttp 39 70368987591072 "GET /plan_cuentas/ HTTP/1.1" 200 26691
+INFO 2025-08-21 00:08:26,473 basehttp 39 70368987591072 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 20193
+INFO 2025-08-21 00:08:26,544 basehttp 39 70368987591072 "GET /static/css/plan-cuentas.css HTTP/1.1" 200 12660
+INFO 2025-08-21 00:08:28,156 basehttp 39 70368987591072 "GET /plan_cuentas/ HTTP/1.1" 200 26691
+INFO 2025-08-21 00:08:29,073 basehttp 39 70368987591072 "GET /plan_cuentas/crear/ HTTP/1.1" 200 16215
+INFO 2025-08-21 00:08:32,901 basehttp 39 70368987591072 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 20193
+INFO 2025-08-21 00:08:34,668 basehttp 39 70368987591072 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 22192
+INFO 2025-08-25 21:01:15,363 autoreload 33 70368761147424 Watching for file changes with StatReloader
+INFO 2025-08-25 21:25:39,037 autoreload 28 70368761147424 Watching for file changes with StatReloader
+INFO 2025-08-26 21:43:03,840 basehttp 28 70368987378080 "GET / HTTP/1.1" 302 0
+INFO 2025-08-26 21:43:04,294 basehttp 28 70368987378080 "GET /users/login/?next=/ HTTP/1.1" 200 12418
+INFO 2025-08-26 21:43:04,414 basehttp 28 70368987378080 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-08-26 21:43:05,766 log 28 70368987378080 Not Found: /favicon.ico
+WARNING 2025-08-26 21:43:05,785 basehttp 28 70368987378080 "GET /favicon.ico HTTP/1.1" 404 3621
+INFO 2025-08-26 21:43:43,896 basehttp 28 70368987378080 "POST /users/login/ HTTP/1.1" 200 12440
+INFO 2025-08-26 21:47:54,073 basehttp 28 70368987378080 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-08-26 21:47:54,279 basehttp 28 70368987378080 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+INFO 2025-08-26 21:48:25,656 basehttp 28 70369131114912 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-08-26 21:48:25,802 basehttp 28 70369131114912 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+INFO 2025-08-26 21:48:43,221 basehttp 28 70369131114912 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+INFO 2025-08-26 21:48:45,659 basehttp 28 70369131114912 "GET /users/login/ HTTP/1.1" 200 12418
+INFO 2025-08-26 21:49:22,664 basehttp 28 70369131114912 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-08-26 21:49:22,803 basehttp 28 70369131114912 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+INFO 2025-08-26 21:52:53,888 basehttp 28 70369131114912 "GET /users/login/ HTTP/1.1" 200 12418
+INFO 2025-08-26 21:52:53,942 basehttp 28 70369131114912 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-08-26 21:52:55,087 log 28 70369131114912 Not Found: /favicon.ico
+WARNING 2025-08-26 21:52:55,096 basehttp 28 70369131114912 "GET /favicon.ico HTTP/1.1" 404 3621
+INFO 2025-08-26 21:53:27,820 basehttp 28 70369131114912 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-08-26 21:53:27,954 basehttp 28 70369131114912 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+INFO 2025-08-26 21:57:45,621 basehttp 28 70369131114912 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+INFO 2025-08-26 21:57:45,677 basehttp 28 70369131114912 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-08-26 21:57:46,663 log 28 70369131114912 Not Found: /favicon.ico
+WARNING 2025-08-26 21:57:46,672 basehttp 28 70369131114912 "GET /favicon.ico HTTP/1.1" 404 3621
+INFO 2025-08-26 21:57:47,612 basehttp 28 70369131114912 "GET /users/login/ HTTP/1.1" 200 12418
+INFO 2025-08-26 21:58:26,115 basehttp 28 70368987378080 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-08-26 21:58:27,757 basehttp 28 70368987378080 "GET /two_factor/setup/ HTTP/1.1" 200 21442
+INFO 2025-08-26 21:58:47,555 basehttp 28 70368987378080 "POST /two_factor/setup/ HTTP/1.1" 302 0
+INFO 2025-08-26 21:58:48,201 basehttp 28 70368987378080 "GET /two_factor/setup-complete/ HTTP/1.1" 200 20762
+INFO 2025-08-26 21:58:52,308 basehttp 28 70368987378080 "GET / HTTP/1.1" 200 19427
+INFO 2025-08-26 21:58:52,549 basehttp 28 70368987378080 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+INFO 2025-08-26 21:58:55,420 basehttp 28 70368987378080 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-08-26 21:58:58,382 basehttp 28 70368987378080 "GET /empresas/ HTTP/1.1" 200 22872
+INFO 2025-08-26 21:58:59,925 basehttp 28 70368987378080 "GET /perfiles/ HTTP/1.1" 200 21290
+INFO 2025-08-26 21:59:00,003 basehttp 28 70368987378080 "GET /static/css/perfiles.css HTTP/1.1" 200 2817
+INFO 2025-08-26 21:59:00,024 basehttp 28 70369131114912 "GET /static/js/perfiles.js HTTP/1.1" 200 9709
+INFO 2025-08-26 21:59:02,156 basehttp 28 70369131114912 "GET /perfiles/crear/ HTTP/1.1" 200 20261
+WARNING 2025-08-26 21:59:49,570 log 28 70369131114912 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-26 21:59:49,600 basehttp 28 70369131114912 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-26 21:59:56,224 basehttp 28 70368987378080 "GET /perfiles/ HTTP/1.1" 200 21290
+INFO 2025-08-26 21:59:58,503 basehttp 28 70368987378080 "GET /perfiles/ HTTP/1.1" 200 21290
+INFO 2025-08-26 21:59:59,819 basehttp 28 70368987378080 "GET /perfiles/ HTTP/1.1" 200 21290
+INFO 2025-08-26 22:00:01,166 basehttp 28 70368987378080 "GET /perfiles/crear/ HTTP/1.1" 200 20261
+INFO 2025-08-26 22:00:04,668 basehttp 28 70368987378080 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 20193
+INFO 2025-08-26 22:00:04,741 basehttp 28 70368987378080 "GET /static/css/plan-cuentas.css HTTP/1.1" 200 12660
+INFO 2025-08-26 22:00:06,169 basehttp 28 70368987378080 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 22192
+INFO 2025-08-26 22:00:11,438 basehttp 28 70368987378080 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=1 HTTP/1.1" 200 88
+INFO 2025-08-26 22:00:22,895 basehttp 28 70368987378080 "POST /plan_cuentas/cuentas/crear/ HTTP/1.1" 302 0
+INFO 2025-08-26 22:00:23,165 basehttp 28 70368987378080 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 22924
+INFO 2025-08-26 22:00:27,883 basehttp 28 70368987378080 "GET /plan_cuentas/cuentas/editar/1/ HTTP/1.1" 200 22133
+INFO 2025-08-26 22:00:28,106 basehttp 28 70368987378080 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=1 HTTP/1.1" 200 163
+INFO 2025-08-26 22:00:30,485 basehttp 28 70368987378080 "POST /plan_cuentas/cuentas/editar/1/ HTTP/1.1" 302 0
+INFO 2025-08-26 22:00:30,754 basehttp 28 70368987378080 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 22921
+INFO 2025-08-26 22:00:32,650 basehttp 28 70368987378080 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 22212
+INFO 2025-08-26 22:00:35,175 basehttp 28 70368987378080 "GET /plan_cuentas/ HTTP/1.1" 200 26691
+INFO 2025-08-26 22:00:37,160 basehttp 28 70368987378080 "GET /plan_cuentas/crear/ HTTP/1.1" 200 16215
+INFO 2025-08-26 22:00:44,451 basehttp 28 70368987378080 "POST /plan_cuentas/crear/ HTTP/1.1" 200 16917
+INFO 2025-08-26 22:00:51,813 basehttp 28 70368987378080 "POST /plan_cuentas/crear/ HTTP/1.1" 200 16917
+WARNING 2025-08-26 22:00:54,095 log 28 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-26 22:00:54,102 basehttp 28 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-26 22:00:59,766 basehttp 28 70368987378080 "POST /plan_cuentas/crear/ HTTP/1.1" 200 16917
+WARNING 2025-08-26 22:01:00,254 log 28 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-26 22:01:00,260 basehttp 28 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-28 20:25:34,221 basehttp 28 70368987378080 "GET / HTTP/1.1" 200 19427
+INFO 2025-08-28 20:25:34,310 basehttp 28 70368987378080 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-08-28 20:25:35,114 basehttp 28 70368987378080 "GET /static/img/favicon.ico HTTP/1.1" 304 0
+WARNING 2025-08-28 20:25:41,845 log 28 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-28 20:25:41,853 basehttp 28 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+WARNING 2025-08-28 20:26:21,625 log 28 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-28 20:26:21,630 basehttp 28 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-28 20:28:27,304 basehttp 28 70368987378080 "GET / HTTP/1.1" 200 19427
+WARNING 2025-08-28 20:28:27,839 log 28 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-28 20:28:27,848 basehttp 28 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-28 20:29:10,743 basehttp 28 70368987378080 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-08-28 20:29:10,778 basehttp 28 70368987378080 "GET / HTTP/1.1" 302 0
+INFO 2025-08-28 20:29:10,877 basehttp 28 70368987378080 "GET /users/login/?next=/ HTTP/1.1" 200 12418
+WARNING 2025-08-28 20:29:11,401 log 28 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-28 20:29:11,427 basehttp 28 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+WARNING 2025-08-28 20:29:11,688 log 28 70369131114912 Not Found: /favicon.ico
+WARNING 2025-08-28 20:29:11,695 basehttp 28 70369131114912 "GET /favicon.ico HTTP/1.1" 404 3621
+INFO 2025-08-28 20:30:00,547 basehttp 28 70369131114912 "POST /users/login/ HTTP/1.1" 200 12440
+WARNING 2025-08-28 20:30:00,975 log 28 70369131114912 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-28 20:30:00,981 basehttp 28 70369131114912 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-28 20:32:24,522 basehttp 28 70369131114912 "POST /users/login/ HTTP/1.1" 200 12440
+WARNING 2025-08-28 20:32:24,960 log 28 70369131114912 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-28 20:32:24,968 basehttp 28 70369131114912 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-28 20:33:01,224 basehttp 28 70369131114912 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-08-28 20:33:01,355 basehttp 28 70369131114912 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+WARNING 2025-08-28 20:33:01,836 log 28 70369131114912 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-28 20:33:01,844 basehttp 28 70369131114912 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-28 20:33:57,415 basehttp 28 70369131114912 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-08-28 20:33:57,783 basehttp 28 70368987378080 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-08-28 20:33:57,862 basehttp 28 70369131114912 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-08-28 20:33:57,956 basehttp 28 70368987378080 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-08-28 20:33:58,430 log 28 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-28 20:33:58,434 basehttp 28 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-28 20:34:04,041 basehttp 28 70369131114912 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-08-28 20:34:04,153 basehttp 28 70369131114912 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-08-28 20:34:04,622 log 28 70369131114912 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-28 20:34:04,628 basehttp 28 70369131114912 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-28 20:34:10,259 basehttp 28 70369131114912 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-08-28 20:34:10,398 basehttp 28 70369131114912 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-08-28 20:34:10,906 log 28 70369131114912 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-28 20:34:10,913 basehttp 28 70369131114912 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-28 20:34:14,440 basehttp 28 70369131114912 "GET /users/login/ HTTP/1.1" 200 12418
+WARNING 2025-08-28 20:34:14,883 log 28 70369131114912 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-28 20:34:14,888 basehttp 28 70369131114912 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-28 20:34:48,073 basehttp 28 70369131114912 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-08-28 20:34:48,183 basehttp 28 70369131114912 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+WARNING 2025-08-28 20:34:48,644 log 28 70369131114912 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-28 20:34:48,649 basehttp 28 70369131114912 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-28 20:35:00,049 basehttp 28 70369131114912 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-08-28 20:35:00,284 basehttp 28 70369131114912 "GET /asientos/ HTTP/1.1" 200 18997
+WARNING 2025-08-28 20:35:00,810 log 28 70369131114912 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-28 20:35:00,816 basehttp 28 70369131114912 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-28 20:35:10,721 basehttp 28 70369131114912 "GET /asientos/ HTTP/1.1" 200 18997
+WARNING 2025-08-28 20:35:11,205 log 28 70369131114912 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-28 20:35:11,211 basehttp 28 70369131114912 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-28 20:35:11,860 basehttp 28 70369131114912 "GET /plan_cuentas/ HTTP/1.1" 200 26691
+WARNING 2025-08-28 20:35:12,355 log 28 70369131114912 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-28 20:35:12,361 basehttp 28 70369131114912 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-08-28 20:35:14,842 basehttp 28 70369131114912 "GET /asientos/ HTTP/1.1" 200 18997
+WARNING 2025-08-28 20:35:15,349 log 28 70369131114912 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-08-28 20:35:15,356 basehttp 28 70369131114912 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-01 22:39:07,310 autoreload 51 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-01 22:39:41,938 basehttp 51 70368987378080 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+INFO 2025-09-01 22:39:42,031 basehttp 51 70368987378080 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-09-01 22:39:43,919 log 51 70368987378080 Not Found: /favicon.ico
+WARNING 2025-09-01 22:39:43,932 basehttp 51 70368987378080 "GET /favicon.ico HTTP/1.1" 404 3621
+INFO 2025-09-01 22:39:45,403 basehttp 51 70368987378080 "GET /users/login/ HTTP/1.1" 200 12418
+INFO 2025-09-01 22:40:25,856 basehttp 51 70368987378080 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-09-01 22:40:25,984 basehttp 51 70368987378080 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+INFO 2025-09-02 00:04:22,314 basehttp 51 70368987378080 "GET / HTTP/1.1" 200 19427
+INFO 2025-09-02 00:04:23,024 basehttp 51 70368987378080 "GET /static/img/favicon.ico HTTP/1.1" 304 0
+INFO 2025-09-02 00:04:25,764 basehttp 51 70368987378080 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-09-02 00:04:26,940 basehttp 51 70368987378080 "GET / HTTP/1.1" 200 19427
+INFO 2025-09-02 00:04:30,961 basehttp 51 70368987378080 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-09-02 00:04:32,493 basehttp 51 70368987378080 "GET /plan_cuentas/ HTTP/1.1" 200 26691
+INFO 2025-09-02 00:05:12,564 basehttp 51 70368987378080 "GET / HTTP/1.1" 200 19427
+INFO 2025-09-02 00:05:14,883 basehttp 51 70368987378080 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-09-02 00:05:16,120 basehttp 51 70368987378080 "GET / HTTP/1.1" 200 19427
+INFO 2025-09-02 00:05:16,861 basehttp 51 70368987378080 "GET /empresas/ HTTP/1.1" 200 22872
+INFO 2025-09-02 00:05:17,939 basehttp 51 70368987378080 "GET /empresas/crear/ HTTP/1.1" 200 22188
+INFO 2025-09-02 00:05:39,730 basehttp 51 70368987378080 "POST /empresas/crear/ HTTP/1.1" 302 0
+INFO 2025-09-02 00:05:40,061 basehttp 51 70368987378080 "GET /empresas/ HTTP/1.1" 200 28294
+INFO 2025-09-02 00:05:42,598 basehttp 51 70368987378080 "GET /perfiles/ HTTP/1.1" 200 21290
+INFO 2025-09-02 00:05:42,675 basehttp 51 70368987378080 "GET /static/css/perfiles.css HTTP/1.1" 200 2817
+INFO 2025-09-02 00:05:42,686 basehttp 51 70369132196256 "GET /static/js/perfiles.js HTTP/1.1" 200 9709
+INFO 2025-09-02 00:05:43,591 basehttp 51 70369132196256 "GET /perfiles/crear/ HTTP/1.1" 200 20261
+WARNING 2025-09-02 00:05:54,952 log 51 70369132196256 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:05:54,959 basehttp 51 70369132196256 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+WARNING 2025-09-02 00:06:08,791 log 51 70369132196256 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:06:08,796 basehttp 51 70369132196256 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:07:17,336 autoreload 51 70368761147424 /app/two_factor_auth/middleware.py changed, reloading.
+INFO 2025-09-02 00:07:37,485 autoreload 22772 6248 Watching for file changes with StatReloader
+INFO 2025-09-02 00:08:11,595 autoreload 59 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 00:11:32,199 autoreload 59 70368761147424 /app/two_factor_auth/middleware.py changed, reloading.
+INFO 2025-09-02 00:12:26,768 autoreload 63 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 00:13:24,296 autoreload 63 70368761147424 /app/perfiles/models.py changed, reloading.
+INFO 2025-09-02 00:14:18,317 autoreload 67 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 00:17:58,696 autoreload 67 70368761147424 /app/perfiles/models.py changed, reloading.
+INFO 2025-09-02 00:18:52,585 autoreload 93 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 00:19:17,115 basehttp 93 70368987378080 "GET /perfiles/ HTTP/1.1" 200 24522
+WARNING 2025-09-02 00:19:17,784 log 93 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:19:17,793 basehttp 93 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:19:20,267 basehttp 93 70368987378080 "GET /perfiles/crear/ HTTP/1.1" 200 20261
+WARNING 2025-09-02 00:19:20,757 log 93 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:19:20,766 basehttp 93 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:25:32,876 autoreload 51 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 00:29:07,379 basehttp 51 70368987591072 "GET / HTTP/1.1" 200 19427
+INFO 2025-09-02 00:29:34,048 autoreload 51 70368761147424 /app/asientos_contables/settings.py changed, reloading.
+INFO 2025-09-02 00:30:27,306 autoreload 56 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 00:34:42,806 autoreload 21 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 00:34:56,461 basehttp 21 70368987591072 "GET / HTTP/1.1" 200 19427
+INFO 2025-09-02 00:34:56,541 basehttp 21 70368987591072 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-09-02 00:34:56,937 basehttp 21 70368987591072 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+INFO 2025-09-02 00:34:58,684 basehttp 21 70368987591072 "GET /perfiles/ HTTP/1.1" 200 24522
+INFO 2025-09-02 00:35:00,248 basehttp 21 70368987591072 "GET /perfiles/crear/ HTTP/1.1" 200 20261
+WARNING 2025-09-02 00:35:18,750 log 21 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:35:18,759 basehttp 21 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:36:44,741 autoreload 21 70368761147424 /app/perfiles/views.py changed, reloading.
+INFO 2025-09-02 00:41:08,863 autoreload 21 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 00:42:42,976 basehttp 21 70368987591072 "GET / HTTP/1.1" 200 19427
+WARNING 2025-09-02 00:42:43,613 log 21 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:42:43,621 basehttp 21 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:42:45,573 basehttp 21 70368987591072 "GET /perfiles/ HTTP/1.1" 200 24522
+WARNING 2025-09-02 00:42:46,153 log 21 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:42:46,163 basehttp 21 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:42:47,075 basehttp 21 70368987591072 "GET /perfiles/crear/ HTTP/1.1" 200 21838
+WARNING 2025-09-02 00:42:47,583 log 21 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:42:47,589 basehttp 21 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:42:50,590 views 21 70368987591072 Perfil 'asdqwe' creado exitosamente
+INFO 2025-09-02 00:42:50,620 basehttp 21 70368987591072 "POST /perfiles/crear/ HTTP/1.1" 302 0
+INFO 2025-09-02 00:42:50,880 basehttp 21 70368987591072 "GET /perfiles/ HTTP/1.1" 200 28441
+WARNING 2025-09-02 00:42:51,381 log 21 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:42:51,387 basehttp 21 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:42:53,870 basehttp 21 70368987591072 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 22212
+INFO 2025-09-02 00:42:54,099 basehttp 21 70369132392864 "GET /static/css/plan-cuentas.css HTTP/1.1" 200 12660
+WARNING 2025-09-02 00:42:54,424 log 21 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:42:54,430 basehttp 21 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:42:55,896 basehttp 21 70368987591072 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 22192
+WARNING 2025-09-02 00:42:56,400 log 21 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:42:56,406 basehttp 21 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:42:59,001 basehttp 21 70368987591072 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=1 HTTP/1.1" 200 165
+INFO 2025-09-02 00:43:04,714 basehttp 21 70368987591072 "POST /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 23056
+INFO 2025-09-02 00:43:05,123 basehttp 21 70369132392864 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=1 HTTP/1.1" 200 165
+WARNING 2025-09-02 00:43:05,313 log 21 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:43:05,319 basehttp 21 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:43:11,051 basehttp 21 70368987591072 "GET /plan_cuentas/ HTTP/1.1" 200 26691
+WARNING 2025-09-02 00:43:11,489 log 21 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:43:11,494 basehttp 21 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:43:12,522 basehttp 21 70368987591072 "GET /plan_cuentas/crear/ HTTP/1.1" 200 16468
+WARNING 2025-09-02 00:43:13,030 log 21 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:43:13,037 basehttp 21 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:43:20,578 basehttp 21 70368987591072 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 22212
+INFO 2025-09-02 00:43:21,872 basehttp 21 70368987591072 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 22192
+INFO 2025-09-02 00:43:25,635 basehttp 21 70368987591072 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=1 HTTP/1.1" 200 165
+INFO 2025-09-02 00:43:33,791 basehttp 21 70368987591072 "POST /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 23059
+INFO 2025-09-02 00:43:34,018 basehttp 21 70368987591072 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=1 HTTP/1.1" 200 165
+WARNING 2025-09-02 00:43:37,383 log 21 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:43:37,389 basehttp 21 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:43:45,136 autoreload 21 70368761147424 /app/asientos_contables/settings.py changed, reloading.
+INFO 2025-09-02 00:44:37,725 autoreload 28 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 00:45:06,905 basehttp 28 70368987378080 "GET / HTTP/1.1" 200 19427
+WARNING 2025-09-02 00:45:07,526 log 28 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:45:07,533 basehttp 28 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:45:09,077 basehttp 28 70368987378080 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 22212
+WARNING 2025-09-02 00:45:09,671 log 28 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:45:09,678 basehttp 28 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:45:13,644 basehttp 28 70368987378080 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 22192
+WARNING 2025-09-02 00:45:14,160 log 28 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:45:14,166 basehttp 28 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:45:16,580 basehttp 28 70368987378080 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=1 HTTP/1.1" 200 165
+INFO 2025-09-02 00:45:22,989 basehttp 28 70368987378080 "POST /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 23056
+INFO 2025-09-02 00:45:23,471 basehttp 28 70369132163488 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=1 HTTP/1.1" 200 165
+WARNING 2025-09-02 00:45:23,572 log 28 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:45:23,578 basehttp 28 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:46:56,124 autoreload 28 70368761147424 /app/plan_cuentas/forms.py changed, reloading.
+INFO 2025-09-02 00:47:49,871 autoreload 34 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 00:51:15,749 basehttp 34 70368987591072 "POST /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 24827
+INFO 2025-09-02 00:51:16,276 basehttp 34 70369131327904 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=1 HTTP/1.1" 200 165
+WARNING 2025-09-02 00:51:16,569 log 34 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:51:16,579 basehttp 34 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:51:25,114 basehttp 34 70368987591072 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 22212
+WARNING 2025-09-02 00:51:25,642 log 34 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:51:25,652 basehttp 34 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:51:26,283 basehttp 34 70368987591072 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 22212
+WARNING 2025-09-02 00:51:26,824 log 34 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:51:26,834 basehttp 34 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:51:27,514 basehttp 34 70368987591072 "GET /perfiles/ HTTP/1.1" 200 27755
+WARNING 2025-09-02 00:51:28,077 log 34 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:51:28,086 basehttp 34 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:51:28,494 basehttp 34 70368987591072 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 22212
+WARNING 2025-09-02 00:51:29,120 log 34 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:51:29,134 basehttp 34 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:51:29,632 basehttp 34 70369131327904 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 22351
+WARNING 2025-09-02 00:51:30,330 log 34 70369131327904 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:51:30,344 basehttp 34 70369131327904 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:51:32,524 basehttp 34 70369131327904 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=1 HTTP/1.1" 200 165
+INFO 2025-09-02 00:51:38,632 basehttp 34 70369131327904 "POST /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 24829
+INFO 2025-09-02 00:51:39,077 basehttp 34 70368987591072 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=1 HTTP/1.1" 200 165
+WARNING 2025-09-02 00:51:39,215 log 34 70369131327904 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:51:39,221 basehttp 34 70369131327904 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:51:45,159 basehttp 34 70369131327904 "POST /plan_cuentas/cuentas/crear/ HTTP/1.1" 302 0
+INFO 2025-09-02 00:51:45,451 basehttp 34 70369131327904 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 24915
+WARNING 2025-09-02 00:51:45,932 log 34 70369131327904 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:51:45,938 basehttp 34 70369131327904 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:51:49,002 basehttp 34 70369131327904 "GET /plan_cuentas/cuentas/editar/3/ HTTP/1.1" 200 22345
+INFO 2025-09-02 00:51:49,411 basehttp 34 70368987591072 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=1 HTTP/1.1" 200 226
+WARNING 2025-09-02 00:51:49,624 log 34 70369131327904 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 00:51:49,629 basehttp 34 70369131327904 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 00:51:52,286 basehttp 34 70369131327904 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 24215
+INFO 2025-09-02 00:51:55,462 basehttp 34 70369131327904 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-09-02 00:51:56,198 basehttp 34 70369131327904 "GET /plan_cuentas/ HTTP/1.1" 200 26691
+INFO 2025-09-02 00:51:57,861 basehttp 34 70369131327904 "GET /plan_cuentas/crear/ HTTP/1.1" 200 16468
+INFO 2025-09-02 00:52:01,214 basehttp 34 70369131327904 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 24215
+INFO 2025-09-02 00:52:02,350 basehttp 34 70369131327904 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 22351
+INFO 2025-09-02 00:52:10,591 basehttp 34 70369131327904 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 24215
+INFO 2025-09-02 00:52:12,192 basehttp 34 70369131327904 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 22351
+INFO 2025-09-02 00:52:15,522 basehttp 34 70369131327904 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=1 HTTP/1.1" 200 226
+INFO 2025-09-02 00:52:23,425 basehttp 34 70369131327904 "POST /plan_cuentas/cuentas/crear/ HTTP/1.1" 302 0
+INFO 2025-09-02 00:52:23,779 basehttp 34 70369131327904 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 26926
+INFO 2025-09-02 00:52:26,546 basehttp 34 70369131327904 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-09-02 00:52:27,460 basehttp 34 70369131327904 "GET /plan_cuentas/ HTTP/1.1" 200 26691
+INFO 2025-09-02 00:52:28,307 basehttp 34 70369131327904 "GET /plan_cuentas/crear/ HTTP/1.1" 200 16468
+INFO 2025-09-02 00:52:33,857 basehttp 34 70369131327904 "POST /plan_cuentas/crear/ HTTP/1.1" 302 0
+INFO 2025-09-02 00:52:34,332 basehttp 34 70369131327904 "GET /plan_cuentas/ HTTP/1.1" 200 31161
+INFO 2025-09-02 00:52:38,856 basehttp 34 70369131327904 "GET /plan_cuentas/editar/2/ HTTP/1.1" 200 16327
+INFO 2025-09-02 00:52:41,335 basehttp 34 70369131327904 "GET /plan_cuentas/ HTTP/1.1" 200 30463
+INFO 2025-09-02 00:52:46,112 basehttp 34 70369131327904 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-09-02 00:52:47,221 basehttp 34 70369131327904 "GET /asientos/crear/ HTTP/1.1" 200 35467
+WARNING 2025-09-02 00:52:49,850 log 34 70369131327904 Not Found: /asientos/api/perfil/501bb865d4a92532cfebb65ee059e4889363eeb28a22ca6fb82165bb17432724/cuentas/
+WARNING 2025-09-02 00:52:49,857 basehttp 34 70369131327904 "GET /asientos/api/perfil/501bb865d4a92532cfebb65ee059e4889363eeb28a22ca6fb82165bb17432724/cuentas/ HTTP/1.1" 404 6645
+WARNING 2025-09-02 00:53:06,430 log 34 70369131327904 Not Found: /asientos/api/perfil/9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08/cuentas/
+WARNING 2025-09-02 00:53:06,437 basehttp 34 70369131327904 "GET /asientos/api/perfil/9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08/cuentas/ HTTP/1.1" 404 6645
+INFO 2025-09-02 00:53:09,326 basehttp 34 70369131327904 "GET /asientos/api/perfil/1/cuentas/ HTTP/1.1" 200 162
+INFO 2025-09-02 00:53:12,980 autoreload 34 70368761147424 /app/plan_cuentas/forms.py changed, reloading.
+INFO 2025-09-02 00:54:07,271 autoreload 42 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 00:57:25,794 autoreload 42 70368761147424 /app/asientos/views.py changed, reloading.
+INFO 2025-09-02 01:02:00,610 autoreload 21 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 01:02:18,229 autoreload 21 70368761147424 /app/asientos/views.py changed, reloading.
+INFO 2025-09-02 01:03:11,226 autoreload 25 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 01:03:30,172 basehttp 25 70368987378080 "GET /plan_cuentas/ HTTP/1.1" 200 30463
+INFO 2025-09-02 01:03:32,655 basehttp 25 70368987378080 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-09-02 01:03:33,641 basehttp 25 70368987378080 "GET /asientos/crear/ HTTP/1.1" 200 35496
+WARNING 2025-09-02 01:03:36,297 log 25 70368987378080 Not Found: /asientos/api/perfil/501bb865d4a92532cfebb65ee059e4889363eeb28a22ca6fb82165bb17432724/cuentas/
+WARNING 2025-09-02 01:03:36,305 basehttp 25 70368987378080 "GET /asientos/api/perfil/501bb865d4a92532cfebb65ee059e4889363eeb28a22ca6fb82165bb17432724/cuentas/ HTTP/1.1" 404 6645
+WARNING 2025-09-02 01:03:39,204 log 25 70368987378080 Not Found: /asientos/api/perfil/9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08/cuentas/
+WARNING 2025-09-02 01:03:39,213 basehttp 25 70368987378080 "GET /asientos/api/perfil/9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08/cuentas/ HTTP/1.1" 404 6645
+INFO 2025-09-02 01:03:41,590 basehttp 25 70368987378080 "GET /asientos/api/perfil/1/cuentas/ HTTP/1.1" 200 32
+INFO 2025-09-02 01:03:52,670 basehttp 25 70368987378080 "GET /asientos/crear/ HTTP/1.1" 200 35496
+INFO 2025-09-02 01:03:52,728 basehttp 25 70368987378080 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-09-02 01:03:53,044 basehttp 25 70368987378080 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+INFO 2025-09-02 01:03:55,518 basehttp 25 70368987378080 "GET /asientos/api/perfil/1/cuentas/ HTTP/1.1" 200 32
+INFO 2025-09-02 01:04:11,513 basehttp 25 70368987378080 "GET /perfiles/ HTTP/1.1" 200 27755
+INFO 2025-09-02 01:04:13,229 basehttp 25 70368987378080 "GET /perfiles/crear/ HTTP/1.1" 200 21838
+INFO 2025-09-02 01:04:18,101 basehttp 25 70368987378080 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 26220
+INFO 2025-09-02 01:04:19,391 basehttp 25 70368987378080 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 22414
+INFO 2025-09-02 01:04:25,768 basehttp 25 70368987378080 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=1 HTTP/1.1" 200 293
+INFO 2025-09-02 01:04:31,623 basehttp 25 70368987378080 "POST /plan_cuentas/cuentas/crear/ HTTP/1.1" 302 0
+INFO 2025-09-02 01:04:31,977 basehttp 25 70368987378080 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 28919
+INFO 2025-09-02 01:04:34,676 basehttp 25 70368987378080 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-09-02 01:04:35,806 basehttp 25 70368987378080 "GET /asientos/crear/ HTTP/1.1" 200 35496
+INFO 2025-09-02 01:04:37,829 basehttp 25 70368987378080 "GET /asientos/api/perfil/1/cuentas/ HTTP/1.1" 200 32
+WARNING 2025-09-02 01:04:40,960 log 25 70368987378080 Not Found: /asientos/api/perfil/501bb865d4a92532cfebb65ee059e4889363eeb28a22ca6fb82165bb17432724/cuentas/
+WARNING 2025-09-02 01:04:40,967 basehttp 25 70368987378080 "GET /asientos/api/perfil/501bb865d4a92532cfebb65ee059e4889363eeb28a22ca6fb82165bb17432724/cuentas/ HTTP/1.1" 404 6645
+INFO 2025-09-02 01:04:43,220 basehttp 25 70368987378080 "GET /asientos/api/perfil/1/cuentas/ HTTP/1.1" 200 32
+WARNING 2025-09-02 01:04:44,611 log 25 70368987378080 Not Found: /asientos/api/perfil/9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08/cuentas/
+WARNING 2025-09-02 01:04:44,617 basehttp 25 70368987378080 "GET /asientos/api/perfil/9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08/cuentas/ HTTP/1.1" 404 6645
+INFO 2025-09-02 01:26:26,882 basehttp 25 70368987378080 "GET /asientos/api/perfil/1/cuentas/ HTTP/1.1" 302 0
+INFO 2025-09-02 01:26:58,522 basehttp 25 70368987378080 "GET /asientos/crear/?id=b6310bb8-d66b-4880-b3c8-388ef2f8b056&vscodeBrowserReqId=1756794418465 HTTP/1.1" 302 0
+INFO 2025-09-02 01:26:58,673 basehttp 25 70368987378080 "GET /users/login/?next=/asientos/crear/%3Fid%3Db6310bb8-d66b-4880-b3c8-388ef2f8b056%26vscodeBrowserReqId%3D1756794418465 HTTP/1.1" 200 12418
+INFO 2025-09-02 01:27:56,463 basehttp 25 70369132196256 "GET /asientos/crear/ HTTP/1.1" 200 35496
+INFO 2025-09-02 01:27:57,811 basehttp 25 70369132196256 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-09-02 01:27:59,153 basehttp 25 70369132196256 "GET /asientos/crear/ HTTP/1.1" 200 35496
+INFO 2025-09-02 01:28:01,818 basehttp 25 70369132196256 "GET /asientos/api/perfil/1/cuentas/ HTTP/1.1" 200 459
+INFO 2025-09-02 01:28:16,466 basehttp 25 70369132196256 "POST /asientos/crear/ HTTP/1.1" 200 36263
+INFO 2025-09-02 01:28:51,311 autoreload 25 70368761147424 /app/asientos/views.py changed, reloading.
+INFO 2025-09-02 01:33:17,389 autoreload 29 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 01:43:31,925 basehttp 29 70368987378080 "GET / HTTP/1.1" 200 19427
+INFO 2025-09-02 01:43:35,764 basehttp 29 70368987378080 "GET /asientos/ HTTP/1.1" 200 18997
+INFO 2025-09-02 01:43:36,944 basehttp 29 70368987378080 "GET /asientos/crear/ HTTP/1.1" 200 35496
+INFO 2025-09-02 01:43:39,521 basehttp 29 70368987378080 "GET /asientos/api/perfil/1/cuentas/ HTTP/1.1" 200 459
+INFO 2025-09-02 01:43:49,903 basehttp 29 70368987378080 "POST /asientos/crear/ HTTP/1.1" 302 0
+INFO 2025-09-02 01:43:50,426 basehttp 29 70368987378080 "GET /asientos/detalle/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 200 20120
+ERROR 2025-09-02 01:43:56,473 log 29 70368987378080 Internal Server Error: /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/asientos/views.py", line 135, in asiento_edit
+    if asiento.id_perfil and asiento.id_perfil.empresa:
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Perfil' object has no attribute 'empresa'
+ERROR 2025-09-02 01:43:56,527 basehttp 29 70368987378080 "GET /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 500 72447
+WARNING 2025-09-02 01:43:57,055 log 29 70368987378080 Not Found: /favicon.ico
+WARNING 2025-09-02 01:43:57,062 basehttp 29 70368987378080 "GET /favicon.ico HTTP/1.1" 404 3621
+INFO 2025-09-02 01:44:03,733 basehttp 29 70368987378080 "GET /asientos/ HTTP/1.1" 200 25860
+ERROR 2025-09-02 01:44:07,315 log 29 70368987378080 Internal Server Error: /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/asientos/views.py", line 135, in asiento_edit
+    if asiento.id_perfil and asiento.id_perfil.empresa:
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Perfil' object has no attribute 'empresa'
+ERROR 2025-09-02 01:44:07,345 basehttp 29 70368987378080 "GET /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 500 72374
+INFO 2025-09-02 01:52:21,924 autoreload 29 70368761147424 /app/asientos/models.py changed, reloading.
+INFO 2025-09-02 01:53:13,673 autoreload 48 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 20:05:06,468 basehttp 48 70368987378080 "GET /asientos/detalle/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 200 19443
+ERROR 2025-09-02 20:05:14,435 log 48 70368987378080 Internal Server Error: /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/asientos/views.py", line 135, in asiento_edit
+    if asiento.id_perfil and asiento.id_perfil.empresa:
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Perfil' object has no attribute 'empresa'
+ERROR 2025-09-02 20:05:14,513 basehttp 48 70368987378080 "GET /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 500 72447
+INFO 2025-09-02 20:05:37,955 basehttp 48 70368987378080 "GET /asientos/ HTTP/1.1" 200 25860
+INFO 2025-09-02 20:05:58,059 autoreload 48 70368761147424 /app/asientos/views.py changed, reloading.
+INFO 2025-09-02 20:06:52,356 autoreload 53 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 20:07:09,635 autoreload 53 70368761147424 /app/asientos/models.py changed, reloading.
+INFO 2025-09-02 20:11:23,924 autoreload 21 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 20:11:38,277 basehttp 21 70368987591072 "GET / HTTP/1.1" 200 19830
+INFO 2025-09-02 20:11:42,019 basehttp 21 70368987591072 "GET /asientos/ HTTP/1.1" 200 25860
+INFO 2025-09-02 20:11:45,081 basehttp 21 70368987591072 "GET /asientos/detalle/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 200 19443
+ERROR 2025-09-02 20:11:50,341 log 21 70368987591072 Internal Server Error: /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 2055, in get_prep_value
+    return int(value)
+           ^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'DEFAULT'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/asientos/views.py", line 137, in asiento_edit
+    plan_cuentas = PlanCuenta.objects.filter(empresa=asiento.empresa)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1498, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1529, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1444, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1271, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/fields/related_lookups.py", line 166, in get_prep_lookup
+    self.rhs = target_field.get_prep_value(self.rhs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 2057, in get_prep_value
+    raise e.__class__(
+ValueError: Field 'id' expected a number but got 'DEFAULT'.
+ERROR 2025-09-02 20:11:50,657 basehttp 21 70368987591072 "GET /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 500 131042
+ERROR 2025-09-02 20:11:56,784 log 21 70368987591072 Internal Server Error: /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 2055, in get_prep_value
+    return int(value)
+           ^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'DEFAULT'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/asientos/views.py", line 137, in asiento_edit
+    plan_cuentas = PlanCuenta.objects.filter(empresa=asiento.empresa)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1498, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1529, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1444, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1271, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/fields/related_lookups.py", line 166, in get_prep_lookup
+    self.rhs = target_field.get_prep_value(self.rhs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 2057, in get_prep_value
+    raise e.__class__(
+ValueError: Field 'id' expected a number but got 'DEFAULT'.
+ERROR 2025-09-02 20:11:56,869 basehttp 21 70368987591072 "GET /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 500 131307
+WARNING 2025-09-02 20:11:57,368 log 21 70368987591072 Not Found: /favicon.ico
+WARNING 2025-09-02 20:11:57,377 basehttp 21 70368987591072 "GET /favicon.ico HTTP/1.1" 404 3621
+INFO 2025-09-02 20:18:16,394 autoreload 51 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 20:22:59,710 autoreload 51 70368761147424 /app/asientos/models.py changed, reloading.
+INFO 2025-09-02 20:23:54,067 autoreload 55 70368761147424 Watching for file changes with StatReloader
+ERROR 2025-09-02 20:26:40,236 log 55 70368987591072 Internal Server Error: /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 2055, in get_prep_value
+    return int(value)
+           ^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'DEFAULT'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/asientos/views.py", line 137, in asiento_edit
+    plan_cuentas = PlanCuenta.objects.filter(empresa=asiento.empresa)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1498, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1529, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1444, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1271, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/fields/related_lookups.py", line 166, in get_prep_lookup
+    self.rhs = target_field.get_prep_value(self.rhs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 2057, in get_prep_value
+    raise e.__class__(
+ValueError: Field 'id' expected a number but got 'DEFAULT'.
+ERROR 2025-09-02 20:26:40,473 basehttp 55 70368987591072 "GET /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 500 131179
+WARNING 2025-09-02 20:26:41,178 log 55 70368987591072 Not Found: /favicon.ico
+WARNING 2025-09-02 20:26:41,187 basehttp 55 70368987591072 "GET /favicon.ico HTTP/1.1" 404 3621
+INFO 2025-09-02 20:26:46,169 basehttp 55 70368987591072 "GET / HTTP/1.1" 200 19830
+INFO 2025-09-02 20:26:49,262 basehttp 55 70368987591072 "GET /asientos/ HTTP/1.1" 200 25860
+INFO 2025-09-02 20:26:58,750 basehttp 55 70368987591072 "GET /asientos/detalle/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 200 19443
+ERROR 2025-09-02 20:27:02,152 log 55 70368987591072 Internal Server Error: /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 2055, in get_prep_value
+    return int(value)
+           ^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'DEFAULT'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/asientos/views.py", line 137, in asiento_edit
+    plan_cuentas = PlanCuenta.objects.filter(empresa=asiento.empresa)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1498, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1529, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1444, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1271, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/fields/related_lookups.py", line 166, in get_prep_lookup
+    self.rhs = target_field.get_prep_value(self.rhs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 2057, in get_prep_value
+    raise e.__class__(
+ValueError: Field 'id' expected a number but got 'DEFAULT'.
+ERROR 2025-09-02 20:27:02,242 basehttp 55 70368987591072 "GET /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 500 131042
+INFO 2025-09-02 20:28:20,439 autoreload 55 70368761147424 /app/asientos/views.py changed, reloading.
+INFO 2025-09-02 20:29:15,713 autoreload 60 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 20:39:54,370 autoreload 51 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 20:40:21,950 basehttp 51 70368987591072 "GET /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 200 43625
+INFO 2025-09-02 20:40:47,172 basehttp 51 70368987591072 "GET /asientos/ HTTP/1.1" 200 25860
+INFO 2025-09-02 20:40:49,706 basehttp 51 70368987591072 "GET /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 200 43625
+INFO 2025-09-02 20:40:51,371 basehttp 51 70368987591072 "GET /asientos/ HTTP/1.1" 200 25860
+WARNING 2025-09-02 20:40:58,639 log 51 70368987591072 Not Found: /secure
+WARNING 2025-09-02 20:40:58,647 basehttp 51 70368987591072 "GET /secure HTTP/1.1" 404 3606
+INFO 2025-09-02 20:41:49,674 autoreload 51 70368761147424 /app/asientos/views.py changed, reloading.
+INFO 2025-09-02 20:42:44,226 autoreload 56 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 20:46:59,147 autoreload 21 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 20:47:44,315 basehttp 21 70369130066336 "GET / HTTP/1.1" 200 19830
+INFO 2025-09-02 20:48:00,923 basehttp 21 70369130066336 "GET /asientos/ HTTP/1.1" 200 25860
+INFO 2025-09-02 20:48:03,267 basehttp 21 70369130066336 "GET /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 200 43780
+INFO 2025-09-02 20:48:08,996 basehttp 21 70369130066336 "GET /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 200 43780
+INFO 2025-09-02 20:48:09,053 basehttp 21 70369130066336 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-09-02 20:48:10,048 basehttp 21 70369273819552 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+INFO 2025-09-02 20:48:11,027 basehttp 21 70369273819552 "GET /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 200 43780
+INFO 2025-09-02 20:48:11,081 basehttp 21 70369130066336 "GET /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 200 43780
+INFO 2025-09-02 20:48:11,135 basehttp 21 70369130066336 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-09-02 20:48:11,468 basehttp 21 70369130066336 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+INFO 2025-09-02 20:48:13,685 basehttp 21 70369130066336 "GET /asientos/ HTTP/1.1" 200 25860
+INFO 2025-09-02 20:48:15,726 basehttp 21 70369130066336 "GET /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 200 43780
+INFO 2025-09-02 20:54:27,783 autoreload 51 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 21:07:38,626 basehttp 51 70368987591072 "GET /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 200 43780
+WARNING 2025-09-02 21:07:47,184 log 51 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 21:07:47,193 basehttp 51 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 21:07:49,068 basehttp 51 70368987591072 "GET /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 200 43780
+WARNING 2025-09-02 21:07:49,622 log 51 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 21:07:49,630 basehttp 51 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 21:07:53,300 basehttp 51 70368987591072 "GET /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 200 43780
+WARNING 2025-09-02 21:07:53,912 log 51 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 21:07:53,919 basehttp 51 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 21:08:43,959 autoreload 51 70368761147424 /app/asientos/views.py changed, reloading.
+INFO 2025-09-02 21:09:37,706 autoreload 56 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 21:13:34,023 autoreload 28 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 21:15:51,181 basehttp 28 70368987591072 "GET /asientos/ HTTP/1.1" 200 25860
+ERROR 2025-09-02 21:15:59,156 log 28 70368987591072 Internal Server Error: /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/asientos/views.py", line 187, in asiento_edit
+    return render(request, 'asientos/form.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/defaulttags.py", line 953, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 558, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 243: 'endif', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+ERROR 2025-09-02 21:15:59,426 basehttp 28 70368987591072 "GET /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 500 266855
+WARNING 2025-09-02 21:16:00,097 log 28 70368987591072 Not Found: /favicon.ico
+WARNING 2025-09-02 21:16:00,107 basehttp 28 70368987591072 "GET /favicon.ico HTTP/1.1" 404 3621
+INFO 2025-09-02 21:22:35,556 autoreload 51 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 21:25:27,227 autoreload 51 70368761147424 /app/asientos/views.py changed, reloading.
+INFO 2025-09-02 21:26:22,165 autoreload 56 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 21:29:25,064 basehttp 56 70368987378080 "GET / HTTP/1.1" 200 19830
+INFO 2025-09-02 21:29:27,879 basehttp 56 70368987378080 "GET /asientos/ HTTP/1.1" 200 25860
+INFO 2025-09-02 21:29:31,180 basehttp 56 70368987378080 "GET /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 200 45206
+WARNING 2025-09-02 21:29:39,598 log 56 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 21:29:39,607 basehttp 56 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 21:30:28,448 autoreload 56 70368761147424 /app/asientos/views.py changed, reloading.
+INFO 2025-09-02 21:31:22,280 autoreload 61 70368761147424 Watching for file changes with StatReloader
+WARNING 2025-09-02 21:33:28,846 log 61 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 21:33:28,856 basehttp 61 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 21:33:32,521 basehttp 61 70368987591072 "GET /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 200 45206
+WARNING 2025-09-02 21:33:33,063 log 61 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 21:33:33,074 basehttp 61 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 21:34:22,475 autoreload 61 70368761147424 /app/asientos/views.py changed, reloading.
+INFO 2025-09-02 21:35:18,429 autoreload 66 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 21:35:53,401 basehttp 66 70368987591072 "GET / HTTP/1.1" 200 19830
+WARNING 2025-09-02 21:35:54,062 log 66 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 21:35:54,070 basehttp 66 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 21:35:56,563 basehttp 66 70368987591072 "GET /asientos/ HTTP/1.1" 200 25860
+WARNING 2025-09-02 21:35:57,162 log 66 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 21:35:57,172 basehttp 66 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 21:36:06,602 basehttp 66 70368987591072 "GET /asientos/detalle/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 200 19443
+WARNING 2025-09-02 21:36:07,174 log 66 70368987591072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 21:36:07,181 basehttp 66 70368987591072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 21:36:14,322 basehttp 66 70369132376480 "GET /asientos/editar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 200 45206
+WARNING 2025-09-02 21:36:14,822 log 66 70369132376480 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 21:36:14,827 basehttp 66 70369132376480 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+ERROR 2025-09-02 21:36:17,283 log 66 70369132376480 Internal Server Error: /asientos/perfil/501bb865d4a92532cfebb65ee059e4889363eeb28a22ca6fb82165bb17432724/cuentas/
+ERROR 2025-09-02 21:36:17,289 basehttp 66 70369132376480 "GET /asientos/perfil/501bb865d4a92532cfebb65ee059e4889363eeb28a22ca6fb82165bb17432724/cuentas/ HTTP/1.1" 500 190
+ERROR 2025-09-02 21:36:20,825 log 66 70369132376480 Internal Server Error: /asientos/perfil/1/cuentas/
+ERROR 2025-09-02 21:36:20,832 basehttp 66 70369132376480 "GET /asientos/perfil/1/cuentas/ HTTP/1.1" 500 190
+ERROR 2025-09-02 21:36:28,179 log 66 70369132376480 Internal Server Error: /asientos/perfil/501bb865d4a92532cfebb65ee059e4889363eeb28a22ca6fb82165bb17432724/cuentas/
+ERROR 2025-09-02 21:36:28,184 basehttp 66 70369132376480 "GET /asientos/perfil/501bb865d4a92532cfebb65ee059e4889363eeb28a22ca6fb82165bb17432724/cuentas/ HTTP/1.1" 500 190
+ERROR 2025-09-02 21:36:29,559 log 66 70369132376480 Internal Server Error: /asientos/perfil/1/cuentas/
+ERROR 2025-09-02 21:36:29,564 basehttp 66 70369132376480 "GET /asientos/perfil/1/cuentas/ HTTP/1.1" 500 190
+INFO 2025-09-02 21:37:36,988 autoreload 66 70368761147424 /app/asientos/views.py changed, reloading.
+INFO 2025-09-02 21:38:31,260 autoreload 79 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 21:38:47,030 autoreload 79 70368761147424 /app/asientos/urls.py changed, reloading.
+INFO 2025-09-02 21:39:41,032 autoreload 83 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-02 21:41:21,283 basehttp 83 70368987378080 "GET /asientos/ HTTP/1.1" 200 25860
+WARNING 2025-09-02 21:41:21,937 log 83 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 21:41:21,944 basehttp 83 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 21:41:25,663 basehttp 83 70368987378080 "GET /asientos/eliminar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 200 14084
+WARNING 2025-09-02 21:41:26,157 log 83 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 21:41:26,165 basehttp 83 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 21:41:29,912 basehttp 83 70368987378080 "POST /asientos/eliminar/8f4da9d1c5515085494af6297aeba7683874680f80427a84b1f2fbd9a8bf6644/ HTTP/1.1" 302 0
+INFO 2025-09-02 21:41:30,194 basehttp 83 70368987378080 "GET /asientos/ HTTP/1.1" 200 18997
+WARNING 2025-09-02 21:41:30,699 log 83 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 21:41:30,706 basehttp 83 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 21:41:31,840 basehttp 83 70368987378080 "GET /asientos/ HTTP/1.1" 200 18997
+WARNING 2025-09-02 21:41:32,333 log 83 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 21:41:32,339 basehttp 83 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 21:41:51,962 basehttp 83 70368987378080 "GET /asientos/ HTTP/1.1" 200 18997
+WARNING 2025-09-02 21:41:52,445 log 83 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 21:41:52,451 basehttp 83 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 21:41:53,348 basehttp 83 70368987378080 "GET /asientos/crear/ HTTP/1.1" 200 35496
+WARNING 2025-09-02 21:41:53,938 log 83 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 21:41:53,944 basehttp 83 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 21:41:56,115 basehttp 83 70368987378080 "GET /asientos/api/perfil/1/cuentas/ HTTP/1.1" 200 459
+INFO 2025-09-02 21:42:18,650 basehttp 83 70368987378080 "POST /asientos/crear/ HTTP/1.1" 302 0
+INFO 2025-09-02 21:42:19,143 basehttp 83 70368987378080 "GET /asientos/detalle/e901c66a6f666579936b5a69f2f6247579fa4edc52cf783fa791ae254c625f96/ HTTP/1.1" 200 20122
+WARNING 2025-09-02 21:42:24,343 log 83 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-02 21:42:24,350 basehttp 83 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
+INFO 2025-09-02 21:49:25,025 autoreload 83 70368761147424 /app/asientos/views.py changed, reloading.

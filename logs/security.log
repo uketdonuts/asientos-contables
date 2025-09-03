@@ -107,3 +107,39 @@
 [SECURITY] 2025-07-06 23:01:49,499 - INFO - Usuario c.rodriguez@figbiz.net cerró sesión desde módulo ultra-seguro
 [SECURITY] 2025-07-06 23:02:53,716 - INFO - Usuario c.rodriguez@figbiz.net cerró sesión desde módulo ultra-seguro
 [SECURITY] 2025-07-06 23:03:50,482 - INFO - Usuario c.rodriguez@figbiz.net cerró sesión desde módulo ultra-seguro
+[SECURITY] 2025-08-09 13:28:03,968 - INFO - [2FA][EMAIL] Código generado ****24 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-08-09 13:28:03,970 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-08-09 13:28:04,063 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-08-09 13:28:53,432 - INFO - [2FA][EMAIL] Código válido ****24 para user_id=4; invalidado tras uso
+[SECURITY] 2025-08-09 13:29:03,834 - WARNING - [2FA][EMAIL] No se encontró código en cache para user_id=4 (key=email_2fa_4); recibido ****24
+[SECURITY] 2025-08-09 13:31:00,940 - INFO - [2FA][EMAIL] Código generado ****93 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-08-09 13:31:00,940 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-08-09 13:31:00,956 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-08-09 13:31:26,545 - INFO - [2FA][EMAIL] Código válido ****93 para user_id=4; invalidado tras uso
+[SECURITY] 2025-08-09 13:37:25,915 - INFO - [2FA][EMAIL] Código generado ****19 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-08-09 13:37:25,917 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-08-09 13:37:25,934 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-08-09 13:37:49,457 - INFO - [2FA][EMAIL] Código válido ****19 para user_id=4; invalidado tras uso
+[SECURITY] 2025-08-09 13:38:31,605 - INFO - Usuario c.rodriguez@figbiz.net cerró sesión desde módulo ultra-seguro
+[SECURITY] 2025-08-09 13:38:31,630 - INFO - Usuario c.rodriguez@figbiz.net cerró sesión desde módulo ultra-seguro
+[SECURITY] 2025-08-09 13:39:14,774 - INFO - [2FA][EMAIL] Código generado ****12 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-08-09 13:39:14,775 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-08-09 13:39:14,790 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-08-09 13:39:37,035 - INFO - [2FA][EMAIL] Código válido ****12 para user_id=4; invalidado tras uso
+[SECURITY] 2025-08-09 13:46:53,998 - INFO - Usuario c.rodriguez@figbiz.net cerró sesión desde módulo ultra-seguro
+[SECURITY] 2025-08-09 13:46:54,011 - INFO - Usuario c.rodriguez@figbiz.net cerró sesión desde módulo ultra-seguro
+[SECURITY] 2025-08-09 14:00:16,138 - INFO - [2FA][EMAIL] Código generado ****56 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-08-09 14:00:16,139 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-08-09 14:00:16,216 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-08-09 14:00:42,280 - INFO - Usuario c.rodriguez@figbiz.net cerró sesión desde módulo ultra-seguro
+[SECURITY] 2025-08-09 14:02:11,852 - INFO - [2FA][EMAIL] Código generado ****46 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-08-09 14:02:11,853 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-08-09 14:02:11,867 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-08-09 14:02:38,158 - INFO - [2FA][EMAIL] Código válido ****46 para user_id=4; invalidado tras uso
+[SECURITY] 2025-08-09 14:06:51,239 - INFO - Usuario c.rodriguez@figbiz.net cerró sesión desde módulo ultra-seguro
+[SECURITY] 2025-08-09 14:06:51,257 - INFO - Usuario c.rodriguez@figbiz.net cerró sesión desde módulo ultra-seguro
+[SECURITY] 2025-08-09 14:07:46,865 - INFO - [2FA][EMAIL] Código generado ****09 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-08-09 14:07:46,866 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-08-09 14:07:46,882 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-08-09 14:08:39,330 - INFO - [2FA][EMAIL] Código válido ****09 para user_id=4; invalidado tras uso
+[SECURITY] 2025-08-09 14:14:13,812 - INFO - Usuario c.rodriguez@figbiz.net cerró sesión desde módulo ultra-seguro

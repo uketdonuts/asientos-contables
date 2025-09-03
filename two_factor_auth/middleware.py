@@ -36,6 +36,11 @@ class TwoFactorMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
+        # Bypass 2FA globally if enabled via settings (temporary troubleshooting)
+        from django.conf import settings
+        if getattr(settings, 'TWO_FACTOR_BYPASS', False):
+            return self.get_response(request)
+
         # Si el usuario no está autenticado, continuar normalmente
         if not request.user.is_authenticated:
             return self.get_response(request)

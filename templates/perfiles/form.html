@@ -71,7 +71,7 @@
                 <p class="text-sm text-gray-600 mt-1">Complete los campos para configurar el perfil contable</p>
             </div>
             
-            <form method="post" novalidate class="px-6 py-6 space-y-6">
+            <form method="post" novalidate class="px-6 py-6 space-y-6" id="perfil-form">
                 {% csrf_token %}
                 
                 <!-- Información del sistema (solo lectura) -->
@@ -150,10 +150,14 @@
                                 <i class="fas fa-times mr-2"></i>
                                 Cancelar
                             </a>
-                            <button type="submit" 
+                            <button type="submit" id="submit-btn"
                                     class="inline-flex items-center px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors duration-200">
                                 <i class="fas fa-save mr-2"></i>
-                                {{ button_text }} Perfil
+                                <span class="btn-text">{{ button_text }} Perfil</span>
+                                <span class="loading-text hidden">
+                                    <i class="fas fa-spinner fa-spin mr-2"></i>
+                                    Procesando...
+                                </span>
                             </button>
                         </div>
                     </div>
@@ -202,6 +206,25 @@
 </style>
 
 {% block extra_js %}
-<script src="{% static 'js/perfiles.js' %}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('perfil-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const loadingText = submitBtn.querySelector('.loading-text');
+    
+    form.addEventListener('submit', function(e) {
+        // Mostrar estado de carga
+        btnText.classList.add('hidden');
+        loadingText.classList.remove('hidden');
+        submitBtn.disabled = true;
+        
+        console.log('Formulario enviado');
+        
+        // No prevenir el envío del formulario
+        // e.preventDefault();
+    });
+});
+</script>
 {% endblock %}
 {% endblock %}

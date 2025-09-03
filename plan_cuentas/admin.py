@@ -11,8 +11,8 @@ class PlanCuentaAdmin(admin.ModelAdmin):
 
 @admin.register(Cuenta)
 class CuentaAdmin(admin.ModelAdmin):
-    list_display = ('id', 'cuenta', 'descripcion', 'plan_cuentas', 'cuenta_madre', 'grupo')
-    list_filter = ('plan_cuentas', 'grupo')
+    list_display = ('id', 'cuenta', 'descripcion', 'plan_cuentas', 'perfil', 'cuenta_madre', 'grupo')
+    list_filter = ('plan_cuentas', 'perfil', 'grupo')
     search_fields = ('cuenta', 'descripcion', 'plan_cuentas__descripcion')
     readonly_fields = ('id',)
     ordering = ('plan_cuentas', 'cuenta')

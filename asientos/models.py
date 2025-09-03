@@ -3,6 +3,7 @@ from django.conf import settings
 import uuid
 import hashlib
 from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 class Asiento(models.Model):
     id = models.CharField(primary_key=True, max_length=64, editable=False)
@@ -18,6 +19,43 @@ class Asiento(models.Model):
         blank=True
     )
     
+    # Campos de auditoría y descripción
+    descripcion = models.TextField(
+        max_length=500, 
+        blank=True, 
+        null=True,
+        verbose_name="Descripción",
+        help_text="Descripción del asiento contable"
+    )
+    usuario_creacion = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.PROTECT,  # No permitir eliminar usuario si tiene asientos
+        related_name='asientos_creados',
+        verbose_name="Usuario Creador",
+        help_text="Usuario que creó el asiento",
+        null=True,
+        blank=True
+    )
+    fecha_creacion = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="Fecha de Creación",
+        help_text="Fecha y hora cuando se creó el asiento"
+    )
+    usuario_modificacion = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.PROTECT,
+        related_name='asientos_modificados',
+        verbose_name="Usuario Modificación",
+        help_text="Último usuario que modificó el asiento",
+        null=True,
+        blank=True
+    )
+    fecha_modificacion = models.DateTimeField(
+        auto_now=True,
+        verbose_name="Fecha de Modificación",
+        help_text="Fecha y hora de la última modificación"
+    )
+    
     class Meta:
         verbose_name = "Asiento Contable"
         verbose_name_plural = "Asientos Contables"
@@ -26,9 +64,9 @@ class Asiento(models.Model):
     @property
     def empresa_obj(self):
         """
-        Obtiene la empresa a través del perfil
+        Obtiene la empresa del asiento
         """
-        return self.id_perfil.empresa if self.id_perfil else self.empresa
+        return self.empresa
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -56,4 +94,5 @@ class Asiento(models.Model):
 
     def __str__(self):
         empresa_desc = self.empresa if self.empresa else "Sin Empresa"
-        return f"Asiento {empresa_desc} - {self.fecha}"
+        usuario_info = f" - {self.usuario_creacion.username}" if self.usuario_creacion else ""
+        return f"Asiento {empresa_desc} - {self.fecha}{usuario_info}"

@@ -122,6 +122,12 @@
                                     <i class="fas fa-user-cog text-gray-400"></i>
                                 </div>
                             </div>
+                            {% if not perfiles %}
+                                <div class="flex items-center space-x-2 text-yellow-600 text-sm">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <span>No hay perfiles disponibles. <a href="{% url 'perfiles:perfil_create' %}" class="text-blue-600 hover:text-blue-800 underline">Crear un perfil</a></span>
+                                </div>
+                            {% endif %}
                             <p class="text-xs text-gray-500">Perfil contable que define las cuentas disponibles</p>
                         </div>
                     </div>

@@ -2,6 +2,9 @@ from django.db import models
 from django.conf import settings
 from django.core.exceptions import ValidationError
 import hashlib
+import logging
+
+logger = logging.getLogger('perfiles')
 
 class Perfil(models.Model):
     id = models.CharField(primary_key=True, max_length=64, editable=False)
@@ -14,11 +17,26 @@ class Perfil(models.Model):
         ordering = ['nombre']
 
     def save(self, *args, **kwargs):
+        logger.debug(f"Perfil.save llamado para: {self.nombre}, id actual: {self.id}")
         # Si el ID no está establecido, generar uno basado en el nombre
         if not self.id:
-            unique_str = f"{self.nombre}-{hash(self.nombre)}"
-            self.id = hashlib.sha256(unique_str.encode()).hexdigest()
-        super().save(*args, **kwargs)
+            logger.debug("Generando nuevo ID para perfil")
+            base_id = hashlib.sha256(self.nombre.lower().strip().encode()).hexdigest()
+            self.id = base_id
+            counter = 0
+            while Perfil.objects.filter(id=self.id).exists():
+                logger.debug(f"ID {self.id} ya existe, incrementando contador")
+                counter += 1
+                self.id = f"{base_id}_{counter}"
+            logger.debug(f"ID final generado: {self.id}")
+        
+        try:
+            logger.debug("Llamando a super().save()")
+            super().save(*args, **kwargs)
+            logger.debug(f"Perfil guardado exitosamente: {self.nombre} con ID {self.id}")
+        except Exception as e:
+            logger.error(f"Error en super().save(): {e}", exc_info=True)
+            raise
 
     def __str__(self):
         return f"{self.nombre}"

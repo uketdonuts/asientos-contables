@@ -3,11 +3,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse
 from django.db import transaction, IntegrityError
+from django.http import JsonResponse
 from .models import Perfil
 from .forms import PerfilForm
 import logging
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('perfiles')
 
 @login_required
 def perfil_list(request):
@@ -23,32 +24,61 @@ def perfil_list(request):
 @login_required
 def perfil_create(request):
     """Crear un nuevo perfil contable"""
+    logger.debug(f"Usuario {request.user} accediendo a perfil_create con método {request.method}")
+    
     if request.method == 'POST':
+        logger.debug(f"POST request recibido para crear perfil")
+        logger.debug(f"POST data: {dict(request.POST)}")
+        
+        # Validar CSRF token manualmente
+        from django.middleware.csrf import get_token
+        csrf_token = get_token(request)
+        logger.debug(f"CSRF token válido: {csrf_token}")
+        
         form = PerfilForm(request.POST)
+        
+        logger.debug(f"Form is_valid: {form.is_valid()}")
+        if not form.is_valid():
+            logger.error(f"Form errors: {form.errors}")
+            for field, errors in form.errors.items():
+                logger.error(f"Field {field}: {errors}")
+            
         if form.is_valid():
+            logger.debug("Formulario válido, intentando guardar")
             try:
-                with transaction.atomic():
-                    perfil = form.save(commit=False)
-                    # El usuario_creacion puede ser agregado si existe el campo
-                    if hasattr(perfil, 'usuario_creacion'):
-                        perfil.usuario_creacion = request.user
-                    perfil.save()
+                # Crear el perfil manualmente para debug
+                nombre = form.cleaned_data['nombre']
+                descripcion = form.cleaned_data.get('descripcion', '')
+                
+                logger.debug(f"Creando perfil: nombre={nombre}, descripcion={descripcion}")
+                
+                perfil = Perfil(nombre=nombre, descripcion=descripcion)
+                logger.debug(f"Perfil creado en memoria: {perfil}")
+                
+                perfil.save()
+                logger.debug(f"Perfil guardado exitosamente con ID: {perfil.id}")
                     
                 messages.success(
                     request, 
                     f'Perfil "{perfil.nombre}" creado exitosamente'
                 )
+                logger.info(f"Perfil '{perfil.nombre}' creado exitosamente")
                 return redirect('perfiles:perfil_list')
             
             except IntegrityError as e:
                 logger.error(f"Error de integridad al crear perfil: {e}")
                 messages.error(request, "Ya existe un perfil con ese nombre")
             except Exception as e:
-                logger.error(f"Error al crear perfil: {e}")
-                messages.error(request, "Error interno al crear el perfil contable")
+                logger.error(f"Error inesperado al crear perfil: {e}", exc_info=True)
+                messages.error(request, f"Error interno al crear el perfil contable: {str(e)}")
         else:
-            messages.error(request, "Por favor corrija los errores en el formulario")
+            # Log de errores detallados de formulario
+            logger.warning(f"Errores de formulario al crear perfil: {form.errors}")
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field}: {error}")
     else:
+        logger.debug("GET request para crear perfil")
         form = PerfilForm()
     
     context = {
@@ -83,6 +113,11 @@ def perfil_edit(request, id):
                 logger.error(f"Error al actualizar perfil: {e}")
                 messages.error(request, "Error interno al actualizar el perfil contable")
         else:
+            # Log de errores detallados de formulario
+            try:
+                logger.warning(f"Errores de formulario al actualizar perfil {perfil.pk}: {form.errors.as_json()}")
+            except Exception:
+                logger.warning(f"Errores de formulario al actualizar perfil {perfil.pk}: {form.errors}")
             messages.error(request, "Por favor corrija los errores en el formulario")
     else:
         form = PerfilForm(instance=perfil)

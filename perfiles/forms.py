@@ -1,5 +1,8 @@
 from django import forms
 from .models import Perfil
+import logging
+
+logger = logging.getLogger('perfiles')
 
 class PerfilForm(forms.ModelForm):
     class Meta:
@@ -39,9 +42,12 @@ class PerfilForm(forms.ModelForm):
         
     def clean_nombre(self):
         nombre = self.cleaned_data.get('nombre')
+        logger.debug(f"Validando nombre: {nombre}")
+        
         if nombre:
             nombre = nombre.strip()
             if not nombre:
+                logger.warning("Nombre vacío después de strip()")
                 raise forms.ValidationError('El nombre no puede estar vacío')
             
             # Check for duplicates
@@ -50,27 +56,23 @@ class PerfilForm(forms.ModelForm):
             ).exclude(pk=self.instance.pk if self.instance else None)
             
             if existing.exists():
+                logger.warning(f"Nombre duplicado encontrado: {nombre}")
                 raise forms.ValidationError(
                     f'Ya existe un perfil con el nombre "{nombre}"'
                 )
         
+        logger.debug(f"Nombre validado correctamente: {nombre}")
         return nombre
 
     def clean_descripcion(self):
         descripcion = self.cleaned_data.get('descripcion')
-        if descripcion:
-            descripcion = descripcion.strip()
-            if not descripcion:
-                raise forms.ValidationError('La descripción no puede estar vacía')
-            
-            # Check for duplicates
-            existing = Perfil.objects.filter(
-                descripcion__iexact=descripcion
-            ).exclude(pk=self.instance.pk if self.instance else None)
-            
-            if existing.exists():
-                raise forms.ValidationError(
-                    f'Ya existe un perfil con la descripción "{descripcion}"'
-                )
-        
+        # Descripción es opcional: permitir vacío y guardar como NULL si viene vacía
+        if descripcion is None:
+            return None
+
+        descripcion = descripcion.strip()
+        if descripcion == "":
+            return None
+
+        # No forzar unicidad de descripción; sólo normalizar espacios
         return descripcion

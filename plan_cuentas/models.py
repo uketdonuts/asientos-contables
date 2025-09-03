@@ -88,6 +88,15 @@ class Cuenta(models.Model):
         null=True,
         blank=True
     )
+    perfil = models.ForeignKey(
+        'perfiles.Perfil',
+        on_delete=models.CASCADE,
+        verbose_name="Perfil",
+        db_column="perfil_id",
+        help_text="Perfil contable asociado",
+        null=True,
+        blank=True,
+    )
 
     class Meta:
         verbose_name = "Cuenta Contable"
@@ -110,6 +119,9 @@ class Cuenta(models.Model):
             })
 
     def save(self, *args, **kwargs):
+        # Si no se especifica perfil para la cuenta, heredar del plan
+        if not self.perfil and self.plan_cuentas and getattr(self.plan_cuentas, 'perfil_id', None):
+            self.perfil_id = self.plan_cuentas.perfil_id
         self.full_clean()
         super().save(*args, **kwargs)
 

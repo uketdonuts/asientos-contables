@@ -11,7 +11,7 @@ from .models import Asiento
 from .forms import AsientoForm
 from asientos_detalle.models import AsientoDetalle
 from asientos_detalle.forms import AsientoDetalleForm
-from plan_cuentas.models import PlanCuenta
+from plan_cuentas.models import PlanCuenta, Cuenta
 from perfiles.models import Perfil, PerfilPlanCuenta
 
 # Configurar logger para debugging
@@ -98,57 +98,69 @@ def asiento_create(request):
 @login_required
 def asiento_edit(request, id):
     asiento = get_object_or_404(Asiento, pk=id)
+    
     if request.method == 'POST':
-        form = AsientoForm(request.POST, instance=asiento, user=request.user)
-        if form.is_valid():
-            try:
-                asiento_instance = form.save(commit=False)
-                # id_perfil is now handled by the form, no need to set it manually
-                asiento_instance.save()
-                form.save_m2m()
-                return JsonResponse({
-                    'success': True,
-                    'asiento_id': asiento_instance.id
-                })
-            except ValidationError as e:
-                return JsonResponse({
-                    'success': False,
-                    'error': "; ".join(e.messages) if hasattr(e, 'messages') else str(e)
-                })
-        else:
-            errors = form.errors.as_json()
-            parsed_errors = json.loads(errors)
-            error_messages = []
-            for field, field_errors in parsed_errors.items():
-                for error_item in field_errors:
-                    error_messages.append(f"{field if field != '__all__' else 'General'}: {error_item['message']}")
-            return JsonResponse({
-                'success': False,
-                'error': "; ".join(error_messages)
-            })
+        # Procesar actualización del asiento (similar a creación)
+        # TODO: Implementar lógica de actualización
+        pass
     else:
+        # GET request - mostrar formulario de edición
         form = AsientoForm(instance=asiento, user=request.user)
     
-    detalles = AsientoDetalle.objects.filter(asiento=asiento).select_related('cuenta')
     perfiles_list = Perfil.objects.all()
-    
-    if asiento.id_perfil and asiento.id_perfil.empresa:
-        plan_cuentas = PlanCuenta.objects.filter(empresa=asiento.id_perfil.empresa)
-    else:
-        plan_cuentas = PlanCuenta.objects.all()
-
-    for detalle in detalles:
-        logger.debug(f"Detalle ID: {detalle.id}, Asiento: {detalle.ac_head_id}, Tipo: {detalle.tipo_cuenta}, Monto: {detalle.monto}, Polaridad: {detalle.polaridad}")
+    plan_cuentas = PlanCuenta.objects.none()  # Se carga dinámicamente con JavaScript
     
     context = {
         'form': form,
         'id': id,
+        'asiento_id_provisional': id,  # Usar el ID real del asiento
         'button_text': 'Actualizar Asiento',
-        'detalles': detalles,
         'perfiles_list': perfiles_list,
-        'plan_cuentas': plan_cuentas
+        'plan_cuentas': plan_cuentas,
+        'is_edit_mode': True,  # Flag para indicar modo edición
+        'asiento': asiento  # Pasar el asiento para obtener datos existentes
     }
     return render(request, 'asientos/form.html', context)
+
+@login_required
+def get_asiento_detalles(request, asiento_id):
+    """
+    Endpoint para obtener los detalles de un asiento existente en formato JSON
+    """
+    try:
+        asiento = get_object_or_404(Asiento, pk=asiento_id)
+        detalles = AsientoDetalle.objects.filter(asiento=asiento).select_related('cuenta')
+        
+        detalles_data = []
+        for detalle in detalles:
+            detalles_data.append({
+                'id': detalle.id,
+                'perfil_id': asiento.id_perfil.id if asiento.id_perfil else '',
+                'cuenta_codigo': detalle.cuenta.cuenta if detalle.cuenta else '',
+                'cuenta_descripcion': detalle.cuenta.descripcion if detalle.cuenta else '',
+                'causa': detalle.DetalleDeCausa or '',
+                'referencia': detalle.Referencia or '',
+                'valor': float(detalle.valor) if detalle.valor else 0,
+                'polaridad': detalle.polaridad,
+                'tipo_cuenta': detalle.tipo_cuenta
+            })
+        
+        return JsonResponse({
+            'success': True,
+            'detalles': detalles_data,
+            'asiento': {
+                'id': asiento.id,
+                'numero': asiento.numero,
+                'fecha': asiento.fecha.strftime('%Y-%m-%d'),
+                'descripcion': asiento.descripcion,
+                'perfil_id': asiento.id_perfil.id if asiento.id_perfil else ''
+            }
+        })
+    except Exception as e:
+        return JsonResponse({
+            'success': False,
+            'error': str(e)
+        })
 
 @login_required
 def asiento_delete(request, id):
@@ -284,18 +296,18 @@ def add_detalles_bulk(request):
 
                 cuenta_codigo = detalle_data.get('cuenta', '')
                 try:
-                    cuenta_obj = PlanCuenta.objects.get(codigocuenta=cuenta_codigo, empresa=perfil_obj.empresa)
-                except PlanCuenta.DoesNotExist:
-                    raise ValidationError(f"La cuenta {cuenta_codigo} no existe en el plan de cuentas para la empresa {perfil_obj.empresa} (Perfil: {perfil_obj.nombre}).")
+                    # Buscar la cuenta por código usando el campo 'cuenta'
+                    cuenta_obj = Cuenta.objects.get(cuenta=cuenta_codigo)
+                except Cuenta.DoesNotExist:
+                    raise ValidationError(f"La cuenta {cuenta_codigo} no existe en el plan de cuentas (Perfil: {perfil_obj.nombre}).")
 
                 AsientoDetalle.objects.create(
                     asiento=asiento,
-                    perfil=perfil_obj,
                     tipo_cuenta=tipo_cuenta, 
                     cuenta=cuenta_obj,
-                    causa=detalle_data.get('causa', ''),
+                    DetalleDeCausa=detalle_data.get('causa', ''),
                     Referencia=detalle_data.get('Referencia', ''),
-                    monto=float(detalle_data.get('monto', 0)),
+                    valor=float(detalle_data.get('monto', 0)),
                     polaridad=polaridad_configurada 
                 )
 
@@ -354,14 +366,14 @@ def add_detalles_bulk(request):
 def get_cuentas_for_perfil(request, perfil_id):
     try:
         perfil = Perfil.objects.get(id=perfil_id)
-        configuraciones = PerfilPlanCuenta.objects.filter(perfil=perfil).select_related('cuenta')
+        configuraciones = PerfilPlanCuenta.objects.filter(perfil_id=perfil).select_related('cuentas_id')
         
         cuentas_data = []
         for config in configuraciones:
             cuentas_data.append({
-                'id': config.cuenta.pk,
-                'codigocuenta': config.cuenta.codigocuenta,
-                'descripcion': config.cuenta.descripcion,
+                'id': config.cuentas_id.pk,
+                'cuenta': config.cuentas_id.cuenta,
+                'descripcion': config.cuentas_id.descripcion,
                 'polaridad': config.polaridad
             })
         
@@ -504,7 +516,7 @@ def asiento_create_new(request):
                         cuenta = PlanCuenta.objects.get(id=cuenta_id)
                         perfil_cuenta = PerfilPlanCuenta.objects.get(
                             perfil_id=request.POST.get('id_perfil'),
-                            cuenta_id=cuenta_id
+                            cuentas_id=cuenta_id
                         )
                         
                         # Determinar la polaridad basada en el tipo
@@ -519,10 +531,9 @@ def asiento_create_new(request):
                         AsientoDetalle.objects.create(
                             asiento=asiento,
                             cuenta=cuenta,
-                            monto=monto,
+                            valor=monto,
                             polaridad=polaridad,
-                            perfil=asiento.id_perfil,
-                            tipo_cuenta=perfil_cuenta.tipo_cuenta
+                            tipo_cuenta='DEBE' if tipo == 'debe' else 'HABER'
                         )
                 
                 # Validar balance
@@ -549,7 +560,7 @@ def api_perfil_cuentas(request, perfil_id):
     """
     try:
         perfil = get_object_or_404(Perfil, id=perfil_id)
-        perfil_cuentas = PerfilPlanCuenta.objects.filter(perfil=perfil).select_related('cuentas_id')
+        perfil_cuentas = PerfilPlanCuenta.objects.filter(perfil_id=perfil).select_related('cuentas_id')
         
         cuentas = []
         for pc in perfil_cuentas:

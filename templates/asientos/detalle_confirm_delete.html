@@ -3,31 +3,90 @@
 {% block title %}Confirmar Eliminación de Detalle{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="row mb-3">
-        <div class="col">
-            <h2>Confirmar Eliminación de Detalle</h2>
-            <p class="text-muted">Asiento ID: {{ asiento.id|truncatechars:8 }}</p>
+<div class="min-h-screen bg-gray-50 py-8">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="mb-8">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900">Confirmar Eliminación de Detalle</h1>
+                    <p class="text-gray-600 mt-1">Asiento ID: {{ asiento.id|truncatechars:16 }}</p>
+                </div>
+                <a href="{% url 'asientos:asiento_detail' asiento.id %}" 
+                   class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    Volver
+                </a>
+            </div>
         </div>
-        <div class="col-auto">
-            <a href="{% url 'asientos:asiento_detail' asiento.id %}" class="btn btn-secondary">
-                <i class="fas fa-arrow-left"></i> Volver
-            </a>
+
+        <!-- Confirmation Card -->
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="px-6 py-8">
+                <!-- Warning Alert -->
+                <div class="bg-red-50 border-l-4 border-red-400 p-6 mb-6">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-exclamation-triangle text-red-400 text-xl"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="text-lg font-medium text-red-800">
+                                ¿Está seguro de eliminar este detalle?
+                            </h3>
+                            <div class="mt-2 text-sm text-red-700">
+                                <p class="mb-2">
+                                    Esta acción no se puede deshacer. Se eliminará el detalle con ID 
+                                    <strong class="font-semibold">{{ detalle.id }}</strong>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detalle Details -->
+                <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                    <h4 class="text-sm font-medium text-gray-900 mb-2">Detalles del Movimiento:</h4>
+                    <dl class="grid grid-cols-1 gap-x-4 gap-y-2 sm:grid-cols-2">
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">ID:</dt>
+                            <dd class="text-sm text-gray-900 font-mono">{{ detalle.id }}</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Causa:</dt>
+                            <dd class="text-sm text-gray-900">{{ detalle.causa|default:"Sin causa" }}</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Monto Haber:</dt>
+                            <dd class="text-sm text-gray-900">${{ detalle.monto_haber|default:"0.00" }}</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Monto Debe:</dt>
+                            <dd class="text-sm text-gray-900">${{ detalle.monto_debe|default:"0.00" }}</dd>
+                        </div>
+                    </dl>
+                </div>
+
+                <!-- Action Buttons -->
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="flex flex-col sm:flex-row sm:justify-end space-y-3 sm:space-y-0 sm:space-x-3">
+                        <a href="{% url 'asientos:asiento_detail' asiento.id %}" 
+                           class="inline-flex justify-center items-center px-6 py-3 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors duration-200">
+                            <i class="fas fa-times mr-2"></i>
+                            Cancelar
+                        </a>
+                        <button type="submit" 
+                                class="inline-flex justify-center items-center px-6 py-3 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200">
+                            <i class="fas fa-trash mr-2"></i>
+                            Eliminar Detalle
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-
-    <div class="card">
-        <div class="card-body">
-            <div class="alert alert-danger">
-                <h4 class="alert-heading">¿Está seguro de eliminar este detalle?</h4>
-                <p>Esta acción no se puede deshacer. Se eliminará el detalle con ID <strong>{{ detalle.id }}</strong>.</p>
-                <p><strong>Causa:</strong> {{ detalle.causa }}</p>
-                <p><strong>Montos:</strong> Haber: {{ detalle.monto_haber }}, Debe: {{ detalle.monto_debe }}</p>
-            </div>
-            
-            <form method="post">
-                {% csrf_token %}
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+</div>
+{% endblock %}
                     <a href="{% url 'asientos:asiento_detail' asiento.id %}" class="btn btn-secondary me-md-2">
                         <i class="fas fa-times"></i> Cancelar
                     </a>
