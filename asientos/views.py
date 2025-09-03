@@ -100,27 +100,86 @@ def asiento_edit(request, id):
     asiento = get_object_or_404(Asiento, pk=id)
     
     if request.method == 'POST':
-        # Procesar actualización del asiento (similar a creación)
-        # TODO: Implementar lógica de actualización
-        pass
-    else:
-        # GET request - mostrar formulario de edición
-        form = AsientoForm(instance=asiento, user=request.user)
+        try:
+            with transaction.atomic():
+                # Actualizar información básica del asiento
+                asiento.fecha = request.POST.get('fecha')
+                if request.POST.get('id_perfil'):
+                    asiento.id_perfil_id = request.POST.get('id_perfil')
+                asiento.descripcion = request.POST.get('descripcion', '')
+                asiento.usuario_modificacion = request.user
+                
+                # Procesar los detalles
+                total_detalles = int(request.POST.get('total_detalles', 0))
+                total_debe = 0
+                total_haber = 0
+                
+                # Eliminar detalles existentes
+                AsientoDetalle.objects.filter(asiento=asiento).delete()
+                
+                # Crear nuevos detalles
+                for i in range(total_detalles):
+                    cuenta_id = request.POST.get(f'detalle_{i}_cuenta_id')
+                    tipo = request.POST.get(f'detalle_{i}_tipo')
+                    monto = float(request.POST.get(f'detalle_{i}_monto', 0))
+                    
+                    if cuenta_id and monto > 0:
+                        # Obtener la cuenta
+                        cuenta = Cuenta.objects.get(id=cuenta_id)
+                        
+                        # Determinar la polaridad basada en el tipo
+                        if tipo == 'debe':
+                            polaridad = '+'
+                            total_debe += monto
+                        else:
+                            polaridad = '-'
+                            total_haber += monto
+                        
+                        # Crear el detalle
+                        # Obtener la empresa como objeto si existe
+                        try:
+                            from empresas.models import Empresa
+                            empresa_obj = Empresa.objects.filter(nombre=asiento.empresa).first()
+                        except:
+                            empresa_obj = None
+                        
+                        AsientoDetalle.objects.create(
+                            asiento=asiento,
+                            cuenta=cuenta,
+                            valor=monto,
+                            polaridad=polaridad,
+                            tipo_cuenta='DEBE' if tipo == 'debe' else 'HABER',
+                            empresa_id=empresa_obj
+                        )
+                
+                # Validar balance
+                if abs(total_debe - total_haber) >= 0.01:
+                    raise ValidationError('El asiento debe estar balanceado')
+                
+                # Guardar el asiento
+                asiento.save()
+                
+                messages.success(request, 'Asiento contable actualizado exitosamente')
+                return redirect('asientos:asiento_detail', id=asiento.id)
+                
+        except Exception as e:
+            logger.error(f"Error actualizando asiento: {str(e)}")
+            messages.error(request, f'Error al actualizar el asiento: {str(e)}')
     
-    perfiles_list = Perfil.objects.all()
-    plan_cuentas = PlanCuenta.objects.none()  # Se carga dinámicamente con JavaScript
+    # GET request - mostrar formulario de edición
+    form = AsientoForm(instance=asiento, user=request.user)
+    perfiles = Perfil.objects.all()
     
     context = {
         'form': form,
         'id': id,
-        'asiento_id_provisional': id,  # Usar el ID real del asiento
+        'asiento_id_provisional': id,
         'button_text': 'Actualizar Asiento',
-        'perfiles_list': perfiles_list,
-        'plan_cuentas': plan_cuentas,
-        'is_edit_mode': True,  # Flag para indicar modo edición
-        'asiento': asiento  # Pasar el asiento para obtener datos existentes
+        'perfiles': perfiles,
+        'is_edit_mode': True,
+        'asiento': asiento
     }
-    return render(request, 'asientos/form.html', context)
+    return render(request, 'asientos/asiento_create.html', context)
 
 @login_required
 def get_asiento_detalles(request, asiento_id):
@@ -512,12 +571,8 @@ def asiento_create_new(request):
                     monto = float(request.POST.get(f'detalle_{i}_monto', 0))
                     
                     if cuenta_id and monto > 0:
-                        # Obtener la cuenta y su polaridad del perfil
-                        cuenta = PlanCuenta.objects.get(id=cuenta_id)
-                        perfil_cuenta = PerfilPlanCuenta.objects.get(
-                            perfil_id=request.POST.get('id_perfil'),
-                            cuentas_id=cuenta_id
-                        )
+                        # Obtener la cuenta
+                        cuenta = Cuenta.objects.get(id=cuenta_id)
                         
                         # Determinar la polaridad basada en el tipo
                         if tipo == 'debe':
@@ -528,12 +583,20 @@ def asiento_create_new(request):
                             total_haber += monto
                         
                         # Crear el detalle
+                        # Obtener la empresa como objeto si existe
+                        try:
+                            from empresas.models import Empresa
+                            empresa_obj = Empresa.objects.filter(nombre='DEFAULT').first()
+                        except:
+                            empresa_obj = None
+                        
                         AsientoDetalle.objects.create(
                             asiento=asiento,
                             cuenta=cuenta,
                             valor=monto,
                             polaridad=polaridad,
-                            tipo_cuenta='DEBE' if tipo == 'debe' else 'HABER'
+                            tipo_cuenta='DEBE' if tipo == 'debe' else 'HABER',
+                            empresa_id=empresa_obj
                         )
                 
                 # Validar balance
@@ -550,7 +613,8 @@ def asiento_create_new(request):
     # GET request - mostrar formulario
     perfiles = Perfil.objects.all()
     return render(request, 'asientos/asiento_create.html', {
-        'perfiles': perfiles
+        'perfiles': perfiles,
+        'is_edit_mode': False
     })
 
 @login_required

@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Error - Acceso Seguro{% endblock %}
+
+{% block extra_css %}
+<style>
+    .error-container {
+        max-width: 600px;
+        margin: 50px auto;
+        text-align: center;
+        padding: 40px;
+        background-color: #fff5f5;
+        border-radius: 15px;
+        box-shadow: 0 0 30px rgba(0,0,0,0.1);
+        border: 1px solid #f56565;
+    }
+    
+    .error-icon {
+        font-size: 72px;
+        color: #f56565;
+        margin-bottom: 20px;
+    }
+    
+    .error-title {
+        color: #e53e3e;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+    
+    .error-message {
+        color: #424242;
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 25px;
+        background-color: rgba(255,255,255,0.8);
+        padding: 20px;
+        border-radius: 10px;
+        border-left: 4px solid #f56565;
+    }
+    
+    .manual-url {
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-radius: 8px;
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        word-break: break-all;
+        border: 1px solid #ddd;
+        margin: 15px 0;
+    }
+    
+    .action-buttons {
+        margin-top: 30px;
+    }
+    
+    .btn-custom {
+        margin: 0 10px;
+        padding: 12px 24px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s;
+    }
+    
+    .btn-retry {
+        background-color: #f56565;
+        color: white;
+        border: none;
+    }
+    
+    .btn-retry:hover {
+        background-color: #e53e3e;
+        color: white;
+        text-decoration: none;
+    }
+    
+    .btn-home {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+    }
+    
+    .btn-home:hover {
+        background-color: #545b62;
+        color: white;
+        text-decoration: none;
+    }
+    
+    .help-section {
+        background-color: #e3f2fd;
+        border: 1px solid #2196f3;
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 20px;
+        text-align: left;
+    }
+    
+    .help-section h6 {
+        color: #1976d2;
+        margin-bottom: 10px;
+    }
+    
+    .help-section ul {
+        color: #424242;
+        margin: 0;
+        padding-left: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="error-container">
+        <div class="error-icon">
+            ⚠️
+        </div>
+        
+        <h2 class="error-title">Error al Generar Acceso Seguro</h2>
+        
+        <div class="error-message">
+            {{ error }}
+        </div>
+        
+        {% if manual_url %}
+        <div class="mt-3">
+            <h6 style="color: #424242;">🔗 URL de respaldo:</h6>
+            <div class="manual-url">
+                {{ manual_url }}
+            </div>
+            <small class="text-muted">
+                Puedes usar esta URL manualmente, aunque no se haya enviado el email.
+            </small>
+        </div>
+        {% endif %}
+        
+        <div class="help-section">
+            <h6>💡 Posibles soluciones:</h6>
+            <ul>
+                <li>Verifica tu conexión a internet</li>
+                <li>Revisa la configuración de email del sistema</li>
+                <li>Contacta al administrador del sistema si el problema persiste</li>
+                <li>Intenta nuevamente en unos momentos</li>
+            </ul>
+        </div>
+        
+        <div class="action-buttons">
+            <a href="{% url 'secure_access_handler' %}" class="btn-custom btn-retry">
+                🔄 Intentar Nuevamente
+            </a>
+            {% if manual_url %}
+            <a href="{{ manual_url }}" class="btn-custom btn-retry" target="_blank">
+                🔐 Usar URL Manual
+            </a>
+            {% endif %}
+            <a href="{% url 'home' %}" class="btn-custom btn-home">
+                🏠 Volver al Inicio
+            </a>
+        </div>
+        
+        <div class="mt-4 text-muted">
+            <small>
+                Si el problema persiste, contacta al equipo de soporte técnico.
+            </small>
+        </div>
+    </div>
+</div>
+{% endblock %}

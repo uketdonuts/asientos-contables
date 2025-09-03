@@ -51,8 +51,12 @@
                             </div>
                         </div>
                         <div>
-                            <h1 class="text-2xl font-bold text-gray-900">Crear Asiento Contable</h1>
-                            <p class="text-sm text-gray-600 mt-1">Complete la información del asiento y sus detalles</p>
+                            <h1 class="text-2xl font-bold text-gray-900">
+                                {% if is_edit_mode %}Editar Asiento Contable{% else %}Crear Asiento Contable{% endif %}
+                            </h1>
+                            <p class="text-sm text-gray-600 mt-1">
+                                {% if is_edit_mode %}Modifique la información del asiento y sus detalles{% else %}Complete la información del asiento y sus detalles{% endif %}
+                            </p>
                         </div>
                     </div>
                     <div class="flex space-x-3">
@@ -91,7 +95,7 @@
                                 <input type="date" 
                                        name="fecha" 
                                        id="id_fecha"
-                                       value="{% now 'Y-m-d' %}"
+                                       value="{% if is_edit_mode and asiento %}{{ asiento.fecha|date:'Y-m-d' }}{% else %}{% now 'Y-m-d' %}{% endif %}"
                                        class="block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
                                        required>
                                 <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -115,7 +119,9 @@
                                         required>
                                     <option value="">Seleccione un perfil</option>
                                     {% for perfil in perfiles %}
-                                        <option value="{{ perfil.id }}">{{ perfil.nombre }}</option>
+                                        <option value="{{ perfil.id }}" {% if is_edit_mode and asiento and asiento.id_perfil.id == perfil.id %}selected{% endif %}>
+                                            {{ perfil.nombre }}
+                                        </option>
                                     {% endfor %}
                                 </select>
                                 <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -143,7 +149,7 @@
                                       id="id_descripcion"
                                       rows="3"
                                       class="block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm resize-none"
-                                      placeholder="Descripción del asiento contable..."></textarea>
+                                      placeholder="Descripción del asiento contable...">{% if is_edit_mode and asiento %}{{ asiento.descripcion }}{% endif %}</textarea>
                             <div class="absolute top-3 right-3 pointer-events-none">
                                 <i class="fas fa-file-alt text-gray-400"></i>
                             </div>
@@ -261,7 +267,7 @@
                                     class="inline-flex items-center px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                                     disabled>
                                 <i class="fas fa-save mr-2"></i>
-                                Guardar Asiento
+                                {% if is_edit_mode %}Actualizar Asiento{% else %}Guardar Asiento{% endif %}
                             </button>
                         </div>
                     </div>
@@ -309,6 +315,67 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let detalles = [];
     let cuentasDisponibles = {};
+    const isEditMode = {{ is_edit_mode|yesno:"true,false" }};
+    
+    // Si estamos en modo edición, cargar los datos existentes
+    {% if is_edit_mode and asiento %}
+    if (isEditMode) {
+        // Pre-seleccionar el perfil
+        perfilSelect.value = "{{ asiento.id_perfil.id }}";
+        
+        // Cargar los detalles existentes
+        fetch(`/asientos/api/asiento/{{ asiento.id }}/detalles/`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Primero cargar las cuentas del perfil
+                    return fetch(`/asientos/api/perfil/{{ asiento.id_perfil.id }}/cuentas/`);
+                }
+                throw new Error('Error cargando detalles');
+            })
+            .then(response => response.json())
+            .then(cuentasData => {
+                // Guardar cuentas disponibles
+                cuentasDisponibles = {};
+                cuentaSelect.innerHTML = '<option value="">Seleccione una cuenta</option>';
+                
+                cuentasData.cuentas.forEach(cuenta => {
+                    cuentasDisponibles[cuenta.id] = cuenta;
+                    const option = document.createElement('option');
+                    option.value = cuenta.id;
+                    option.textContent = `${cuenta.codigo} - ${cuenta.descripcion}`;
+                    cuentaSelect.appendChild(option);
+                });
+                
+                cuentaSelect.disabled = false;
+                
+                // Luego cargar los detalles y agregarlos a la tabla
+                return fetch(`/asientos/api/asiento/{{ asiento.id }}/detalles/`);
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success && data.detalles) {
+                    data.detalles.forEach(detalle => {
+                        const detalleObj = {
+                            id: Date.now() + Math.random(), // ID temporal único
+                            cuenta_id: detalle.cuenta_codigo, // Usar el código como ID temporal
+                            cuenta_codigo: detalle.cuenta_codigo,
+                            cuenta_descripcion: detalle.cuenta_descripcion,
+                            tipo: detalle.polaridad === '+' ? 'debe' : 'haber',
+                            monto: detalle.valor
+                        };
+                        detalles.push(detalleObj);
+                    });
+                    renderDetalles();
+                    updateBalance();
+                }
+            })
+            .catch(error => {
+                console.error('Error cargando datos del asiento:', error);
+                alert('Error al cargar los datos del asiento para edición');
+            });
+    }
+    {% endif %}
     
     // Cargar cuentas cuando se selecciona un perfil
     perfilSelect.addEventListener('change', function() {

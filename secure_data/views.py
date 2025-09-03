@@ -56,6 +56,15 @@ def secure_access_view(request):
         logger.warning(f"Intento de acceso no autorizado por: {request.user.email}")
         raise PermissionDenied("Acceso denegado: Usuario no autorizado")
     
+    # Obtener el código de acceso desde la URL
+    access_code = request.resolver_match.kwargs.get('access_code')
+    
+    # Validar que el código de acceso coincida con el almacenado en la sesión
+    stored_code = request.session.get('secure_access_code')
+    if not access_code or not stored_code or access_code != stored_code:
+        logger.warning(f"Código de acceso inválido: {access_code} vs {stored_code}")
+        raise PermissionDenied("Código de acceso inválido o expirado")
+    
     # Si ya hay acceso seguro concedido, redirigir directamente a la matriz
     if request.session.get('secure_access_granted', False):
         return redirect('secure_data:matrix_view')

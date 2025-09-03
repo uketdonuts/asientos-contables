@@ -1,10 +1,13 @@
 from pathlib import Path
 import os
 import dj_database_url
-from dotenv import load_dotenv
 
-
-load_dotenv(override=True)  # Cargar y sobrescribir variables existentes
+try:
+    from dotenv import load_dotenv
+    load_dotenv(override=True)  # Cargar y sobrescribir variables existentes
+except ImportError:
+    # Si dotenv no está disponible, continuar sin él
+    pass
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 

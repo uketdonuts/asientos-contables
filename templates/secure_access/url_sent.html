@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}URL de Acceso Seguro Enviada{% endblock %}
+
+{% block extra_css %}
+<style>
+    .success-container {
+        max-width: 700px;
+        margin: 50px auto;
+        text-align: center;
+        padding: 40px;
+        background: linear-gradient(135deg, #e3f2fd 0%, #f1f8e9 100%);
+        border-radius: 15px;
+        box-shadow: 0 0 30px rgba(0,0,0,0.1);
+        border: 1px solid #4caf50;
+    }
+    
+    .success-icon {
+        font-size: 72px;
+        color: #4caf50;
+        margin-bottom: 20px;
+        animation: pulse 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        100% { transform: scale(1.1); }
+    }
+    
+    .success-title {
+        color: #2e7d32;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+    
+    .success-message {
+        color: #424242;
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 25px;
+    }
+    
+    .email-info {
+        background-color: rgba(255,255,255,0.8);
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+        border-left: 4px solid #4caf50;
+    }
+    
+    .secure-url {
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-radius: 8px;
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        word-break: break-all;
+        border: 1px solid #ddd;
+        margin: 15px 0;
+    }
+    
+    .action-buttons {
+        margin-top: 30px;
+    }
+    
+    .btn-custom {
+        margin: 0 10px;
+        padding: 12px 24px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s;
+    }
+    
+    .btn-primary-custom {
+        background-color: #2196f3;
+        color: white;
+        border: none;
+    }
+    
+    .btn-primary-custom:hover {
+        background-color: #1976d2;
+        color: white;
+        text-decoration: none;
+    }
+    
+    .btn-secondary-custom {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+    }
+    
+    .btn-secondary-custom:hover {
+        background-color: #545b62;
+        color: white;
+        text-decoration: none;
+    }
+    
+    .security-notice {
+        background-color: #fff3cd;
+        border: 1px solid #ffeaa7;
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 20px;
+        text-align: left;
+    }
+    
+    .security-notice h6 {
+        color: #856404;
+        margin-bottom: 10px;
+    }
+    
+    .security-notice ul {
+        color: #856404;
+        margin: 0;
+        padding-left: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="success-container">
+        <div class="success-icon">
+            📧✅
+        </div>
+        
+        <h2 class="success-title">¡URL de Acceso Seguro Generada!</h2>
+        
+        <p class="success-message">
+            Se ha generado exitosamente una nueva URL de acceso al módulo ultra-seguro 
+            y se ha enviado por email.
+        </p>
+        
+        <div class="email-info">
+            <h5 style="color: #2e7d32; margin-bottom: 15px;">📨 Email enviado a:</h5>
+            <strong style="color: #1976d2; font-size: 18px;">{{ email }}</strong>
+        </div>
+        
+        {% if secure_url %}
+        <div class="mt-3">
+            <h6 style="color: #424242;">🔗 URL generada:</h6>
+            <div class="secure-url">
+                {{ secure_url }}
+            </div>
+            <small class="text-muted">
+                Esta URL también ha sido enviada por email para mayor seguridad.
+            </small>
+        </div>
+        {% endif %}
+        
+        <div class="security-notice">
+            <h6>🛡️ Información de Seguridad:</h6>
+            <ul>
+                <li>Esta URL es única y temporal</li>
+                <li>Solo funciona para el usuario autorizado</li>
+                <li>Requiere autenticación de dos factores (2FA)</li>
+                <li>No compartas esta URL con nadie</li>
+                <li>Se ha enviado también un código 2FA a tu email</li>
+            </ul>
+        </div>
+        
+        <div class="action-buttons">
+            <a href="{{ secure_url }}" class="btn-custom btn-primary-custom" target="_blank">
+                🔐 Ir al Módulo Seguro
+            </a>
+            <a href="{% url 'home' %}" class="btn-custom btn-secondary-custom">
+                🏠 Volver al Inicio
+            </a>
+        </div>
+        
+        <div class="mt-4 text-muted">
+            <small>
+                <strong>Nota:</strong> Revisa tu bandeja de entrada y carpeta de spam para el email con la URL y código 2FA.
+            </small>
+        </div>
+    </div>
+</div>
+{% endblock %}

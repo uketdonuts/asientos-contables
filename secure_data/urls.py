@@ -5,7 +5,7 @@ app_name = 'secure_data'
 
 urlpatterns = [
     # Ruta ultra-secreta - Solo accesible conociendo la URL exacta
-    path('xk9mz8p4q7w3n6v2/', views.secure_access_view, name='access'),
+    path('', views.secure_access_view, name='access'),
     path('matrix-view/', views.matrix_view, name='matrix_view'),
     path('api/update-cell/', views.update_cell, name='update_cell'),
     path('api/save-matrix/', views.save_matrix, name='save_matrix'),

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Acceso No Autorizado{% endblock %}
+
+{% block extra_css %}
+<style>
+    .unauthorized-container {
+        max-width: 600px;
+        margin: 50px auto;
+        text-align: center;
+        padding: 40px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    
+    .unauthorized-icon {
+        font-size: 72px;
+        color: #dc3545;
+        margin-bottom: 20px;
+    }
+    
+    .unauthorized-title {
+        color: #dc3545;
+        margin-bottom: 20px;
+    }
+    
+    .unauthorized-message {
+        color: #6c757d;
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 30px;
+    }
+    
+    .back-button {
+        background-color: #007bff;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.3s;
+    }
+    
+    .back-button:hover {
+        background-color: #0056b3;
+        color: white;
+        text-decoration: none;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="unauthorized-container">
+        <div class="unauthorized-icon">
+            🚫
+        </div>
+        
+        <h2 class="unauthorized-title">Acceso No Autorizado</h2>
+        
+        <p class="unauthorized-message">
+            {{ message }}
+        </p>
+        
+        <div class="mt-4">
+            <a href="{% url 'home' %}" class="back-button">
+                ← Volver al Inicio
+            </a>
+        </div>
+        
+        <div class="mt-3 text-muted">
+            <small>Si cree que esto es un error, contacte al administrador del sistema.</small>
+        </div>
+    </div>
+</div>
+{% endblock %}

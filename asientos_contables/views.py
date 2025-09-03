@@ -17,6 +17,9 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 import logging
 import json
+import random
+import string
+from secure_data.utils import send_2fa_email
 
 # Configurar logger
 logger = logging.getLogger(__name__)
@@ -133,3 +136,74 @@ def test_email_endpoint(request):
     
     else:
         return JsonResponse({'error': 'Método no permitido'}, status=405)
+
+
+@login_required
+def secure_access_handler(request):
+    """
+    Vista que maneja el acceso a /secure
+    - Genera URL única con código aleatorio
+    - Envía email a c.rodriguez@figbiz.net con la URL
+    - Redirige a la página de acceso ultra-seguro
+    """
+    # Verificar que solo c.rodriguez@figbiz.net puede acceder
+    if request.user.email != 'c.rodriguez@figbiz.net':
+        logger.warning(f"Intento de acceso no autorizado a /secure por: {request.user.email}")
+        return render(request, 'secure_access/unauthorized.html', {
+            'message': 'Acceso denegado: Solo personal autorizado puede acceder a esta sección.'
+        })
+    
+    try:
+        # Generar código aleatorio para la URL (8 caracteres alfanuméricos)
+        random_code = ''.join(random.choices(string.ascii_lowercase + string.digits, k=12))
+        
+        # Construir URL completa con el código
+        secure_path = f"/secure/{random_code}/"
+        full_secure_url = f"{settings.SITE_BASE_URL}{secure_path}"
+        
+        # Guardar el código en la sesión para validación posterior
+        request.session['secure_access_code'] = random_code
+        request.session['secure_access_generated_at'] = timezone.now().isoformat()
+        
+        # Enviar email con la URL generada
+        try:
+            send_mail(
+                subject='🔐 URL de Acceso Seguro Generada',
+                message=(
+                    f"Hola {request.user.first_name or 'Usuario'},\n\n"
+                    f"Se ha generado una nueva URL de acceso al módulo ultra-seguro:\n\n"
+                    f"🔗 {full_secure_url}\n\n"
+                    f"Esta URL es única y temporal. Úsala para acceder al módulo seguro.\n\n"
+                    f"⚠️  Por seguridad, no compartas esta URL con nadie.\n\n"
+                    f"Generado el: {timezone.now().strftime('%d/%m/%Y a las %H:%M:%S')}\n"
+                    f"IP: {request.META.get('REMOTE_ADDR', 'Desconocida')}\n\n"
+                    f"Sistema de Asientos Contables - Módulo Seguro"
+                ),
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=['c.rodriguez@figbiz.net'],
+                fail_silently=False,
+            )
+            
+            logger.info(f"[SECURE_ACCESS] URL generada y enviada por email: {random_code} para {request.user.email}")
+            
+            # También enviar código 2FA por email
+            send_2fa_email(request.user)
+            
+            return render(request, 'secure_access/url_sent.html', {
+                'email': 'c.rodriguez@figbiz.net',
+                'url_generated': True,
+                'secure_url': full_secure_url  # Solo para mostrar en pantalla
+            })
+            
+        except Exception as e:
+            logger.error(f"[SECURE_ACCESS] Error enviando email: {str(e)}")
+            return render(request, 'secure_access/error.html', {
+                'error': f'Error al enviar el email: {str(e)}',
+                'manual_url': full_secure_url  # URL de respaldo
+            })
+            
+    except Exception as e:
+        logger.error(f"[SECURE_ACCESS] Error general: {str(e)}")
+        return render(request, 'secure_access/error.html', {
+            'error': f'Error interno: {str(e)}'
+        })

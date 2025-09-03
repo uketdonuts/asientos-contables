@@ -16,8 +16,10 @@ urlpatterns = [
     path('plan_cuentas/', include('plan_cuentas.urls')),
     path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
     path('two_factor/', include('two_factor_auth.urls')),
-    # Ruta ultra-secreta - Sin nombre descriptivo en URLs
-    path('secure/', include('secure_data.urls')),
+    # Ruta que genera URL segura y envía email
+    path('secure/', views.secure_access_handler, name='secure_access_handler'),
+    # Rutas ultra-secretas con códigos dinámicos
+    path('secure/<str:access_code>/', include('secure_data.urls')),
     # Endpoint de prueba de correos
     path('test-email/', views.test_email_endpoint, name='test_email'),
 ]
