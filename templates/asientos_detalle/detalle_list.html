@@ -194,9 +194,9 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium 
-                                                   {% if detalle.polaridad == 'D' %}bg-green-100 text-green-800
+                                                   {% if detalle.polaridad == '+' %}bg-green-100 text-green-800
                                                    {% else %}bg-red-100 text-red-800{% endif %}">
-                                            {% if detalle.polaridad == 'D' %}
+                                            {% if detalle.polaridad == '+' %}
                                                 <i class="fas fa-arrow-up mr-1"></i>Debe
                                             {% else %}
                                                 <i class="fas fa-arrow-down mr-1"></i>Haber

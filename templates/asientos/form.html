@@ -548,8 +548,104 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Aquí iría la lógica para guardar el asiento
-        showNotification('Funcionalidad de guardado en desarrollo', 'info');
+        // Recopilar datos del asiento
+        const asientoData = {
+            id_perfil: document.getElementById('perfil_select').value,
+            fecha: document.getElementById('fecha_field').value,
+            descripcion: document.getElementById('descripcion_field').value || ''
+        };
+
+        // Recopilar datos de los detalles
+        const detalles = [];
+        Array.from(tableBody.children).forEach(row => {
+            const cuenta = row.querySelector('.cuenta-debe-input').value || row.querySelector('.cuenta-haber-input').value;
+            const monto = parseFloat(row.querySelector('.monto-input').value) || 0;
+            const causa = row.querySelector('.causa-input').value || '';
+            const referencia = row.querySelector('.referencia-input').value || '';
+            
+            // Determinar polaridad basada en si está en debe o haber
+            let polaridad;
+            if (row.querySelector('.cuenta-debe-input').value) {
+                polaridad = '+'; // Debe
+            } else if (row.querySelector('.cuenta-haber-input').value) {
+                polaridad = '-'; // Haber
+            }
+
+            if (cuenta && monto > 0) {
+                detalles.push({
+                    perfil_id: asientoData.id_perfil,
+                    cuenta: cuenta,
+                    monto: monto,
+                    causa: causa,
+                    Referencia: referencia,
+                    polaridad: polaridad
+                });
+            }
+        });
+
+        if (detalles.length === 0) {
+            showNotification('No hay detalles válidos para guardar', 'error');
+            return;
+        }
+
+        // Deshabilitar botón mientras se guarda
+        saveAsientoBtn.disabled = true;
+        saveAsientoBtn.textContent = 'Guardando...';
+
+        // Crear el asiento primero
+        const asientoFormData = new FormData();
+        Object.keys(asientoData).forEach(key => {
+            asientoFormData.append(key, asientoData[key]);
+        });
+        asientoFormData.append('asiento_id_provisional', '{{ asiento_id_provisional }}');
+
+        fetch('{% url "asientos:asiento_create" %}', {
+            method: 'POST',
+            body: asientoFormData,
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Ahora guardar los detalles
+                const detallesFormData = new FormData();
+                detallesFormData.append('asiento_id', data.asiento_id);
+                detallesFormData.append('detalles', JSON.stringify(detalles));
+
+                return fetch('{% url "asientos:add_detalles_bulk" %}', {
+                    method: 'POST',
+                    body: detallesFormData,
+                    headers: {
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                    },
+                });
+            } else {
+                throw new Error(data.error || 'Error al crear el asiento');
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showNotification('Asiento guardado exitosamente', 'success');
+                // Redirigir al detalle del asiento
+                setTimeout(() => {
+                    window.location.href = `/asientos/detalle/${data.asiento_id}/`;
+                }, 1000);
+            } else {
+                throw new Error(data.error || 'Error al guardar los detalles');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showNotification(`Error al guardar: ${error.message}`, 'error');
+        })
+        .finally(() => {
+            // Restaurar botón
+            saveAsientoBtn.disabled = false;
+            saveAsientoBtn.textContent = 'Guardar Asiento';
+        });
     });
 
     // Función para cargar detalles existentes en modo edición

@@ -40,7 +40,7 @@ class AsientoDetalleForm(forms.ModelForm):
             'asiento': 'Seleccione el asiento contable al que pertenece este detalle',
             'cuenta': 'Seleccione la cuenta contable',
             'valor': 'Ingrese el monto del movimiento',
-            'polaridad': 'Seleccione si es Debe (D) o Haber (H)',
+            'polaridad': 'Seleccione si es Debe (+) o Haber (-)',
             'empresa_id': 'Seleccione la empresa',
         }
     
@@ -49,8 +49,8 @@ class AsientoDetalleForm(forms.ModelForm):
         
         # Configurar las opciones de polaridad
         self.fields['polaridad'].choices = [
-            ('D', 'Debe'),
-            ('H', 'Haber'),
+            ('+', 'Debe'),
+            ('-', 'Haber'),
         ]
         
         # Configurar querysets
@@ -104,9 +104,9 @@ class BaseAsientoDetalleInlineFormSet(BaseInlineFormSet):
             valor = form.cleaned_data.get('valor', 0) or 0
             polaridad = form.cleaned_data.get('polaridad')
 
-            if polaridad == 'D':
+            if polaridad == '+':
                 total_debe += valor
-            elif polaridad == 'H':
+            elif polaridad == '-':
                 total_haber += valor
 
         # Validar que debe = haber

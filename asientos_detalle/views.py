@@ -37,8 +37,8 @@ def detalle_list(request):
         # Estadísticas
         stats = {
             'total': detalles.count(),
-            'total_debe': sum(detalle.valor for detalle in detalles if detalle.polaridad == 'D'),
-            'total_haber': sum(detalle.valor for detalle in detalles if detalle.polaridad == 'H'),
+            'total_debe': sum(detalle.valor for detalle in detalles if detalle.polaridad == '+'),
+            'total_haber': sum(detalle.valor for detalle in detalles if detalle.polaridad == '-'),
             'empresas': detalles.values('empresa_id__nombre').distinct().count(),
         }
         

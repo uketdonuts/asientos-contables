@@ -360,6 +360,13 @@ def add_detalles_bulk(request):
                 except Cuenta.DoesNotExist:
                     raise ValidationError(f"La cuenta {cuenta_codigo} no existe en el plan de cuentas (Perfil: {perfil_obj.nombre}).")
 
+                # Obtener la empresa como objeto si existe
+                try:
+                    from empresas.models import Empresa
+                    empresa_obj = Empresa.objects.filter(nombre=asiento.empresa).first()
+                except:
+                    empresa_obj = None
+
                 AsientoDetalle.objects.create(
                     asiento=asiento,
                     tipo_cuenta=tipo_cuenta, 
@@ -367,7 +374,8 @@ def add_detalles_bulk(request):
                     DetalleDeCausa=detalle_data.get('causa', ''),
                     Referencia=detalle_data.get('Referencia', ''),
                     valor=float(detalle_data.get('monto', 0)),
-                    polaridad=polaridad_configurada 
+                    polaridad=polaridad_configurada,
+                    empresa_id=empresa_obj
                 )
 
             # Calcular el total después de crear todos los detalles
@@ -425,7 +433,7 @@ def add_detalles_bulk(request):
 def get_cuentas_for_perfil(request, perfil_id):
     try:
         perfil = Perfil.objects.get(id=perfil_id)
-        configuraciones = PerfilPlanCuenta.objects.filter(perfil_id=perfil).select_related('cuentas_id')
+        configuraciones = PerfilPlanCuenta.objects.filter(perfil_id=perfil_id).select_related('cuentas_id')
         
         cuentas_data = []
         for config in configuraciones:
