@@ -355,16 +355,27 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 if (data.success && data.detalles) {
+                    detalles = []; // Limpiar array
                     data.detalles.forEach(detalle => {
+                        // Buscar el ID de cuenta en las cuentas disponibles
+                        let cuentaId = null;
+                        for (let id in cuentasDisponibles) {
+                            if (cuentasDisponibles[id].codigo === detalle.cuenta_codigo) {
+                                cuentaId = id;
+                                break;
+                            }
+                        }
+                        
                         const detalleObj = {
                             id: Date.now() + Math.random(), // ID temporal único
-                            cuenta_id: detalle.cuenta_codigo, // Usar el código como ID temporal
+                            cuenta_id: cuentaId, // Usar el ID real de la cuenta
                             cuenta_codigo: detalle.cuenta_codigo,
                             cuenta_descripcion: detalle.cuenta_descripcion,
                             tipo: detalle.polaridad === '+' ? 'debe' : 'haber',
-                            monto: detalle.valor
+                            monto: parseFloat(detalle.valor) || 0
                         };
                         detalles.push(detalleObj);
+                        console.log('Detalle cargado:', detalleObj);
                     });
                     renderDetalles();
                     updateBalance();
@@ -506,6 +517,12 @@ document.addEventListener('DOMContentLoaded', function() {
             <input type="hidden" name="detalle_${index}_tipo" value="${detalle.tipo}">
             <input type="hidden" name="detalle_${index}_monto" value="${detalle.monto}">
         `).join('') + `<input type="hidden" name="total_detalles" value="${detalles.length}">`;
+        
+        // Log para debug
+        console.log('Inputs ocultos actualizados:', {
+            total_detalles: detalles.length,
+            detalles: detalles
+        });
     }
     
     // Función global para remover detalles
@@ -517,6 +534,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Validación antes de enviar
     document.getElementById('asientoForm').addEventListener('submit', function(e) {
+        console.log('=== VALIDACIÓN ANTES DE ENVIAR ===');
+        console.log('Detalles a enviar:', detalles);
+        console.log('Total detalles:', detalles.length);
+        
         if (detalles.length === 0) {
             e.preventDefault();
             alert('Debe agregar al menos un detalle al asiento');
@@ -525,20 +546,39 @@ document.addEventListener('DOMContentLoaded', function() {
         
         let totalDebe = 0;
         let totalHaber = 0;
+        let detallesValidos = 0;
         
-        detalles.forEach(detalle => {
-            if (detalle.tipo === 'debe') {
-                totalDebe += detalle.monto;
+        detalles.forEach((detalle, index) => {
+            console.log(`Detalle ${index}:`, detalle);
+            if (detalle.cuenta_id && detalle.monto > 0) {
+                detallesValidos++;
+                if (detalle.tipo === 'debe') {
+                    totalDebe += detalle.monto;
+                } else {
+                    totalHaber += detalle.monto;
+                }
             } else {
-                totalHaber += detalle.monto;
+                console.warn(`Detalle ${index} inválido:`, detalle);
             }
         });
         
-        if (Math.abs(totalDebe - totalHaber) >= 0.01) {
+        console.log(`Detalles válidos: ${detallesValidos}, Total Debe: ${totalDebe}, Total Haber: ${totalHaber}`);
+        
+        if (detallesValidos === 0) {
             e.preventDefault();
-            alert('El asiento debe estar balanceado (Total Debe = Total Haber)');
+            alert('No hay detalles válidos para enviar');
             return;
         }
+        
+        if (Math.abs(totalDebe - totalHaber) >= 0.01) {
+            e.preventDefault();
+            alert(`El asiento debe estar balanceado (Total Debe: ${totalDebe.toFixed(2)} ≠ Total Haber: ${totalHaber.toFixed(2)})`);
+            return;
+        }
+        
+        // Actualizar inputs ocultos una vez más antes de enviar
+        updateHiddenInputs();
+        console.log('=== FORMULARIO ENVIADO ===');
     });
 });
 </script>

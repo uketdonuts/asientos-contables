@@ -21,10 +21,6 @@ class AsientoForm(forms.ModelForm):
         
         # Add user to form fields for later use in save
         self.user = user
-        
-        # Set default empresa if not provided
-        if not self.instance.pk:
-            self.fields['empresa'].initial = 'DEFAULT'
     
     def clean(self):
         cleaned_data = super().clean()

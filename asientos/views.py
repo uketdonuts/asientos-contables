@@ -559,6 +559,21 @@ def asiento_create_new(request):
     if request.method == 'POST':
         try:
             with transaction.atomic():
+                logger.debug(f"=== DEPURACIÓN ASIENTO_CREATE_NEW ===")
+                logger.debug(f"POST data: {dict(request.POST)}")
+                
+                # Validar que hay detalles
+                total_detalles = int(request.POST.get('total_detalles', 0))
+                logger.debug(f"Total detalles recibidos: {total_detalles}")
+                
+                if total_detalles == 0:
+                    messages.error(request, 'Debe agregar al menos un detalle al asiento')
+                    perfiles = Perfil.objects.all()
+                    return render(request, 'asientos/asiento_create.html', {
+                        'perfiles': perfiles,
+                        'is_edit_mode': False
+                    })
+                
                 # Crear el asiento principal
                 asiento = Asiento.objects.create(
                     fecha=request.POST.get('fecha'),
@@ -569,18 +584,29 @@ def asiento_create_new(request):
                 )
                 
                 # Procesar los detalles
-                total_detalles = int(request.POST.get('total_detalles', 0))
                 total_debe = 0
                 total_haber = 0
                 
                 for i in range(total_detalles):
                     cuenta_id = request.POST.get(f'detalle_{i}_cuenta_id')
                     tipo = request.POST.get(f'detalle_{i}_tipo')
-                    monto = float(request.POST.get(f'detalle_{i}_monto', 0))
+                    monto_str = request.POST.get(f'detalle_{i}_monto', '0')
+                    
+                    logger.debug(f"Procesando detalle {i}: cuenta_id={cuenta_id}, tipo={tipo}, monto_str={monto_str}")
+                    
+                    try:
+                        monto = float(monto_str)
+                    except (ValueError, TypeError):
+                        logger.error(f"Error convirtiendo monto a float: {monto_str}")
+                        monto = 0
                     
                     if cuenta_id and monto > 0:
                         # Obtener la cuenta
-                        cuenta = Cuenta.objects.get(id=cuenta_id)
+                        try:
+                            cuenta = Cuenta.objects.get(id=cuenta_id)
+                        except Cuenta.DoesNotExist:
+                            logger.error(f"Cuenta con ID {cuenta_id} no existe")
+                            continue
                         
                         # Determinar la polaridad basada en el tipo
                         if tipo == 'debe':
@@ -590,14 +616,14 @@ def asiento_create_new(request):
                             polaridad = '-'
                             total_haber += monto
                         
-                        # Crear el detalle
                         # Obtener la empresa como objeto si existe
                         try:
                             from empresas.models import Empresa
                             empresa_obj = Empresa.objects.filter(nombre='DEFAULT').first()
-                        except:
+                        except Exception:
                             empresa_obj = None
                         
+                        # Crear el detalle
                         AsientoDetalle.objects.create(
                             asiento=asiento,
                             cuenta=cuenta,
@@ -606,17 +632,23 @@ def asiento_create_new(request):
                             tipo_cuenta='DEBE' if tipo == 'debe' else 'HABER',
                             empresa_id=empresa_obj
                         )
+                        
+                        logger.debug(f"Detalle creado: Cuenta={cuenta.cuenta}, Monto={monto}, Polaridad={polaridad}")
                 
                 # Validar balance
                 if abs(total_debe - total_haber) >= 0.01:
-                    raise ValidationError('El asiento debe estar balanceado')
+                    raise ValidationError(f'El asiento debe estar balanceado. Total Debe: ${total_debe:.2f}, Total Haber: ${total_haber:.2f}')
                 
+                logger.info(f"Asiento creado exitosamente: {asiento.id} con {total_detalles} detalles")
                 messages.success(request, 'Asiento contable creado exitosamente')
                 return redirect('asientos:asiento_detail', id=asiento.id)
                 
+        except ValidationError as e:
+            logger.error(f"Error de validación creando asiento: {str(e)}")
+            messages.error(request, str(e))
         except Exception as e:
-            logger.error(f"Error creando asiento: {str(e)}")
-            messages.error(request, f'Error al crear el asiento: {str(e)}')
+            logger.error(f"Error inesperado creando asiento: {str(e)}", exc_info=True)
+            messages.error(request, f'Error inesperado al crear el asiento: {str(e)}')
     
     # GET request - mostrar formulario
     perfiles = Perfil.objects.all()
