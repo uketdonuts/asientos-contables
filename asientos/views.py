@@ -561,13 +561,31 @@ def asiento_create_new(request):
             with transaction.atomic():
                 logger.debug(f"=== DEPURACIÓN ASIENTO_CREATE_NEW ===")
                 logger.debug(f"POST data: {dict(request.POST)}")
+                logger.debug(f"POST keys: {list(request.POST.keys())}")
                 
                 # Validar que hay detalles
-                total_detalles = int(request.POST.get('total_detalles', 0))
+                total_detalles_str = request.POST.get('total_detalles', '0')
+                logger.debug(f"Total detalles string: '{total_detalles_str}'")
+                
+                try:
+                    total_detalles = int(total_detalles_str)
+                except (ValueError, TypeError):
+                    logger.error(f"Error convirtiendo total_detalles a int: '{total_detalles_str}'")
+                    total_detalles = 0
+                    
                 logger.debug(f"Total detalles recibidos: {total_detalles}")
                 
+                # Contar detalles manualmente para verificar
+                detalle_count = 0
+                for key in request.POST.keys():
+                    if key.startswith('detalle_') and key.endswith('_cuenta_id'):
+                        if request.POST.get(key):  # Solo contar si tiene valor
+                            detalle_count += 1
+                logger.debug(f"Detalles contados manualmente: {detalle_count}")
+                
                 if total_detalles == 0:
-                    messages.error(request, 'Debe agregar al menos un detalle al asiento')
+                    logger.error(f"VALIDACIÓN FALLIDA: total_detalles=0, pero conteo manual={detalle_count}")
+                    messages.error(request, f'Debe agregar al menos un detalle al asiento (recibido: {total_detalles}, contado: {detalle_count})')
                     perfiles = Perfil.objects.all()
                     return render(request, 'asientos/asiento_create.html', {
                         'perfiles': perfiles,

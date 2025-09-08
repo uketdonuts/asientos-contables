@@ -273,6 +273,9 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Hidden inputs for detalles (DENTRO del formulario) -->
+            <div id="hiddenInputs"></div>
         </form>
         
         <!-- Help Section -->
@@ -296,9 +299,6 @@
         </div>
     </div>
 </div>
-
-<!-- Hidden inputs for detalles -->
-<div id="hiddenInputs"></div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -538,6 +538,9 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Detalles a enviar:', detalles);
         console.log('Total detalles:', detalles.length);
         
+        // CRÍTICO: Actualizar inputs ocultos ANTES de cualquier validación
+        updateHiddenInputs();
+        
         if (detalles.length === 0) {
             e.preventDefault();
             alert('Debe agregar al menos un detalle al asiento');
@@ -576,8 +579,18 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        // Actualizar inputs ocultos una vez más antes de enviar
-        updateHiddenInputs();
+        // Verificar que los inputs ocultos están correctamente creados
+        const totalDetallesInput = document.querySelector('input[name="total_detalles"]');
+        console.log('Input total_detalles encontrado:', totalDetallesInput);
+        console.log('Valor del input total_detalles:', totalDetallesInput ? totalDetallesInput.value : 'NO ENCONTRADO');
+        
+        // Log de todos los inputs ocultos creados
+        const allHiddenInputs = hiddenInputs.querySelectorAll('input');
+        console.log('Todos los inputs ocultos creados:', allHiddenInputs.length);
+        allHiddenInputs.forEach(input => {
+            console.log(`- ${input.name}: ${input.value}`);
+        });
+        
         console.log('=== FORMULARIO ENVIADO ===');
     });
 });

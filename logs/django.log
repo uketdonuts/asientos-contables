@@ -21427,3 +21427,4 @@ INFO 2025-09-02 21:42:19,143 basehttp 83 70368987378080 "GET /asientos/detalle/e
 WARNING 2025-09-02 21:42:24,343 log 83 70368987378080 Not Found: /.well-known/appspecific/com.chrome.devtools.json
 WARNING 2025-09-02 21:42:24,350 basehttp 83 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
 INFO 2025-09-02 21:49:25,025 autoreload 83 70368761147424 /app/asientos/views.py changed, reloading.
+INFO 2025-09-07 19:39:48,896 autoreload 28276 140526504407040 Watching for file changes with StatReloader
