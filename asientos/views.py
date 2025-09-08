@@ -29,11 +29,11 @@ def asiento_detail(request, id):
     
     monto_total = 0
     for detalle in detalles:
-        if detalle.monto is not None:
+        if detalle.valor is not None:
             if detalle.polaridad == '+':
-                monto_total += detalle.monto
+                monto_total += detalle.valor
             elif detalle.polaridad == '-':
-                monto_total -= detalle.monto
+                monto_total -= detalle.valor
 
     return render(request, 'asientos/asiento_detail.html', {
         'asiento': asiento,
@@ -249,7 +249,7 @@ def add_detalle(request, asiento_id):
             
             logger.debug(f"DEPURACIÓN ADD_DETALLE: Antes de guardar - Detalle: {detalle}")
             logger.debug(f"DEPURACIÓN ADD_DETALLE: Detalle.asiento: {detalle.asiento}")
-            logger.debug(f"DEPURACIÓN ADD_DETALLE: Detalle.asiento: {detalle.ac_head_id}")
+            logger.debug(f"DEPURACIÓN ADD_DETALLE: Detalle.asiento: {detalle.asiento}")
             logger.debug(f"DEPURACIÓN ADD_DETALLE: Detalle.tipo_cuenta: {detalle.tipo_cuenta}")
             logger.debug(f"DEPURACIÓN ADD_DETALLE: Detalle.cuenta: {detalle.cuenta}")
             logger.debug(f"DEPURACIÓN ADD_DETALLE: Detalle.monto: {detalle.monto}")
@@ -281,7 +281,7 @@ def edit_detalle(request, asiento_id, detalle_id):
     detalle = get_object_or_404(AsientoDetalle, pk=detalle_id, asiento=asiento)
     
     logger.debug(f"DEPURACIÓN: Editando detalle - ID: {detalle_id}, Tipo: {detalle.tipo_cuenta}")
-    logger.debug(f"DEPURACIÓN: Valores iniciales - Monto: {detalle.monto}, Asiento: {detalle.ac_head_id}")
+    logger.debug(f"DEPURACIÓN: Valores iniciales - Monto: {detalle.monto}, Asiento: {detalle.asiento}")
     
     if request.method == 'POST':
         form = AsientoDetalleForm(request.POST, instance=detalle)
@@ -294,7 +294,7 @@ def edit_detalle(request, asiento_id, detalle_id):
     else:
         form = AsientoDetalleForm(instance=detalle)
         logger.debug(f"DEPURACIÓN: Monto en formulario: {form['monto'].value()}")
-        logger.debug(f"DEPURACIÓN: Asiento asociado: {detalle.ac_head_id}")
+        logger.debug(f"DEPURACIÓN: Asiento asociado: {detalle.asiento}")
     
     context = {
         'form': form,
@@ -387,8 +387,8 @@ def add_detalles_bulk(request):
             logger.info(f"Número de detalles encontrados: {detalles_guardados.count()}")
             
             for i, detalle_obj in enumerate(detalles_guardados, 1):
-                if detalle_obj.monto is not None:
-                    monto_actual = float(detalle_obj.monto)
+                if detalle_obj.valor is not None:
+                    monto_actual = float(detalle_obj.valor)
                     polaridad_actual = detalle_obj.polaridad
                     
                     logger.info(f"Detalle {i}: Monto={monto_actual}, Polaridad='{polaridad_actual}', Tipo={detalle_obj.tipo_cuenta}")

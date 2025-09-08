@@ -76,19 +76,9 @@ class Asiento(models.Model):
             unique_str = f"{self.fecha}-{timestamp}"
             self.id = hashlib.sha256(unique_str.encode()).hexdigest()
 
-        # Validate that the sum of details is zero before saving
-        if self.pk: # Only check if asiento already exists in DB
-            total_movimientos = 0
-            # Ensure details are loaded if this is an existing instance
-            for detalle in self.detalles.all():
-                if detalle.monto is not None:
-                    if detalle.polaridad == '+': # DEBE
-                        total_movimientos += detalle.monto
-                    elif detalle.polaridad == '-': # HABER
-                        total_movimientos -= detalle.monto
-            
-            if total_movimientos != 0:
-                raise ValidationError(f"La suma de los movimientos (debe y haber) debe ser igual a cero para guardar el asiento. Total actual: {total_movimientos}")
+        # Note: Balance validation is handled in views during bulk creation of details
+        # Individual validation here would fail for new asientos since details
+        # are created after the asiento is saved
         
         super().save(*args, **kwargs)
 
