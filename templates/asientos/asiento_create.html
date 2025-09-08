@@ -323,37 +323,44 @@ document.addEventListener('DOMContentLoaded', function() {
         // Pre-seleccionar el perfil
         perfilSelect.value = "{{ asiento.id_perfil.id }}";
         
-        // Cargar los detalles existentes
-        fetch(`/asientos/api/asiento/{{ asiento.id }}/detalles/`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Primero cargar las cuentas del perfil
-                    return fetch(`/asientos/api/perfil/{{ asiento.id_perfil.id }}/cuentas/`);
-                }
-                throw new Error('Error cargando detalles');
+        // Cargar primero las cuentas del perfil
+        console.log('Cargando cuentas del perfil {{ asiento.id_perfil.id }}...');
+        fetch(`/asientos/api/perfil/{{ asiento.id_perfil.id }}/cuentas/`)
+            .then(response => {
+                console.log('Response status para cuentas:', response.status);
+                return response.json();
             })
-            .then(response => response.json())
             .then(cuentasData => {
-                // Guardar cuentas disponibles
-                cuentasDisponibles = {};
-                cuentaSelect.innerHTML = '<option value="">Seleccione una cuenta</option>';
-                
-                cuentasData.cuentas.forEach(cuenta => {
-                    cuentasDisponibles[cuenta.id] = cuenta;
-                    const option = document.createElement('option');
-                    option.value = cuenta.id;
-                    option.textContent = `${cuenta.codigo} - ${cuenta.descripcion}`;
-                    cuentaSelect.appendChild(option);
-                });
-                
-                cuentaSelect.disabled = false;
-                
-                // Luego cargar los detalles y agregarlos a la tabla
-                return fetch(`/asientos/api/asiento/{{ asiento.id }}/detalles/`);
+                console.log('Cuentas recibidas:', cuentasData);
+                if (cuentasData.success) {
+                    // Guardar cuentas disponibles
+                    cuentasDisponibles = {};
+                    cuentaSelect.innerHTML = '<option value="">Seleccione una cuenta</option>';
+                    
+                    cuentasData.cuentas.forEach(cuenta => {
+                        cuentasDisponibles[cuenta.id] = cuenta;
+                        const option = document.createElement('option');
+                        option.value = cuenta.id;
+                        option.textContent = `${cuenta.codigo} - ${cuenta.descripcion}`;
+                        cuentaSelect.appendChild(option);
+                    });
+                    
+                    cuentaSelect.disabled = false;
+                    console.log('Cuentas disponibles cargadas:', Object.keys(cuentasDisponibles).length);
+                    
+                    // Ahora cargar los detalles del asiento
+                    console.log('Cargando detalles del asiento {{ asiento.id }}...');
+                    return fetch(`/asientos/api/asiento/{{ asiento.id }}/detalles/`);
+                } else {
+                    throw new Error('Error cargando cuentas: ' + (cuentasData.error || 'Error desconocido'));
+                }
             })
-            .then(response => response.json())
+            .then(response => {
+                console.log('Response status para detalles:', response.status);
+                return response.json();
+            })
             .then(data => {
+                console.log('Detalles recibidos:', data);
                 if (data.success && data.detalles) {
                     detalles = []; // Limpiar array
                     data.detalles.forEach(detalle => {
@@ -366,24 +373,32 @@ document.addEventListener('DOMContentLoaded', function() {
                             }
                         }
                         
-                        const detalleObj = {
-                            id: Date.now() + Math.random(), // ID temporal único
-                            cuenta_id: cuentaId, // Usar el ID real de la cuenta
-                            cuenta_codigo: detalle.cuenta_codigo,
-                            cuenta_descripcion: detalle.cuenta_descripcion,
-                            tipo: detalle.polaridad === '+' ? 'debe' : 'haber',
-                            monto: parseFloat(detalle.valor) || 0
-                        };
-                        detalles.push(detalleObj);
-                        console.log('Detalle cargado:', detalleObj);
+                        if (cuentaId) {
+                            const detalleObj = {
+                                id: Date.now() + Math.random(), // ID temporal único
+                                cuenta_id: cuentaId, // Usar el ID real de la cuenta
+                                cuenta_codigo: detalle.cuenta_codigo,
+                                cuenta_descripcion: detalle.cuenta_descripcion,
+                                tipo: detalle.polaridad === '+' ? 'debe' : 'haber',
+                                monto: parseFloat(detalle.valor) || 0
+                            };
+                            detalles.push(detalleObj);
+                            console.log('Detalle cargado:', detalleObj);
+                        } else {
+                            console.warn('No se encontró cuenta_id para código:', detalle.cuenta_codigo);
+                        }
                     });
+                    
+                    console.log('Total detalles cargados:', detalles.length);
                     renderDetalles();
                     updateBalance();
+                } else {
+                    throw new Error('Error en respuesta de detalles: ' + (data.error || 'Sin detalles'));
                 }
             })
             .catch(error => {
                 console.error('Error cargando datos del asiento:', error);
-                alert('Error al cargar los datos del asiento para edición');
+                alert('Error al cargar los datos del asiento para edición: ' + error.message);
             });
     }
     {% endif %}
