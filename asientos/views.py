@@ -209,7 +209,7 @@ def get_asiento_detalles(request, asiento_id):
             'detalles': detalles_data,
             'asiento': {
                 'id': asiento.id,
-                'numero': asiento.numero,
+                'numero': asiento.id,  # Usar el id como número de asiento
                 'fecha': asiento.fecha.strftime('%Y-%m-%d'),
                 'descripcion': asiento.descripcion,
                 'perfil_id': asiento.id_perfil.id if asiento.id_perfil else ''
