@@ -48,7 +48,7 @@ def get_client_ip(request):
     return ip
 
 @login_required
-def secure_access_view(request):
+def secure_access_view(request, access_code):
     """Vista principal de acceso seguro - Solo para c.rodriguez@figbiz.net"""
     
     # Verificación estricta del usuario autorizado
@@ -56,8 +56,7 @@ def secure_access_view(request):
         logger.warning(f"Intento de acceso no autorizado por: {request.user.email}")
         raise PermissionDenied("Acceso denegado: Usuario no autorizado")
     
-    # Obtener el código de acceso desde la URL
-    access_code = request.resolver_match.kwargs.get('access_code')
+    # El código de acceso ya viene como parámetro de la función
     
     # Validar que el código de acceso coincida con el almacenado en la sesión
     stored_code = request.session.get('secure_access_code')
