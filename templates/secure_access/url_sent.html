@@ -138,17 +138,6 @@
             <strong style="color: #1976d2; font-size: 18px;">{{ email }}</strong>
         </div>
         
-        {% if secure_url %}
-        <div class="mt-3">
-            <h6 style="color: #424242;">🔗 URL generada:</h6>
-            <div class="secure-url">
-                {{ secure_url }}
-            </div>
-            <small class="text-muted">
-                Esta URL también ha sido enviada por email para mayor seguridad.
-            </small>
-        </div>
-        {% endif %}
         
         <div class="security-notice">
             <h6>🛡️ Información de Seguridad:</h6>
@@ -162,10 +151,7 @@
         </div>
         
         <div class="action-buttons">
-            <a href="{{ secure_url }}" class="btn-custom btn-primary-custom" target="_blank">
-                🔐 Ir al Módulo Seguro
-            </a>
-            <a href="{% url 'home' %}" class="btn-custom btn-secondary-custom">
+            <a href="{% url 'home' %}" class="btn-custom btn-primary-custom">
                 🏠 Volver al Inicio
             </a>
         </div>

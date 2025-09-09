@@ -191,8 +191,7 @@ def secure_access_handler(request):
             
             return render(request, 'secure_access/url_sent.html', {
                 'email': 'c.rodriguez@figbiz.net',
-                'url_generated': True,
-                'secure_url': full_secure_url  # Solo para mostrar en pantalla
+                'url_generated': True
             })
             
         except Exception as e:
