@@ -17,10 +17,13 @@ def generate_email_2fa_code():
 
 def send_2fa_email(user):
     """Envía código 2FA por email"""
+    logger.info(f"[2FA][EMAIL] Iniciando envío de código 2FA para usuario: {user.email}")
+    
     if user.email != 'c.rodriguez@figbiz.net':
         logger.warning(f"[2FA][EMAIL] Email no autorizado: {user.email}")
         return False
     
+    logger.info(f"[2FA][EMAIL] Usuario autorizado, generando código...")
     code = generate_email_2fa_code()
     # No loguear el código completo en texto claro; mostrar solo últimos 2 dígitos
     masked_code = f"****{code[-2:]}"
@@ -36,21 +39,14 @@ def send_2fa_email(user):
             f"port={getattr(settings, 'EMAIL_PORT', None)}, from={getattr(settings, 'DEFAULT_FROM_EMAIL', None)})"
         )
 
-        # Construir enlace directo al acceso ultra-seguro
-        # Nota: la ruta se define estáticamente en secure_data/urls.py
-        secure_path = reverse('secure_data:access')  # '/secure/xk9mz8p4q7w3n6v2/'
-        # reverse devuelve '/secure/' + ... gracias a include('secure_data.urls') en urls raíz
-        # Pero como el patrón exacto está en secure_data/urls.py, reverse('secure_data:access') devolverá '/secure/xk9mz8p4q7w3n6v2/'
-        full_secure_url = f"{settings.SITE_BASE_URL}{secure_path}"
-
+        # Enviar el email sin el enlace por ahora para evitar problemas con reverse
         send_mail(
             subject='Código de Verificación - Acceso Seguro',
             message=(
                 "Código de verificación para acceso al módulo seguro:\n\n"
                 f"{code}\n\n"
                 "Este código expira en 2 minutos.\n\n"
-                "Accede directamente con este enlace (requiere autenticación previa):\n"
-                f"{full_secure_url}\n\n"
+                "Usa este código en la pantalla de acceso seguro.\n\n"
                 "Si no solicitaste este código, ignora este email."
             ),
             from_email=settings.DEFAULT_FROM_EMAIL,

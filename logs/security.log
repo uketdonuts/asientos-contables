@@ -143,3 +143,380 @@
 [SECURITY] 2025-08-09 14:07:46,882 - INFO - [2FA][EMAIL] Email enviado exitosamente
 [SECURITY] 2025-08-09 14:08:39,330 - INFO - [2FA][EMAIL] Código válido ****09 para user_id=4; invalidado tras uso
 [SECURITY] 2025-08-09 14:14:13,812 - INFO - Usuario c.rodriguez@figbiz.net cerró sesión desde módulo ultra-seguro
+[SECURITY] 2025-09-09 00:54:10,173 - INFO - [2FA][EMAIL] Código generado ****53 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 00:54:10,177 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 00:54:10,243 - ERROR - [2FA][EMAIL] Error al enviar email: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+Traceback (most recent call last):
+  File "/app/secure_data/utils.py", line 41, in send_2fa_email
+    secure_path = reverse('secure_data:access')  # '/secure/xk9mz8p4q7w3n6v2/'
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+[SECURITY] 2025-09-09 01:01:35,246 - INFO - [2FA][EMAIL] Código generado ****61 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 01:01:35,249 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 01:01:35,312 - ERROR - [2FA][EMAIL] Error al enviar email: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+Traceback (most recent call last):
+  File "/app/secure_data/utils.py", line 41, in send_2fa_email
+    secure_path = reverse('secure_data:access')  # '/secure/xk9mz8p4q7w3n6v2/'
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+[SECURITY] 2025-09-09 01:01:40,041 - INFO - [2FA][EMAIL] Código generado ****82 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 01:01:40,044 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 01:01:40,050 - ERROR - [2FA][EMAIL] Error al enviar email: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+Traceback (most recent call last):
+  File "/app/secure_data/utils.py", line 41, in send_2fa_email
+    secure_path = reverse('secure_data:access')  # '/secure/xk9mz8p4q7w3n6v2/'
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+[SECURITY] 2025-09-09 01:07:56,636 - INFO - [2FA][EMAIL] Código generado ****49 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 01:07:56,644 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 01:07:57,264 - ERROR - [2FA][EMAIL] Error al enviar email: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+Traceback (most recent call last):
+  File "/app/secure_data/utils.py", line 41, in send_2fa_email
+    secure_path = reverse('secure_data:access')  # '/secure/xk9mz8p4q7w3n6v2/'
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+[SECURITY] 2025-09-09 01:08:04,655 - INFO - [2FA][EMAIL] Código generado ****26 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 01:08:04,658 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 01:08:04,664 - ERROR - [2FA][EMAIL] Error al enviar email: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+Traceback (most recent call last):
+  File "/app/secure_data/utils.py", line 41, in send_2fa_email
+    secure_path = reverse('secure_data:access')  # '/secure/xk9mz8p4q7w3n6v2/'
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+[SECURITY] 2025-09-09 01:08:09,778 - INFO - [2FA][EMAIL] Código generado ****33 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 01:08:09,780 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 01:08:09,785 - ERROR - [2FA][EMAIL] Error al enviar email: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+Traceback (most recent call last):
+  File "/app/secure_data/utils.py", line 41, in send_2fa_email
+    secure_path = reverse('secure_data:access')  # '/secure/xk9mz8p4q7w3n6v2/'
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+[SECURITY] 2025-09-09 01:11:41,355 - INFO - [2FA][EMAIL] Código generado ****68 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 01:11:41,358 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 01:11:41,428 - ERROR - [2FA][EMAIL] Error al enviar email: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+Traceback (most recent call last):
+  File "/app/secure_data/utils.py", line 41, in send_2fa_email
+    secure_path = reverse('secure_data:access')  # '/secure/xk9mz8p4q7w3n6v2/'
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+[SECURITY] 2025-09-09 01:11:45,984 - INFO - [2FA][EMAIL] Código generado ****80 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 01:11:45,988 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 01:11:45,993 - ERROR - [2FA][EMAIL] Error al enviar email: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+Traceback (most recent call last):
+  File "/app/secure_data/utils.py", line 41, in send_2fa_email
+    secure_path = reverse('secure_data:access')  # '/secure/xk9mz8p4q7w3n6v2/'
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+[SECURITY] 2025-09-09 01:12:30,675 - INFO - [2FA][EMAIL] Código generado ****98 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 01:12:30,678 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 01:12:30,683 - ERROR - [2FA][EMAIL] Error al enviar email: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+Traceback (most recent call last):
+  File "/app/secure_data/utils.py", line 41, in send_2fa_email
+    secure_path = reverse('secure_data:access')  # '/secure/xk9mz8p4q7w3n6v2/'
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+[SECURITY] 2025-09-09 01:12:44,466 - INFO - [2FA][EMAIL] Código generado ****14 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 01:12:44,469 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 01:12:44,474 - ERROR - [2FA][EMAIL] Error al enviar email: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+Traceback (most recent call last):
+  File "/app/secure_data/utils.py", line 41, in send_2fa_email
+    secure_path = reverse('secure_data:access')  # '/secure/xk9mz8p4q7w3n6v2/'
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+[SECURITY] 2025-09-09 01:20:35,224 - INFO - [2FA][EMAIL] Código generado ****17 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 01:20:35,228 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 01:20:35,289 - ERROR - [2FA][EMAIL] Error al enviar email: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+Traceback (most recent call last):
+  File "/app/secure_data/utils.py", line 41, in send_2fa_email
+    secure_path = reverse('secure_data:access')  # '/secure/xk9mz8p4q7w3n6v2/'
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+[SECURITY] 2025-09-09 01:20:41,969 - INFO - [2FA][EMAIL] Código generado ****73 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 01:20:41,974 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 01:20:41,980 - ERROR - [2FA][EMAIL] Error al enviar email: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+Traceback (most recent call last):
+  File "/app/secure_data/utils.py", line 41, in send_2fa_email
+    secure_path = reverse('secure_data:access')  # '/secure/xk9mz8p4q7w3n6v2/'
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+[SECURITY] 2025-09-09 01:20:59,986 - INFO - [2FA][EMAIL] Código generado ****40 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 01:20:59,988 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 01:20:59,994 - ERROR - [2FA][EMAIL] Error al enviar email: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+Traceback (most recent call last):
+  File "/app/secure_data/utils.py", line 41, in send_2fa_email
+    secure_path = reverse('secure_data:access')  # '/secure/xk9mz8p4q7w3n6v2/'
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+[SECURITY] 2025-09-09 01:21:10,528 - INFO - [2FA][EMAIL] Código generado ****32 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 01:21:10,531 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 01:21:10,536 - ERROR - [2FA][EMAIL] Error al enviar email: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+Traceback (most recent call last):
+  File "/app/secure_data/utils.py", line 41, in send_2fa_email
+    secure_path = reverse('secure_data:access')  # '/secure/xk9mz8p4q7w3n6v2/'
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'access' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/\\Z']
+[SECURITY] 2025-09-09 19:58:05,545 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-09 19:58:05,551 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-09 19:58:05,560 - INFO - [2FA][EMAIL] Código generado ****26 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 19:58:05,563 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 19:58:05,651 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-09 20:12:48,517 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-09 20:12:48,521 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-09 20:12:48,530 - INFO - [2FA][EMAIL] Código generado ****64 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 20:12:48,533 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 20:12:48,656 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-09 21:49:05,998 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-09 21:49:06,001 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-09 21:49:06,008 - INFO - [2FA][EMAIL] Código generado ****12 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 21:49:06,012 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 21:49:06,076 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-09 22:00:10,434 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-09 22:00:10,438 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-09 22:00:10,445 - INFO - [2FA][EMAIL] Código generado ****18 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 22:00:10,448 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 22:00:10,511 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-09 22:14:52,915 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-09 22:14:52,918 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-09 22:14:52,927 - INFO - [2FA][EMAIL] Código generado ****72 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 22:14:52,931 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 22:14:52,998 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-09 22:15:00,548 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-09 22:15:00,550 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-09 22:15:00,554 - INFO - [2FA][EMAIL] Código generado ****94 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 22:15:00,556 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 22:15:00,610 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-09 22:26:55,170 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-09 22:26:55,173 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-09 22:26:55,180 - INFO - [2FA][EMAIL] Código generado ****09 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 22:26:55,183 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 22:26:55,244 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-09 22:27:04,690 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-09 22:27:04,692 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-09 22:27:04,696 - INFO - [2FA][EMAIL] Código generado ****94 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 22:27:04,698 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 22:27:04,752 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-09 22:39:40,639 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-09 22:39:40,644 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-09 22:39:40,653 - INFO - [2FA][EMAIL] Código generado ****10 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-09 22:39:40,656 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-09 22:39:40,734 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-09 22:40:26,416 - INFO - Intento de acceso para usuario c.rodriguez@figbiz.net
+[SECURITY] 2025-09-09 22:40:26,423 - INFO - [2FA][EMAIL] Código válido ****10 para user_id=4; invalidado tras uso
+[SECURITY] 2025-09-09 22:40:26,669 - ERROR - Error registrando log de acceso: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'is_decoy_attempt'
+[SECURITY] 2025-09-09 22:40:35,093 - INFO - Intento de acceso para usuario c.rodriguez@figbiz.net
+[SECURITY] 2025-09-09 22:40:35,097 - WARNING - [2FA][EMAIL] No se encontró código en cache para user_id=4 (key=email_2fa_4); recibido ****10
+[SECURITY] 2025-09-09 22:42:31,929 - INFO - Intento de acceso para usuario c.rodriguez@figbiz.net
+[SECURITY] 2025-09-09 22:42:31,933 - WARNING - [2FA][EMAIL] No se encontró código en cache para user_id=4 (key=email_2fa_4); recibido ****10
+[SECURITY] 2025-09-09 22:42:51,139 - INFO - Intento de acceso para usuario c.rodriguez@figbiz.net
+[SECURITY] 2025-09-09 22:42:51,144 - WARNING - [2FA][EMAIL] No se encontró código en cache para user_id=4 (key=email_2fa_4); recibido ****10
+[SECURITY] 2025-09-10 19:40:36,248 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-10 19:40:36,250 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-10 19:40:36,255 - INFO - [2FA][EMAIL] Código generado ****30 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-10 19:40:36,257 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-10 19:40:36,311 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-10 19:41:19,715 - INFO - Intento de acceso para usuario c.rodriguez@figbiz.net
+[SECURITY] 2025-09-10 19:41:19,720 - INFO - [2FA][EMAIL] Código válido ****30 para user_id=4; invalidado tras uso
+[SECURITY] 2025-09-10 19:41:19,847 - ERROR - Error registrando log de acceso exitoso: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'is_decoy_attempt'
+[SECURITY] 2025-09-10 19:41:20,091 - ERROR - Error obteniendo datos de matriz: SecureDataMatrix() got unexpected keyword arguments: 'data', 'is_decoy'
+[SECURITY] 2025-09-10 19:41:45,031 - ERROR - Error obteniendo datos de matriz: SecureDataMatrix() got unexpected keyword arguments: 'data', 'is_decoy'
+[SECURITY] 2025-09-10 20:29:03,569 - ERROR - Error registrando logout: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-10 20:29:04,772 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-10 20:29:04,775 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-10 20:29:04,784 - INFO - [2FA][EMAIL] Código generado ****88 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-10 20:29:04,788 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-10 20:29:05,603 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-10 20:29:06,202 - ERROR - Error registrando logout: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-10 20:29:10,226 - ERROR - Error registrando logout: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-10 20:29:10,253 - ERROR - Error registrando logout: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-10 20:29:35,104 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-10 20:29:35,106 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-10 20:29:35,111 - INFO - [2FA][EMAIL] Código generado ****82 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-10 20:29:35,113 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-10 20:29:35,173 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-10 20:30:05,329 - INFO - Intento de acceso para usuario c.rodriguez@figbiz.net
+[SECURITY] 2025-09-10 20:30:05,335 - INFO - [2FA][EMAIL] Código válido ****82 para user_id=4; invalidado tras uso
+[SECURITY] 2025-09-10 20:30:05,509 - ERROR - Error registrando log de acceso exitoso: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'is_decoy_attempt'
+[SECURITY] 2025-09-10 20:30:09,070 - ERROR - Error registrando logout: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-10 20:30:10,529 - ERROR - Error registrando logout: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-10 20:37:46,668 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-10 20:37:46,670 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-10 20:37:46,674 - INFO - [2FA][EMAIL] Código generado ****47 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-10 20:37:46,676 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-10 20:37:46,736 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-10 20:37:47,061 - ERROR - Error registrando logout: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-10 20:37:49,884 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-10 20:37:49,886 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-10 20:37:49,889 - INFO - [2FA][EMAIL] Código generado ****83 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-10 20:37:49,891 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-10 20:37:49,941 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-10 20:38:12,244 - INFO - Intento de acceso para usuario c.rodriguez@figbiz.net
+[SECURITY] 2025-09-10 20:38:12,249 - INFO - [2FA][EMAIL] Código válido ****83 para user_id=4; invalidado tras uso
+[SECURITY] 2025-09-10 20:38:12,398 - ERROR - Error registrando log de acceso exitoso: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'is_decoy_attempt'
+[SECURITY] 2025-09-10 20:38:15,397 - ERROR - Error registrando logout: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-10 20:38:16,906 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-10 20:38:16,908 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-10 20:38:16,912 - INFO - [2FA][EMAIL] Código generado ****99 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-10 20:38:16,914 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-10 20:38:16,966 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-10 20:42:36,301 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-10 20:42:36,304 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-10 20:42:36,308 - INFO - [2FA][EMAIL] Código generado ****00 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-10 20:42:36,310 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-10 20:42:36,384 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-10 20:43:03,978 - INFO - Intento de acceso para usuario c.rodriguez@figbiz.net
+[SECURITY] 2025-09-10 20:43:03,982 - INFO - [2FA][EMAIL] Código válido ****00 para user_id=4; invalidado tras uso
+[SECURITY] 2025-09-10 20:43:04,102 - ERROR - Error registrando log de acceso exitoso: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'is_decoy_attempt'
+[SECURITY] 2025-09-10 20:43:07,321 - ERROR - Error registrando logout: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-10 20:43:08,700 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-10 20:43:08,702 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-10 20:43:08,706 - INFO - [2FA][EMAIL] Código generado ****55 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-10 20:43:08,708 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-10 20:43:08,765 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-10 20:43:35,258 - INFO - Intento de acceso para usuario c.rodriguez@figbiz.net
+[SECURITY] 2025-09-10 20:43:35,262 - INFO - [2FA][EMAIL] Código válido ****55 para user_id=4; invalidado tras uso
+[SECURITY] 2025-09-10 20:43:35,397 - ERROR - Error registrando log de acceso exitoso: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'is_decoy_attempt'
+[SECURITY] 2025-09-10 20:43:39,289 - ERROR - Error registrando logout: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-10 20:43:41,046 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-10 20:43:41,048 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-10 20:43:41,052 - INFO - [2FA][EMAIL] Código generado ****65 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-10 20:43:41,054 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-10 20:43:41,103 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-10 20:43:41,435 - ERROR - Error registrando logout: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-11 19:23:38,714 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-11 19:23:38,717 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-11 19:23:38,724 - INFO - [2FA][EMAIL] Código generado ****63 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-11 19:23:38,727 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-11 19:23:38,786 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-11 19:24:10,890 - INFO - Intento de acceso para usuario c.rodriguez@figbiz.net
+[SECURITY] 2025-09-11 19:24:10,896 - INFO - [2FA][EMAIL] Código válido ****63 para user_id=4; invalidado tras uso
+[SECURITY] 2025-09-11 19:24:11,082 - ERROR - Error registrando log de acceso exitoso: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'is_decoy_attempt'
+[SECURITY] 2025-09-11 19:38:02,599 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-11 19:38:02,607 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-11 19:38:02,626 - INFO - [2FA][EMAIL] Código generado ****06 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-11 19:38:02,629 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-11 19:38:02,700 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-11 19:38:25,525 - INFO - Intento de acceso para usuario c.rodriguez@figbiz.net
+[SECURITY] 2025-09-11 19:38:25,531 - INFO - [2FA][EMAIL] Código válido ****06 para user_id=4; invalidado tras uso
+[SECURITY] 2025-09-11 19:38:25,694 - ERROR - Error registrando log de acceso exitoso: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'is_decoy_attempt'
+[SECURITY] 2025-09-11 19:44:26,619 - ERROR - Error registrando logout: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-11 19:44:34,163 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-11 19:44:34,165 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-11 19:44:34,177 - INFO - [2FA][EMAIL] Código generado ****63 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-11 19:44:34,184 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-11 19:44:34,264 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-11 19:44:54,368 - INFO - Intento de acceso para usuario c.rodriguez@figbiz.net
+[SECURITY] 2025-09-11 19:44:54,372 - INFO - [2FA][EMAIL] Código válido ****63 para user_id=4; invalidado tras uso
+[SECURITY] 2025-09-11 19:44:54,504 - ERROR - Error registrando log de acceso exitoso: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'is_decoy_attempt'
+[SECURITY] 2025-09-11 19:50:13,459 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-11 19:50:13,462 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-11 19:50:13,469 - INFO - [2FA][EMAIL] Código generado ****82 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-11 19:50:13,471 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-11 19:50:13,527 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-11 19:50:37,386 - INFO - Intento de acceso para usuario c.rodriguez@figbiz.net
+[SECURITY] 2025-09-11 19:50:37,391 - INFO - [2FA][EMAIL] Código válido ****82 para user_id=4; invalidado tras uso
+[SECURITY] 2025-09-11 19:50:37,556 - ERROR - Error registrando log de acceso exitoso: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'is_decoy_attempt'
+[SECURITY] 2025-09-11 19:51:00,370 - ERROR - Error saving complete matrix: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-11 19:51:18,880 - ERROR - Error saving complete matrix: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-11 19:51:34,815 - ERROR - Error saving complete matrix: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-11 19:51:50,038 - ERROR - Error saving complete matrix: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-11 19:52:04,947 - ERROR - Error saving complete matrix: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-11 19:52:19,826 - ERROR - Error saving complete matrix: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-11 19:52:34,659 - ERROR - Error saving complete matrix: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-11 19:54:34,185 - ERROR - Error saving complete matrix: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-11 19:55:13,878 - ERROR - Error saving complete matrix: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-11 19:56:13,849 - ERROR - Error saving complete matrix: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-11 19:57:13,556 - ERROR - Error saving complete matrix: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-11 19:58:13,630 - ERROR - Error saving complete matrix: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-11 19:59:13,810 - ERROR - Error saving complete matrix: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-11 20:29:00,358 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-11 20:29:00,361 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-11 20:29:00,369 - INFO - [2FA][EMAIL] Código generado ****56 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-11 20:29:00,371 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-11 20:29:00,434 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-11 20:29:25,004 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-11 20:29:25,006 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-11 20:29:25,009 - INFO - [2FA][EMAIL] Código generado ****38 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-11 20:29:25,011 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-11 20:29:25,064 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-11 20:31:59,570 - INFO - Intento de acceso para usuario c.rodriguez@figbiz.net
+[SECURITY] 2025-09-11 20:31:59,574 - WARNING - [2FA][EMAIL] No se encontró código en cache para user_id=4 (key=email_2fa_4); recibido ****38
+[SECURITY] 2025-09-11 20:32:13,628 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-11 20:32:13,631 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-11 20:32:13,634 - INFO - [2FA][EMAIL] Código generado ****40 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-11 20:32:13,636 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-11 20:32:13,693 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-11 20:32:37,361 - INFO - Intento de acceso para usuario c.rodriguez@figbiz.net
+[SECURITY] 2025-09-11 20:32:37,367 - INFO - [2FA][EMAIL] Código válido ****40 para user_id=4; invalidado tras uso
+[SECURITY] 2025-09-11 20:32:37,551 - ERROR - Error registrando log de acceso exitoso: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'is_decoy_attempt'
+[SECURITY] 2025-09-11 20:32:55,358 - ERROR - Error registrando logout: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-11 20:32:55,397 - ERROR - Error registrando logout: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'

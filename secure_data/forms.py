@@ -8,33 +8,38 @@ class SecureAccessForm(forms.Form):
     """Formulario de acceso ultra-seguro"""
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={
-            'class': 'form-control',
+            'class': 'form-control password-input',
             'placeholder': 'Contraseña de Acceso Seguro',
             'autocomplete': 'off'
         }),
         label="Contraseña de Acceso"
     )
     
-    verification_code = forms.CharField(
+    email_2fa_code = forms.CharField(
         max_length=6,
         widget=forms.TextInput(attrs={
-            'class': 'form-control',
+            'class': 'form-control code-input',
             'placeholder': '000000',
             'autocomplete': 'off',
-            'pattern': '[0-9]{6}'
+            'pattern': '[0-9]{6}',
+            'maxlength': '6'
         }),
-        label="Código 2FA (Email)"
+        label="Código 2FA (Email)",
+        help_text="Código de 6 dígitos enviado a su email"
     )
     
-    app_verification_code = forms.CharField(
+    app_2fa_code = forms.CharField(
         max_length=6,
+        required=False,  # Hacer opcional
         widget=forms.TextInput(attrs={
-            'class': 'form-control',
+            'class': 'form-control code-input',
             'placeholder': '000000',
             'autocomplete': 'off',
-            'pattern': '[0-9]{6}'
+            'pattern': '[0-9]{6}',
+            'maxlength': '6'
         }),
-        label="Código 2FA (Authenticator App)"
+        label="Código 2FA (App Móvil) - Opcional",
+        help_text="Código de su aplicación autenticadora"
     )
     
     def __init__(self, *args, **kwargs):

@@ -166,7 +166,7 @@ SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
 # Base URL del sitio para construir enlaces absolutos en emails
 # Ajusta mediante variable de entorno SITE_BASE_URL en despliegues
-SITE_BASE_URL = os.getenv('SITE_BASE_URL', 'http://localhost:8001')
+SITE_BASE_URL = os.getenv('SITE_BASE_URL', 'http://localhost:8002')
 
 # Temporary 2FA bypass flag (for troubleshooting)
 TWO_FACTOR_BYPASS = os.getenv('TWO_FACTOR_BYPASS', '0').lower() in ('1', 'true', 'yes')

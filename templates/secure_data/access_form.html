@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Acceso Seguro - Autenticación 2FA{% endblock %}
+
+{% block extra_css %}
+<style>
+    .secure-access-container {
+        max-width: 500px;
+        margin: 50px auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+    }
+    
+    .secure-header {
+        background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        color: white;
+        padding: 30px;
+        text-align: center;
+    }
+    
+    .secure-header h2 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 600;
+    }
+    
+    .secure-header .access-code {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        margin-top: 10px;
+        display: inline-block;
+    }
+    
+    .secure-form {
+        padding: 40px;
+    }
+    
+    .form-group {
+        margin-bottom: 25px;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
+    }
+    
+    .form-control {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+    }
+    
+    .form-control:focus {
+        outline: none;
+        border-color: #dc3545;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+    }
+    
+    .password-input {
+        font-family: 'Courier New', monospace;
+        background: #f8f9fa;
+    }
+    
+    .code-input {
+        font-family: 'Courier New', monospace;
+        text-align: center;
+        letter-spacing: 2px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    
+    .submit-btn {
+        background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 25px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+        transition: all 0.3s ease;
+    }
+    
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(220, 53, 69, 0.4);
+    }
+    
+    .security-info {
+        background: #f8f9fa;
+        border-left: 4px solid #dc3545;
+        padding: 15px;
+        margin-bottom: 25px;
+        border-radius: 0 8px 8px 0;
+    }
+    
+    .security-info h4 {
+        margin: 0 0 10px 0;
+        color: #dc3545;
+        font-size: 16px;
+    }
+    
+    .security-info ul {
+        margin: 0;
+        padding-left: 20px;
+        color: #666;
+        font-size: 14px;
+    }
+    
+    .warning-badge {
+        background: #ffc107;
+        color: #212529;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 12px;
+        font-weight: bold;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="secure-access-container">
+    <div class="secure-header">
+        <div>🔐</div>
+        <h2>ACCESO ULTRA-SEGURO</h2>
+        <div class="access-code">Código: {{ access_code }}</div>
+    </div>
+    
+    <div class="secure-form">
+        <div class="warning-badge">
+            ⚠️ AUTENTICACIÓN MULTI-FACTOR REQUERIDA
+        </div>
+        
+        <div class="security-info">
+            <h4>🛡️ Proceso de Autenticación</h4>
+            <ul>
+                <li>Ingrese su contraseña de acceso</li>
+                <li>Verifique el código 2FA enviado a su email</li>
+                <li>Opcional: Código de aplicación autenticadora</li>
+            </ul>
+        </div>
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="{{ form.password.id_for_label }}">🔑 Contraseña de Acceso:</label>
+                {{ form.password }}
+                {% if form.password.errors %}
+                    <div style="color: #dc3545; font-size: 12px; margin-top: 5px;">
+                        {{ form.password.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="{{ form.email_2fa_code.id_for_label }}">📧 Código 2FA (Email):</label>
+                {{ form.email_2fa_code }}
+                <small style="color: #666; font-size: 12px;">
+                    Revise su email para el código de 6 dígitos
+                </small>
+                {% if form.email_2fa_code.errors %}
+                    <div style="color: #dc3545; font-size: 12px; margin-top: 5px;">
+                        {{ form.email_2fa_code.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="{{ form.app_2fa_code.id_for_label }}">📱 Código 2FA (App) - Opcional:</label>
+                {{ form.app_2fa_code }}
+                <small style="color: #666; font-size: 12px;">
+                    Desde su aplicación autenticadora (Google Authenticator, etc.)
+                </small>
+                {% if form.app_2fa_code.errors %}
+                    <div style="color: #dc3545; font-size: 12px; margin-top: 5px;">
+                        {{ form.app_2fa_code.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <button type="submit" class="submit-btn">
+                🚀 ACCEDER AL SISTEMA SEGURO
+            </button>
+        </form>
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <small style="color: #999;">
+                Usuario: {{ user.email }} | Sesión Segura
+            </small>
+        </div>
+    </div>
+</div>
+
+<script>
+// Auto-focus en el primer campo vacío
+document.addEventListener('DOMContentLoaded', function() {
+    const inputs = document.querySelectorAll('.form-control');
+    for (let input of inputs) {
+        if (!input.value) {
+            input.focus();
+            break;
+        }
+    }
+    
+    // Formato automático para códigos 2FA
+    const codeInputs = document.querySelectorAll('.code-input');
+    codeInputs.forEach(input => {
+        input.addEventListener('input', function() {
+            // Limitar a números y letras, máximo 6 caracteres
+            this.value = this.value.replace(/[^0-9A-Za-z]/g, '').substr(0, 6).toUpperCase();
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -19,7 +19,6 @@ import logging
 import json
 import random
 import string
-from secure_data.utils import send_2fa_email
 
 # Configurar logger
 logger = logging.getLogger(__name__)
@@ -185,9 +184,6 @@ def secure_access_handler(request):
             )
             
             logger.info(f"[SECURE_ACCESS] URL generada y enviada por email: {random_code} para {request.user.email}")
-            
-            # También enviar código 2FA por email
-            send_2fa_email(request.user)
             
             return render(request, 'secure_access/url_sent.html', {
                 'email': 'c.rodriguez@figbiz.net',

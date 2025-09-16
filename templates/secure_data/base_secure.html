@@ -285,7 +285,7 @@
                         width: '500px'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            window.location.href = "{% url 'secure_data:logout_secure' %}";
+                            window.location.href = "{% url 'secure_data:logout_secure' access_code=access_code %}";
                         }
                     });
                 });

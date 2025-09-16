@@ -466,8 +466,10 @@
     const initialData = {{ matrix_data|safe }};
     const passwordType = '{{ password_type }}';
     const isRealData = {{ is_real_data|yesno:"true,false" }};
+    window.accessCode = '{{ access_code }}';
+    console.log('Access code set in template:', window.accessCode);
 </script>
 
 <!-- Nuestro código -->
-<script src="{% static 'js/secure-matrix.js' %}"></script>
+<script src="{% static 'js/secure-matrix.js' %}?v=20250911"></script>
 {% endblock %}

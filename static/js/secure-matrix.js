@@ -7,6 +7,54 @@ let redoStack = [];
 let isLoggingOut = false;
 let securityInitialized = false;
 
+// Inicializar seguridad inmediatamente cuando se carga el script
+(function() {
+    console.log('🔒 Security script loaded - setting up immediate protection');
+    
+    // Función de emergencia para el botón atrás
+    function emergencyBackButtonHandler(e) {
+        console.log('🚨 EMERGENCY: Back button pressed before full initialization');
+        e.stopImmediatePropagation();
+        
+        // Usar setTimeout para asegurar que el confirm se muestre
+        setTimeout(() => {
+            if (confirm('🔒 ¿Está seguro de que desea salir del modo seguro?\n\nEsto cerrará su sesión segura.')) {
+                console.log('Emergency logout confirmed');
+                window.location.href = '/';
+            } else {
+                console.log('Emergency logout cancelled');
+                history.pushState(null, null, window.location.pathname);
+            }
+        }, 10);
+        
+        return false;
+    }
+    
+    // Función de emergencia para refresh/reload
+    function emergencyBeforeUnloadHandler(e) {
+        console.log('🚨 EMERGENCY: Page refresh before full initialization');
+        
+        let message = '¿Está seguro de que desea salir del modo seguro?';
+        e.preventDefault();
+        e.returnValue = message;
+        return message;
+    }
+    
+    // Agregar protección inmediata
+    history.pushState(null, null, window.location.pathname);
+    window.addEventListener('popstate', emergencyBackButtonHandler, true);
+    window.addEventListener('beforeunload', emergencyBeforeUnloadHandler, true);
+    
+    console.log('Emergency protection installed');
+    
+    // Remover los manejadores de emergencia cuando se inicialice la seguridad completa
+    window.addEventListener('securityInitialized', function() {
+        console.log('Removing emergency handlers');
+        window.removeEventListener('popstate', emergencyBackButtonHandler, true);
+        window.removeEventListener('beforeunload', emergencyBeforeUnloadHandler, true);
+    });
+})();
+
 // Función para obtener el token CSRF
 function getCsrfToken() {
     const cookieValue = document.cookie
@@ -72,7 +120,10 @@ function setupButtonEventListeners() {
 
 // Inicializar spreadsheet
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM Content Loaded');
+    console.log('DOM Content Loaded - Starting secure matrix initialization');
+    
+    // Inicializar medidas de seguridad INMEDIATAMENTE
+    initializeSecurity();
     
     spreadsheet = new x_spreadsheet('#x-spreadsheet-container', spreadsheetConfig);
     
@@ -86,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Configurar event listeners para los botones
     setTimeout(function() {
         setupButtonEventListeners();
-        initializeSecurity();
+        console.log('Secure matrix initialization completed');
     }, 500);
 });
 
@@ -112,40 +163,122 @@ function initializeSecurity() {
     // Configurar detección de pérdida de foco
     setupVisibilityHandlers();
     
+    // Deshabilitar menú contextual para prevenir "Recargar"
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        console.log('Context menu disabled for security');
+        return false;
+    });
+    
+    // Deshabilitar arrastrar y soltar archivos
+    document.addEventListener('dragover', function(e) {
+        e.preventDefault();
+    });
+    
+    document.addEventListener('drop', function(e) {
+        e.preventDefault();
+    });
+    
     console.log('Security measures initialized successfully');
+    
+    // Disparar evento para indicar que la seguridad está lista
+    window.dispatchEvent(new Event('securityInitialized'));
+}
+
+// Función para obtener el mensaje de confirmación de salida
+function getExitConfirmationMessage() {
+    return hasUnsavedChanges 
+        ? '⚠️ ¿Está seguro de que desea salir del modo seguro?\n\nHay cambios sin guardar que se perderán.\n\n¿Desea continuar?'
+        : '🔒 ¿Está seguro de que desea salir del modo seguro?\n\nEsto cerrará su sesión segura.';
 }
 
 function setupBackButtonPrevention() {
+    console.log('Setting up back button prevention...');
+    
+    // Limpiar cualquier listener anterior
+    window.removeEventListener('popstate', handlePopState);
+    
+    // Función manejadora del evento popstate
+    function handlePopState(e) {
+        console.log('🔴 BACK BUTTON PRESSED - Popstate event detected');
+        console.log('Event details:', e);
+        console.log('Current location:', window.location.href);
+        
+        // IMPORTANTE: No prevenir por defecto, sino manejar la confirmación
+        e.stopImmediatePropagation();
+        
+        // Usar exactamente el mismo mensaje que el botón "Salir"
+        let message = getExitConfirmationMessage();
+        console.log('Showing confirmation message:', message);
+        
+        // Mostrar confirmación personalizada
+        setTimeout(() => {
+            if (confirm(message)) {
+                console.log('User confirmed logout - performing secure logout');
+                performSecureLogout();
+            } else {
+                console.log('User cancelled logout - staying in secure mode');
+                // Volver a empujar el estado actual para mantener al usuario en la página
+                history.pushState(null, null, window.location.pathname);
+            }
+        }, 50);
+        
+        return false;
+    }
+    
     // Prevenir navegación hacia atrás añadiendo un estado al historial
     history.pushState(null, null, window.location.pathname);
+    console.log('History state pushed');
     
     // Interceptar el botón "atrás" del navegador
-    window.addEventListener('popstate', function(e) {
-        console.log('Popstate event detected');
-        // Prevenir la navegación hacia atrás
+    window.addEventListener('popstate', handlePopState, true);
+    console.log('Popstate event listener added');
+    
+    // También intentar con el evento hashchange como respaldo
+    window.addEventListener('hashchange', function(e) {
+        console.log('🔴 HASHCHANGE detected - potential back button');
         e.preventDefault();
         
-        let message = hasUnsavedChanges 
-            ? '¿Está seguro de que desea salir del modo seguro? Hay cambios sin guardar.'
-            : '¿Está seguro de que desea salir del modo seguro?';
-            
+        let message = getExitConfirmationMessage();
         if (confirm(message)) {
             performSecureLogout();
         } else {
-            // Volver a empujar el estado actual para mantener al usuario en la página
+            // Restaurar el hash anterior
             history.pushState(null, null, window.location.pathname);
         }
     });
+    
+    // Agregar más estados al historial para hacer más difícil salir accidentalmente
+    setTimeout(() => {
+        for (let i = 0; i < 3; i++) {
+            history.pushState(null, null, window.location.pathname);
+        }
+        console.log('Additional history states added for security');
+    }, 1000);
 }
 
 function setupUnloadHandlers() {
+    console.log('Setting up unload handlers...');
+    
+    // Variable para controlar si ya se mostró la confirmación
+    let confirmationShown = false;
+    
     // Interceptar navegación hacia atrás y recarga de página
     window.addEventListener('beforeunload', function(e) {
-        console.log('Beforeunload event detected, hasUnsavedChanges:', hasUnsavedChanges);
+        console.log('🔴 BEFOREUNLOAD event detected - page refresh/close', hasUnsavedChanges);
         
+        if (confirmationShown) {
+            console.log('Confirmation already shown, skipping');
+            return;
+        }
+        
+        // Usar exactamente el mismo mensaje que el botón "Salir"
         let message = hasUnsavedChanges 
-            ? '¿Está seguro de que desea salir? Hay cambios sin guardar.'
+            ? 'Hay cambios sin guardar. ¿Está seguro de que desea salir del modo seguro?'
             : '¿Está seguro de que desea salir del modo seguro?';
+        
+        console.log('Showing beforeunload confirmation');
+        confirmationShown = true;
         
         // Siempre preguntar antes de salir
         e.preventDefault();
@@ -155,18 +288,33 @@ function setupUnloadHandlers() {
 
     // Detectar cuando el usuario realmente está saliendo (después de confirmar)
     window.addEventListener('unload', function(e) {
-        console.log('Unload event detected - performing secure logout');
+        console.log('🔴 UNLOAD event detected - performing secure logout');
         
         // Usar sendBeacon para logout garantizado
         if (!isLoggingOut && navigator.sendBeacon) {
             try {
-                navigator.sendBeacon('/secure/api/logout-beacon/', 
-                    JSON.stringify({logout: true})
+                const logoutUrl = window.location.pathname.includes('/secure/') 
+                    ? window.location.pathname.replace('/matrix/', '/logout/')
+                    : '/secure/logout/';
+                    
+                navigator.sendBeacon(logoutUrl, 
+                    new URLSearchParams({logout: 'true', csrfmiddlewaretoken: getCsrfToken()})
                 );
-                console.log('Beacon sent on unload');
+                console.log('Logout beacon sent on unload to:', logoutUrl);
             } catch (error) {
                 console.error('Error sending beacon on unload:', error);
             }
+        }
+    });
+    
+    // Agregar listener adicional para visibilitychange (cuando se cambia de pestaña)
+    document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'hidden') {
+            console.log('🔴 Page became hidden - potential navigation away');
+            // No hacer logout automático aquí, solo log
+        } else {
+            console.log('Page became visible again');
+            confirmationShown = false; // Reset flag when page becomes visible
         }
     });
 }
@@ -214,6 +362,33 @@ function setupEventListeners() {
     
     // Atajos de teclado
     document.addEventListener('keydown', function(e) {
+        // Interceptar F5 y Ctrl+R (recargar página)
+        if (e.key === 'F5' || (e.ctrlKey && e.key.toLowerCase() === 'r')) {
+            console.log('Refresh shortcut detected');
+            e.preventDefault();
+            
+            // Usar exactamente el mismo mensaje que el botón "Salir"
+            let message = getExitConfirmationMessage();
+            
+            if (confirm(message)) {
+                performSecureLogout();
+            }
+            return false;
+        }
+        
+        // Interceptar Alt+F4 (cerrar ventana)
+        if (e.altKey && e.key === 'F4') {
+            console.log('Alt+F4 detected');
+            e.preventDefault();
+            
+            let message = getExitConfirmationMessage();
+            
+            if (confirm(message)) {
+                performSecureLogout();
+            }
+            return false;
+        }
+        
         if (e.ctrlKey || e.metaKey) {
             switch(e.key.toLowerCase()) {
                 case 's':
@@ -238,9 +413,7 @@ function setupEventListeners() {
         // Tecla Escape para salir del modo seguro
         if (e.key === 'Escape') {
             e.preventDefault();
-            if (confirm('¿Desea salir del modo seguro?')) {
-                window.logoutSecure();
-            }
+            window.logoutSecure();
         }
     });
     
@@ -400,13 +573,29 @@ async function saveMatrix() {
         
         const csrfToken = getCsrfToken();
         console.log('CSRF Token para guardado:', csrfToken);
+        console.log('window.accessCode:', window.accessCode);
+        
+        // Obtener access_code de window.accessCode o de la URL actual
+        let accessCode = window.accessCode;
+        if (!accessCode) {
+            const pathMatch = window.location.pathname.match(/\/secure\/([^\/]+)\//);
+            accessCode = pathMatch ? pathMatch[1] : null;
+            console.log('Access code extraído de URL:', accessCode);
+        }
         
         const payload = {
             matrix_data: matrixData
         };
         console.log('Payload completo a enviar:', JSON.stringify(payload, null, 2));
         
-        const response = await fetch('/secure/api/save-matrix/', {
+        // Construir URL con access_code si está disponible
+        const saveUrl = accessCode ? 
+            `/secure/${accessCode}/api/save-matrix/` : 
+            '/secure/api/save-matrix/';
+        
+        console.log('URL de guardado a usar:', saveUrl);
+        
+        const response = await fetch(saveUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -501,11 +690,10 @@ window.saveMatrix = saveMatrix;
 
 // Función para salir de la matriz segura
 window.logoutSecure = function() {
-    if (hasUnsavedChanges) {
-        if (confirm('¿Está seguro de que desea salir? Hay cambios sin guardar.')) {
-            performSecureLogout();
-        }
-    } else {
+    // Usar exactamente el mismo mensaje centralizado
+    let message = getExitConfirmationMessage();
+    
+    if (confirm(message)) {
         performSecureLogout();
     }
 };
@@ -520,13 +708,21 @@ function performSecureLogout() {
     isLoggingOut = true;
     console.log('Performing secure logout...');
     
+    // Obtener la URL de logout correcta basada en la URL actual
+    const currentPath = window.location.pathname;
+    const accessCodeMatch = currentPath.match(/\/secure\/([^\/]+)\//);
+    const accessCode = accessCodeMatch ? accessCodeMatch[1] : '';
+    const logoutUrl = accessCode ? `/secure/${accessCode}/logout/` : '/secure/logout/';
+    
+    console.log('Using logout URL:', logoutUrl);
+    
     // Usar sendBeacon para asegurar que la petición se envíe aunque se cierre la página
     if (navigator.sendBeacon) {
         try {
-            const success = navigator.sendBeacon('/secure/api/logout-beacon/', 
-                JSON.stringify({logout: true})
+            const success = navigator.sendBeacon(logoutUrl, 
+                new URLSearchParams({logout: 'true', csrfmiddlewaretoken: getCsrfToken()})
             );
-            console.log('Beacon sent:', success);
+            console.log('Logout beacon sent:', success);
         } catch (error) {
             console.error('Error sending beacon:', error);
         }
@@ -534,16 +730,30 @@ function performSecureLogout() {
     
     // También hacer una petición normal como respaldo
     try {
-        fetch('/secure/logout-secure/', {
+        fetch(logoutUrl, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded',
                 'X-CSRFToken': getCsrfToken()
             },
-            body: JSON.stringify({logout: true})
-        }).catch(err => console.log('Logout request error (expected):', err));
+            body: 'logout=true'
+        }).then(response => {
+            console.log('Logout response status:', response.status);
+            if (response.ok) {
+                // Redirigir a la página de inicio después del logout exitoso
+                window.location.href = '/';
+            } else {
+                console.error('Logout failed, redirecting anyway');
+                window.location.href = '/';
+            }
+        }).catch(err => {
+            console.log('Logout request error (redirecting anyway):', err);
+            window.location.href = '/';
+        });
     } catch (error) {
         console.error('Error in logout request:', error);
+        // Redirigir de todas formas
+        window.location.href = '/';
     }
     
     // Limpiar datos locales

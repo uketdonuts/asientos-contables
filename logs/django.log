@@ -21428,3 +21428,814 @@ WARNING 2025-09-02 21:42:24,343 log 83 70368987378080 Not Found: /.well-known/ap
 WARNING 2025-09-02 21:42:24,350 basehttp 83 70368987378080 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3732
 INFO 2025-09-02 21:49:25,025 autoreload 83 70368761147424 /app/asientos/views.py changed, reloading.
 INFO 2025-09-07 19:39:48,896 autoreload 28276 140526504407040 Watching for file changes with StatReloader
+INFO 2025-09-09 00:51:27,085 autoreload 51 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 00:54:05,674 basehttp 51 70368987562400 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-09 00:54:10,529 basehttp 51 70368987562400 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-09 00:54:22,711 autoreload 51 70368761147424 /app/asientos_contables/settings.py changed, reloading.
+INFO 2025-09-09 01:00:12,952 autoreload 51 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 01:01:31,226 basehttp 51 70368987349408 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-09 01:01:35,588 basehttp 51 70368987349408 "GET /secure/ HTTP/1.1" 200 15732
+ERROR 2025-09-09 01:01:43,049 log 51 70368987349408 Internal Server Error: /secure/cdtj0xw9hcxs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/secure_data/views.py", line 134, in secure_access_view
+    return render(request, 'secure_data/access.html', {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'logout_secure' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/logout\\-secure/\\Z']
+ERROR 2025-09-09 01:01:43,261 basehttp 51 70368987349408 "GET /secure/cdtj0xw9hcxs/ HTTP/1.1" 500 152741
+INFO 2025-09-09 01:02:52,610 autoreload 51 70368761147424 /app/secure_data/views.py changed, reloading.
+INFO 2025-09-09 01:03:46,226 autoreload 56 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 01:04:24,472 autoreload 56 70368761147424 /app/secure_data/views.py changed, reloading.
+INFO 2025-09-09 01:05:18,337 autoreload 60 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 01:05:26,954 autoreload 60 70368761147424 /app/secure_data/views.py changed, reloading.
+INFO 2025-09-09 01:06:20,648 autoreload 64 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 01:06:29,118 autoreload 64 70368761147424 /app/secure_data/views.py changed, reloading.
+INFO 2025-09-09 01:07:22,426 autoreload 68 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 01:07:58,017 basehttp 68 70368987562400 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-09 01:08:00,650 basehttp 68 70368987562400 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-09 01:08:04,842 basehttp 68 70368987562400 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-09 01:08:10,181 basehttp 68 70368987562400 "GET /secure/fk4h82hbtod8/ HTTP/1.1" 200 24696
+INFO 2025-09-09 01:08:10,274 basehttp 68 70368987562400 "GET /static/css/secure-module.css HTTP/1.1" 200 15076
+INFO 2025-09-09 01:09:55,420 autoreload 68 70368761147424 /app/secure_data/views.py changed, reloading.
+INFO 2025-09-09 01:10:48,659 autoreload 73 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 01:11:37,174 basehttp 73 70368987562400 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-09 01:11:37,517 basehttp 73 70368987562400 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+INFO 2025-09-09 01:11:41,698 basehttp 73 70368987562400 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-09 01:11:46,446 basehttp 73 70368987562400 "GET /secure/nv3wtcdadbrb/ HTTP/1.1" 200 24696
+WARNING 2025-09-09 01:11:47,328 log 73 70368987562400 Not Found: /favicon.ico
+WARNING 2025-09-09 01:11:47,335 basehttp 73 70368987562400 "GET /favicon.ico HTTP/1.1" 404 3782
+INFO 2025-09-09 01:12:27,289 basehttp 73 70368987562400 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-09 01:12:30,861 basehttp 73 70368987562400 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-09 01:12:44,653 basehttp 73 70368987562400 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-09 01:16:09,671 autoreload 73 70368761147424 /app/secure_data/views.py changed, reloading.
+INFO 2025-09-09 01:20:14,723 autoreload 35 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 01:20:30,866 basehttp 35 70368987349408 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-09 01:20:35,552 basehttp 35 70368987349408 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-09 01:20:42,407 basehttp 35 70368987349408 "GET /secure/fpgwklxw05wb/ HTTP/1.1" 200 24696
+INFO 2025-09-09 01:21:00,174 basehttp 35 70368987349408 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-09 01:21:10,657 basehttp 35 70368987349408 "GET /secure/7kjq2b6xysya/ HTTP/1.1" 200 24696
+INFO 2025-09-09 01:22:18,932 autoreload 35 70368761147424 /app/secure_data/utils.py changed, reloading.
+INFO 2025-09-09 01:30:10,464 autoreload 36 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 01:30:58,639 autoreload 36 70368761147424 /app/secure_data/views.py changed, reloading.
+INFO 2025-09-09 01:38:13,449 autoreload 51 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 19:30:18,986 basehttp 51 70368987562400 "GET / HTTP/1.1" 302 0
+INFO 2025-09-09 19:30:42,817 basehttp 51 70368987562400 "GET /secure/test123/ HTTP/1.1" 302 0
+INFO 2025-09-09 19:49:12,794 basehttp 51 70368987562400 "GET / HTTP/1.1" 302 0
+INFO 2025-09-09 19:49:12,846 basehttp 51 70368987562400 "GET /secure/test123/ HTTP/1.1" 302 0
+INFO 2025-09-09 19:49:30,139 basehttp 51 70368987562400 "GET /?id=c5102298-f097-42e5-8fb0-b239adbc4bf5&vscodeBrowserReqId=1757465370089 HTTP/1.1" 302 0
+INFO 2025-09-09 19:49:30,511 basehttp 51 70368987562400 "GET /users/login/?next=/%3Fid%3Dc5102298-f097-42e5-8fb0-b239adbc4bf5%26vscodeBrowserReqId%3D1757465370089 HTTP/1.1" 200 12418
+INFO 2025-09-09 19:51:13,413 autoreload 51 70368761147424 /app/secure_data/templatetags/__init__.py changed, reloading.
+INFO 2025-09-09 19:52:06,983 autoreload 66 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 19:56:18,895 autoreload 21 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 19:58:06,858 basehttp 21 70368987349408 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-09 19:58:20,571 basehttp 21 70368987349408 "GET /secure/du8nmkjoz3q8/ HTTP/1.1" 200 49
+INFO 2025-09-09 19:58:28,685 basehttp 21 70368987349408 "GET /secure/du8nmkjoz3q8/ HTTP/1.1" 200 49
+INFO 2025-09-09 19:58:30,345 basehttp 21 70368987349408 "GET /secure/du8nmkjoz3q8/ HTTP/1.1" 200 49
+INFO 2025-09-09 19:58:50,020 autoreload 21 70368761147424 /app/secure_data/urls.py changed, reloading.
+INFO 2025-09-09 19:59:43,604 autoreload 26 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 20:10:20,021 autoreload 21 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 20:12:18,462 basehttp 21 70368987349408 "GET /secure/test123/ HTTP/1.1" 302 0
+INFO 2025-09-09 20:12:23,660 basehttp 21 70368987349408 "GET /secure/du8nmkjoz3q8/ HTTP/1.1" 200 49
+INFO 2025-09-09 20:12:44,056 basehttp 21 70368987349408 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-09 20:12:48,853 basehttp 21 70368987349408 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-09 20:12:58,281 basehttp 21 70368987349408 "GET /secure/zfqcozqvezpn/ HTTP/1.1" 200 49
+INFO 2025-09-09 20:13:24,454 autoreload 21 70368761147424 /app/secure_data/views.py changed, reloading.
+INFO 2025-09-09 20:14:16,970 autoreload 27 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 20:53:57,319 autoreload 21 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 21:49:01,420 basehttp 21 70368987349408 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-09 21:49:06,258 basehttp 21 70368987349408 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-09 21:49:11,179 basehttp 21 70368987349408 "GET /secure/9q97w4qsh0nw/ HTTP/1.1" 302 0
+ERROR 2025-09-09 21:49:15,126 log 21 70368987349408 Internal Server Error: /secure/9q97w4qsh0nw/matrix/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/secure_data/views.py", line 24, in matrix_view
+    return render(request, 'secure_data/matrix.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'update_cell' with no arguments not found. 1 pattern(s) tried: ['secure/(?P<access_code>[^/]+)/api/update\\-cell/\\Z']
+ERROR 2025-09-09 21:49:15,297 basehttp 21 70368987349408 "GET /secure/9q97w4qsh0nw/matrix/ HTTP/1.1" 500 179389
+INFO 2025-09-09 21:52:58,691 basehttp 21 70369132855712 "GET /secure/9q97w4qsh0nw/matrix/ HTTP/1.1" 302 0
+INFO 2025-09-09 21:54:36,310 autoreload 21 70368761147424 /app/secure_data/templatetags/secure_filters.py changed, reloading.
+INFO 2025-09-09 21:55:29,747 autoreload 27 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 21:56:39,773 basehttp 27 70368987562400 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-09 22:00:10,684 basehttp 27 70368987562400 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-09 22:00:25,595 basehttp 27 70368987562400 "GET /secure/gtqaiqm4is4z/ HTTP/1.1" 302 0
+INFO 2025-09-09 22:00:26,875 basehttp 27 70368987562400 "GET /secure/gtqaiqm4is4z/matrix/ HTTP/1.1" 200 124403
+INFO 2025-09-09 22:01:45,892 autoreload 27 70368761147424 /app/secure_data/views.py changed, reloading.
+INFO 2025-09-09 22:02:39,025 autoreload 32 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 22:07:32,487 autoreload 21 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 22:12:58,756 basehttp 21 70368987562400 "GET /?id=c5102298-f097-42e5-8fb0-b239adbc4bf5&vscodeBrowserReqId=1757473978012 HTTP/1.1" 302 0
+INFO 2025-09-09 22:12:59,179 basehttp 21 70368987562400 "GET /users/login/?next=/%3Fid%3Dc5102298-f097-42e5-8fb0-b239adbc4bf5%26vscodeBrowserReqId%3D1757473978012 HTTP/1.1" 200 12418
+INFO 2025-09-09 22:14:49,171 basehttp 21 70369131299232 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-09 22:14:53,179 basehttp 21 70369131299232 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-09 22:15:00,854 basehttp 21 70369131299232 "GET /secure/nsthlyfrpys3/ HTTP/1.1" 200 18126
+INFO 2025-09-09 22:15:37,012 basehttp 21 70369131299232 "POST /secure/nsthlyfrpys3/ HTTP/1.1" 200 17451
+INFO 2025-09-09 22:15:45,976 basehttp 21 70369131299232 "POST /secure/nsthlyfrpys3/ HTTP/1.1" 200 17451
+INFO 2025-09-09 22:15:54,311 autoreload 21 70368761147424 /app/secure_data/views.py changed, reloading.
+INFO 2025-09-09 22:16:47,802 autoreload 27 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 22:17:12,157 autoreload 27 70368761147424 /app/secure_data/views.py changed, reloading.
+INFO 2025-09-09 22:18:05,965 autoreload 31 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 22:22:04,822 autoreload 21 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 22:23:17,026 autoreload 21 70368761147424 /app/secure_data/forms.py changed, reloading.
+INFO 2025-09-09 22:24:10,525 autoreload 25 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 22:26:51,542 basehttp 25 70368987562400 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-09 22:26:55,409 basehttp 25 70368987562400 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-09 22:27:05,047 basehttp 25 70368987562400 "GET /secure/ld9bm9ff1og1/ HTTP/1.1" 200 18535
+INFO 2025-09-09 22:32:30,391 autoreload 25 70368761147424 /app/asientos_contables/views.py changed, reloading.
+INFO 2025-09-09 22:33:23,780 autoreload 30 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 22:35:54,552 basehttp 30 70368987349408 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-09 22:36:02,477 autoreload 30 70368761147424 /app/asientos_contables/views.py changed, reloading.
+INFO 2025-09-09 22:36:57,484 autoreload 35 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-09 22:39:27,196 basehttp 35 70369130250656 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-09 22:39:32,659 basehttp 35 70369130250656 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-09 22:39:41,093 basehttp 35 70369130250656 "GET /secure/17w24qbdg5ul/ HTTP/1.1" 200 18535
+INFO 2025-09-09 22:40:26,843 basehttp 35 70369130250656 "POST /secure/17w24qbdg5ul/ HTTP/1.1" 200 18564
+INFO 2025-09-09 22:40:35,240 basehttp 35 70369130250656 "POST /secure/17w24qbdg5ul/ HTTP/1.1" 200 18563
+INFO 2025-09-09 22:42:32,112 basehttp 35 70369130250656 "POST /secure/17w24qbdg5ul/ HTTP/1.1" 200 18563
+INFO 2025-09-09 22:42:51,291 basehttp 35 70369130250656 "POST /secure/17w24qbdg5ul/ HTTP/1.1" 200 18563
+INFO 2025-09-10 19:40:22,221 basehttp 35 70369130250656 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-10 19:40:22,275 basehttp 35 70369130250656 "GET /static/css/tailwind-custom.css HTTP/1.1" 304 0
+INFO 2025-09-10 19:40:31,666 basehttp 35 70369130250656 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-10 19:40:36,502 basehttp 35 70369130250656 "GET /secure/jq5p6lvv3bor/ HTTP/1.1" 200 18535
+INFO 2025-09-10 19:41:19,950 basehttp 35 70369130250656 "POST /secure/jq5p6lvv3bor/ HTTP/1.1" 302 0
+INFO 2025-09-10 19:41:21,123 basehttp 35 70369130250656 "GET /secure/jq5p6lvv3bor/matrix/ HTTP/1.1" 200 125449
+INFO 2025-09-10 19:41:30,013 basehttp 35 70369130250656 "POST /secure/jq5p6lvv3bor/api/update-cell/ HTTP/1.1" 200 49
+INFO 2025-09-10 19:41:32,600 basehttp 35 70369130250656 "POST /secure/jq5p6lvv3bor/api/update-cell/ HTTP/1.1" 200 49
+INFO 2025-09-10 19:41:35,446 basehttp 35 70369130250656 "POST /secure/jq5p6lvv3bor/api/update-cell/ HTTP/1.1" 200 49
+INFO 2025-09-10 19:41:39,195 basehttp 35 70369130250656 "POST /secure/jq5p6lvv3bor/api/save-matrix/ HTTP/1.1" 200 49
+INFO 2025-09-10 19:41:45,965 basehttp 35 70369130250656 "GET /secure/jq5p6lvv3bor/matrix/ HTTP/1.1" 200 124758
+INFO 2025-09-10 19:43:33,060 autoreload 35 70368761147424 /app/secure_data/views.py changed, reloading.
+INFO 2025-09-10 19:44:30,148 autoreload 84 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-10 19:48:36,127 autoreload 21 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-10 20:06:44,277 basehttp 21 70368987562400 "GET /secure/jq5p6lvv3bor/matrix/ HTTP/1.1" 200 26626
+INFO 2025-09-10 20:06:44,398 basehttp 21 70368987562400 "GET /static/js/secure-matrix.js HTTP/1.1" 200 19770
+INFO 2025-09-10 20:07:12,869 basehttp 21 70368987562400 "GET /secure/jq5p6lvv3bor/matrix/ HTTP/1.1" 200 26626
+WARNING 2025-09-10 20:07:13,523 log 21 70368987562400 Not Found: /secure/api/logout-beacon/
+WARNING 2025-09-10 20:07:13,531 basehttp 21 70368987562400 "POST /secure/api/logout-beacon/ HTTP/1.1" 404 6013
+INFO 2025-09-10 20:07:15,186 basehttp 21 70368987562400 "GET /secure/jq5p6lvv3bor/ HTTP/1.1" 200 18547
+WARNING 2025-09-10 20:07:15,785 log 21 70368987562400 Not Found: /secure/api/logout-beacon/
+WARNING 2025-09-10 20:07:15,793 basehttp 21 70368987562400 "POST /secure/api/logout-beacon/ HTTP/1.1" 404 6013
+WARNING 2025-09-10 20:07:29,918 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:07:29,925 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:07:39,245 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:07:39,251 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:07:48,147 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:07:48,152 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:08:18,141 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:08:18,146 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:08:48,152 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:08:48,157 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:09:18,200 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:09:18,208 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:09:48,185 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:09:48,192 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:10:18,153 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:10:18,158 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:10:48,274 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:10:48,282 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:11:49,154 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:11:49,159 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:11:59,483 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:11:59,489 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:12:04,546 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:12:04,553 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:12:18,241 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:12:18,249 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:12:31,390 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:12:31,395 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:12:36,368 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-10 20:12:36,374 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+WARNING 2025-09-10 20:12:44,672 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:12:44,684 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:12:48,187 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:12:48,193 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:13:18,144 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:13:18,149 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:13:50,184 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:13:50,189 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:14:50,217 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:14:50,223 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:15:50,235 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:15:50,244 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:16:50,168 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:16:50,173 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:17:50,226 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:17:50,232 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:18:21,738 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:18:21,744 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+INFO 2025-09-10 20:18:23,763 basehttp 21 70368987562400 "GET /secure/jq5p6lvv3bor/matrix/ HTTP/1.1" 200 26626
+WARNING 2025-09-10 20:18:25,079 log 21 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-10 20:18:25,143 log 21 70369275052448 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-10 20:18:25,146 basehttp 21 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-10 20:18:25,160 log 21 70369132364192 Not Found: /secure/api/logout-beacon/
+WARNING 2025-09-10 20:18:25,168 basehttp 21 70369275052448 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+WARNING 2025-09-10 20:18:25,179 basehttp 21 70369132364192 "POST /secure/api/logout-beacon/ HTTP/1.1" 404 6013
+INFO 2025-09-10 20:18:26,091 basehttp 21 70369132364192 "GET /secure/jq5p6lvv3bor/matrix/ HTTP/1.1" 200 26626
+WARNING 2025-09-10 20:18:26,996 log 21 70369132364192 Not Found: /secure/api/logout-beacon/
+WARNING 2025-09-10 20:18:27,014 basehttp 21 70369132364192 "POST /secure/api/logout-beacon/ HTTP/1.1" 404 6013
+WARNING 2025-09-10 20:18:27,065 log 21 70369275052448 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-10 20:18:27,072 basehttp 21 70369275052448 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-10 20:20:18,600 autoreload 21 70368761147424 /app/secure_data/views.py changed, reloading.
+INFO 2025-09-10 20:21:12,217 autoreload 31 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-10 20:25:26,535 autoreload 21 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-10 20:26:03,983 autoreload 21 70368761147424 /app/secure_data/views.py changed, reloading.
+INFO 2025-09-10 20:26:57,580 autoreload 25 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-10 20:28:59,584 basehttp 25 70368987562400 "GET /secure/jq5p6lvv3bor/matrix/ HTTP/1.1" 200 26626
+INFO 2025-09-10 20:28:59,842 basehttp 25 70369131299232 "GET /static/js/secure-matrix.js HTTP/1.1" 200 21338
+WARNING 2025-09-10 20:29:00,199 log 25 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-10 20:29:00,205 basehttp 25 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-10 20:29:03,370 basehttp 25 70368987562400 "GET /secure/jq5p6lvv3bor/matrix/ HTTP/1.1" 200 26626
+INFO 2025-09-10 20:29:03,737 basehttp 25 70368987562400 "POST /secure/jq5p6lvv3bor/logout/ HTTP/1.1" 302 0
+WARNING 2025-09-10 20:29:04,328 log 25 70369131299232 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-10 20:29:04,368 basehttp 25 70369131299232 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-10 20:29:05,579 basehttp 25 70368987562400 "GET / HTTP/1.1" 200 22723
+INFO 2025-09-10 20:29:05,949 basehttp 25 70369131299232 "GET /secure/jq5p6lvv3bor/ HTTP/1.1" 200 19104
+INFO 2025-09-10 20:29:06,303 basehttp 25 70368987562400 "POST /secure/jq5p6lvv3bor/logout/ HTTP/1.1" 302 0
+WARNING 2025-09-10 20:29:06,879 log 25 70369131299232 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-10 20:29:06,898 basehttp 25 70369131299232 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-10 20:29:06,969 basehttp 25 70368987562400 "GET / HTTP/1.1" 200 22723
+WARNING 2025-09-10 20:29:08,441 log 25 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-10 20:29:08,446 basehttp 25 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-10 20:29:10,268 basehttp 25 70368987562400 "POST /secure/jq5p6lvv3bor/logout/ HTTP/1.1" 302 0
+INFO 2025-09-10 20:29:10,283 basehttp 25 70369131299232 "POST /secure/jq5p6lvv3bor/logout/ HTTP/1.1" 302 0
+INFO 2025-09-10 20:29:10,687 basehttp 25 70369131299232 "GET / HTTP/1.1" 200 22723
+WARNING 2025-09-10 20:29:11,250 log 25 70369131299232 Forbidden (Permission denied): /secure/logout-secure/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/secure_data/views.py", line 74, in secure_access_view
+    raise PermissionDenied("Código de acceso inválido o expirado")
+django.core.exceptions.PermissionDenied: Código de acceso inválido o expirado
+WARNING 2025-09-10 20:29:11,381 basehttp 25 70369131299232 "GET /secure/logout-secure/ HTTP/1.1" 403 135
+WARNING 2025-09-10 20:29:12,058 log 25 70369131299232 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-10 20:29:12,066 basehttp 25 70369131299232 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-10 20:29:14,358 basehttp 25 70369131299232 "GET / HTTP/1.1" 200 22051
+WARNING 2025-09-10 20:29:14,794 log 25 70369131299232 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-10 20:29:14,799 basehttp 25 70369131299232 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-10 20:29:20,131 basehttp 25 70369131299232 "GET /secure/ HTTP/1.1" 200 15732
+WARNING 2025-09-10 20:29:20,626 log 25 70369131299232 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-10 20:29:20,634 basehttp 25 70369131299232 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-10 20:29:35,358 basehttp 25 70369131299232 "GET /secure/5xvbpwysi3g7/ HTTP/1.1" 200 18535
+INFO 2025-09-10 20:30:05,564 basehttp 25 70369131299232 "POST /secure/5xvbpwysi3g7/ HTTP/1.1" 302 0
+INFO 2025-09-10 20:30:05,744 basehttp 25 70369131299232 "GET /secure/5xvbpwysi3g7/matrix/ HTTP/1.1" 200 27372
+INFO 2025-09-10 20:30:05,814 basehttp 25 70369131299232 "GET /static/js/secure-matrix.js HTTP/1.1" 304 0
+INFO 2025-09-10 20:30:08,973 basehttp 25 70369131299232 "GET /secure/5xvbpwysi3g7/matrix/ HTTP/1.1" 200 26626
+INFO 2025-09-10 20:30:09,116 basehttp 25 70369131299232 "POST /secure/5xvbpwysi3g7/logout/ HTTP/1.1" 302 0
+INFO 2025-09-10 20:30:09,520 basehttp 25 70369131299232 "GET / HTTP/1.1" 200 22723
+INFO 2025-09-10 20:30:10,542 basehttp 25 70369131299232 "POST /secure/5xvbpwysi3g7/logout/ HTTP/1.1" 302 0
+INFO 2025-09-10 20:30:10,948 basehttp 25 70369131299232 "GET / HTTP/1.1" 200 22723
+INFO 2025-09-10 20:37:46,575 basehttp 25 70369131299232 "GET /secure/5xvbpwysi3g7/matrix/ HTTP/1.1" 302 0
+INFO 2025-09-10 20:37:46,943 basehttp 25 70369131299232 "GET /secure/5xvbpwysi3g7/ HTTP/1.1" 200 19100
+INFO 2025-09-10 20:37:47,114 basehttp 25 70369131299232 "POST /secure/5xvbpwysi3g7/logout/ HTTP/1.1" 302 0
+INFO 2025-09-10 20:37:47,508 basehttp 25 70369131299232 "GET / HTTP/1.1" 200 22723
+INFO 2025-09-10 20:37:50,119 basehttp 25 70369131299232 "GET /secure/5xvbpwysi3g7/ HTTP/1.1" 200 18535
+INFO 2025-09-10 20:38:12,449 basehttp 25 70369131299232 "POST /secure/5xvbpwysi3g7/ HTTP/1.1" 302 0
+INFO 2025-09-10 20:38:12,646 basehttp 25 70369131299232 "GET /secure/5xvbpwysi3g7/matrix/ HTTP/1.1" 200 27372
+INFO 2025-09-10 20:38:12,750 basehttp 25 70369131299232 "GET /static/js/secure-matrix.js HTTP/1.1" 200 22883
+INFO 2025-09-10 20:38:15,442 basehttp 25 70369131299232 "POST /secure/5xvbpwysi3g7/logout/ HTTP/1.1" 302 0
+INFO 2025-09-10 20:38:15,801 basehttp 25 70369131299232 "GET / HTTP/1.1" 200 22723
+INFO 2025-09-10 20:38:16,785 basehttp 25 70369131299232 "GET /secure/5xvbpwysi3g7/matrix/ HTTP/1.1" 302 0
+INFO 2025-09-10 20:38:17,156 basehttp 25 70369131299232 "GET /secure/5xvbpwysi3g7/ HTTP/1.1" 200 19100
+INFO 2025-09-10 20:42:26,754 basehttp 25 70369131299232 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-10 20:42:31,538 basehttp 25 70369131299232 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-10 20:42:36,604 basehttp 25 70369131299232 "GET /secure/n7a9u2yf0zxn/ HTTP/1.1" 200 18535
+INFO 2025-09-10 20:43:04,144 basehttp 25 70369131299232 "POST /secure/n7a9u2yf0zxn/ HTTP/1.1" 302 0
+INFO 2025-09-10 20:43:04,360 basehttp 25 70369131299232 "GET /secure/n7a9u2yf0zxn/matrix/ HTTP/1.1" 200 27372
+INFO 2025-09-10 20:43:04,442 basehttp 25 70369131299232 "GET /static/js/secure-matrix.js HTTP/1.1" 200 26015
+INFO 2025-09-10 20:43:07,362 basehttp 25 70369131299232 "POST /secure/n7a9u2yf0zxn/logout/ HTTP/1.1" 302 0
+INFO 2025-09-10 20:43:07,701 basehttp 25 70369131299232 "GET / HTTP/1.1" 200 22723
+INFO 2025-09-10 20:43:08,571 basehttp 25 70369131299232 "GET /secure/n7a9u2yf0zxn/matrix/ HTTP/1.1" 302 0
+INFO 2025-09-10 20:43:08,955 basehttp 25 70369131299232 "GET /secure/n7a9u2yf0zxn/ HTTP/1.1" 200 19100
+INFO 2025-09-10 20:43:35,450 basehttp 25 70369131299232 "POST /secure/n7a9u2yf0zxn/ HTTP/1.1" 302 0
+INFO 2025-09-10 20:43:35,695 basehttp 25 70369131299232 "GET /secure/n7a9u2yf0zxn/matrix/ HTTP/1.1" 200 27372
+INFO 2025-09-10 20:43:35,752 basehttp 25 70369131299232 "GET /static/js/secure-matrix.js HTTP/1.1" 304 0
+INFO 2025-09-10 20:43:39,178 basehttp 25 70369131299232 "GET /secure/n7a9u2yf0zxn/matrix/ HTTP/1.1" 200 26626
+INFO 2025-09-10 20:43:39,340 basehttp 25 70369131299232 "POST /secure/n7a9u2yf0zxn/logout/ HTTP/1.1" 302 0
+INFO 2025-09-10 20:43:39,762 basehttp 25 70369131299232 "GET / HTTP/1.1" 200 22723
+INFO 2025-09-10 20:43:40,913 basehttp 25 70369131299232 "GET /secure/n7a9u2yf0zxn/matrix/ HTTP/1.1" 302 0
+INFO 2025-09-10 20:43:41,279 basehttp 25 70369131299232 "GET /secure/n7a9u2yf0zxn/ HTTP/1.1" 200 19100
+INFO 2025-09-10 20:43:41,485 basehttp 25 70369131299232 "POST /secure/n7a9u2yf0zxn/logout/ HTTP/1.1" 302 0
+INFO 2025-09-10 20:43:41,889 basehttp 25 70369131299232 "GET / HTTP/1.1" 200 22723
+INFO 2025-09-10 20:49:57,007 autoreload 22 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-11 19:23:07,207 basehttp 22 70368987562400 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-11 19:23:30,844 basehttp 22 70368987562400 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-11 19:23:39,151 basehttp 22 70368987562400 "GET /secure/q6w9ypizemo5/ HTTP/1.1" 200 18535
+INFO 2025-09-11 19:24:11,186 basehttp 22 70368987562400 "POST /secure/q6w9ypizemo5/ HTTP/1.1" 302 0
+INFO 2025-09-11 19:24:11,537 basehttp 22 70368987562400 "GET /secure/q6w9ypizemo5/matrix/ HTTP/1.1" 200 27372
+INFO 2025-09-11 19:24:11,653 basehttp 22 70368987562400 "GET /static/js/secure-matrix.js HTTP/1.1" 200 27757
+WARNING 2025-09-11 19:24:17,894 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:24:17,902 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:24:30,527 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:24:30,541 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:24:42,460 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:24:42,467 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:25:12,417 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:25:12,425 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:25:42,387 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:25:42,394 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:25:50,259 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:25:50,267 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:26:11,301 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:26:11,307 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:26:12,501 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:26:12,507 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:26:42,458 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:26:42,464 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:27:12,387 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:27:12,392 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:27:42,444 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:27:42,452 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:27:55,752 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:27:55,757 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:27:58,023 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:27:58,029 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:28:12,440 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:28:12,446 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:28:42,839 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:28:42,846 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:28:44,959 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:28:44,969 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:29:12,439 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:29:12,448 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:29:20,102 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:29:20,108 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:29:21,546 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:29:21,552 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:29:42,444 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:29:42,450 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:30:12,434 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:30:12,440 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:30:52,384 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:30:52,390 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:31:00,105 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:31:00,110 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:31:02,242 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:31:02,249 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:31:12,480 log 22 70368987562400 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:31:12,487 basehttp 22 70368987562400 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+INFO 2025-09-11 19:35:17,945 autoreload 29 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-11 19:37:46,714 basehttp 29 70368987349408 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-11 19:37:57,988 basehttp 29 70368987349408 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-11 19:38:03,079 basehttp 29 70368987349408 "GET /secure/xpuemu5lsfku/ HTTP/1.1" 200 18535
+INFO 2025-09-11 19:38:25,798 basehttp 29 70368987349408 "POST /secure/xpuemu5lsfku/ HTTP/1.1" 302 0
+INFO 2025-09-11 19:38:26,183 basehttp 29 70368987349408 "GET /secure/xpuemu5lsfku/matrix/ HTTP/1.1" 200 27412
+WARNING 2025-09-11 19:38:31,892 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:38:31,899 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:38:47,751 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:38:47,758 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:38:53,604 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:38:53,610 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:38:56,777 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:38:56,783 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:39:00,133 log 29 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 19:39:00,141 basehttp 29 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+WARNING 2025-09-11 19:39:04,497 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:39:04,504 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:39:26,781 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:39:26,787 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:39:32,599 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:39:32,605 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:39:50,250 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:39:50,262 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:39:54,431 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:39:54,438 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:39:57,412 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:39:57,419 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:39:59,679 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:39:59,684 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:40:27,435 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:40:27,440 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:40:57,432 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:40:57,439 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:41:27,372 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:41:27,377 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:41:57,438 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:41:57,445 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:42:01,258 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:42:01,264 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:42:05,986 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:42:05,991 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:42:27,482 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:42:27,489 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:42:57,444 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:42:57,450 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:43:52,385 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:43:52,390 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:44:13,232 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:44:13,240 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:44:13,801 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:44:13,809 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:44:17,326 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:44:17,332 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+INFO 2025-09-11 19:44:26,305 basehttp 29 70368987349408 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-11 19:44:26,757 basehttp 29 70369132134816 "POST /secure/xpuemu5lsfku/logout/ HTTP/1.1" 302 0
+WARNING 2025-09-11 19:44:27,599 log 29 70369274823072 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 19:44:27,644 log 29 70368987349408 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:44:27,658 basehttp 29 70369274823072 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+WARNING 2025-09-11 19:44:27,660 basehttp 29 70368987349408 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+INFO 2025-09-11 19:44:27,662 basehttp 29 70369132134816 "GET / HTTP/1.1" 200 22723
+INFO 2025-09-11 19:44:30,463 basehttp 29 70369132134816 "GET /secure/ HTTP/1.1" 200 15732
+WARNING 2025-09-11 19:44:30,942 log 29 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 19:44:30,947 basehttp 29 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 19:44:34,510 basehttp 29 70369132134816 "GET /secure/emkw37gs2eje/ HTTP/1.1" 200 18535
+INFO 2025-09-11 19:44:54,550 basehttp 29 70369132134816 "POST /secure/emkw37gs2eje/ HTTP/1.1" 302 0
+INFO 2025-09-11 19:44:54,863 basehttp 29 70369132134816 "GET /secure/emkw37gs2eje/matrix/ HTTP/1.1" 200 27480
+WARNING 2025-09-11 19:44:59,958 log 29 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 19:44:59,964 basehttp 29 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+WARNING 2025-09-11 19:45:07,458 log 29 70369132134816 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:45:07,463 basehttp 29 70369132134816 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:45:15,676 log 29 70369132134816 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:45:15,681 basehttp 29 70369132134816 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:45:25,461 log 29 70369132134816 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:45:25,466 basehttp 29 70369132134816 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:45:42,198 log 29 70369132134816 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:45:42,203 basehttp 29 70369132134816 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:45:49,483 log 29 70369132134816 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:45:49,490 basehttp 29 70369132134816 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+WARNING 2025-09-11 19:45:56,446 log 29 70369132134816 Not Found: /secure/api/save-matrix/
+WARNING 2025-09-11 19:45:56,452 basehttp 29 70369132134816 "POST /secure/api/save-matrix/ HTTP/1.1" 404 6007
+INFO 2025-09-11 19:49:50,097 autoreload 21 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-11 19:50:06,134 basehttp 21 70368987562400 "GET / HTTP/1.1" 200 22051
+WARNING 2025-09-11 19:50:06,822 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 19:50:06,830 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 19:50:08,995 basehttp 21 70368987562400 "GET /secure/ HTTP/1.1" 200 15732
+WARNING 2025-09-11 19:50:09,524 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 19:50:09,533 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 19:50:13,843 basehttp 21 70368987562400 "GET /secure/7radt4w8e53r/ HTTP/1.1" 200 18535
+INFO 2025-09-11 19:50:37,654 basehttp 21 70368987562400 "POST /secure/7radt4w8e53r/ HTTP/1.1" 302 0
+INFO 2025-09-11 19:50:37,973 basehttp 21 70368987562400 "GET /secure/7radt4w8e53r/matrix/ HTTP/1.1" 200 27491
+INFO 2025-09-11 19:50:38,057 basehttp 21 70368987562400 "GET /static/js/secure-matrix.js?v=20250911 HTTP/1.1" 200 28461
+WARNING 2025-09-11 19:50:47,277 log 21 70369278312864 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 19:50:47,320 basehttp 21 70369278312864 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 19:51:00,400 basehttp 21 70368987562400 "POST /secure/7radt4w8e53r/api/save-matrix/ HTTP/1.1" 200 57
+INFO 2025-09-11 19:51:18,890 basehttp 21 70369135624608 "POST /secure/7radt4w8e53r/api/save-matrix/ HTTP/1.1" 200 57
+INFO 2025-09-11 19:51:34,823 basehttp 21 70368987562400 "POST /secure/7radt4w8e53r/api/save-matrix/ HTTP/1.1" 200 57
+INFO 2025-09-11 19:51:50,047 basehttp 21 70369278312864 "POST /secure/7radt4w8e53r/api/save-matrix/ HTTP/1.1" 200 57
+INFO 2025-09-11 19:52:04,956 basehttp 21 70369135624608 "POST /secure/7radt4w8e53r/api/save-matrix/ HTTP/1.1" 200 57
+INFO 2025-09-11 19:52:19,835 basehttp 21 70368987562400 "POST /secure/7radt4w8e53r/api/save-matrix/ HTTP/1.1" 200 57
+INFO 2025-09-11 19:52:34,667 basehttp 21 70369135624608 "POST /secure/7radt4w8e53r/api/save-matrix/ HTTP/1.1" 200 57
+INFO 2025-09-11 19:52:43,424 autoreload 21 70368761147424 /app/secure_data/views.py changed, reloading.
+INFO 2025-09-11 19:53:36,599 autoreload 43 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-11 19:54:34,204 basehttp 43 70368987349408 "POST /secure/7radt4w8e53r/api/save-matrix/ HTTP/1.1" 200 57
+INFO 2025-09-11 19:55:13,890 basehttp 43 70368987349408 "POST /secure/7radt4w8e53r/api/save-matrix/ HTTP/1.1" 200 57
+INFO 2025-09-11 19:56:13,860 basehttp 43 70368987349408 "POST /secure/7radt4w8e53r/api/save-matrix/ HTTP/1.1" 200 57
+INFO 2025-09-11 19:57:13,568 basehttp 43 70368987349408 "POST /secure/7radt4w8e53r/api/save-matrix/ HTTP/1.1" 200 57
+INFO 2025-09-11 19:58:13,639 basehttp 43 70368987349408 "POST /secure/7radt4w8e53r/api/save-matrix/ HTTP/1.1" 200 57
+INFO 2025-09-11 19:59:13,822 basehttp 43 70368987349408 "POST /secure/7radt4w8e53r/api/save-matrix/ HTTP/1.1" 200 57
+INFO 2025-09-11 20:03:06,016 autoreload 21 70368761147424 Watching for file changes with StatReloader
+WARNING 2025-09-11 20:03:27,677 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:03:27,685 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:03:32,779 basehttp 21 70368987349408 "GET /empresas/ HTTP/1.1" 200 27593
+INFO 2025-09-11 20:03:34,220 basehttp 21 70368987349408 "GET /plan_cuentas/ HTTP/1.1" 200 30463
+INFO 2025-09-11 20:03:35,590 basehttp 21 70368987349408 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-11 20:03:38,780 basehttp 21 70368987349408 "GET /asientos/ HTTP/1.1" 200 43247
+INFO 2025-09-11 20:03:40,717 basehttp 21 70368987349408 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-11 20:03:42,298 basehttp 21 70368987349408 "GET /perfiles/ HTTP/1.1" 200 27755
+INFO 2025-09-11 20:03:42,405 basehttp 21 70368987349408 "GET /static/css/perfiles.css HTTP/1.1" 200 2817
+INFO 2025-09-11 20:03:42,428 basehttp 21 70369132134816 "GET /static/js/perfiles.js HTTP/1.1" 200 9709
+INFO 2025-09-11 20:03:43,957 basehttp 21 70369132134816 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-11 20:03:45,433 basehttp 21 70369132134816 "GET /plan_cuentas/ HTTP/1.1" 200 30463
+INFO 2025-09-11 20:03:46,982 basehttp 21 70369132134816 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-11 20:03:48,398 basehttp 21 70369132134816 "GET / HTTP/1.1" 200 22051
+INFO 2025-09-11 20:03:49,611 basehttp 21 70369132134816 "GET /asientos/ HTTP/1.1" 200 43247
+INFO 2025-09-11 20:08:34,226 basehttp 21 70369132134816 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 28221
+INFO 2025-09-11 20:08:34,300 basehttp 21 70369132134816 "GET /static/css/plan-cuentas.css HTTP/1.1" 200 12660
+INFO 2025-09-11 20:08:42,768 basehttp 21 70369132134816 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 28221
+INFO 2025-09-11 20:08:44,485 basehttp 21 70369132134816 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 22414
+INFO 2025-09-11 20:08:49,798 basehttp 21 70369132134816 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=2 HTTP/1.1" 200 15
+INFO 2025-09-11 20:09:04,791 basehttp 21 70369132134816 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 28221
+INFO 2025-09-11 20:09:09,566 basehttp 21 70369132134816 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 22414
+WARNING 2025-09-11 20:09:12,461 log 21 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:09:12,466 basehttp 21 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:09:18,814 basehttp 21 70369132134816 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=1 HTTP/1.1" 200 352
+INFO 2025-09-11 20:09:43,866 basehttp 21 70369132134816 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 28221
+WARNING 2025-09-11 20:09:44,422 log 21 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:09:44,429 basehttp 21 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:09:47,068 basehttp 21 70369132134816 "GET /plan_cuentas/cuentas/editar/1/ HTTP/1.1" 200 22514
+INFO 2025-09-11 20:09:47,538 basehttp 21 70368987349408 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=1 HTTP/1.1" 200 352
+WARNING 2025-09-11 20:09:47,669 log 21 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:09:47,676 basehttp 21 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:10:06,933 basehttp 21 70369132134816 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 28221
+WARNING 2025-09-11 20:10:07,377 log 21 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:10:07,382 basehttp 21 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:10:09,774 basehttp 21 70369132134816 "GET /plan_cuentas/cuentas/editar/1/ HTTP/1.1" 200 22514
+INFO 2025-09-11 20:10:10,272 basehttp 21 70368987349408 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=1 HTTP/1.1" 200 352
+WARNING 2025-09-11 20:10:10,460 log 21 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:10:10,465 basehttp 21 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:11:33,678 basehttp 21 70369132134816 "POST /plan_cuentas/cuentas/editar/1/ HTTP/1.1" 200 24489
+INFO 2025-09-11 20:11:34,176 basehttp 21 70368987349408 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=1 HTTP/1.1" 200 352
+WARNING 2025-09-11 20:11:34,292 log 21 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:11:34,298 basehttp 21 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:11:51,148 basehttp 21 70369132134816 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 28221
+WARNING 2025-09-11 20:11:51,628 log 21 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:11:51,634 basehttp 21 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:11:52,558 basehttp 21 70369132134816 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 22414
+WARNING 2025-09-11 20:11:52,992 log 21 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:11:52,997 basehttp 21 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:12:39,948 basehttp 21 70369132134816 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=2 HTTP/1.1" 200 15
+INFO 2025-09-11 20:12:44,149 basehttp 21 70369132134816 "POST /plan_cuentas/cuentas/crear/ HTTP/1.1" 302 0
+INFO 2025-09-11 20:12:44,577 basehttp 21 70369132134816 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 30920
+WARNING 2025-09-11 20:12:45,113 log 21 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:12:45,121 basehttp 21 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:12:48,433 basehttp 21 70369132134816 "GET /plan_cuentas/cuentas/editar/6/ HTTP/1.1" 200 22274
+INFO 2025-09-11 20:12:48,890 basehttp 21 70368987349408 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=2 HTTP/1.1" 200 72
+WARNING 2025-09-11 20:12:49,031 log 21 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:12:49,039 basehttp 21 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:12:53,885 basehttp 21 70369132134816 "POST /plan_cuentas/cuentas/editar/6/ HTTP/1.1" 200 24231
+INFO 2025-09-11 20:12:54,357 basehttp 21 70368987349408 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=2 HTTP/1.1" 200 72
+WARNING 2025-09-11 20:12:54,483 log 21 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:12:54,489 basehttp 21 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:13:11,101 basehttp 21 70369132134816 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 30222
+WARNING 2025-09-11 20:13:11,587 log 21 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:13:11,594 basehttp 21 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:13:17,155 basehttp 21 70369132134816 "GET /plan_cuentas/cuentas/detalle/6/ HTTP/1.1" 200 21264
+WARNING 2025-09-11 20:13:17,644 log 21 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:13:17,651 basehttp 21 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:13:23,735 basehttp 21 70369132134816 "GET /plan_cuentas/cuentas/editar/6/ HTTP/1.1" 200 22274
+INFO 2025-09-11 20:13:24,235 basehttp 21 70368987349408 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=2 HTTP/1.1" 200 72
+WARNING 2025-09-11 20:13:24,388 log 21 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:13:24,396 basehttp 21 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:13:27,376 basehttp 21 70368987349408 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 30222
+WARNING 2025-09-11 20:13:27,848 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:13:27,855 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:13:30,322 basehttp 21 70368987349408 "GET /plan_cuentas/ HTTP/1.1" 200 30463
+WARNING 2025-09-11 20:13:30,825 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:13:30,831 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:13:32,246 basehttp 21 70368987349408 "GET /plan_cuentas/crear/ HTTP/1.1" 200 16468
+WARNING 2025-09-11 20:13:32,742 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:13:32,748 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:15:55,702 basehttp 21 70368987349408 "GET /plan_cuentas/ HTTP/1.1" 200 30463
+WARNING 2025-09-11 20:15:56,144 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:15:56,149 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:15:56,950 basehttp 21 70368987349408 "GET /plan_cuentas/crear/ HTTP/1.1" 200 16468
+WARNING 2025-09-11 20:15:57,451 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:15:57,456 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:15:58,832 basehttp 21 70368987349408 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 30222
+WARNING 2025-09-11 20:15:59,320 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:15:59,325 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:16:00,277 basehttp 21 70368987349408 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 22414
+WARNING 2025-09-11 20:16:00,737 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:16:00,742 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:16:14,702 basehttp 21 70368987349408 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=2 HTTP/1.1" 200 72
+INFO 2025-09-11 20:19:38,764 basehttp 21 70368987349408 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=1 HTTP/1.1" 200 352
+INFO 2025-09-11 20:19:58,273 basehttp 21 70368987349408 "POST /plan_cuentas/cuentas/crear/ HTTP/1.1" 302 0
+INFO 2025-09-11 20:19:58,669 basehttp 21 70368987349408 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 32921
+WARNING 2025-09-11 20:19:59,172 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:19:59,177 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:20:06,452 basehttp 21 70368987349408 "GET /plan_cuentas/cuentas/detalle/7/ HTTP/1.1" 200 21956
+WARNING 2025-09-11 20:20:06,941 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:20:06,947 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:20:30,428 basehttp 21 70368987349408 "GET /asientos/ HTTP/1.1" 200 43247
+WARNING 2025-09-11 20:20:30,947 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:20:30,955 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:20:34,804 basehttp 21 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 37938
+WARNING 2025-09-11 20:20:35,309 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:20:35,316 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+WARNING 2025-09-11 20:20:40,817 log 21 70368987349408 Not Found: /asientos/api/perfil/501bb865d4a92532cfebb65ee059e4889363eeb28a22ca6fb82165bb17432724/cuentas/
+WARNING 2025-09-11 20:20:40,823 basehttp 21 70368987349408 "GET /asientos/api/perfil/501bb865d4a92532cfebb65ee059e4889363eeb28a22ca6fb82165bb17432724/cuentas/ HTTP/1.1" 404 7035
+INFO 2025-09-11 20:20:43,817 basehttp 21 70368987349408 "GET /asientos/api/perfil/1/cuentas/ HTTP/1.1" 200 459
+WARNING 2025-09-11 20:20:45,938 log 21 70368987349408 Not Found: /asientos/api/perfil/501bb865d4a92532cfebb65ee059e4889363eeb28a22ca6fb82165bb17432724/cuentas/
+WARNING 2025-09-11 20:20:45,945 basehttp 21 70368987349408 "GET /asientos/api/perfil/501bb865d4a92532cfebb65ee059e4889363eeb28a22ca6fb82165bb17432724/cuentas/ HTTP/1.1" 404 7035
+INFO 2025-09-11 20:20:54,866 basehttp 21 70368987349408 "GET /asientos/api/perfil/1/cuentas/ HTTP/1.1" 200 459
+INFO 2025-09-11 20:21:18,013 basehttp 21 70368987349408 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 32223
+WARNING 2025-09-11 20:21:18,523 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:21:18,530 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:21:19,964 basehttp 21 70368987349408 "GET /plan_cuentas/ HTTP/1.1" 200 30463
+WARNING 2025-09-11 20:21:20,485 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:21:20,491 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:21:21,152 basehttp 21 70368987349408 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 32223
+WARNING 2025-09-11 20:21:21,651 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:21:21,657 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:21:22,342 basehttp 21 70368987349408 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 22414
+WARNING 2025-09-11 20:21:22,834 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:21:22,840 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:21:33,958 basehttp 21 70368987349408 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=1 HTTP/1.1" 200 411
+INFO 2025-09-11 20:21:40,185 basehttp 21 70368987349408 "GET /plan_cuentas/ HTTP/1.1" 200 30463
+WARNING 2025-09-11 20:21:40,713 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:21:40,719 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:21:41,674 basehttp 21 70368987349408 "GET /plan_cuentas/crear/ HTTP/1.1" 200 16468
+WARNING 2025-09-11 20:21:42,201 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:21:42,207 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:21:54,060 basehttp 21 70368987349408 "POST /plan_cuentas/crear/ HTTP/1.1" 302 0
+INFO 2025-09-11 20:21:54,548 basehttp 21 70368987349408 "GET /plan_cuentas/ HTTP/1.1" 200 34967
+WARNING 2025-09-11 20:21:55,071 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:21:55,076 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:21:57,680 basehttp 21 70368987349408 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 32223
+WARNING 2025-09-11 20:21:58,129 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:21:58,134 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:21:58,771 basehttp 21 70368987349408 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 22489
+WARNING 2025-09-11 20:21:59,310 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:21:59,317 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:22:07,288 basehttp 21 70368987349408 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=3 HTTP/1.1" 200 15
+INFO 2025-09-11 20:22:14,882 basehttp 21 70368987349408 "POST /plan_cuentas/cuentas/crear/ HTTP/1.1" 302 0
+INFO 2025-09-11 20:22:15,265 basehttp 21 70368987349408 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 34956
+WARNING 2025-09-11 20:22:15,726 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:22:15,730 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:22:18,045 basehttp 21 70368987349408 "GET /asientos/ HTTP/1.1" 200 43247
+WARNING 2025-09-11 20:22:18,565 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:22:18,572 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:22:19,014 basehttp 21 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 37938
+WARNING 2025-09-11 20:22:19,521 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:22:19,526 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+WARNING 2025-09-11 20:22:21,492 log 21 70368987349408 Not Found: /asientos/api/perfil/9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08/cuentas/
+WARNING 2025-09-11 20:22:21,497 basehttp 21 70368987349408 "GET /asientos/api/perfil/9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08/cuentas/ HTTP/1.1" 404 7035
+WARNING 2025-09-11 20:22:27,487 log 21 70368987349408 Not Found: /asientos/api/perfil/501bb865d4a92532cfebb65ee059e4889363eeb28a22ca6fb82165bb17432724/cuentas/
+WARNING 2025-09-11 20:22:27,491 basehttp 21 70368987349408 "GET /asientos/api/perfil/501bb865d4a92532cfebb65ee059e4889363eeb28a22ca6fb82165bb17432724/cuentas/ HTTP/1.1" 404 7035
+WARNING 2025-09-11 20:22:30,210 log 21 70368987349408 Not Found: /asientos/api/perfil/9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08/cuentas/
+WARNING 2025-09-11 20:22:30,216 basehttp 21 70368987349408 "GET /asientos/api/perfil/9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08/cuentas/ HTTP/1.1" 404 7035
+INFO 2025-09-11 20:22:47,967 basehttp 21 70368987349408 "GET /asientos/api/perfil/1/cuentas/ HTTP/1.1" 200 459
+INFO 2025-09-11 20:23:49,205 basehttp 21 70368987349408 "POST /asientos/crear/ HTTP/1.1" 302 0
+INFO 2025-09-11 20:23:49,798 basehttp 21 70368987349408 "GET /asientos/detalle/eac3843e08ccb7d8ced0fa0bc83ba24da918cdccfae353b09839e6e701eb6066/ HTTP/1.1" 200 26178
+WARNING 2025-09-11 20:23:50,331 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:23:50,338 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:24:09,964 basehttp 21 70368987349408 "GET /asientos/editar/eac3843e08ccb7d8ced0fa0bc83ba24da918cdccfae353b09839e6e701eb6066/ HTTP/1.1" 200 42180
+INFO 2025-09-11 20:24:10,625 basehttp 21 70369132134816 "GET /asientos/api/perfil/1/cuentas/ HTTP/1.1" 200 459
+WARNING 2025-09-11 20:24:10,775 log 21 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:24:10,819 basehttp 21 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:24:10,928 basehttp 21 70369132134816 "GET /asientos/api/asiento/eac3843e08ccb7d8ced0fa0bc83ba24da918cdccfae353b09839e6e701eb6066/detalles/ HTTP/1.1" 200 626
+INFO 2025-09-11 20:24:24,876 basehttp 21 70369132134816 "POST /asientos/editar/eac3843e08ccb7d8ced0fa0bc83ba24da918cdccfae353b09839e6e701eb6066/ HTTP/1.1" 302 0
+INFO 2025-09-11 20:24:25,354 basehttp 21 70369132134816 "GET /asientos/detalle/eac3843e08ccb7d8ced0fa0bc83ba24da918cdccfae353b09839e6e701eb6066/ HTTP/1.1" 200 30093
+WARNING 2025-09-11 20:24:25,840 log 21 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:24:25,845 basehttp 21 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:28:43,494 basehttp 21 70369132134816 "GET /secure/ HTTP/1.1" 200 15732
+WARNING 2025-09-11 20:28:44,036 log 21 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:28:44,042 basehttp 21 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:29:00,662 basehttp 21 70369132134816 "GET /secure/dthm90oy7vq9/ HTTP/1.1" 200 18535
+INFO 2025-09-11 20:29:18,073 basehttp 21 70369132134816 "GET /secure/ HTTP/1.1" 200 15732
+WARNING 2025-09-11 20:29:18,498 log 21 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-11 20:29:18,525 basehttp 21 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-11 20:29:25,261 basehttp 21 70369132134816 "GET /secure/p1q58awy3hvf/ HTTP/1.1" 200 18535
+INFO 2025-09-11 20:31:59,733 basehttp 21 70369132134816 "POST /secure/p1q58awy3hvf/ HTTP/1.1" 200 18563
+INFO 2025-09-11 20:32:08,424 basehttp 21 70369132134816 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-11 20:32:13,884 basehttp 21 70369132134816 "GET /secure/r2mxkf6hlunc/ HTTP/1.1" 200 18535
+INFO 2025-09-11 20:32:37,650 basehttp 21 70369132134816 "POST /secure/r2mxkf6hlunc/ HTTP/1.1" 302 0
+INFO 2025-09-11 20:32:48,350 basehttp 21 70369132134816 "GET /secure/r2mxkf6hlunc/matrix/ HTTP/1.1" 200 27529
+INFO 2025-09-11 20:32:48,427 basehttp 21 70369132134816 "GET /static/js/secure-matrix.js?v=20250911 HTTP/1.1" 304 0
+INFO 2025-09-11 20:32:55,439 basehttp 21 70369132134816 "POST /secure/r2mxkf6hlunc/logout/ HTTP/1.1" 302 0
+INFO 2025-09-11 20:32:55,453 basehttp 21 70368987349408 "POST /secure/r2mxkf6hlunc/logout/ HTTP/1.1" 302 0
+INFO 2025-09-11 20:32:55,805 basehttp 21 70368987349408 "GET / HTTP/1.1" 200 23455
+WARNING 2025-09-11 20:32:56,692 log 21 70369132134816 Forbidden (Permission denied): /secure/logout-secure/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/secure_data/views.py", line 74, in secure_access_view
+    raise PermissionDenied("Código de acceso inválido o expirado")
+django.core.exceptions.PermissionDenied: Código de acceso inválido o expirado
+WARNING 2025-09-11 20:32:56,835 basehttp 21 70369132134816 "GET /secure/logout-secure/ HTTP/1.1" 403 135
+INFO 2025-09-11 20:32:56,961 basehttp 21 70368987349408 "GET / HTTP/1.1" 200 22783
+INFO 2025-09-11 20:33:01,169 basehttp 21 70369132134816 "GET / HTTP/1.1" 200 22783
+INFO 2025-09-11 20:34:26,608 basehttp 21 70369132134816 "GET /admin HTTP/1.1" 301 0
+INFO 2025-09-11 20:34:27,961 basehttp 21 70368987349408 "GET /admin/ HTTP/1.1" 200 4591
+INFO 2025-09-11 20:34:28,101 basehttp 21 70369278656928 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2694
+INFO 2025-09-11 20:34:28,114 basehttp 21 70369132134816 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2929
+INFO 2025-09-11 20:34:28,147 basehttp 21 70368987349408 "GET /static/admin/css/base.css HTTP/1.1" 200 21207
+INFO 2025-09-11 20:34:28,161 basehttp 21 70369706721696 "GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+INFO 2025-09-11 20:34:28,169 basehttp 21 70369421345184 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-09-11 20:34:28,182 basehttp 21 70369132134816 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2025-09-11 20:34:28,184 basehttp 21 70369564033440 "GET /static/admin/css/responsive.css HTTP/1.1" 200 18557
+INFO 2025-09-11 20:34:31,164 basehttp 21 70369132134816 "GET /admin/ HTTP/1.1" 200 4591
+INFO 2025-09-11 20:34:34,775 basehttp 21 70369132134816 "POST /admin/logout/ HTTP/1.1" 200 3630
+INFO 2025-09-11 20:34:37,335 basehttp 21 70369132134816 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-09-11 20:34:37,637 basehttp 21 70369132134816 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4246
+INFO 2025-09-11 20:34:37,675 basehttp 21 70369132134816 "GET /static/admin/css/login.css HTTP/1.1" 200 958
+INFO 2025-09-11 20:35:10,687 basehttp 21 70369132134816 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4447
+INFO 2025-09-11 20:35:47,318 basehttp 21 70369132134816 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4447
+INFO 2025-09-11 20:36:14,026 basehttp 21 70369132134816 "GET / HTTP/1.1" 302 0
+INFO 2025-09-11 20:36:14,229 basehttp 21 70369132134816 "GET /users/login/?next=/ HTTP/1.1" 200 12418
+INFO 2025-09-11 21:01:48,606 autoreload 21 70368761147424 /app/secure_data/views.py changed, reloading.
+INFO 2025-09-11 21:02:43,083 autoreload 37 70368761147424 Watching for file changes with StatReloader
