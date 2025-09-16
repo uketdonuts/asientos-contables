@@ -405,8 +405,9 @@ def save_complete_matrix(request, access_code, matrix_data):
         # Log de guardado completo
         SecureAccessLog.objects.create(
             user=request.user,
-            password_type='decoy' if is_decoy_mode else 'real',
+            access_code=access_code,
             success=True,
+            action='matrix_save',
             ip_address=get_client_ip(request),
             user_agent=request.META.get('HTTP_USER_AGENT', '')
         )

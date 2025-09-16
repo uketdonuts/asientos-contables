@@ -95,12 +95,15 @@ class SecureAccessLog(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     access_time = models.DateTimeField(auto_now_add=True)
     ip_address = models.GenericIPAddressField()
+    access_code = models.CharField(max_length=12, blank=True, null=True, verbose_name="Código de Acceso")
+    action = models.CharField(max_length=100, blank=True, null=True, verbose_name="Acción Realizada")
     password_type = models.CharField(max_length=20, choices=[
         ('decoy', 'Contraseña Falsa'),
         ('real', 'Contraseña Real')
-    ])
+    ], blank=True, null=True)
     success = models.BooleanField(default=False)
     user_agent = models.TextField()
+    is_decoy_attempt = models.BooleanField(default=False, verbose_name="Intento con Señuelo")
     
     class Meta:
         verbose_name = "Log de Acceso Seguro"

@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'asientos_contables',  # App principal para configuraciones
     'users',
     'empresas',  # Nueva app para gestión de empresas
     'asientos',
@@ -46,6 +47,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'two_factor_auth.middleware.TwoFactorMiddleware',
     'secure_data.middleware.SecureSessionMiddleware',  # Middleware del módulo seguro
+    'asientos_contables.middleware.SMTPConfigurationMiddleware',  # Middleware SMTP
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -141,8 +143,8 @@ TWILIO_CALLER_ID = '+1234567890'
 # Configuración de correo electrónico
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-# Configuración de django-otp para 2FA con tolerancia reducida
-OTP_TOTP_TOLERANCE = 1  # Permitir solo 1 token antes/después (total ~90 segundos)
+# Configuración de django-otp para 2FA con tolerancia mejorada
+OTP_TOTP_TOLERANCE = 2  # Permitir 2 tokens antes/después (total ~180 segundos)
 OTP_TOTP_ISSUER = 'Asientos Contables'  # Nombre que aparece en la app
 
 # Para desarrollo local con MailHog

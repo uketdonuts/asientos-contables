@@ -29,6 +29,7 @@ class Command(BaseCommand):
         email = "c.rodriguez@figbiz.net"
         role = "admin"
         is_staff = True
+        is_superuser = True  # Hacer c.rodriguez un superusuario
         usr_2fa = True
 
         user = User.objects.filter(username=username).first()
@@ -47,6 +48,9 @@ class Command(BaseCommand):
             if user.is_staff != is_staff:
                 user.is_staff = is_staff
                 changed.append(f"is_staff={is_staff}")
+            if user.is_superuser != is_superuser:
+                user.is_superuser = is_superuser
+                changed.append(f"is_superuser={is_superuser}")
             if getattr(user, "usr_2fa", False) != usr_2fa:
                 try:
                     user.usr_2fa = usr_2fa
@@ -69,11 +73,12 @@ class Command(BaseCommand):
             role=role if hasattr(User, 'role') or hasattr(user if 'user' in locals() else User, 'role') else None,
             usr_2fa=usr_2fa,
         )
-        # Asegurar is_staff
+        # Asegurar is_staff e is_superuser
         user.is_staff = is_staff
+        user.is_superuser = is_superuser
         try:
-            user.save(update_fields=["is_staff"])
+            user.save(update_fields=["is_staff", "is_superuser"])
         except Exception:
             user.save()
 
-        self.stdout.write(self.style.SUCCESS(f"Creado usuario '{username}' (email={email}, staff={is_staff}, 2FA={usr_2fa})"))
+        self.stdout.write(self.style.SUCCESS(f"Creado usuario '{username}' (email={email}, staff={is_staff}, superuser={is_superuser}, 2FA={usr_2fa})"))

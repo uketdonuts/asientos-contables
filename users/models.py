@@ -51,6 +51,7 @@ class User(AbstractUser):
     def save(self, *args, **kwargs):
         if self.is_superuser:
             self.role = 'admin'
+            self.is_staff = True  # Los superusuarios siempre deben tener acceso al admin
         super().save(*args, **kwargs)
 
     def __str__(self):
