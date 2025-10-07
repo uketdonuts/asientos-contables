@@ -520,3 +520,25 @@ django.urls.exceptions.NoReverseMatch: Reverse for 'access' with no arguments no
 [SECURITY] 2025-09-11 20:32:37,551 - ERROR - Error registrando log de acceso exitoso: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'is_decoy_attempt'
 [SECURITY] 2025-09-11 20:32:55,358 - ERROR - Error registrando logout: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
 [SECURITY] 2025-09-11 20:32:55,397 - ERROR - Error registrando logout: SecureAccessLog() got unexpected keyword arguments: 'access_code', 'action'
+[SECURITY] 2025-09-15 21:52:57,150 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-15 21:52:57,153 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-15 21:52:57,161 - INFO - [2FA][EMAIL] Código generado ****67 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-15 21:52:57,163 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-15 21:52:57,238 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-15 22:02:04,264 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-15 22:02:04,266 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-15 22:02:04,272 - INFO - [2FA][EMAIL] Código generado ****32 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-15 22:02:04,274 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-15 22:02:04,364 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-15 22:02:38,789 - INFO - Intento de acceso para usuario c.rodriguez@figbiz.net
+[SECURITY] 2025-09-15 22:02:38,795 - INFO - [2FA][EMAIL] Código válido ****32 para user_id=4; invalidado tras uso
+[SECURITY] 2025-09-15 22:15:11,299 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-15 22:15:11,302 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-15 22:15:11,307 - INFO - [2FA][EMAIL] Código generado ****25 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-15 22:15:11,309 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-15 22:15:11,375 - INFO - [2FA][EMAIL] Email enviado exitosamente
+[SECURITY] 2025-09-15 23:44:58,650 - INFO - [2FA][EMAIL] Iniciando envío de código 2FA para usuario: c.rodriguez@figbiz.net
+[SECURITY] 2025-09-15 23:44:58,653 - INFO - [2FA][EMAIL] Usuario autorizado, generando código...
+[SECURITY] 2025-09-15 23:44:58,660 - INFO - [2FA][EMAIL] Código generado ****25 y guardado en cache (key=email_2fa_4) para user_id=4
+[SECURITY] 2025-09-15 23:44:58,662 - INFO - [2FA][EMAIL] Enviando email a c.rodriguez@figbiz.net (host=mailhog, port=1025, from=Sistema Contable <noreply@asientos-contables.local>)
+[SECURITY] 2025-09-15 23:44:58,721 - INFO - [2FA][EMAIL] Email enviado exitosamente

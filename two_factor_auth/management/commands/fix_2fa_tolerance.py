@@ -9,8 +9,8 @@ class Command(BaseCommand):
         # Actualizar todos los dispositivos existentes
         devices_updated = 0
         for device in TOTPDevice.objects.all():
-            if device.tolerance is None or device.tolerance < 2:
-                device.tolerance = 2
+            if device.tolerance is None or device.tolerance < 20:
+                device.tolerance = 5
                 device.save(update_fields=['tolerance'])
                 devices_updated += 1
                 self.stdout.write(

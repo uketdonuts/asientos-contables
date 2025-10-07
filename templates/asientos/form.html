@@ -192,17 +192,11 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <select class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm cuenta-input cuenta-haber-input" data-tipo="haber">
                                             <option value="">Seleccione cuenta</option>
-                                            {% for cuenta in plan_cuentas %}
-                                                <option value="{{ cuenta.cuenta }}">{{ cuenta.cuenta }} - {{ cuenta.descripcion }}</option>
-                                            {% endfor %}
                                         </select>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <select class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm cuenta-input cuenta-debe-input" data-tipo="debe">
                                             <option value="">Seleccione cuenta</option>
-                                            {% for cuenta in plan_cuentas %}
-                                                <option value="{{ cuenta.cuenta }}">{{ cuenta.cuenta }} - {{ cuenta.descripcion }}</option>
-                                            {% endfor %}
                                         </select>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
@@ -342,64 +336,93 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para cargar cuentas por perfil
     function loadCuentasForPerfil(perfilId, row, selectedCuentaCodigo = null) {
+        console.log('loadCuentasForPerfil called with perfilId:', perfilId);
+
         if (!perfilId) {
+            console.log('No perfilId provided, clearing selects');
+            // Cuando no hay perfil seleccionado, habilitar selects con opción por defecto
             row.querySelector('.cuenta-haber-input').innerHTML = '<option value="">Seleccione cuenta</option>';
             row.querySelector('.cuenta-debe-input').innerHTML = '<option value="">Seleccione cuenta</option>';
+            row.querySelector('.cuenta-haber-input').disabled = false;
+            row.querySelector('.cuenta-debe-input').disabled = false;
             return;
         }
 
         // Mostrar loading
+        console.log('Setting loading state');
         row.querySelector('.cuenta-haber-input').innerHTML = '<option value="">Cargando...</option>';
         row.querySelector('.cuenta-debe-input').innerHTML = '<option value="">Cargando...</option>';
         row.querySelector('.cuenta-haber-input').disabled = true;
         row.querySelector('.cuenta-debe-input').disabled = true;
 
-        fetch(`{% url "asientos:get_cuentas_for_perfil" "dummy" %}`.replace('dummy', perfilId))
-            .then(response => response.json())
-            .then(data => {
-                // Restaurar estado
-                row.querySelector('.cuenta-haber-input').disabled = false;
-                row.querySelector('.cuenta-debe-input').disabled = false;
-                
-                if (data.success) {
-                    const haberSelect = row.querySelector('.cuenta-haber-input');
-                    const debeSelect = row.querySelector('.cuenta-debe-input');
-                    
-                    haberSelect.innerHTML = '<option value="">Seleccione cuenta</option>';
-                    debeSelect.innerHTML = '<option value="">Seleccione cuenta</option>';
-                    
-                    data.cuentas.forEach(cuenta => {
-                        const option = `<option value="${cuenta.cuenta}">${cuenta.cuenta} - ${cuenta.descripcion}</option>`;
-                        haberSelect.innerHTML += option;
-                        debeSelect.innerHTML += option;
-                    });
-                    
-                    // Establecer cuenta seleccionada si se proporcionó
-                    if (selectedCuentaCodigo) {
-                        // Buscar en qué columna debe estar basándose en la polaridad
-                        const polaridad = row.querySelector('.polaridad-input').value;
-                        if (polaridad === '-') {
-                            haberSelect.value = selectedCuentaCodigo;
-                        } else {
-                            debeSelect.value = selectedCuentaCodigo;
-                        }
+        const url = `{% url "asientos:get_cuentas_for_perfil" "dummy" %}`.replace('dummy', perfilId);
+        console.log('Fetching URL:', url);
+
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json',
+            },
+            credentials: 'same-origin'  // Importante para enviar cookies
+        })
+        .then(response => {
+            console.log('Response status:', response.status);
+            console.log('Response headers:', response.headers);
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+
+            return response.json();
+        })
+        .then(data => {
+            console.log('Data received:', data);
+
+            // Restaurar estado - SIEMPRE habilitar los selects
+            row.querySelector('.cuenta-haber-input').disabled = false;
+            row.querySelector('.cuenta-debe-input').disabled = false;
+
+            if (data.success) {
+                const haberSelect = row.querySelector('.cuenta-haber-input');
+                const debeSelect = row.querySelector('.cuenta-debe-input');
+
+                haberSelect.innerHTML = '<option value="">Seleccione cuenta</option>';
+                debeSelect.innerHTML = '<option value="">Seleccione cuenta</option>';
+
+                data.cuentas.forEach(cuenta => {
+                    const option = `<option value="${cuenta.cuenta}">${cuenta.cuenta} - ${cuenta.descripcion}</option>`;
+                    haberSelect.innerHTML += option;
+                    debeSelect.innerHTML += option;
+                });
+
+                // Establecer cuenta seleccionada si se proporcionó
+                if (selectedCuentaCodigo) {
+                    // Buscar en qué columna debe estar basándose en la polaridad
+                    const polaridad = row.querySelector('.polaridad-input').value;
+                    if (polaridad === '-') {
+                        haberSelect.value = selectedCuentaCodigo;
+                    } else {
+                        debeSelect.value = selectedCuentaCodigo;
                     }
-                    
-                    showNotification('Cuentas cargadas exitosamente', 'success');
-                } else {
-                    row.querySelector('.cuenta-haber-input').innerHTML = '<option value="">Error al cargar</option>';
-                    row.querySelector('.cuenta-debe-input').innerHTML = '<option value="">Error al cargar</option>';
-                    showNotification('Error al cargar las cuentas: ' + (data.error || 'Error desconocido'), 'error');
                 }
-            })
-            .catch(error => {
-                console.error('AJAX error loading accounts:', error);
-                row.querySelector('.cuenta-haber-input').disabled = false;
-                row.querySelector('.cuenta-debe-input').disabled = false;
-                row.querySelector('.cuenta-haber-input').innerHTML = '<option value="">Error de conexión</option>';
-                row.querySelector('.cuenta-debe-input').innerHTML = '<option value="">Error de conexión</option>';
-                showNotification('Error de conexión al cargar las cuentas', 'error');
-            });
+
+                showNotification('Cuentas cargadas exitosamente', 'success');
+            } else {
+                row.querySelector('.cuenta-haber-input').innerHTML = '<option value="">Error al cargar</option>';
+                row.querySelector('.cuenta-debe-input').innerHTML = '<option value="">Error al cargar</option>';
+                showNotification('Error al cargar las cuentas: ' + (data.error || 'Error desconocido'), 'error');
+            }
+        })
+        .catch(error => {
+            console.error('AJAX error loading accounts:', error);
+            // SIEMPRE rehabilitar los selects incluso en error
+            row.querySelector('.cuenta-haber-input').disabled = false;
+            row.querySelector('.cuenta-debe-input').disabled = false;
+            row.querySelector('.cuenta-haber-input').innerHTML = '<option value="">Error de conexión</option>';
+            row.querySelector('.cuenta-debe-input').innerHTML = '<option value="">Error de conexión</option>';
+            showNotification('Error de conexión al cargar las cuentas', 'error');
+        });
     }
 
     // Función para calcular totales
@@ -531,6 +554,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Configurar eventos para la fila inicial
     document.querySelectorAll('.detalle-row').forEach(row => {
         setupRowEvents(row);
+        // Inicializar selects de cuenta como habilitados
+        const perfilSelect = row.querySelector('.perfil-input');
+        if (perfilSelect && !perfilSelect.value) {
+            loadCuentasForPerfil('', row);
+        }
     });
 
     // Evento para guardar asiento
@@ -688,6 +716,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('Error cargando detalles:', error);
                 showNotification('Error al cargar los detalles existentes', 'error');
             });
+        {% else %}
+        console.log('Modo creación, no hay detalles para cargar');
         {% endif %}
     }
 

@@ -20,7 +20,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="min-h-screen bg-gray-50 py-6">
+<div class="min-h-screen bg-gray-50 py-6" data-is-edit-mode="{% if is_edit_mode %}true{% else %}false{% endif %}" data-asiento-id="{% if asiento %}{{ asiento.id|escapejs }}{% endif %}" data-perfil-id="{% if asiento and asiento.id_perfil %}{{ asiento.id_perfil.id|escapejs }}{% endif %}">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Breadcrumb -->
         <nav class="flex mb-6" aria-label="Breadcrumb">
@@ -119,7 +119,7 @@
                                         required>
                                     <option value="">Seleccione un perfil</option>
                                     {% for perfil in perfiles %}
-                                        <option value="{{ perfil.id }}" {% if is_edit_mode and asiento and asiento.id_perfil.id == perfil.id %}selected{% endif %}>
+                                        <option value="{{ perfil.id }}" {% if is_edit_mode and asiento and asiento.id_perfil and asiento.id_perfil.id == perfil.id %}selected{% endif %}>
                                             {{ perfil.nombre }}
                                         </option>
                                     {% endfor %}
@@ -300,36 +300,85 @@
     </div>
 </div>
 
+
+
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const perfilSelect = document.getElementById('id_perfil');
-    const cuentaSelect = document.getElementById('cuenta_select');
-    const tipoSelect = document.getElementById('tipo_select');
-    const montoInput = document.getElementById('monto_input');
-    const addBtn = document.getElementById('addDetalleBtn');
-    const detallesBody = document.getElementById('detallesBody');
-    const noDetallesMessage = document.getElementById('noDetallesMessage');
-    const balanceIndicator = document.getElementById('balanceIndicator');
-    const submitBtn = document.getElementById('submitBtn');
-    const hiddenInputs = document.getElementById('hiddenInputs');
+// Fixed template syntax errors - Version 2.3
+// Función para obtener el token CSRF
+function getCSRFToken() {
+    return document.querySelector('[name=csrfmiddlewaretoken]').value;
+}
+
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('JavaScript cargado para creación de asientos');
+        
+        const perfilSelect = document.getElementById('id_perfil');
+        const cuentaSelect = document.getElementById('cuenta_select');
+        const tipoSelect = document.getElementById('tipo_select');
+        const montoInput = document.getElementById('monto_input');
+        const addBtn = document.getElementById('addDetalleBtn');
+        const detallesBody = document.getElementById('detallesBody');
+        const noDetallesMessage = document.getElementById('noDetallesMessage');
+        const balanceIndicator = document.getElementById('balanceIndicator');
+        const submitBtn = document.getElementById('submitBtn');
+        const hiddenInputs = document.getElementById('hiddenInputs');
+        
+        console.log('Elementos encontrados:', {
+            perfilSelect: !!perfilSelect,
+            cuentaSelect: !!cuentaSelect,
+            tipoSelect: !!tipoSelect,
+            montoInput: !!montoInput
+        });
+
+        // Debug: Estado inicial del dropdown de cuentas
+        console.log('Estado inicial del dropdown de cuentas:');
+        console.log('- Disabled:', cuentaSelect?.disabled);
+        console.log('- innerHTML:', cuentaSelect?.innerHTML);
+        console.log('- Value:', cuentaSelect?.value);
+        
+        let detalles = [];
+        let cuentasDisponibles = {};
+        
+        // Read data attributes instead of Django template tags
+        const contentDiv = document.querySelector('.min-h-screen.bg-gray-50.py-6');
+        const isEditMode = contentDiv?.dataset?.isEditMode === 'true';
+        const editAsientoId = contentDiv?.dataset?.asientoId || null;
+        const editPerfilId = contentDiv?.dataset?.perfilId || null;
+        
+        console.log('JavaScript inicializado correctamente');
+        console.log('Modo edición:', isEditMode);
+        console.log('Asiento ID (edición):', editAsientoId);
+        console.log('Perfil ID (edición):', editPerfilId);
     
-    let detalles = [];
-    let cuentasDisponibles = {};
-    const isEditMode = {{ is_edit_mode|yesno:"true,false" }};
+    // Función para cargar cuentas de un perfil
+    function cargarCuentasPerfil(perfilId) {
+        console.log('Cargando cuentas para perfil:', perfilId);
+        return fetch(`/asientos/api/perfil/${perfilId}/cuentas/`, {
+            credentials: 'same-origin',
+            headers: {
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': getCSRFToken()
+            }
+        })
+            .then(response => {
+                console.log('Response status:', response.status);
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    throw new Error('HTTP ' + response.status);
+                }
+            });
+    }
     
     // Si estamos en modo edición, cargar los datos existentes
-    {% if is_edit_mode and asiento %}
-    if (isEditMode) {
+    if (isEditMode && editPerfilId && editAsientoId) {
         // Pre-seleccionar el perfil
-        perfilSelect.value = "{{ asiento.id_perfil.id }}";
+        perfilSelect.value = editPerfilId;
         
         // Cargar primero las cuentas del perfil
-        console.log('Cargando cuentas del perfil {{ asiento.id_perfil.id }}...');
-        fetch(`/asientos/api/perfil/{{ asiento.id_perfil.id }}/cuentas/`)
-            .then(response => {
-                console.log('Response status para cuentas:', response.status);
-                return response.json();
-            })
+        console.log('Cargando cuentas del perfil', editPerfilId);
+        cargarCuentasPerfil(editPerfilId)
             .then(cuentasData => {
                 console.log('Cuentas recibidas:', cuentasData);
                 if (cuentasData.success) {
@@ -349,8 +398,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.log('Cuentas disponibles cargadas:', Object.keys(cuentasDisponibles).length);
                     
                     // Ahora cargar los detalles del asiento
-                    console.log('Cargando detalles del asiento {{ asiento.id }}...');
-                    return fetch(`/asientos/api/asiento/{{ asiento.id }}/detalles/`);
+                    console.log('Cargando detalles del asiento', editAsientoId);
+                    return fetch(`/asientos/api/asiento/${editAsientoId}/detalles/`, {
+                        credentials: 'same-origin',
+                        headers: {
+                            'X-CSRFToken': getCSRFToken()
+                        }
+                    });
                 } else {
                     throw new Error('Error cargando cuentas: ' + (cuentasData.error || 'Error desconocido'));
                 }
@@ -398,36 +452,67 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => {
                 console.error('Error cargando datos del asiento:', error);
-                alert('Error al cargar los datos del asiento para edición: ' + error.message);
             });
     }
-    {% endif %}
     
     // Cargar cuentas cuando se selecciona un perfil
     perfilSelect.addEventListener('change', function() {
         const perfilId = this.value;
+        console.log('Perfil seleccionado:', perfilId);
         if (perfilId) {
-            fetch(`/asientos/api/perfil/${perfilId}/cuentas/`)
-                .then(response => response.json())
+            console.log('Cargando cuentas para perfil:', perfilId);
+            fetch(`/asientos/api/perfil/${perfilId}/cuentas/`, {
+                credentials: 'same-origin',
+                headers: {
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': getCSRFToken()
+                }
+            })
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    console.log('Response headers:', response.headers);
+                    if (response.status === 200) {
+                        return response.json();
+                    } else if (response.status === 302) {
+                        throw new Error('Redirected (probably to login) - Authentication required');
+                    } else {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+                })
                 .then(data => {
-                    cuentasDisponibles = {};
-                    cuentaSelect.innerHTML = '<option value="">Seleccione una cuenta</option>';
-                    
-                    data.cuentas.forEach(cuenta => {
-                        cuentasDisponibles[cuenta.id] = cuenta;
-                        const option = document.createElement('option');
-                        option.value = cuenta.id;
-                        option.textContent = `${cuenta.codigo} - ${cuenta.descripcion}`;
-                        cuentaSelect.appendChild(option);
-                    });
-                    
-                    cuentaSelect.disabled = false;
+                    console.log('Datos recibidos:', data);
+                    if (data.success) {
+                        cuentasDisponibles = {};
+                        cuentaSelect.innerHTML = '<option value="">Seleccione una cuenta</option>';
+
+                        data.cuentas.forEach(cuenta => {
+                            cuentasDisponibles[cuenta.id] = cuenta;
+                            const option = document.createElement('option');
+                            option.value = cuenta.id;
+                            option.textContent = `${cuenta.codigo} - ${cuenta.descripcion}`;
+                            cuentaSelect.appendChild(option);
+                        });
+
+                        console.log('Cuentas cargadas:', Object.keys(cuentasDisponibles).length);
+                        cuentaSelect.disabled = false;
+                        console.log('Dropdown habilitado con', Object.keys(cuentasDisponibles).length, 'cuentas');
+                        console.log('Estado final del dropdown - disabled:', cuentaSelect.disabled);
+                    } else {
+                        console.error('Error en respuesta:', data.error);
+                        cuentaSelect.disabled = true;
+                        cuentaSelect.innerHTML = '<option value="">Error en respuesta de API</option>';
+                    }
                 })
                 .catch(error => {
                     console.error('Error cargando cuentas:', error);
-                    alert('Error al cargar las cuentas del perfil');
+
+                    // Deshabilitar dropdown y mostrar mensaje de error
+                    cuentaSelect.disabled = true;
+                    cuentaSelect.innerHTML = '<option value="">Error cargando cuentas</option>';
                 });
         } else {
+            console.log('Ningún perfil seleccionado');
             cuentaSelect.disabled = true;
             cuentaSelect.innerHTML = '<option value="">Seleccione perfil primero</option>';
         }
@@ -438,13 +523,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const cuentaId = cuentaSelect.value;
         const tipo = tipoSelect.value;
         const monto = parseFloat(montoInput.value);
-        
+
         if (!cuentaId || !monto || monto <= 0) {
-            alert('Por favor complete todos los campos correctamente');
+            console.error('Validación fallida: campos incompletos');
+            console.error('CuentaID:', cuentaId, 'Monto:', monto);
             return;
         }
-        
+
         const cuenta = cuentasDisponibles[cuentaId];
+        if (!cuenta) {
+            console.error('Cuenta no encontrada en cuentasDisponibles:', cuentaId);
+            return;
+        }
+
         const detalle = {
             id: Date.now(), // ID temporal
             cuenta_id: cuentaId,
@@ -453,11 +544,11 @@ document.addEventListener('DOMContentLoaded', function() {
             tipo: tipo,
             monto: monto
         };
-        
+
         detalles.push(detalle);
         renderDetalles();
         updateBalance();
-        
+
         // Limpiar formulario
         cuentaSelect.value = '';
         montoInput.value = '';
@@ -590,7 +681,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (Math.abs(totalDebe - totalHaber) >= 0.01) {
             e.preventDefault();
-            alert(`El asiento debe estar balanceado (Total Debe: ${totalDebe.toFixed(2)} ≠ Total Haber: ${totalHaber.toFixed(2)})`);
+            alert(`El asiento debe estar balanceado (Total Debe: ${totalDebe.toFixed(2)} != Total Haber: ${totalHaber.toFixed(2)})`);
             return;
         }
         

@@ -22239,3 +22239,1074 @@ INFO 2025-09-11 20:36:14,026 basehttp 21 70369132134816 "GET / HTTP/1.1" 302 0
 INFO 2025-09-11 20:36:14,229 basehttp 21 70369132134816 "GET /users/login/?next=/ HTTP/1.1" 200 12418
 INFO 2025-09-11 21:01:48,606 autoreload 21 70368761147424 /app/secure_data/views.py changed, reloading.
 INFO 2025-09-11 21:02:43,083 autoreload 37 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-15 21:12:51,047 basehttp 37 70368987349408 "GET / HTTP/1.1" 302 0
+INFO 2025-09-15 21:12:51,532 basehttp 37 70368987349408 "GET /users/login/?next=/ HTTP/1.1" 200 12418
+INFO 2025-09-15 21:12:51,632 basehttp 37 70368987349408 "GET /static/css/tailwind-custom.css HTTP/1.1" 304 0
+WARNING 2025-09-15 21:12:53,328 log 37 70368987349408 Not Found: /favicon.ico
+WARNING 2025-09-15 21:12:53,341 basehttp 37 70368987349408 "GET /favicon.ico HTTP/1.1" 404 3782
+INFO 2025-09-15 21:12:59,166 basehttp 37 70368987349408 "GET /secure HTTP/1.1" 301 0
+INFO 2025-09-15 21:12:59,220 basehttp 37 70369131086240 "GET /secure/ HTTP/1.1" 302 0
+INFO 2025-09-15 21:12:59,294 basehttp 37 70369131086240 "GET /users/login/?next=/secure/ HTTP/1.1" 200 12418
+INFO 2025-09-15 21:13:39,983 basehttp 37 70369131086240 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-09-15 21:13:40,205 basehttp 37 70369131086240 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+INFO 2025-09-15 21:14:03,552 basehttp 37 70369131086240 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-15 21:14:03,673 basehttp 37 70369131086240 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+INFO 2025-09-15 21:14:15,724 basehttp 37 70369131086240 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-15 21:14:16,243 basehttp 37 70368987349408 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-15 21:14:16,562 basehttp 37 70368987349408 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+INFO 2025-09-15 21:14:17,301 basehttp 37 70369131086240 "GET /asientos/ HTTP/1.1" 200 49443
+INFO 2025-09-15 21:14:23,118 basehttp 37 70368987349408 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-15 21:14:23,675 basehttp 37 70369131086240 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-15 21:14:23,992 basehttp 37 70369131086240 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+INFO 2025-09-15 21:14:24,185 basehttp 37 70368987349408 "GET /asientos/ HTTP/1.1" 200 49443
+INFO 2025-09-15 21:14:35,475 basehttp 37 70369131086240 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-15 21:14:36,296 basehttp 37 70368987349408 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-15 21:14:36,437 basehttp 37 70369131086240 "GET /asientos/ HTTP/1.1" 200 49443
+INFO 2025-09-15 21:14:36,498 basehttp 37 70368987349408 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-15 21:14:39,346 log 37 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-15 21:14:39,353 basehttp 37 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-15 21:15:21,887 basehttp 37 70368987349408 "GET /users/login/ HTTP/1.1" 200 12418
+WARNING 2025-09-15 21:15:22,424 log 37 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-15 21:15:22,431 basehttp 37 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-15 21:15:58,211 basehttp 37 70368987349408 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-09-15 21:15:58,347 basehttp 37 70368987349408 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+WARNING 2025-09-15 21:15:58,907 log 37 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-15 21:15:58,914 basehttp 37 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-15 21:16:25,584 basehttp 37 70369131086240 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-15 21:16:25,710 basehttp 37 70369131086240 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-15 21:16:26,197 log 37 70369131086240 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-15 21:16:26,202 basehttp 37 70369131086240 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-15 21:16:51,598 basehttp 37 70369131086240 "GET /users/login/ HTTP/1.1" 200 12418
+WARNING 2025-09-15 21:16:52,102 log 37 70369131086240 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-15 21:16:52,110 basehttp 37 70369131086240 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-15 21:41:33,956 autoreload 37 70368761147424 /app/asientos_contables/settings.py changed, reloading.
+INFO 2025-09-15 21:46:04,510 autoreload 52 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-15 21:52:27,633 basehttp 52 70368987562400 "GET / HTTP/1.1" 200 22783
+INFO 2025-09-15 21:52:28,009 basehttp 52 70368987562400 "GET /static/img/favicon.ico HTTP/1.1" 304 0
+INFO 2025-09-15 21:52:32,162 basehttp 52 70368987562400 "GET /asientos/ HTTP/1.1" 200 49443
+INFO 2025-09-15 21:52:34,092 basehttp 52 70368987562400 "GET / HTTP/1.1" 200 22783
+INFO 2025-09-15 21:52:39,422 basehttp 52 70368987562400 "GET /secure HTTP/1.1" 301 0
+INFO 2025-09-15 21:52:40,400 basehttp 52 70369132347808 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-15 21:52:57,606 basehttp 52 70369132347808 "GET /secure/9hsdj5cd9n5e/ HTTP/1.1" 200 18535
+INFO 2025-09-15 22:02:00,254 basehttp 52 70369132347808 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-15 22:02:04,649 basehttp 52 70369132347808 "GET /secure/teaar8ehrwzs/ HTTP/1.1" 200 18535
+INFO 2025-09-15 22:02:39,118 basehttp 52 70369132347808 "POST /secure/teaar8ehrwzs/ HTTP/1.1" 302 0
+INFO 2025-09-15 22:02:50,108 basehttp 52 70369132347808 "GET /secure/teaar8ehrwzs/matrix/ HTTP/1.1" 200 27529
+INFO 2025-09-15 22:02:50,150 basehttp 52 70369132347808 "GET /static/css/secure-module.css HTTP/1.1" 304 0
+INFO 2025-09-15 22:02:50,247 basehttp 52 70369132347808 "GET /static/js/secure-matrix.js?v=20250911 HTTP/1.1" 200 28461
+WARNING 2025-09-15 22:14:27,718 log 52 70369277886880 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-15 22:14:27,725 basehttp 52 70369277886880 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-15 22:14:48,691 basehttp 52 70369132347808 "POST /secure/teaar8ehrwzs/api/save-matrix/ HTTP/1.1" 200 103
+INFO 2025-09-15 22:15:06,260 basehttp 52 70369132347808 "GET /secure/teaar8ehrwzs/matrix/ HTTP/1.1" 200 26792
+INFO 2025-09-15 22:15:06,621 basehttp 52 70369132347808 "POST /secure/teaar8ehrwzs/logout/ HTTP/1.1" 302 0
+WARNING 2025-09-15 22:15:07,221 log 52 70369277886880 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-15 22:15:07,262 basehttp 52 70369277886880 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-15 22:15:07,317 basehttp 52 70369132347808 "GET / HTTP/1.1" 200 23455
+INFO 2025-09-15 22:15:11,153 basehttp 52 70369132347808 "GET /secure/teaar8ehrwzs/matrix/ HTTP/1.1" 302 0
+INFO 2025-09-15 22:15:11,586 basehttp 52 70369132347808 "GET /secure/teaar8ehrwzs/ HTTP/1.1" 200 19100
+INFO 2025-09-15 22:15:11,876 basehttp 52 70369132347808 "POST /secure/teaar8ehrwzs/logout/ HTTP/1.1" 302 0
+WARNING 2025-09-15 22:15:12,630 log 52 70369277886880 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2025-09-15 22:15:12,662 basehttp 52 70369132347808 "GET / HTTP/1.1" 200 23455
+WARNING 2025-09-15 22:15:12,668 basehttp 52 70369277886880 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-15 22:15:14,717 basehttp 52 70369132347808 "GET / HTTP/1.1" 200 22783
+WARNING 2025-09-15 22:15:15,263 log 52 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-15 22:15:15,271 basehttp 52 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-15 22:15:35,502 basehttp 52 70369132347808 "GET /admin HTTP/1.1" 301 0
+INFO 2025-09-15 22:15:37,104 basehttp 52 70369132347808 "GET /admin/ HTTP/1.1" 200 4591
+INFO 2025-09-15 22:15:37,202 basehttp 52 70369132347808 "GET /static/admin/css/base.css HTTP/1.1" 200 21207
+INFO 2025-09-15 22:15:37,211 basehttp 52 70368987562400 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2929
+INFO 2025-09-15 22:15:37,234 basehttp 52 70369277886880 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2694
+INFO 2025-09-15 22:15:37,285 basehttp 52 70368987562400 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-09-15 22:15:37,299 basehttp 52 70369132347808 "GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+INFO 2025-09-15 22:15:37,320 basehttp 52 70369277886880 "GET /static/admin/css/responsive.css HTTP/1.1" 200 18557
+INFO 2025-09-15 22:15:37,338 basehttp 52 70369132347808 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2025-09-15 22:15:40,868 basehttp 52 70369132347808 "GET / HTTP/1.1" 200 22783
+INFO 2025-09-15 22:15:45,658 basehttp 52 70369132347808 "GET /admin/ HTTP/1.1" 200 4591
+INFO 2025-09-15 22:36:58,985 basehttp 52 70369132347808 "GET /admin/ HTTP/1.1" 200 4591
+INFO 2025-09-15 23:15:58,108 autoreload 51 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-15 23:20:23,281 autoreload 63 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-15 23:40:46,971 basehttp 63 70368987349408 "GET /admin/ HTTP/1.1" 200 12826
+INFO 2025-09-15 23:40:47,161 basehttp 63 70369131086240 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2929
+INFO 2025-09-15 23:40:47,166 basehttp 63 70369273774496 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2694
+INFO 2025-09-15 23:40:47,182 basehttp 63 70369416462752 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-09-15 23:40:47,192 basehttp 63 70368987349408 "GET /static/admin/css/base.css HTTP/1.1" 200 21207
+INFO 2025-09-15 23:40:47,201 basehttp 63 70369559151008 "GET /static/admin/css/responsive.css HTTP/1.1" 200 18557
+INFO 2025-09-15 23:40:47,300 basehttp 63 70368987349408 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2025-09-15 23:40:47,315 basehttp 63 70369559151008 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2025-09-15 23:40:47,323 basehttp 63 70369416462752 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+INFO 2025-09-15 23:40:51,342 basehttp 63 70368987349408 "GET /admin/asientos_contables/smtpconfiguration/ HTTP/1.1" 200 15055
+INFO 2025-09-15 23:40:51,582 basehttp 63 70368987349408 "GET /static/admin/css/changelists.css HTTP/1.1" 200 6584
+INFO 2025-09-15 23:40:51,716 basehttp 63 70369702887840 "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2025-09-15 23:40:51,834 basehttp 63 70368987349408 "GET /static/admin/js/core.js HTTP/1.1" 200 5682
+INFO 2025-09-15 23:40:51,909 basehttp 63 70369702887840 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 8943
+INFO 2025-09-15 23:40:51,979 basehttp 63 70368987349408 "GET /static/admin/js/actions.js HTTP/1.1" 200 7872
+INFO 2025-09-15 23:40:52,098 basehttp 63 70368987349408 "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2025-09-15 23:40:52,108 basehttp 63 70369702887840 "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2025-09-15 23:40:52,210 basehttp 63 70369416462752 "GET /admin/jsi18n/ HTTP/1.1" 200 8006
+INFO 2025-09-15 23:40:52,348 basehttp 63 70369702887840 "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+WARNING 2025-09-15 23:40:52,667 basehttp 63 70369559151008 "GET /static/admin/css/smtp_config.css HTTP/1.1" 404 1935
+INFO 2025-09-15 23:40:52,669 basehttp 63 70369273774496 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 292458
+WARNING 2025-09-15 23:40:52,695 basehttp 63 70369131086240 "GET /static/admin/js/smtp_config.js HTTP/1.1" 404 1929
+INFO 2025-09-15 23:40:52,722 basehttp 63 70369273774496 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2025-09-15 23:40:52,736 basehttp 63 70368987349408 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 232381
+INFO 2025-09-15 23:40:52,773 basehttp 63 70368987349408 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2025-09-15 23:40:58,141 basehttp 63 70368987349408 "GET /admin/asientos_contables/smtpconfiguration/add/ HTTP/1.1" 200 21494
+INFO 2025-09-15 23:40:58,418 basehttp 63 70369416462752 "GET /static/admin/js/collapse.js HTTP/1.1" 200 1803
+INFO 2025-09-15 23:40:58,434 basehttp 63 70368987349408 "GET /static/admin/css/forms.css HTTP/1.1" 200 8953
+INFO 2025-09-15 23:40:58,437 basehttp 63 70369131086240 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2025-09-15 23:40:58,769 basehttp 63 70369131086240 "GET /static/admin/css/widgets.css HTTP/1.1" 200 11952
+INFO 2025-09-15 23:40:59,014 basehttp 63 70369559151008 "GET /admin/jsi18n/ HTTP/1.1" 200 8006
+WARNING 2025-09-15 23:40:59,198 basehttp 63 70369273774496 "GET /static/admin/css/smtp_config.css HTTP/1.1" 404 1935
+WARNING 2025-09-15 23:40:59,206 basehttp 63 70369702887840 "GET /static/admin/js/smtp_config.js HTTP/1.1" 404 1929
+INFO 2025-09-15 23:40:59,265 basehttp 63 70369559151008 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2025-09-15 23:41:28,481 basehttp 63 70369559151008 "GET /admin/secure_data/securepassword/ HTTP/1.1" 200 21639
+INFO 2025-09-15 23:41:28,563 basehttp 63 70369131086240 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+INFO 2025-09-15 23:41:28,711 basehttp 63 70369559151008 "GET /admin/jsi18n/ HTTP/1.1" 200 8006
+INFO 2025-09-15 23:41:28,758 basehttp 63 70369559151008 "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+INFO 2025-09-15 23:41:32,336 basehttp 63 70369559151008 "GET /admin/secure_data/securedatamatrix/ HTTP/1.1" 200 26547
+INFO 2025-09-15 23:41:32,540 basehttp 63 70369559151008 "GET /admin/jsi18n/ HTTP/1.1" 200 8006
+INFO 2025-09-15 23:41:34,466 basehttp 63 70369559151008 "GET /admin/secure_data/secureaccesslog/ HTTP/1.1" 200 22497
+INFO 2025-09-15 23:41:34,562 basehttp 63 70369131086240 "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+INFO 2025-09-15 23:41:34,701 basehttp 63 70369559151008 "GET /admin/jsi18n/ HTTP/1.1" 200 8006
+INFO 2025-09-15 23:44:35,699 basehttp 63 70369559151008 "GET / HTTP/1.1" 200 22783
+INFO 2025-09-15 23:44:47,127 basehttp 63 70369559151008 "GET /secure/ HTTP/1.1" 200 15732
+INFO 2025-09-15 23:44:58,950 basehttp 63 70369559151008 "GET /secure/4xbn1duzh0xx/ HTTP/1.1" 200 18535
+INFO 2025-09-21 12:03:48,257 autoreload 57 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-21 12:07:36,722 basehttp 57 70368987349408 "GET / HTTP/1.1" 302 0
+INFO 2025-09-21 12:07:37,209 basehttp 57 70368987349408 "GET /users/login/?next=/ HTTP/1.1" 200 12418
+INFO 2025-09-21 12:07:37,315 basehttp 57 70368987349408 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-09-21 12:07:39,253 log 57 70368987349408 Not Found: /favicon.ico
+WARNING 2025-09-21 12:07:39,262 basehttp 57 70368987349408 "GET /favicon.ico HTTP/1.1" 404 3782
+INFO 2025-09-21 12:30:33,297 basehttp 57 70368987349408 "POST /users/login/ HTTP/1.1" 200 12440
+WARNING 2025-09-21 12:30:33,890 log 57 70368987349408 Not Found: /favicon.ico
+WARNING 2025-09-21 12:30:33,897 basehttp 57 70368987349408 "GET /favicon.ico HTTP/1.1" 404 3782
+INFO 2025-09-21 12:31:18,074 basehttp 57 70368987349408 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-09-21 12:31:18,307 basehttp 57 70368987349408 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+INFO 2025-09-21 12:32:59,653 basehttp 57 70369132151200 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-21 12:32:59,771 basehttp 57 70369132151200 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+INFO 2025-09-21 12:33:16,047 basehttp 57 70369132151200 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-21 12:33:16,480 basehttp 57 70368987349408 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-21 12:33:16,803 basehttp 57 70368987349408 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+INFO 2025-09-21 12:33:18,283 basehttp 57 70369132151200 "GET /admin/ HTTP/1.1" 200 12826
+INFO 2025-09-22 20:47:57,441 autoreload 21 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-22 20:48:13,936 basehttp 21 70368987562400 "GET / HTTP/1.1" 302 0
+INFO 2025-09-22 20:48:14,325 basehttp 21 70368987562400 "GET /users/login/?next=/ HTTP/1.1" 200 12418
+WARNING 2025-09-22 20:48:15,864 log 21 70368987562400 Not Found: /favicon.ico
+WARNING 2025-09-22 20:48:15,870 basehttp 21 70368987562400 "GET /favicon.ico HTTP/1.1" 404 3782
+INFO 2025-09-22 20:48:50,881 basehttp 21 70368987562400 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:48:51,070 basehttp 21 70368987562400 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+INFO 2025-09-22 20:49:02,388 basehttp 21 70369132347808 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:49:02,512 basehttp 21 70369132347808 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+INFO 2025-09-22 20:49:10,285 basehttp 21 70368987562400 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:49:10,418 basehttp 21 70368987562400 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+INFO 2025-09-22 20:49:16,791 basehttp 21 70368987562400 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:49:17,308 basehttp 21 70369132347808 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:49:17,636 basehttp 21 70369132347808 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+INFO 2025-09-22 20:49:19,047 basehttp 21 70368987562400 "GET /admin/ HTTP/1.1" 200 12826
+INFO 2025-09-22 20:49:24,668 basehttp 21 70369132347808 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:49:24,799 basehttp 21 70369132347808 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-22 20:49:30,487 log 21 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:49:30,495 basehttp 21 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 20:49:37,054 basehttp 21 70369132347808 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:49:37,184 basehttp 21 70369132347808 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-22 20:49:37,707 log 21 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:49:37,713 basehttp 21 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 20:49:41,887 basehttp 21 70369132347808 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:49:42,521 basehttp 21 70369132347808 "GET /admin/ HTTP/1.1" 200 12826
+INFO 2025-09-22 20:49:42,783 basehttp 21 70369275101600 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2929
+INFO 2025-09-22 20:49:42,812 basehttp 21 70369417789856 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2694
+INFO 2025-09-22 20:49:42,873 basehttp 21 70369560478112 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-09-22 20:49:42,901 basehttp 21 70368987562400 "GET /static/admin/css/base.css HTTP/1.1" 200 21207
+INFO 2025-09-22 20:49:42,913 basehttp 21 70369275101600 "GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+INFO 2025-09-22 20:49:42,941 basehttp 21 70369417789856 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2025-09-22 20:49:42,977 basehttp 21 70369703166368 "GET /static/admin/css/responsive.css HTTP/1.1" 200 18557
+INFO 2025-09-22 20:49:43,036 basehttp 21 70369703166368 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2025-09-22 20:49:43,045 basehttp 21 70369417789856 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2025-09-22 20:49:43,048 basehttp 21 70369275101600 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+WARNING 2025-09-22 20:49:43,339 log 21 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:49:43,345 basehttp 21 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 20:49:46,463 basehttp 21 70369132347808 "GET / HTTP/1.1" 200 22783
+INFO 2025-09-22 20:49:46,850 basehttp 21 70369703166368 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-09-22 20:49:46,978 log 21 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:49:46,984 basehttp 21 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 20:49:50,146 basehttp 21 70369132347808 "GET /asientos/ HTTP/1.1" 200 49443
+WARNING 2025-09-22 20:49:50,588 log 21 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:49:50,593 basehttp 21 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 20:49:53,260 basehttp 21 70369132347808 "GET /plan_cuentas/ HTTP/1.1" 200 34257
+WARNING 2025-09-22 20:49:53,774 log 21 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:49:53,781 basehttp 21 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 20:49:54,723 basehttp 21 70369132347808 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 34239
+INFO 2025-09-22 20:49:54,916 basehttp 21 70369703166368 "GET /static/css/plan-cuentas.css HTTP/1.1" 200 12660
+WARNING 2025-09-22 20:49:55,207 log 21 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:49:55,233 basehttp 21 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 20:49:55,560 basehttp 21 70369703166368 "GET /perfiles/ HTTP/1.1" 200 27755
+INFO 2025-09-22 20:49:55,738 basehttp 21 70369132347808 "GET /static/css/perfiles.css HTTP/1.1" 200 2817
+INFO 2025-09-22 20:49:55,758 basehttp 21 70369417789856 "GET /static/js/perfiles.js HTTP/1.1" 200 9709
+WARNING 2025-09-22 20:49:56,129 log 21 70369703166368 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:49:56,169 basehttp 21 70369703166368 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 20:49:56,585 basehttp 21 70369417789856 "GET /empresas/ HTTP/1.1" 200 27593
+WARNING 2025-09-22 20:49:57,094 log 21 70369417789856 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:49:57,103 basehttp 21 70369417789856 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 20:49:57,534 basehttp 21 70369417789856 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:49:57,573 basehttp 21 70369417789856 "GET / HTTP/1.1" 302 0
+INFO 2025-09-22 20:49:57,683 basehttp 21 70369417789856 "GET /users/login/?next=/ HTTP/1.1" 200 12418
+WARNING 2025-09-22 20:49:58,082 log 21 70369417789856 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:49:58,087 basehttp 21 70369417789856 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 20:50:45,216 basehttp 21 70369417789856 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:50:45,325 basehttp 21 70369417789856 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+WARNING 2025-09-22 20:50:45,779 log 21 70369417789856 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:50:45,784 basehttp 21 70369417789856 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 20:51:09,119 basehttp 21 70369417789856 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:51:09,781 basehttp 21 70369132347808 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:51:10,084 basehttp 21 70369132347808 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+INFO 2025-09-22 20:51:10,093 basehttp 21 70369417789856 "GET /admin/ HTTP/1.1" 200 12826
+WARNING 2025-09-22 20:51:10,582 log 21 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:51:10,588 basehttp 21 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 20:51:19,372 basehttp 21 70369132347808 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:51:19,561 basehttp 21 70369132347808 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+INFO 2025-09-22 20:51:19,695 basehttp 21 70369275101600 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:51:19,824 basehttp 21 70369275101600 "GET /two_factor/verify/ HTTP/1.1" 200 10944
+WARNING 2025-09-22 20:51:20,322 log 21 70369275101600 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:51:20,329 basehttp 21 70369275101600 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 20:51:25,752 basehttp 21 70369275101600 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:51:25,875 basehttp 21 70369275101600 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-22 20:51:26,311 log 21 70369275101600 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:51:26,316 basehttp 21 70369275101600 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 20:51:31,330 basehttp 21 70369275101600 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:51:31,484 basehttp 21 70369275101600 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+INFO 2025-09-22 20:51:31,588 basehttp 21 70368987562400 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:51:31,710 basehttp 21 70368987562400 "GET /two_factor/verify/ HTTP/1.1" 200 10944
+WARNING 2025-09-22 20:51:32,225 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:51:32,230 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 20:51:36,948 basehttp 21 70368987562400 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:51:37,063 basehttp 21 70368987562400 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-22 20:51:37,544 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:51:37,549 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 20:51:41,565 basehttp 21 70368987562400 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:51:41,814 basehttp 21 70369560478112 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:51:41,955 basehttp 21 70369560478112 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-22 20:51:42,471 log 21 70369560478112 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:51:42,477 basehttp 21 70369560478112 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 20:51:48,251 basehttp 21 70369560478112 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:51:48,364 basehttp 21 70369560478112 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-22 20:51:48,831 log 21 70369560478112 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:51:48,839 basehttp 21 70369560478112 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 20:51:53,917 basehttp 21 70369560478112 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:51:54,092 basehttp 21 70369560478112 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+INFO 2025-09-22 20:51:54,205 basehttp 21 70368987562400 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 20:51:54,335 basehttp 21 70368987562400 "GET /two_factor/verify/ HTTP/1.1" 200 10944
+WARNING 2025-09-22 20:51:54,828 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:51:54,834 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 20:58:27,937 basehttp 21 70368987562400 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+WARNING 2025-09-22 20:58:28,450 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:58:28,456 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 20:58:34,521 basehttp 21 70368987562400 "GET /users/login/ HTTP/1.1" 200 12418
+WARNING 2025-09-22 20:58:35,094 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:58:35,103 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 20:59:16,043 basehttp 21 70369560478112 "POST /users/login/ HTTP/1.1" 200 12440
+WARNING 2025-09-22 20:59:16,549 log 21 70369560478112 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 20:59:16,555 basehttp 21 70369560478112 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:01:23,432 basehttp 21 70368987562400 "POST /users/login/ HTTP/1.1" 200 12440
+WARNING 2025-09-22 21:01:24,004 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:01:24,010 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:02:45,730 basehttp 21 70368987562400 "POST /users/login/ HTTP/1.1" 200 12440
+WARNING 2025-09-22 21:02:46,311 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:02:46,318 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:04:16,984 basehttp 21 70368987562400 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:04:17,142 basehttp 21 70368987562400 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+WARNING 2025-09-22 21:04:17,692 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:04:17,700 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:05:03,514 basehttp 21 70369560478112 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:05:03,658 basehttp 21 70369560478112 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-22 21:05:04,215 log 21 70369560478112 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:05:04,222 basehttp 21 70369560478112 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:05:08,576 basehttp 21 70369560478112 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:05:08,692 basehttp 21 70369560478112 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-22 21:05:09,142 log 21 70369560478112 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:05:09,147 basehttp 21 70369560478112 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:05:15,281 basehttp 21 70369560478112 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:05:15,432 basehttp 21 70369560478112 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-22 21:05:15,938 log 21 70369560478112 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:05:15,943 basehttp 21 70369560478112 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:05:21,689 basehttp 21 70369560478112 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:05:21,874 basehttp 21 70369560478112 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+INFO 2025-09-22 21:05:21,986 basehttp 21 70368987562400 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:05:22,106 basehttp 21 70368987562400 "GET /two_factor/verify/ HTTP/1.1" 200 10944
+WARNING 2025-09-22 21:05:22,642 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:05:22,652 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:05:28,737 basehttp 21 70369560478112 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:05:28,879 basehttp 21 70369560478112 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-22 21:05:29,358 log 21 70369560478112 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:05:29,363 basehttp 21 70369560478112 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:05:34,470 basehttp 21 70369560478112 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:05:34,679 basehttp 21 70368987562400 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:05:34,811 basehttp 21 70368987562400 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-22 21:05:35,321 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:05:35,329 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:05:40,472 basehttp 21 70368987562400 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:05:40,625 basehttp 21 70368987562400 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-22 21:05:41,128 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:05:41,134 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:05:51,121 basehttp 21 70368987562400 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:05:51,248 basehttp 21 70368987562400 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-22 21:05:51,786 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:05:51,793 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:06:26,343 autoreload 21 70368761147424 /app/asientos_contables/settings.py changed, reloading.
+INFO 2025-09-22 21:07:28,897 autoreload 43 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-22 21:09:53,969 autoreload 43 70368761147424 /app/two_factor_auth/views.py changed, reloading.
+INFO 2025-09-22 21:10:50,873 autoreload 47 70368761147424 Watching for file changes with StatReloader
+WARNING 2025-09-22 21:11:04,121 log 47 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:11:04,130 basehttp 47 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+WARNING 2025-09-22 21:11:04,744 log 47 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:11:04,757 basehttp 47 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:11:06,355 basehttp 47 70368987562400 "GET /users/login/ HTTP/1.1" 200 12418
+WARNING 2025-09-22 21:11:06,932 log 47 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:11:06,939 basehttp 47 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:11:09,436 autoreload 47 70368761147424 /app/two_factor_auth/views.py changed, reloading.
+INFO 2025-09-22 21:12:05,078 autoreload 52 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-22 21:16:02,647 basehttp 52 70368987562400 "GET /users/login/ HTTP/1.1" 200 12418
+WARNING 2025-09-22 21:16:03,311 log 52 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:16:03,320 basehttp 52 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:16:39,947 basehttp 52 70368987562400 "POST /users/login/ HTTP/1.1" 200 12440
+WARNING 2025-09-22 21:16:40,416 log 52 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:16:40,422 basehttp 52 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:18:24,420 basehttp 52 70368987562400 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:18:24,642 basehttp 52 70368987562400 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+WARNING 2025-09-22 21:18:25,206 log 52 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:18:25,216 basehttp 52 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:18:46,528 basehttp 52 70368987562400 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:18:47,155 basehttp 52 70369132347808 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:18:47,504 basehttp 52 70369132347808 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-22 21:18:48,660 log 52 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:18:48,679 basehttp 52 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:18:49,389 basehttp 52 70368987562400 "GET /admin/ HTTP/1.1" 200 12826
+INFO 2025-09-22 21:19:15,342 basehttp 52 70369132347808 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:19:16,146 basehttp 52 70368987562400 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:19:16,288 basehttp 52 70369132347808 "GET /admin/ HTTP/1.1" 200 12826
+INFO 2025-09-22 21:19:16,352 basehttp 52 70368987562400 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-22 21:19:16,864 log 52 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:19:16,872 basehttp 52 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:25:28,318 autoreload 57 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-22 21:29:22,361 basehttp 57 70368987349408 "GET /users/login/ HTTP/1.1" 200 12418
+WARNING 2025-09-22 21:29:23,135 log 57 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:29:23,143 basehttp 57 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:29:57,928 basehttp 57 70368987349408 "POST /users/login/ HTTP/1.1" 200 12440
+WARNING 2025-09-22 21:29:58,379 log 57 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:29:58,385 basehttp 57 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:30:58,165 basehttp 57 70368987349408 "POST /users/login/ HTTP/1.1" 200 12440
+WARNING 2025-09-22 21:30:58,665 log 57 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:30:58,672 basehttp 57 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:32:06,217 basehttp 57 70368987349408 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:32:06,407 basehttp 57 70368987349408 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+WARNING 2025-09-22 21:32:06,901 log 57 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:32:06,907 basehttp 57 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:33:03,829 basehttp 57 70368987349408 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:33:04,491 basehttp 57 70369132151200 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:33:04,791 basehttp 57 70369132151200 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-22 21:33:05,936 log 57 70369132151200 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:33:05,955 basehttp 57 70369132151200 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:33:06,585 basehttp 57 70368987349408 "GET /admin/ HTTP/1.1" 200 12826
+INFO 2025-09-22 21:33:09,792 basehttp 57 70368987349408 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:33:09,937 basehttp 57 70368987349408 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-22 21:33:10,478 log 57 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:33:10,486 basehttp 57 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:40:39,639 basehttp 57 70368987349408 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+WARNING 2025-09-22 21:40:40,150 log 57 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:40:40,158 basehttp 57 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:40:50,100 basehttp 57 70368987349408 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:40:50,931 basehttp 57 70369132151200 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:40:51,034 basehttp 57 70368987349408 "GET /admin/ HTTP/1.1" 200 12826
+INFO 2025-09-22 21:40:51,122 basehttp 57 70369132151200 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-22 21:40:51,611 log 57 70369132151200 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:40:51,618 basehttp 57 70369132151200 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:40:53,941 basehttp 57 70369132151200 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+WARNING 2025-09-22 21:40:54,428 log 57 70369132151200 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:40:54,434 basehttp 57 70369132151200 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:40:59,572 basehttp 57 70369132151200 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:40:59,708 basehttp 57 70369132151200 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-22 21:41:00,259 log 57 70369132151200 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:41:00,264 basehttp 57 70369132151200 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:41:05,756 basehttp 57 70369132151200 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:41:05,973 basehttp 57 70369132151200 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:41:06,135 basehttp 57 70369132151200 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-22 21:41:06,633 log 57 70369132151200 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:41:06,641 basehttp 57 70369132151200 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:42:06,822 basehttp 57 70369132151200 "GET /users/login/ HTTP/1.1" 200 12418
+WARNING 2025-09-22 21:42:07,292 log 57 70369132151200 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:42:07,297 basehttp 57 70369132151200 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:43:49,288 basehttp 57 70369132151200 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:43:51,044 basehttp 57 70369132151200 "GET /two_factor/setup/ HTTP/1.1" 200 21430
+WARNING 2025-09-22 21:43:51,566 log 57 70369132151200 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:43:51,573 basehttp 57 70369132151200 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:45:51,658 basehttp 57 70369132151200 "POST /two_factor/setup/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:45:52,657 basehttp 57 70369132151200 "GET /two_factor/setup-complete/ HTTP/1.1" 200 20762
+WARNING 2025-09-22 21:45:53,163 log 57 70369132151200 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:45:53,168 basehttp 57 70369132151200 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:46:02,734 basehttp 57 70369132151200 "GET / HTTP/1.1" 200 22783
+WARNING 2025-09-22 21:46:03,227 log 57 70369132151200 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:46:03,233 basehttp 57 70369132151200 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:46:06,439 basehttp 57 70369132151200 "GET /asientos/ HTTP/1.1" 200 49443
+WARNING 2025-09-22 21:46:06,907 log 57 70369132151200 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:46:06,912 basehttp 57 70369132151200 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:46:08,203 basehttp 57 70369132151200 "GET /asientos/crear/ HTTP/1.1" 200 37938
+WARNING 2025-09-22 21:46:08,729 log 57 70369132151200 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:46:08,735 basehttp 57 70369132151200 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+WARNING 2025-09-22 21:46:10,854 log 57 70369132151200 Not Found: /asientos/api/perfil/501bb865d4a92532cfebb65ee059e4889363eeb28a22ca6fb82165bb17432724/cuentas/
+WARNING 2025-09-22 21:46:10,863 basehttp 57 70369132151200 "GET /asientos/api/perfil/501bb865d4a92532cfebb65ee059e4889363eeb28a22ca6fb82165bb17432724/cuentas/ HTTP/1.1" 404 7035
+INFO 2025-09-22 21:47:33,062 autoreload 57 70368761147424 /app/asientos/urls.py changed, reloading.
+INFO 2025-09-22 21:48:29,457 autoreload 67 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-22 21:53:31,813 basehttp 67 70368987562400 "GET /asientos/crear/ HTTP/1.1" 200 37938
+WARNING 2025-09-22 21:53:32,482 log 67 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:53:32,493 basehttp 67 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:53:35,017 basehttp 67 70368987562400 "GET /asientos/api/perfil/501bb865d4a92532cfebb65ee059e4889363eeb28a22ca6fb82165bb17432724/cuentas/ HTTP/1.1" 200 32
+INFO 2025-09-22 21:53:38,849 basehttp 67 70368987562400 "GET /asientos/api/perfil/9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08/cuentas/ HTTP/1.1" 200 32
+INFO 2025-09-22 21:53:44,509 basehttp 67 70368987562400 "GET /asientos/api/perfil/1/cuentas/ HTTP/1.1" 200 459
+INFO 2025-09-22 21:53:48,223 basehttp 67 70368987562400 "GET /asientos/api/perfil/501bb865d4a92532cfebb65ee059e4889363eeb28a22ca6fb82165bb17432724/cuentas/ HTTP/1.1" 200 32
+INFO 2025-09-22 21:53:51,496 basehttp 67 70369132347808 "GET /perfiles/ HTTP/1.1" 200 27755
+WARNING 2025-09-22 21:53:52,146 log 67 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:53:52,187 basehttp 67 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:53:52,278 basehttp 67 70368987562400 "GET /perfiles/ HTTP/1.1" 200 27755
+WARNING 2025-09-22 21:53:52,805 log 67 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:53:52,813 basehttp 67 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:53:53,323 basehttp 67 70368987562400 "GET /perfiles/crear/ HTTP/1.1" 200 21838
+WARNING 2025-09-22 21:53:53,857 log 67 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:53:53,863 basehttp 67 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:53:57,500 views 67 70368987562400 Perfil 'vbsdcfgsdf' creado exitosamente
+INFO 2025-09-22 21:53:57,529 basehttp 67 70368987562400 "POST /perfiles/crear/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:53:57,847 basehttp 67 70368987562400 "GET /perfiles/ HTTP/1.1" 200 31687
+WARNING 2025-09-22 21:53:58,389 log 67 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:53:58,396 basehttp 67 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:53:59,854 basehttp 67 70368987562400 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 34239
+WARNING 2025-09-22 21:54:00,403 log 67 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:54:00,410 basehttp 67 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:54:01,188 basehttp 67 70368987562400 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 22489
+WARNING 2025-09-22 21:54:01,724 log 67 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:54:01,735 basehttp 67 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:54:07,064 basehttp 67 70368987562400 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=2 HTTP/1.1" 200 72
+INFO 2025-09-22 21:54:12,135 basehttp 67 70368987562400 "POST /plan_cuentas/cuentas/crear/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:54:12,611 basehttp 67 70368987562400 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 36948
+WARNING 2025-09-22 21:54:13,213 log 67 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:54:13,223 basehttp 67 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:54:14,705 basehttp 67 70368987562400 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 36244
+WARNING 2025-09-22 21:54:15,228 log 67 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:54:15,234 basehttp 67 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:54:15,759 basehttp 67 70368987562400 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 22489
+WARNING 2025-09-22 21:54:16,283 log 67 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:54:16,290 basehttp 67 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:54:17,131 basehttp 67 70368987562400 "GET /plan_cuentas/ajax/cuentas-madre/?plan_id=2 HTTP/1.1" 200 137
+INFO 2025-09-22 21:54:24,287 basehttp 67 70368987562400 "POST /plan_cuentas/cuentas/crear/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:54:24,754 basehttp 67 70368987562400 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 38950
+WARNING 2025-09-22 21:54:25,297 log 67 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:54:25,327 basehttp 67 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:54:25,980 basehttp 67 70369132347808 "GET /plan_cuentas/ HTTP/1.1" 200 34258
+WARNING 2025-09-22 21:54:26,498 log 67 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:54:26,504 basehttp 67 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:54:27,260 basehttp 67 70369132347808 "GET /plan_cuentas/crear/ HTTP/1.1" 200 16572
+WARNING 2025-09-22 21:54:27,721 log 67 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:54:27,726 basehttp 67 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:54:32,832 basehttp 67 70369132347808 "POST /plan_cuentas/crear/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:54:33,395 basehttp 67 70369132347808 "GET /plan_cuentas/ HTTP/1.1" 200 38723
+WARNING 2025-09-22 21:54:33,965 log 67 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:54:33,973 basehttp 67 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:54:35,373 basehttp 67 70369132347808 "GET /asientos/ HTTP/1.1" 200 49443
+WARNING 2025-09-22 21:54:35,857 log 67 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:54:35,862 basehttp 67 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:54:36,339 basehttp 67 70369132347808 "GET /asientos/crear/ HTTP/1.1" 200 38203
+WARNING 2025-09-22 21:54:36,899 log 67 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:54:36,906 basehttp 67 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:54:38,747 basehttp 67 70369132347808 "GET /asientos/api/perfil/102199570d76ccb9dcaeb2aef87058aa262119e53e800b6e55a339528ac17984/cuentas/ HTTP/1.1" 200 32
+INFO 2025-09-22 21:54:42,898 basehttp 67 70369132347808 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 38253
+WARNING 2025-09-22 21:54:43,466 log 67 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:54:43,472 basehttp 67 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:54:44,263 basehttp 67 70368987562400 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 22551
+WARNING 2025-09-22 21:54:44,774 log 67 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:54:44,781 basehttp 67 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:54:55,656 basehttp 67 70368987562400 "GET /plan_cuentas/ HTTP/1.1" 200 38026
+WARNING 2025-09-22 21:54:56,177 log 67 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:54:56,205 basehttp 67 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:54:56,516 basehttp 67 70369132347808 "GET /plan_cuentas/crear/ HTTP/1.1" 200 16572
+WARNING 2025-09-22 21:54:57,032 log 67 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:54:57,040 basehttp 67 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:55:01,915 basehttp 67 70369132347808 "POST /plan_cuentas/crear/ HTTP/1.1" 302 0
+INFO 2025-09-22 21:55:02,534 basehttp 67 70369132347808 "GET /plan_cuentas/ HTTP/1.1" 200 42500
+WARNING 2025-09-22 21:55:03,148 log 67 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:55:03,155 basehttp 67 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:55:05,467 basehttp 67 70369132347808 "GET /asientos/ HTTP/1.1" 200 49443
+WARNING 2025-09-22 21:55:06,010 log 67 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:55:06,019 basehttp 67 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:55:07,037 basehttp 67 70369132347808 "GET /asientos/crear/ HTTP/1.1" 200 38203
+WARNING 2025-09-22 21:55:07,583 log 67 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:55:07,590 basehttp 67 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:55:10,319 basehttp 67 70369132347808 "GET /asientos/api/perfil/102199570d76ccb9dcaeb2aef87058aa262119e53e800b6e55a339528ac17984/cuentas/ HTTP/1.1" 200 32
+INFO 2025-09-22 21:59:32,762 basehttp 67 70369132347808 "GET /asientos/crear/ HTTP/1.1" 200 38203
+WARNING 2025-09-22 21:59:33,445 log 67 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 21:59:33,451 basehttp 67 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 21:59:37,002 basehttp 67 70369132347808 "GET /asientos/api/perfil/102199570d76ccb9dcaeb2aef87058aa262119e53e800b6e55a339528ac17984/cuentas/ HTTP/1.1" 200 32
+INFO 2025-09-22 22:02:47,932 autoreload 67 70368761147424 /app/asientos/urls.py changed, reloading.
+INFO 2025-09-22 22:06:46,341 autoreload 21 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-22 22:11:41,019 basehttp 21 70368987562400 "GET /asientos/crear/ HTTP/1.1" 200 38259
+WARNING 2025-09-22 22:11:41,654 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 22:11:41,661 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 22:12:21,785 basehttp 21 70368987562400 "GET /asientos/crear/ HTTP/1.1" 200 38259
+INFO 2025-09-22 22:12:22,007 basehttp 21 70369132347808 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-09-22 22:12:22,300 basehttp 21 70369132347808 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-09-22 22:12:22,360 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 22:12:22,366 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 22:12:29,254 basehttp 21 70368987562400 "GET /asientos/crear/ HTTP/1.1" 200 38259
+INFO 2025-09-22 22:12:29,373 basehttp 21 70369132347808 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-09-22 22:12:29,678 basehttp 21 70369132347808 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-09-22 22:12:29,773 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 22:12:29,778 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 22:12:31,321 basehttp 21 70368987562400 "GET /asientos/crear/ HTTP/1.1" 200 38259
+INFO 2025-09-22 22:12:31,434 basehttp 21 70369132347808 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-09-22 22:12:31,762 basehttp 21 70369132347808 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-09-22 22:12:31,837 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 22:12:31,842 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 22:14:25,302 basehttp 21 70368987562400 "GET /plan_cuentas/ HTTP/1.1" 200 41800
+WARNING 2025-09-22 22:14:25,850 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 22:14:25,855 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 22:14:26,752 basehttp 21 70368987562400 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 38253
+WARNING 2025-09-22 22:14:27,323 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 22:14:27,330 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 22:14:28,996 basehttp 21 70368987562400 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 38253
+INFO 2025-09-22 22:14:29,627 basehttp 21 70368987562400 "GET /plan_cuentas/ HTTP/1.1" 200 41800
+WARNING 2025-09-22 22:14:30,202 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 22:14:30,208 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 22:14:43,233 basehttp 21 70368987562400 "GET /perfiles/ HTTP/1.1" 200 30997
+WARNING 2025-09-22 22:14:43,980 log 21 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 22:14:43,995 basehttp 21 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 22:14:44,504 basehttp 21 70369132347808 "GET /plan_cuentas/ HTTP/1.1" 200 41800
+WARNING 2025-09-22 22:14:44,995 log 21 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 22:14:45,001 basehttp 21 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 22:14:48,920 basehttp 21 70369132347808 "GET /plan_cuentas/crear/ HTTP/1.1" 200 16572
+WARNING 2025-09-22 22:14:49,486 log 21 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 22:14:49,493 basehttp 21 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 22:15:30,299 autoreload 21 70368761147424 /app/asientos/views.py changed, reloading.
+INFO 2025-09-22 22:16:29,534 autoreload 27 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-22 22:22:42,983 autoreload 27 70368761147424 /app/asientos/views.py changed, reloading.
+INFO 2025-09-22 22:23:38,065 autoreload 31 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-22 22:24:11,949 basehttp 31 70368987562400 "GET /plan_cuentas/crear/ HTTP/1.1" 200 16572
+WARNING 2025-09-22 22:24:12,668 log 31 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 22:24:12,677 basehttp 31 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 22:24:15,683 basehttp 31 70368987562400 "GET /asientos/ HTTP/1.1" 200 49443
+WARNING 2025-09-22 22:24:16,987 log 31 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 22:24:16,999 basehttp 31 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 22:24:18,307 basehttp 31 70368987562400 "GET /asientos/crear/ HTTP/1.1" 200 38259
+WARNING 2025-09-22 22:24:18,909 log 31 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 22:24:18,918 basehttp 31 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 22:24:27,344 basehttp 31 70368987562400 "GET /asientos/crear/ HTTP/1.1" 200 38259
+WARNING 2025-09-22 22:24:27,924 log 31 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 22:24:27,932 basehttp 31 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 22:33:12,266 autoreload 51 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-22 22:35:52,542 basehttp 51 70368987349408 "GET /asientos/ HTTP/1.1" 200 49443
+WARNING 2025-09-22 22:35:53,278 log 51 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 22:35:53,288 basehttp 51 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 22:35:56,055 basehttp 51 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 38259
+WARNING 2025-09-22 22:35:56,782 log 51 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 22:35:56,791 basehttp 51 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 23:19:42,959 basehttp 51 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 38259
+WARNING 2025-09-22 23:19:43,497 log 51 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 23:19:43,505 basehttp 51 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-22 23:40:12,137 basehttp 51 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 38259
+WARNING 2025-09-22 23:40:12,644 log 51 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-22 23:40:12,651 basehttp 51 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:01:26,293 basehttp 51 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 40473
+WARNING 2025-09-23 00:01:26,803 log 51 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 00:01:26,809 basehttp 51 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:01:30,504 basehttp 51 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 40473
+INFO 2025-09-23 00:01:30,675 basehttp 51 70369132183968 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-09-23 00:01:31,060 log 51 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2025-09-23 00:01:31,064 basehttp 51 70369132183968 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-09-23 00:01:31,068 basehttp 51 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:01:49,858 basehttp 51 70368987349408 "GET /plan_cuentas/ HTTP/1.1" 200 41800
+WARNING 2025-09-23 00:01:50,413 log 51 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 00:01:50,420 basehttp 51 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:02:01,980 basehttp 51 70368987349408 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 44303
+WARNING 2025-09-23 00:02:02,430 log 51 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 00:02:02,434 basehttp 51 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:02:04,666 basehttp 51 70368987349408 "GET /plan_cuentas/ HTTP/1.1" 200 41800
+WARNING 2025-09-23 00:02:05,175 log 51 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 00:02:05,181 basehttp 51 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:02:06,215 basehttp 51 70368987349408 "GET /plan_cuentas/cuentas/?plan_cuentas=2 HTTP/1.1" 200 44303
+WARNING 2025-09-23 00:02:06,683 log 51 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 00:02:06,688 basehttp 51 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:02:11,371 basehttp 51 70368987349408 "GET /plan_cuentas/ HTTP/1.1" 200 41800
+WARNING 2025-09-23 00:02:11,878 log 51 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 00:02:11,885 basehttp 51 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:02:13,271 basehttp 51 70368987349408 "GET /plan_cuentas/editar/2/ HTTP/1.1" 200 16431
+WARNING 2025-09-23 00:02:13,785 log 51 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 00:02:13,791 basehttp 51 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:02:19,211 basehttp 51 70368987349408 "GET /plan_cuentas/ HTTP/1.1" 200 41800
+WARNING 2025-09-23 00:02:19,728 log 51 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 00:02:19,735 basehttp 51 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:02:21,126 basehttp 51 70368987349408 "GET /plan_cuentas/editar/2/ HTTP/1.1" 200 16431
+WARNING 2025-09-23 00:02:21,682 log 51 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 00:02:21,688 basehttp 51 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:02:27,016 basehttp 51 70368987349408 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 44303
+WARNING 2025-09-23 00:02:27,547 log 51 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 00:02:27,554 basehttp 51 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:02:28,757 basehttp 51 70368987349408 "GET /plan_cuentas/cuentas/crear/ HTTP/1.1" 200 22616
+WARNING 2025-09-23 00:02:29,250 log 51 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 00:02:29,256 basehttp 51 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:02:41,902 basehttp 51 70369132183968 "GET /asientos/ HTTP/1.1" 200 49443
+WARNING 2025-09-23 00:02:42,458 log 51 70369132183968 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 00:02:42,468 basehttp 51 70369132183968 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:02:52,807 basehttp 51 70369132183968 "GET /perfiles/ HTTP/1.1" 200 30997
+WARNING 2025-09-23 00:02:53,451 log 51 70369132183968 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 00:02:53,496 basehttp 51 70369132183968 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:02:53,927 basehttp 51 70368987349408 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 44303
+WARNING 2025-09-23 00:02:54,454 log 51 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 00:02:54,461 basehttp 51 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:02:55,593 basehttp 51 70368987349408 "GET /asientos/ HTTP/1.1" 200 49443
+WARNING 2025-09-23 00:02:56,079 log 51 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 00:02:56,085 basehttp 51 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:02:57,215 basehttp 51 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 44774
+WARNING 2025-09-23 00:02:57,767 log 51 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 00:02:57,775 basehttp 51 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:03:24,536 basehttp 51 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 44774
+WARNING 2025-09-23 00:03:24,989 log 51 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 00:03:25,018 basehttp 51 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:29:36,899 autoreload 54 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-23 00:34:52,577 basehttp 54 70368987349408 "GET / HTTP/1.1" 200 22783
+WARNING 2025-09-23 00:34:53,370 log 54 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 00:34:53,381 basehttp 54 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:36:04,929 basehttp 54 70368987349408 "GET /asientos/ HTTP/1.1" 200 49443
+WARNING 2025-09-23 00:36:05,480 log 54 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 00:36:05,489 basehttp 54 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:36:06,594 basehttp 54 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 44774
+WARNING 2025-09-23 00:36:07,064 log 54 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 00:36:07,076 basehttp 54 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:39:08,680 basehttp 54 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 44774
+WARNING 2025-09-23 00:39:09,167 log 54 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 00:39:09,174 basehttp 54 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 00:41:27,046 autoreload 56568 428 Watching for file changes with StatReloader
+INFO 2025-09-23 01:11:34,370 autoreload 44 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-23 01:23:53,633 autoreload 24 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-23 01:24:44,592 basehttp 24 70368987562400 "GET /asientos/crear/ HTTP/1.1" 200 44725
+WARNING 2025-09-23 01:24:45,246 log 24 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 01:24:45,254 basehttp 24 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 01:31:04,050 autoreload 54 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-23 01:51:22,209 basehttp 54 70368987562400 "GET / HTTP/1.1" 200 22783
+WARNING 2025-09-23 01:51:22,952 log 54 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 01:51:22,960 basehttp 54 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 01:51:25,174 basehttp 54 70368987562400 "GET /asientos/ HTTP/1.1" 200 49443
+WARNING 2025-09-23 01:51:25,773 log 54 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 01:51:25,782 basehttp 54 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 01:51:26,646 basehttp 54 70368987562400 "GET /asientos/crear/ HTTP/1.1" 200 44725
+WARNING 2025-09-23 01:51:27,179 log 54 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 01:51:27,190 basehttp 54 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 01:56:27,238 autoreload 24 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-23 08:34:41,609 basehttp 24 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 44725
+WARNING 2025-09-23 08:34:42,299 log 24 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 08:34:42,313 basehttp 24 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 08:34:42,883 basehttp 24 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 44725
+WARNING 2025-09-23 08:34:43,426 log 24 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 08:34:43,435 basehttp 24 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 08:36:38,993 basehttp 24 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 44725
+WARNING 2025-09-23 08:36:39,496 log 24 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 08:36:39,503 basehttp 24 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 13:25:38,480 autoreload 54 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-23 19:37:40,714 basehttp 54 70368987562400 "GET /asientos/api/perfil/1/cuentas/ HTTP/1.1" 302 0
+INFO 2025-09-23 19:37:51,466 basehttp 54 70368987562400 "GET /asientos/api/perfil/1/cuentas/ HTTP/1.1" 302 0
+INFO 2025-09-23 19:56:24,947 autoreload 25 70368761147424 Watching for file changes with StatReloader
+WARNING 2025-09-23 20:01:41,744 log 25 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 20:01:41,752 basehttp 25 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+WARNING 2025-09-23 20:01:42,114 log 25 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 20:01:42,121 basehttp 25 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 20:15:03,812 basehttp 25 70368987349408 "GET /asientos/crear/ HTTP/1.1" 302 0
+INFO 2025-09-23 20:15:04,149 basehttp 25 70368987349408 "GET /users/login/?next=/asientos/crear/ HTTP/1.1" 200 12418
+INFO 2025-09-23 20:15:04,365 basehttp 25 70369131102624 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-09-23 20:15:04,686 log 25 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 20:15:04,696 basehttp 25 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+WARNING 2025-09-23 20:15:05,279 log 25 70368987349408 Not Found: /favicon.ico
+WARNING 2025-09-23 20:15:05,286 basehttp 25 70368987349408 "GET /favicon.ico HTTP/1.1" 404 3782
+INFO 2025-09-23 20:15:45,305 basehttp 25 70369131102624 "POST /users/login/ HTTP/1.1" 200 12440
+WARNING 2025-09-23 20:15:45,803 log 25 70369131102624 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 20:15:45,810 basehttp 25 70369131102624 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 20:50:49,580 basehttp 25 70369131102624 "POST /users/login/ HTTP/1.1" 200 12440
+WARNING 2025-09-23 20:50:50,084 log 25 70369131102624 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 20:50:50,105 basehttp 25 70369131102624 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+WARNING 2025-09-23 20:50:50,401 log 25 70368987349408 Not Found: /favicon.ico
+WARNING 2025-09-23 20:50:50,408 basehttp 25 70368987349408 "GET /favicon.ico HTTP/1.1" 404 3782
+INFO 2025-09-23 21:54:35,197 autoreload 96 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-23 22:54:00,183 basehttp 96 70368987349408 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-09-23 22:54:00,739 basehttp 96 70368987349408 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+INFO 2025-09-23 22:54:01,019 basehttp 96 70369131086240 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-09-23 22:54:01,606 log 96 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 22:54:01,616 basehttp 96 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+WARNING 2025-09-23 22:54:02,074 log 96 70369131086240 Not Found: /favicon.ico
+WARNING 2025-09-23 22:54:02,082 basehttp 96 70369131086240 "GET /favicon.ico HTTP/1.1" 404 3782
+INFO 2025-09-23 22:54:07,187 basehttp 96 70369131086240 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-23 22:54:08,041 basehttp 96 70368987349408 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-23 22:54:08,399 basehttp 96 70368987349408 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-23 22:54:09,584 log 96 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 22:54:09,600 basehttp 96 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 22:54:10,239 basehttp 96 70369131086240 "GET /admin/ HTTP/1.1" 200 12826
+INFO 2025-09-23 22:54:14,418 basehttp 96 70368987349408 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-23 22:54:14,580 basehttp 96 70368987349408 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-23 22:54:15,102 log 96 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 22:54:15,109 basehttp 96 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 22:54:18,949 basehttp 96 70368987349408 "POST /two_factor/verify/ HTTP/1.1" 302 0
+INFO 2025-09-23 22:54:19,078 basehttp 96 70368987349408 "GET /two_factor/verify/ HTTP/1.1" 200 10013
+WARNING 2025-09-23 22:54:19,588 log 96 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 22:54:19,595 basehttp 96 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 23:05:21,274 autoreload 31 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-23 23:07:10,702 basehttp 31 70368987349408 "GET / HTTP/1.1" 200 22783
+INFO 2025-09-23 23:07:14,860 basehttp 31 70368987349408 "GET /asientos/ HTTP/1.1" 200 49443
+INFO 2025-09-23 23:07:16,608 basehttp 31 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46128
+WARNING 2025-09-23 23:07:24,165 log 31 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 23:07:24,174 basehttp 31 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 23:07:25,506 basehttp 31 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46128
+INFO 2025-09-23 23:07:25,657 basehttp 31 70369132134816 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-09-23 23:07:26,041 basehttp 31 70369132134816 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-09-23 23:07:26,110 log 31 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 23:07:26,118 basehttp 31 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 23:07:43,883 basehttp 31 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46128
+INFO 2025-09-23 23:07:44,050 basehttp 31 70369132134816 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-09-23 23:07:44,412 basehttp 31 70369132134816 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-09-23 23:07:44,520 log 31 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 23:07:44,527 basehttp 31 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 23:08:01,889 basehttp 31 70368987349408 "GET /plan_cuentas/ HTTP/1.1" 200 41800
+WARNING 2025-09-23 23:08:02,482 log 31 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 23:08:02,491 basehttp 31 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 23:08:03,788 basehttp 31 70369132134816 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 44303
+WARNING 2025-09-23 23:08:04,373 log 31 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 23:08:04,379 basehttp 31 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 23:08:05,575 basehttp 31 70369132134816 "GET /asientos/ HTTP/1.1" 200 49443
+WARNING 2025-09-23 23:08:06,101 log 31 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 23:08:06,107 basehttp 31 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 23:08:07,251 basehttp 31 70369132134816 "GET /asientos/crear/ HTTP/1.1" 200 46128
+WARNING 2025-09-23 23:08:07,860 log 31 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-23 23:08:07,868 basehttp 31 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-23 23:10:18,198 autoreload 31 70368761147424 /app/asientos_detalle/forms.py changed, reloading.
+INFO 2025-09-23 23:11:22,389 autoreload 37 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-23 23:47:29,197 autoreload 68 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-24 00:27:22,994 basehttp 68 70368987562400 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 44303
+WARNING 2025-09-24 00:27:23,677 log 68 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-24 00:27:23,684 basehttp 68 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-24 00:37:55,099 autoreload 68 70368761147424 /app/asientos_contables/settings.py changed, reloading.
+INFO 2025-09-24 00:42:02,519 autoreload 24 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-24 01:10:49,021 basehttp 24 70368987349408 "HEAD / HTTP/1.1" 302 0
+INFO 2025-09-24 01:10:49,512 basehttp 24 70368987349408 "HEAD /users/login/?next=/ HTTP/1.1" 200 0
+INFO 2025-09-24 08:58:57,894 basehttp 24 70368987349408 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 44303
+WARNING 2025-09-24 08:58:58,635 log 24 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-24 08:58:58,643 basehttp 24 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-24 08:59:00,435 basehttp 24 70368987349408 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 44303
+WARNING 2025-09-24 08:59:01,284 log 24 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-24 08:59:01,338 basehttp 24 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-24 08:59:01,470 basehttp 24 70369131102624 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 44303
+WARNING 2025-09-24 08:59:02,011 log 24 70369131102624 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-24 08:59:02,020 basehttp 24 70369131102624 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-24 08:59:05,181 basehttp 24 70369131102624 "GET /asientos/ HTTP/1.1" 200 49443
+WARNING 2025-09-24 08:59:05,703 log 24 70369131102624 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-24 08:59:05,710 basehttp 24 70369131102624 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-24 08:59:08,044 basehttp 24 70369131102624 "GET /asientos/crear/ HTTP/1.1" 200 46128
+WARNING 2025-09-24 08:59:08,572 log 24 70369131102624 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-24 08:59:08,578 basehttp 24 70369131102624 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-24 08:59:36,708 basehttp 24 70369131102624 "GET /asientos/crear/ HTTP/1.1" 200 46128
+WARNING 2025-09-24 08:59:37,214 log 24 70369131102624 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-24 08:59:37,221 basehttp 24 70369131102624 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+WARNING 2025-09-24 09:06:48,986 log 24 70369274839456 Not Found: /asientos/create/
+WARNING 2025-09-24 09:06:48,994 basehttp 24 70369274839456 "GET /asientos/create/ HTTP/1.1" 404 6804
+INFO 2025-09-24 09:06:52,625 basehttp 24 70369274839456 "GET /asientos/crear/ HTTP/1.1" 302 0
+INFO 2025-09-24 09:06:52,814 basehttp 24 70369274839456 "GET /users/login/?next=/asientos/crear/ HTTP/1.1" 200 12418
+INFO 2025-09-24 09:07:21,467 basehttp 24 70369274839456 "GET /asientos/crear/ HTTP/1.1" 302 0
+INFO 2025-09-24 09:07:21,605 basehttp 24 70369274839456 "GET /users/login/?next=/asientos/crear/ HTTP/1.1" 200 12418
+INFO 2025-09-24 09:08:55,420 basehttp 24 70368987349408 "GET /asientos/crear/ HTTP/1.1" 302 0
+INFO 2025-09-24 09:08:55,473 basehttp 24 70368987349408 "GET /users/login/?next=/asientos/crear/ HTTP/1.1" 200 12418
+INFO 2025-09-24 19:56:56,629 autoreload 24 70368761147424 /app/asientos_detalle/forms.py changed, reloading.
+INFO 2025-09-24 19:57:52,654 autoreload 69 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-24 20:13:39,856 basehttp 69 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46517
+WARNING 2025-09-24 20:13:40,675 log 69 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-24 20:13:40,688 basehttp 69 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-24 20:39:18,265 basehttp 69 70368987349408 "GET / HTTP/1.1" 302 0
+INFO 2025-09-24 21:01:21,081 autoreload 54 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-24 21:07:17,400 basehttp 54 70368987349408 "GET /plan_cuentas/ HTTP/1.1" 200 41800
+WARNING 2025-09-24 21:07:18,175 log 54 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-24 21:07:18,184 basehttp 54 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-24 21:07:19,450 basehttp 54 70368987349408 "GET /plan_cuentas/crear/ HTTP/1.1" 200 16572
+WARNING 2025-09-24 21:07:19,927 log 54 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-24 21:07:19,934 basehttp 54 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-24 21:07:21,065 basehttp 54 70368987349408 "GET /plan_cuentas/ HTTP/1.1" 200 41800
+WARNING 2025-09-24 21:07:21,843 log 54 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-24 21:07:21,900 basehttp 54 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-24 21:07:22,669 basehttp 54 70369132151200 "GET /asientos/ HTTP/1.1" 200 49443
+WARNING 2025-09-24 21:07:23,215 log 54 70369132151200 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-24 21:07:23,223 basehttp 54 70369132151200 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-24 21:07:23,838 basehttp 54 70369132151200 "GET /asientos/crear/ HTTP/1.1" 200 46517
+WARNING 2025-09-24 21:07:24,339 log 54 70369132151200 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-24 21:07:24,345 basehttp 54 70369132151200 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-24 21:08:05,021 basehttp 54 70369132151200 "GET /asientos/crear/ HTTP/1.1" 200 46517
+INFO 2025-09-24 21:08:05,163 basehttp 54 70368987349408 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-09-24 21:08:05,628 log 54 70369132151200 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2025-09-24 21:08:05,634 basehttp 54 70368987349408 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-09-24 21:08:05,638 basehttp 54 70369132151200 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-24 21:08:06,407 basehttp 54 70369132151200 "GET /asientos/crear/ HTTP/1.1" 200 46517
+INFO 2025-09-24 21:08:06,533 basehttp 54 70368987349408 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-09-24 21:08:06,943 basehttp 54 70368987349408 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-09-24 21:08:06,949 log 54 70369132151200 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-24 21:08:06,957 basehttp 54 70369132151200 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-24 21:13:26,430 autoreload 67 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-25 19:24:02,320 basehttp 67 70368987562400 "GET /asientos/crear/ HTTP/1.1" 302 0
+INFO 2025-09-25 19:41:38,884 basehttp 67 70368987562400 "GET /asientos/crear/ HTTP/1.1" 200 46874
+INFO 2025-09-25 19:41:39,156 basehttp 67 70369131315616 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-09-25 19:41:39,544 basehttp 67 70369131315616 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-09-25 19:41:39,637 log 67 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-25 19:41:39,643 basehttp 67 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-25 19:41:52,229 basehttp 67 70368987562400 "GET /asientos/crear/ HTTP/1.1" 200 46874
+INFO 2025-09-25 19:41:52,351 basehttp 67 70369131315616 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-09-25 19:41:52,795 log 67 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2025-09-25 19:41:52,801 basehttp 67 70369131315616 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-09-25 19:41:52,805 basehttp 67 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-25 19:48:55,254 autoreload 54 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-25 20:14:44,946 basehttp 54 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46874
+WARNING 2025-09-25 20:14:45,618 log 54 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-25 20:14:45,626 basehttp 54 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-25 20:14:51,498 basehttp 54 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46874
+INFO 2025-09-25 20:14:52,225 basehttp 54 70369132134816 "GET /asientos/crear/ HTTP/1.1" 200 46874
+WARNING 2025-09-25 20:14:52,276 log 54 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-25 20:14:52,284 basehttp 54 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+WARNING 2025-09-25 20:14:52,809 log 54 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-25 20:14:52,819 basehttp 54 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-25 20:16:48,273 basehttp 54 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46874
+INFO 2025-09-25 20:16:48,400 basehttp 54 70369132134816 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-09-25 20:16:48,764 log 54 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-25 20:16:48,770 basehttp 54 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-25 20:16:48,901 basehttp 54 70368987349408 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+INFO 2025-09-25 20:22:07,432 basehttp 54 70369132134816 "GET /asientos/crear/ HTTP/1.1" 200 46874
+WARNING 2025-09-25 20:22:07,946 log 54 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-25 20:22:07,952 basehttp 54 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-25 20:23:15,062 basehttp 54 70369132134816 "GET /asientos/crear/ HTTP/1.1" 200 46874
+WARNING 2025-09-25 20:23:15,590 log 54 70369132134816 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-25 20:23:15,597 basehttp 54 70369132134816 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+ERROR 2025-09-25 22:36:50,986 exception 54 70369132134816 Invalid HTTP_HOST header: 'web:8000'. You may need to add 'web' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/http/request.py", line 167, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'web:8000'. You may need to add 'web' to ALLOWED_HOSTS.
+WARNING 2025-09-25 22:36:52,272 log 54 70369132134816 Bad Request: /asientos/perfil/1/cuentas/
+WARNING 2025-09-25 22:36:52,283 basehttp 54 70369132134816 "GET /asientos/perfil/1/cuentas/ HTTP/1.1" 400 66239
+ERROR 2025-09-25 22:38:39,668 exception 54 70369132134816 Invalid HTTP_HOST header: 'web:8000'. You may need to add 'web' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/http/request.py", line 167, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'web:8000'. You may need to add 'web' to ALLOWED_HOSTS.
+WARNING 2025-09-25 22:38:41,137 log 54 70369132134816 Bad Request: /asientos/perfil/1/cuentas/
+WARNING 2025-09-25 22:38:41,145 basehttp 54 70369132134816 "GET /asientos/perfil/1/cuentas/ HTTP/1.1" 400 66239
+INFO 2025-09-25 22:40:38,932 autoreload 54 70368761147424 /app/asientos/views.py changed, reloading.
+INFO 2025-09-25 22:41:42,322 autoreload 146 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-25 23:25:00,112 basehttp 146 70368987349408 "GET /asientos/perfil/1/cuentas/ HTTP/1.1" 200 459
+INFO 2025-09-25 23:25:09,171 autoreload 146 70368761147424 /app/asientos/views.py changed, reloading.
+INFO 2025-09-25 23:26:16,127 autoreload 165 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-25 23:59:59,492 basehttp 165 70368987562400 "GET /asientos/crear/ HTTP/1.1" 200 46874
+WARNING 2025-09-26 00:00:00,215 log 165 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 00:00:00,224 basehttp 165 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 00:00:06,117 basehttp 165 70368987562400 "GET /asientos/crear/ HTTP/1.1" 200 46874
+INFO 2025-09-26 00:00:06,258 basehttp 165 70368987562400 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-09-26 00:00:06,719 basehttp 165 70368987562400 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-09-26 00:00:06,787 log 165 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 00:00:06,801 basehttp 165 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 00:00:11,207 basehttp 165 70369132347808 "GET /asientos/crear/ HTTP/1.1" 200 46874
+INFO 2025-09-26 00:00:11,366 basehttp 165 70368987562400 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-09-26 00:00:11,725 basehttp 165 70368987562400 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-09-26 00:00:11,843 log 165 70369132347808 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 00:00:11,850 basehttp 165 70369132347808 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 00:42:03,276 autoreload 55 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-26 00:44:03,906 basehttp 55 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46874
+WARNING 2025-09-26 00:44:04,589 log 55 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 00:44:04,598 basehttp 55 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 00:44:08,650 basehttp 55 70368987349408 "GET /asientos/ HTTP/1.1" 200 49443
+WARNING 2025-09-26 00:44:09,203 log 55 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 00:44:09,209 basehttp 55 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 00:44:10,823 basehttp 55 70368987349408 "GET /perfiles/ HTTP/1.1" 200 30997
+WARNING 2025-09-26 00:44:11,455 log 55 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 00:44:11,464 basehttp 55 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 00:44:12,379 basehttp 55 70368987349408 "GET /asientos/ HTTP/1.1" 200 49443
+WARNING 2025-09-26 00:44:12,986 log 55 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 00:44:13,001 basehttp 55 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 00:44:13,433 basehttp 55 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46874
+WARNING 2025-09-26 00:44:14,008 log 55 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 00:44:14,015 basehttp 55 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 01:20:28,620 basehttp 55 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46874
+WARNING 2025-09-26 01:20:29,224 log 55 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 01:20:29,235 basehttp 55 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 01:21:56,102 basehttp 55 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46874
+WARNING 2025-09-26 01:21:56,722 log 55 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 01:21:56,730 basehttp 55 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 01:22:48,374 basehttp 55 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46874
+INFO 2025-09-26 01:22:48,553 basehttp 55 70369132151200 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-09-26 01:22:49,008 log 55 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 01:22:49,020 basehttp 55 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 01:22:49,034 basehttp 55 70369132151200 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+INFO 2025-09-26 01:30:51,809 basehttp 55 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46874
+INFO 2025-09-26 01:30:52,339 basehttp 55 70369132151200 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-09-26 01:30:52,454 log 55 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 01:30:52,465 basehttp 55 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 01:32:21,032 basehttp 55 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46874
+WARNING 2025-09-26 01:32:21,625 log 55 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 01:32:21,631 basehttp 55 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 01:32:24,302 basehttp 55 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46874
+WARNING 2025-09-26 01:32:24,945 log 55 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 01:32:24,952 basehttp 55 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 01:32:25,196 basehttp 55 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46874
+INFO 2025-09-26 01:32:25,380 basehttp 55 70369132151200 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-09-26 01:32:25,800 log 55 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 01:32:25,811 basehttp 55 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 01:32:25,837 basehttp 55 70369132151200 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+INFO 2025-09-26 17:00:46,287 basehttp 55 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46874
+WARNING 2025-09-26 17:00:46,874 log 55 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 17:00:46,881 basehttp 55 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 17:00:52,303 basehttp 55 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46874
+WARNING 2025-09-26 17:00:52,791 log 55 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 17:00:52,798 basehttp 55 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 18:58:35,322 basehttp 55 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46874
+WARNING 2025-09-26 18:58:35,865 log 55 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 18:58:35,870 basehttp 55 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 18:58:38,794 basehttp 55 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46874
+INFO 2025-09-26 18:58:38,929 basehttp 55 70369132151200 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-09-26 18:58:39,313 log 55 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 18:58:39,319 basehttp 55 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 18:58:39,374 basehttp 55 70368987349408 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+INFO 2025-09-26 19:03:09,094 autoreload 54 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-26 19:06:20,946 basehttp 54 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46874
+WARNING 2025-09-26 19:06:21,641 log 54 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 19:06:21,654 basehttp 54 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 19:06:26,650 basehttp 54 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46874
+INFO 2025-09-26 19:06:26,854 basehttp 54 70369132134816 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-09-26 19:06:27,306 log 54 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 19:06:27,316 basehttp 54 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 19:06:27,320 basehttp 54 70369132134816 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+INFO 2025-09-26 19:17:52,793 basehttp 54 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46874
+WARNING 2025-09-26 19:17:53,434 log 54 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 19:17:53,443 basehttp 54 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-26 19:22:31,411 autoreload 54 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-26 19:37:29,200 basehttp 54 70368987562400 "GET /asientos/crear/ HTTP/1.1" 200 46874
+WARNING 2025-09-26 19:37:29,866 log 54 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-26 19:37:29,874 basehttp 54 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-27 18:34:22,170 basehttp 54 70368987562400 "GET /asientos/crear/ HTTP/1.1" 200 46874
+INFO 2025-09-27 18:34:22,294 basehttp 54 70368987562400 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-09-27 18:34:22,719 log 54 70369132364192 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-27 18:34:22,728 basehttp 54 70369132364192 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-27 18:34:31,526 basehttp 54 70369132364192 "GET /asientos/crear/ HTTP/1.1" 200 46874
+INFO 2025-09-27 18:34:31,661 basehttp 54 70369132364192 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-09-27 18:34:32,072 basehttp 54 70369132364192 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-09-27 18:34:32,140 log 54 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-27 18:34:32,147 basehttp 54 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-27 18:34:32,716 basehttp 54 70369132364192 "GET /asientos/crear/ HTTP/1.1" 200 46874
+INFO 2025-09-27 18:34:32,805 basehttp 54 70369132364192 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-09-27 18:34:33,187 basehttp 54 70369132364192 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-09-27 18:34:33,320 log 54 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-27 18:34:33,348 basehttp 54 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-27 18:34:33,524 basehttp 54 70369132364192 "GET /asientos/crear/ HTTP/1.1" 200 46874
+INFO 2025-09-27 18:34:33,624 basehttp 54 70369132364192 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-09-27 18:34:33,980 basehttp 54 70369132364192 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-09-27 18:34:34,039 log 54 70368987562400 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-27 18:34:34,044 basehttp 54 70368987562400 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-27 18:34:35,771 basehttp 54 70368987562400 "GET /asientos/crear/ HTTP/1.1" 200 46874
+INFO 2025-09-27 18:34:35,929 basehttp 54 70368987562400 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-09-27 18:34:36,465 basehttp 54 70369417757088 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+INFO 2025-09-27 18:34:37,314 basehttp 54 70369417757088 "GET /asientos/crear/ HTTP/1.1" 200 46874
+WARNING 2025-09-27 18:34:37,327 log 54 70369132364192 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-27 18:34:37,358 basehttp 54 70369132364192 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-27 18:34:37,435 basehttp 54 70369417757088 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-09-27 18:34:37,835 basehttp 54 70369417757088 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-09-27 18:34:37,945 log 54 70369132364192 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-27 18:34:37,952 basehttp 54 70369132364192 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-27 18:40:51,514 autoreload 55 70368761147424 Watching for file changes with StatReloader
+INFO 2025-09-27 18:44:23,198 basehttp 55 70368987349408 "GET /asientos/crear/ HTTP/1.1" 200 46874
+INFO 2025-09-27 18:44:23,365 basehttp 55 70368987349408 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-09-27 18:44:23,960 basehttp 55 70369273774496 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-09-27 18:44:24,410 log 55 70369131086240 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-27 18:44:24,505 basehttp 55 70369131086240 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-27 18:44:25,012 basehttp 55 70369131086240 "GET /asientos/crear/ HTTP/1.1" 200 46874
+INFO 2025-09-27 18:44:25,108 basehttp 55 70369131086240 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+INFO 2025-09-27 18:44:25,506 basehttp 55 70369131086240 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-09-27 18:44:25,629 log 55 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-27 18:44:25,637 basehttp 55 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-27 19:06:05,933 basehttp 55 70369131086240 "GET /asientos/crear/ HTTP/1.1" 200 46955
+WARNING 2025-09-27 19:06:06,513 log 55 70369131086240 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-27 19:06:06,519 basehttp 55 70369131086240 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-27 19:16:29,380 basehttp 55 70369131086240 "GET /asientos/crear/ HTTP/1.1" 200 46574
+WARNING 2025-09-27 19:16:29,911 log 55 70369131086240 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-27 19:16:29,918 basehttp 55 70369131086240 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-27 19:16:31,235 basehttp 55 70369131086240 "GET /asientos/crear/ HTTP/1.1" 200 46574
+INFO 2025-09-27 19:16:31,376 basehttp 55 70369131086240 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-09-27 19:16:31,859 log 55 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2025-09-27 19:16:31,867 basehttp 55 70369131086240 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-09-27 19:16:31,870 basehttp 55 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-27 19:25:55,101 basehttp 55 70369131086240 "GET /asientos/crear/ HTTP/1.1" 200 46577
+INFO 2025-09-27 19:25:55,204 basehttp 55 70369131086240 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-09-27 19:25:55,688 log 55 70368987349408 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-27 19:25:55,698 basehttp 55 70368987349408 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-09-27 19:25:55,775 basehttp 55 70369131086240 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+INFO 2025-09-27 19:25:59,731 basehttp 55 70369131086240 "GET /asientos/api/perfil/1/cuentas/ HTTP/1.1" 200 459
+INFO 2025-09-27 19:26:05,236 basehttp 55 70369131086240 "GET / HTTP/1.1" 200 22783
+WARNING 2025-09-27 19:26:05,711 log 55 70369131086240 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-27 19:26:05,717 basehttp 55 70369131086240 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-10-02 18:58:12,303 autoreload 54 70368761147424 Watching for file changes with StatReloader
+INFO 2025-10-02 19:03:19,078 basehttp 54 70368987349408 "GET / HTTP/1.1" 302 0
+INFO 2025-10-02 19:03:19,946 basehttp 54 70368987349408 "GET /users/login/?next=/ HTTP/1.1" 200 12418
+INFO 2025-10-02 19:03:20,080 basehttp 54 70368987349408 "GET /static/css/tailwind-custom.css HTTP/1.1" 200 8307
+WARNING 2025-10-02 19:03:24,016 log 54 70368987349408 Not Found: /favicon.ico
+WARNING 2025-10-02 19:03:24,029 basehttp 54 70368987349408 "GET /favicon.ico HTTP/1.1" 404 3782
+INFO 2025-10-02 19:05:18,109 basehttp 54 70368987349408 "POST /users/login/ HTTP/1.1" 200 12440
+INFO 2025-10-02 19:06:24,140 basehttp 54 70369131086240 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-10-02 19:06:26,015 basehttp 54 70369131086240 "GET /two_factor/setup/ HTTP/1.1" 200 21414
+INFO 2025-10-02 19:07:02,789 basehttp 54 70369131086240 "POST /two_factor/setup/ HTTP/1.1" 302 0
+INFO 2025-10-02 19:07:03,231 basehttp 54 70369131086240 "GET /two_factor/setup-complete/ HTTP/1.1" 200 20762
+INFO 2025-10-02 19:07:07,485 basehttp 54 70369131086240 "GET / HTTP/1.1" 200 22783
+INFO 2025-10-02 19:07:07,794 basehttp 54 70369131086240 "GET /static/img/favicon.ico HTTP/1.1" 200 264
+WARNING 2025-10-02 19:07:31,720 log 54 70369131086240 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-02 19:07:31,729 basehttp 54 70369131086240 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3893
+INFO 2025-10-02 19:08:23,396 basehttp 54 70369131086240 "GET /asientos/ HTTP/1.1" 200 49443
+INFO 2025-10-02 19:08:39,594 basehttp 54 70369131086240 "GET /asientos/crear/ HTTP/1.1" 200 46577
+INFO 2025-10-02 19:08:45,606 basehttp 54 70369131086240 "GET /plan_cuentas/ HTTP/1.1" 200 41800
+INFO 2025-10-02 19:09:00,847 basehttp 54 70369131086240 "GET /plan_cuentas/cuentas/ HTTP/1.1" 200 44303
+INFO 2025-10-02 19:09:00,963 basehttp 54 70369131086240 "GET /static/css/plan-cuentas.css HTTP/1.1" 200 12660
+INFO 2025-10-02 19:09:14,899 basehttp 54 70369131086240 "GET /perfiles/ HTTP/1.1" 200 30997
+INFO 2025-10-02 19:09:14,987 basehttp 54 70369131086240 "GET /static/css/perfiles.css HTTP/1.1" 200 2817
+INFO 2025-10-02 19:09:15,007 basehttp 54 70368987349408 "GET /static/js/perfiles.js HTTP/1.1" 200 9709
+INFO 2025-10-02 19:09:16,526 basehttp 54 70368987349408 "GET /empresas/ HTTP/1.1" 200 27593
+INFO 2025-10-02 19:09:20,351 basehttp 54 70368987349408 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-10-02 19:09:20,400 basehttp 54 70368987349408 "GET / HTTP/1.1" 302 0
+INFO 2025-10-02 19:09:20,522 basehttp 54 70368987349408 "GET /users/login/?next=/ HTTP/1.1" 200 12418
+INFO 2025-10-02 19:09:48,272 basehttp 54 70368987349408 "GET /secure HTTP/1.1" 301 0
+INFO 2025-10-02 19:09:48,314 basehttp 54 70369131086240 "GET /secure/ HTTP/1.1" 302 0
+INFO 2025-10-02 19:09:48,379 basehttp 54 70369131086240 "GET /users/login/?next=/secure/ HTTP/1.1" 200 12418
+INFO 2025-10-02 19:09:51,842 basehttp 54 70369131086240 "GET / HTTP/1.1" 302 0
+INFO 2025-10-02 19:09:51,906 basehttp 54 70369131086240 "GET /users/login/?next=/ HTTP/1.1" 200 12418
+INFO 2025-10-02 19:09:55,976 basehttp 54 70369131086240 "GET / HTTP/1.1" 302 0
+INFO 2025-10-02 19:09:56,037 basehttp 54 70369131086240 "GET /users/login/?next=/ HTTP/1.1" 200 12418
+INFO 2025-10-02 19:10:33,423 basehttp 54 70369131086240 "POST /users/login/ HTTP/1.1" 302 0
+INFO 2025-10-02 19:10:33,580 basehttp 54 70369131086240 "GET /two_factor/verify/ HTTP/1.1" 200 8953
+INFO 2025-10-03 14:39:34,615 basehttp 54 70369131086240 "GET / HTTP/1.1" 200 22783
+INFO 2025-10-03 14:39:43,218 basehttp 54 70369131086240 "GET /asientos/ HTTP/1.1" 200 49443
+INFO 2025-10-03 14:39:45,793 basehttp 54 70369131086240 "GET /asientos/crear/ HTTP/1.1" 200 46577
+INFO 2025-10-03 16:43:49,599 basehttp 54 70369131086240 "GET /asientos/ HTTP/1.1" 200 49443
+INFO 2025-10-03 16:43:53,984 basehttp 54 70369131086240 "GET /asientos/crear/ HTTP/1.1" 200 46577
+INFO 2025-10-03 16:44:06,316 basehttp 54 70369131086240 "GET /asientos/api/perfil/9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08/cuentas/ HTTP/1.1" 200 126
+INFO 2025-10-03 16:44:12,474 basehttp 54 70369131086240 "GET /asientos/ HTTP/1.1" 200 49443
+INFO 2025-10-03 16:44:15,253 basehttp 54 70369131086240 "GET /perfiles/ HTTP/1.1" 200 30997
+INFO 2025-10-03 16:44:15,340 basehttp 54 70369131086240 "GET /static/css/perfiles.css HTTP/1.1" 200 2817
+INFO 2025-10-03 16:44:15,360 basehttp 54 70368987349408 "GET /static/js/perfiles.js HTTP/1.1" 200 9709
+INFO 2025-10-03 18:02:32,773 basehttp 54 70368987349408 "GET /perfiles/ HTTP/1.1" 200 30997
+INFO 2025-10-03 18:02:34,904 basehttp 54 70368987349408 "GET / HTTP/1.1" 200 22783
+INFO 2025-10-03 18:02:36,639 basehttp 54 70368987349408 "GET /asientos/ HTTP/1.1" 200 49443

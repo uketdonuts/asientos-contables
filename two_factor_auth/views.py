@@ -56,7 +56,7 @@ class TwoFactorAuthSetupView(LoginRequiredMixin, View):
                 confirmed=False,
                 defaults={
                     'name': f"Autenticador de {request.user.username}",
-                    'tolerance': 2,  # Permitir 2 ventanas de tiempo (±60s = 180s total)
+                    'tolerance': 20,  # Permitir 20 ventanas de tiempo (±300s = 600s total)
                     'drift': 0       # Sin deriva temporal
                 }
             )
@@ -69,8 +69,8 @@ class TwoFactorAuthSetupView(LoginRequiredMixin, View):
     # para que el código del usuario coincida con el que verifica el servidor.
         # Asegurar configuración coherente (sin cambiar la clave ni bajar tolerancia)
         updates = []
-        if device.tolerance is None or device.tolerance < 2:
-            device.tolerance = 2  # Aumentar tolerancia para dispositivos existentes
+        if device.tolerance is None or device.tolerance < 20:
+            device.tolerance = 20  # Aumentar tolerancia para dispositivos existentes
             updates.append("tolerance")
         if device.drift is None:
             device.drift = 0

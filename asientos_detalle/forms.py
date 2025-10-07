@@ -45,6 +45,7 @@ class AsientoDetalleForm(forms.ModelForm):
         }
     
     def __init__(self, *args, **kwargs):
+        asiento = kwargs.pop('asiento', None)
         super().__init__(*args, **kwargs)
         
         # Configurar las opciones de polaridad
@@ -55,14 +56,24 @@ class AsientoDetalleForm(forms.ModelForm):
         
         # Configurar querysets
         self.fields['asiento'].queryset = Asiento.objects.all().order_by('-fecha', 'descripcion')
-        self.fields['cuenta'].queryset = Cuenta.objects.all().order_by('codigocuenta')
         self.fields['empresa_id'].queryset = Empresa.objects.all().order_by('nombre')
+        
+        # Filtrar cuentas por perfil del asiento si se proporciona
+        if asiento and asiento.id_perfil:
+            from perfiles.models import PerfilPlanCuenta
+            # Obtener las cuentas asociadas al perfil del asiento
+            perfil_cuentas = PerfilPlanCuenta.objects.filter(perfil=asiento.id_perfil).select_related('cuentas_id')
+            cuenta_ids = [pc.cuentas_id.id for pc in perfil_cuentas]
+            self.fields['cuenta'].queryset = Cuenta.objects.filter(id__in=cuenta_ids).order_by('cuenta')
+        else:
+            # Si no hay asiento o perfil, mostrar todas las cuentas
+            self.fields['cuenta'].queryset = Cuenta.objects.all().order_by('cuenta')
         
         # Si es una edición, filtrar por empresa del asiento
         if self.instance and self.instance.pk and self.instance.asiento:
             empresa = self.instance.asiento.empresa
             if empresa:
-                self.fields['cuenta'].queryset = Cuenta.objects.filter(empresa_id=empresa).order_by('codigocuenta')
+                self.fields['cuenta'].queryset = self.fields['cuenta'].queryset.filter(empresa_id=empresa)
     
     def clean(self):
         cleaned_data = super().clean()

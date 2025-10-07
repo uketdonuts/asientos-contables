@@ -21,6 +21,6 @@ urlpatterns = [
 
 # API endpoints
 urlpatterns += [
-    path('api/perfil/<int:perfil_id>/cuentas/', views.api_perfil_cuentas, name='api_perfil_cuentas'),
+    path('api/perfil/<str:perfil_id>/cuentas/', views.api_perfil_cuentas, name='api_perfil_cuentas'),
     path('api/asiento/<str:asiento_id>/detalles/', views.get_asiento_detalles, name='get_asiento_detalles'),
 ]

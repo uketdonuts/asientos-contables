@@ -100,7 +100,7 @@ LANGUAGE_CODE = 'es'  # cambiar a 'es' para español
 
 TIME_ZONE = 'America/Bogota'
 
-USE_I18N = True  # asegurarse de que esté habilitado
+USE_I18N = False  # asegurarse de que esté habilitado
 
 USE_L10N = True
 
@@ -144,7 +144,7 @@ TWILIO_CALLER_ID = '+1234567890'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Configuración de django-otp para 2FA con tolerancia mejorada
-OTP_TOTP_TOLERANCE = 2  # Permitir 2 tokens antes/después (total ~180 segundos)
+OTP_TOTP_TOLERANCE = 20  # Permitir 20 tokens antes/después (total ~600 segundos)
 OTP_TOTP_ISSUER = 'Asientos Contables'  # Nombre que aparece en la app
 
 # Para desarrollo local con MailHog

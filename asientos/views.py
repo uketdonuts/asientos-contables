@@ -238,7 +238,7 @@ def add_detalle(request, asiento_id):
     if request.method == 'POST':
         logger.debug(f"DEPURACIÓN ADD_DETALLE: POST data: {request.POST}")
         
-        form = AsientoDetalleForm(request.POST)
+        form = AsientoDetalleForm(request.POST, asiento=asiento)
         logger.debug(f"DEPURACIÓN ADD_DETALLE: Form is_valid: {form.is_valid()}")
         
         if form.is_valid():
@@ -265,7 +265,7 @@ def add_detalle(request, asiento_id):
         else:
             logger.debug(f"DEPURACIÓN ADD_DETALLE: Errores en formulario: {form.errors}")
     else:
-        form = AsientoDetalleForm()
+        form = AsientoDetalleForm(asiento=asiento)
         logger.debug(f"DEPURACIÓN ADD_DETALLE: Formulario GET inicializado")
     
     context = {
@@ -284,7 +284,7 @@ def edit_detalle(request, asiento_id, detalle_id):
     logger.debug(f"DEPURACIÓN: Valores iniciales - Monto: {detalle.monto}, Asiento: {detalle.asiento}")
     
     if request.method == 'POST':
-        form = AsientoDetalleForm(request.POST, instance=detalle)
+        form = AsientoDetalleForm(request.POST, instance=detalle, asiento=asiento)
         if form.is_valid():
             detalle_updated = form.save()
             logger.debug(f"DEPURACIÓN: Valores actualizados - Monto: {detalle_updated.monto}, Tipo: {detalle_updated.tipo_cuenta}, Perfil: {detalle_updated.perfil}")
@@ -292,7 +292,7 @@ def edit_detalle(request, asiento_id, detalle_id):
         else:
             logger.debug(f"DEPURACIÓN: Errores en formulario: {form.errors}")
     else:
-        form = AsientoDetalleForm(instance=detalle)
+        form = AsientoDetalleForm(instance=detalle, asiento=asiento)
         logger.debug(f"DEPURACIÓN: Monto en formulario: {form['monto'].value()}")
         logger.debug(f"DEPURACIÓN: Asiento asociado: {detalle.asiento}")
     
@@ -672,7 +672,8 @@ def asiento_create_new(request):
     perfiles = Perfil.objects.all()
     return render(request, 'asientos/asiento_create.html', {
         'perfiles': perfiles,
-        'is_edit_mode': False
+        'is_edit_mode': False,
+        'asiento': None
     })
 
 @login_required
@@ -682,22 +683,31 @@ def api_perfil_cuentas(request, perfil_id):
     """
     try:
         perfil = get_object_or_404(Perfil, id=perfil_id)
-        perfil_cuentas = PerfilPlanCuenta.objects.filter(perfil_id=perfil).select_related('cuentas_id')
-        
-        cuentas = []
-        for pc in perfil_cuentas:
-            cuentas.append({
-                'id': pc.cuentas_id.id,
-                'codigo': pc.cuentas_id.cuenta,
-                'descripcion': pc.cuentas_id.descripcion,
-                'polaridad': pc.polaridad
+
+        # Buscar las configuraciones de cuentas asociadas al perfil usando PerfilPlanCuenta
+        configuraciones = PerfilPlanCuenta.objects.filter(perfil_id=perfil).select_related('cuentas_id')
+
+        if not configuraciones.exists():
+            return JsonResponse({
+                'success': False,
+                'error': f'No se encontraron cuentas asociadas al perfil "{perfil.nombre}"'
             })
-        
+
+        cuentas_data = []
+        for config in configuraciones:
+            cuenta = config.cuentas_id
+            cuentas_data.append({
+                'id': cuenta.id,
+                'codigo': cuenta.cuenta,
+                'descripcion': cuenta.descripcion,
+                'polaridad': config.polaridad  # Usar la polaridad configurada en el perfil
+            })
+
         return JsonResponse({
             'success': True,
-            'cuentas': cuentas
+            'cuentas': cuentas_data
         })
-        
+
     except Exception as e:
         logger.error(f"Error obteniendo cuentas del perfil {perfil_id}: {str(e)}")
         return JsonResponse({

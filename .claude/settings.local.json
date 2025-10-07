@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python manage.py runserver:*)",
+      "Bash(python manage.py shell:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(curl:*)",
+      "Bash(docker logs:*)",
+      "Bash(docker exec:*)",
+      "Bash(docker restart:*)",
+      "Bash(docker-compose:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

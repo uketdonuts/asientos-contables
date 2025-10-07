@@ -18,6 +18,12 @@ main() {
     echo "Iniciando Asientos Contables..."
     echo "$(date)"
     
+    # Sincronizar tiempo con NTP para evitar problemas con 2FA
+    echo "Sincronizando tiempo con NTP..."
+    timedatectl set-ntp true 2>/dev/null || true
+    ntpdate pool.ntp.org 2>/dev/null || true
+    echo "Tiempo sincronizado: $(date)"
+    
     # Esperar a la base de datos si está configurada
     if [ "$DB_HOST" ] && [ "$DB_PORT" ]; then
         wait_for_db
