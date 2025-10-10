@@ -3,7 +3,7 @@ version: '3.8'
 services:
   db:
     image: mysql:8.0
-    platform: linux/arm64/v8
+    command: --innodb-use-native-aio=0
     volumes:
       - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
       - mysql_data:/var/lib/mysql
@@ -22,18 +22,6 @@ services:
         limits:
           memory: 1g
 
-  mailhog:
-    image: mailhog/mailhog:latest
-    ports:
-      - "1065:1025"  # Puerto SMTP
-      - "8075:8025"  # Puerto web UI
-    networks:
-      - app-network
-    deploy:
-      resources:
-        limits:
-          memory: 256m
-
   web:
     build: .
     volumes:
@@ -44,10 +32,8 @@ services:
       - docker.env
     depends_on:
       - db
-      - mailhog
     networks:
       - app-network
-    platform: linux/arm64/v8
     deploy:
       resources:
         limits:
